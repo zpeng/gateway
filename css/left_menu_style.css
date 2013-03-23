@@ -1,0 +1,85 @@
+/*
+Author: Craig Erskine
+Description: Dynamic Menu System - Vertical
+*/
+
+
+
+
+
+ul#navmenu-v,ul#navmenu-v li,ul#navmenu-v ul {
+ width: 100%; /* Menu Width */
+ margin: 0;
+ list-style: none;
+ padding: 0;
+ font: 100%;
+ text-align: left;
+
+}
+
+ul#navmenu-v li { float: left; position: relative;  width: 100%; }
+ul#navmenu-v li.iehover { z-index: 1000; /* IE z-index bugfix */ }
+
+ul#navmenu-v ul {
+ display: none;
+ position: absolute;
+ top: 0;
+ left: 100%;
+ z-index: 9999;
+}
+
+/* Root Menu */
+ul#navmenu-v a {
+ border-top: 1px solid #FFF;
+ border-right: 1px solid #FFF;
+ padding:5px 0px 10px 28px;
+ display: block;
+ background:url(../images/site/bg_list_blue.gif) 15px 10px no-repeat;
+ color:#3f9ac9;
+ font:normal 12px Tahoma, Geneva, sans-serif;
+ text-decoration: none;
+ height: 1%;
+ margin: 0
+}
+
+/* Root Menu Hover Persistence */
+ul#navmenu-v a:hover,ul#navmenu-v li:hover a,ul#navmenu-v li.iehover a {
+ background:url(../images/site/bg_list_white.gif) 15px 10px no-repeat #12BBFF;
+ color: #FFF;
+}
+
+/* 2nd Menu */
+ul#navmenu-v li:hover li a,ul#navmenu-v li.iehover li a {
+ float: none;
+ background:url(../images/site/bg_list_white.gif) 15px 10px no-repeat #999;
+}
+
+/* 2nd Menu Hover Persistence */
+ul#navmenu-v li:hover li a:hover,ul#navmenu-v li:hover li:hover a,ul#navmenu-v li.iehover li a:hover,ul#navmenu-v li.iehover li.iehover a {
+ background:url(../images/site/bg_list_white.gif) 15px 10px no-repeat #12BBFF;
+}
+
+/* 3rd Menu */
+ul#navmenu-v li:hover li:hover li a,ul#navmenu-v li.iehover li.iehover li a {
+ background:url(../images/site/bg_list_white.gif) 15px 10px no-repeat #999;
+}
+
+/* 3rd Menu Hover Persistence */
+ul#navmenu-v li:hover li:hover li a:hover,ul#navmenu-v li:hover li:hover li:hover a,ul#navmenu-v li.iehover li.iehover li a:hover,ul#navmenu-v li.iehover li.iehover li.iehover a {
+ background:url(../images/site/bg_list_white.gif) 15px 10px no-repeat #12BBFF;
+}
+
+/* 4th Menu */
+ul#navmenu-v li:hover li:hover li:hover li a,ul#navmenu-v li.iehover li.iehover li.iehover li a {
+ background:url(../images/site/bg_list_white.gif) 15px 10px no-repeat #666;
+}
+
+/* 4th Menu Hover */
+ul#navmenu-v li:hover li:hover li:hover li a:hover,ul#navmenu-v li.iehover li.iehover li.iehover li a:hover {
+ background:url(../images/site/bg_list_white.gif) 15px 10px no-repeat #12BBFF;
+}
+
+/* Hover Function - Do Not Move */
+ul#navmenu-v li:hover ul ul,ul#navmenu-v li:hover ul ul ul,ul#navmenu-v li.iehover ul ul,ul#navmenu-v li.iehover ul ul ul { display: none; }
+ul#navmenu-v li:hover ul,ul#navmenu-v ul li:hover ul,ul#navmenu-v ul ul li:hover ul,ul#navmenu-v li.iehover ul,ul#navmenu-v ul li.iehover ul,ul#navmenu-v ul ul li.iehover ul { display: block; }
+

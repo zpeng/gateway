@@ -1,0 +1,36 @@
+
+.menu-left-bg {
+    background:#12BBFF;
+    width: 950px;
+}
+ul.menu-nav {
+    list-style:none outside none;
+    margin:0;
+    overflow:hidden;
+    padding:0 0;
+    width:100%;
+}
+ul.menu-nav li {
+    float:left;
+    padding:0px 14px 0px 0;
+    border-left:1px solid #fff;
+    background:url(../images/site/menu-separator.gif) 14px 11px no-repeat;
+}
+ul.menu-nav li:hover,
+ul.menu-nav li.active {
+    background:url(../images/site/menu-separator-act.gif) 14px 11px no-repeat;
+}
+ul.menu-nav li a {
+    color:#fff;
+    display:block;
+    font:bold 10px/12px Tahoma, Geneva, sans-serif;
+    text-decoration:none;
+    text-transform:uppercase;
+    padding:9px 0px 10px 26px;
+}
+
+/* ------------------- hover, active --- */
+ul.menu-nav li a:hover,
+ul.menu-nav li.active a {
+    color:#1f4356;
+}

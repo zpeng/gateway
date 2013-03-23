@@ -1,0 +1,390 @@
+body{
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    line-height:18px;
+    margin: 0;
+    padding: 0;
+}
+
+.the_main_body{
+    width: 100%;
+    min-width: 1000px;
+    height: 100%;
+    border: 1px blue solid;
+    margin: 0;
+    padding: 0;
+}
+
+
+.top_header{
+    height:20px;
+    text-align: right;
+}
+
+.top_bar{
+    background:url(../images/top_bar.jpg) repeat;
+    height:50px;
+
+}
+
+.top_bar_nav {
+    float: right;
+    color: #FFFFFF;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.top_bar_nav a{
+    color: #FFFFFF;
+}
+
+
+span.product_title{
+    color:#FFFFFF;
+    font-size: 24px;
+    margin-left: 20px;
+    margin-top: 15px;
+    float: left;
+
+}
+
+span.product_title_version{
+    color:#FFFFFF;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 20px;
+    float: left;
+}
+
+
+
+
+
+.title_block {
+    float:left;
+    margin: 20px;
+}
+
+span.title{
+    color:#32488C;
+    font-size: 16px;
+    margin-left: 5px;
+    float: left;
+    font:900;
+}
+
+
+
+
+.button_block {
+    float:right;
+    text-align: center;
+    margin-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 60px;
+    vertical-align:middle;
+}
+
+.button_block:hover {
+    border:1px gray solid;
+}
+
+.button_block a {
+    text-decoration: none;
+}
+
+.button_block a:hover {
+    text-decoration: none;
+}
+
+.button_block img {
+    border: 0
+}
+
+
+
+
+
+
+.main_view{
+    height: 100%;
+    min-width: 1000px;
+    width: 100%;
+}
+
+.top_menu_container{
+    border-left: 1px gray solid;
+    border-right: 1px gray solid;
+    height: 35px;
+    vertical-align: middle;
+}
+
+.footer{
+    width: 100%;
+    min-width:1000px;
+    border-top:1px solid gray;
+    text-align: center;
+    padding-top: 20px;
+}
+
+fieldset{
+    text-align: left;
+}
+
+fieldset.title_fieldset{
+    height: 60px;
+    min-width: 950px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    vertical-align:  middle;    
+}
+
+fieldset.content_fieldset{
+    min-width: 950px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+fieldset.attribute_fieldset{
+    min-width: 700px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    vertical-align:  middle;
+}
+
+label.attribute_checkbox_label{
+    margin-right: 20px;
+}
+
+a {
+    color:#003366;
+    text-decoration:none;
+    font-size:90%;
+}
+
+a.current {
+    color:#999999;
+}
+
+a:hover {
+    text-decoration: underline;
+    color:#C60000;
+}
+
+ul {
+    color:#666666;
+    line-height: 1.5em;
+    list-style: none;
+}
+
+b {
+    font-size:85%;
+    color: #000;
+}
+
+h1 {
+    color:#C60000;
+    font-weight:bold;
+    padding-left: 0.5em;
+    padding-top: 0.2em;
+}
+
+h4 {
+    color:#FF3300;
+    font-size: 13px;
+    font-weight:bold;
+    text-align:left;
+    padding-left:10px;
+    margin-top: 10px;
+    border-bottom-style:dashed; border-bottom-width:1px; border-bottom-color:#E5E5E5;
+}
+
+p {
+    text-align:left;
+    color:#777777;
+    line-height: 1.5em;
+    margin-left:10px;
+}
+
+
+.admin_cp a {
+    text-decoration: none;
+    display: block;
+}
+
+.admin_cp a:hover{
+    text-decoration: none;
+    border: 1px solid silver;
+}
+
+
+/* --- admin message view --- */
+div.information{
+    width: 100%;
+    border-top: #000075 2px solid;
+    border-bottom: #000075 2px solid;
+    text-align: left;
+    padding: 5px 5px 5px 10px;
+    background-color:#6F9BFF;
+    vertical-align: middle;
+}
+
+b.information{
+    color: #000075;
+    margin-left: 10px;
+}
+
+
+div.warning{
+    width: 100%;
+    border-top: #FF7F00 2px solid;
+    border-bottom: #FF7F00 2px solid;
+    text-align: left;
+    padding: 5px 5px 5px 10px;
+    background-color:white;
+    vertical-align: middle;
+}
+
+b.warning{
+    color: #FF7F00;
+    margin-left: 10px;
+}
+
+div.error{
+    width: 100%;
+    border-top: #C60000 2px solid;
+    border-bottom: #C60000 2px solid;
+    text-align: left;
+    padding: 5px 5px 5px 10px;
+    background-color:pink;
+    vertical-align: middle;
+}
+
+b.error{
+    color: #C60000;
+    margin-left: 10px;
+}
+
+
+/* --- table style ---*/
+table.full_border {
+    border-bottom: 1px solid #AFA8A1;
+    border-right: 1px solid #AFA8A1;   
+}
+
+table.full_border td {
+    border-top: 1px solid #AFA8A1;
+    border-left: 1px solid #AFA8A1;
+}
+
+
+table.horizontal_border {
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+
+table.horizontal_border td {
+    border-top: 1px solid silver;
+}
+
+
+
+
+/*---- form validation error message ---*/
+#wrapper {width:300px; margin:50px auto}
+.form {float:left; padding:0 10px 10px 10px; background:#f3f3f3; border:2px solid #cfcfcf}
+.form label {float:left; width:100px; padding:10px 10px 0 0; font-weight:bold}
+.form select {float:left; width:146px; margin-top:10px}
+.form input {float:left; margin-top:10px}
+.form .submit {clear:both}
+#msg {display:none; position:absolute; z-index:99999; background:url(../images/validation/msg_arrow.gif) left center no-repeat; padding-left:7px}
+#msgcontent {display:block; background:#f3e6e6; border:2px solid #924949; border-left:none; padding:5px; min-width:150px; max-width:250px}
+
+
+
+/*---  Sorted Table ---*/
+#tablewrapper {    
+    min-width:980px;
+    margin-left: 10px
+}
+#tableheader {height:55px}
+.search {float:left; padding:6px; border:1px solid #c6d5e1; background:#fff}
+#tableheader select {float:left; font-size:12px; width:125px; padding:2px 4px 4px}
+#tableheader input {float:left; font-size:12px; width:225px; padding:2px 4px 4px; margin-left:4px}
+.details {float:right; padding-top:12px}
+.details div {float:left; margin-left:15px; font-size:12px}
+
+
+.tinytable {
+    font:10px Verdana,Arial;
+    width: 99%;
+    min-width:950px;
+    border-left:1px solid #c6d5e1; 
+    border-top:1px solid #c6d5e1;
+    border-bottom:none;
+    margin:0 auto 5px 0px;
+}
+.tinytable th {padding:3px 1px 1px 1px ; background:url(../images/sorttable/header-bg.gif) ;  text-align:left; color:#cfdce7; border:1px solid #fff; border-right:none; }
+.tinytable th h3 {font-size:10px; margin:3px;}
+.tinytable td {padding:4px 6px 6px; border-bottom:1px solid #c6d5e1; border-right:1px solid #c6d5e1;  text-align:left; }
+.tinytable .head h3 {background:url(../images/sorttable/sort.gif) 5px  no-repeat; cursor:pointer; padding-left:18px}
+.tinytable .desc, .sortable .asc {background:url(../images/sorttable/header-selected-bg.gif); }
+.tinytable .desc h3 {background:url(../images/sorttable/desc.gif) 5px  no-repeat; cursor:pointer; padding-left:18px}
+.tinytable .asc h3 {background:url(../images/sorttable/asc.gif) 5px   no-repeat; cursor:pointer; padding-left:18px}
+.tinytable .head:hover, .sortable .desc:hover, .sortable .asc:hover {color:#fff}
+.tinytable .evenrow td {background:#fff}
+.tinytable .oddrow td {background:#ecf2f6}
+.tinytable td.evenselected {background:#ecf2f6}
+.tinytable td.oddselected {background:#dce6ee}
+.tinytable tfoot {background:#fff; font-weight:bold}
+.tinytable tfoot td {padding:6px 8px 8px}
+
+
+#tablefooter {height:15px; margin-top:20px}
+#tablenav {float:left}
+#tablenav img {cursor:pointer}
+#tablenav div {float:left; margin-right:15px}
+#tablelocation {float:right; font-size:12px}
+#tablelocation select {margin-right:3px}
+#tablelocation div {float:left; margin-left:15px}
+.page {margin-top:2px; font-style:italic}
+#selectedrow td {background:#c6d5e1}
+
+
+
+
+/*---  accordion---*/
+#accordion { width: 90%;
+             min-width: 800px;
+             margin:50px auto;
+             border:1px solid #122C7A;
+             border-top:none;
+             margin:0;
+             padding:0}
+.accordion { font:12px Verdana,Arial;
+             color:#333;
+             margin:0;
+             padding:0;
+             border:1px solid #122C7A;}
+.accordion dt {
+               padding:5px;
+               margin: 0;
+               font-weight:bold;
+               cursor:pointer;
+               background-color:#32488C;
+               background-position:right center;
+               background-repeat:no-repeat;
+               color:#fff;
+
+
+}
+
+.accordion dt:hover {background-color:#8192C6}
+.accordion .open {background-color:#273F87;}
+.accordion dd {overflow:hidden; background:#fff; padding-left: 3px; margin-left: 3px;
+
+
+
+}
