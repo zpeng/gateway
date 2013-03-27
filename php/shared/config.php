@@ -1,6 +1,16 @@
 <?php
 
+/** define the database **/
+define('DB_HOST', "localhost");
+define('DB_NAME', "gateway");
+define('DB_USER', "root");
+define('DB_PASSWORD', "");
+
+
+
+/** define the project location **/
 define('PROJECT_FOLDER', "/gateway");
+
 
 /** define base path */
 if ( !defined('BASE_PATH') )

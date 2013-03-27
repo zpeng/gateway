@@ -6,16 +6,13 @@ $email = secureRequestParameter($_REQUEST['email']);
 $password =  secureRequestParameter($_REQUEST['password']);
 
 $adminManager = new AdministratorManager();
-$result = true; //$adminManager->adminLogin($email, $password);
+$result = $adminManager->adminLogin($email, $password);
 
 if ($result) {
     session_start();
 
-    $admin = new Administrator();
-    //$admin->loadByEmail($email);
-
     $_SESSION['admin_name'] = $email;
-    $_SESSION['admin_access_code'] =md5($email); //md5($admin->get_admin_name());
+    $_SESSION['admin_access_code'] =md5($email);
 
     /*
     // to setup the configuration

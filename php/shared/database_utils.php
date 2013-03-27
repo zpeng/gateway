@@ -1,20 +1,15 @@
 <?php
 
 function getConnection(){
-    $hostname = "localhost";
-    $user = "root";
-    $pass = "19840617";
-    $db = "rose_shoppingcart";
-
-    $link = @mysql_connect($hostname, $user, $pass );
+    $link = @mysql_connect(DB_HOST, DB_USER, DB_PASSWORD );
     if ( ! $link ) {
-        die( "Couldn't connect to MySQL: ".mysql_error().$hostname. $user.$pass );
+        die( "Couldn't connect to MySQL: ".mysql_error()." <br/>".DB_USER."@".DB_HOST );
     }
 
-    @mysql_select_db( $db,$link )
-    or die ( "Couldn't open $db: ".mysql_error());
+    @mysql_select_db( DB_NAME,$link )
+    or die ( "Couldn't open ".DB_NAME.": ".mysql_error());
 
-    // to support Chinese
+    // to support non-western language
     mysql_query("SET NAMES 'utf8'");
     
     return $link;
@@ -36,7 +31,7 @@ function executeUpdateQuery($link , $query , $location =""){
 
 function secureRequestParameter($value){
     $value = trim($value);
-    //$value = mysql_real_escape_string($value);
+    $value = mysql_real_escape_string($value);
     return $value;
 }
 
