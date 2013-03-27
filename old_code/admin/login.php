@@ -50,7 +50,7 @@
                                     <td width="100" align="right"></td>
                                     <td align="right">
                                         <input name='Login' type='image' value='Login'
-                                               title="Login" src="images/admin_login/b_login.gif"/>
+                                               title="Login" src="../../admin/images/login_btn.gif"/>
                                     </td>
                                 </tr>
 

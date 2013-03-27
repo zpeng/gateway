@@ -1,69 +1,61 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Gemini Eshop - Administration Login</title>
-        <link rel="stylesheet" type="text/css" href="../css/admin/css/admin_login.css" />
-        <link rel="stylesheet" type="text/css" href="../css/admin/css/style.css" />
-    </head>
-    <body>
-        <?
-        include_once 'view/admin_msg_view.php';
-        ?>
-        <center>
-            <table  width="500" border="0" cellpadding="0" cellspacing="0"  class="login_table">
-                <tr>
-                    <td class="login_top_bar" colspan="2">
-                        <b style="color:white">Gemini Eshop - Administration Login</b>
-                    </td>
-                </tr>
-                <tr >
-                    <td width="30%"class="login_left_panel" valign="middle" align="center">
-                        <img src="images/admin_login/lock.png" width="80" height="80" />
-                    </td>
-                    <td class="login_right_panel">
-                        <br/><br/>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Administration Login</title>
+    <link rel="stylesheet" type="text/css" href="css/admin.css"/>
+</head>
+<body>
 
-                        <form method='post' action='control/login.php' >
-                            <table width="250" style="font-size:100%" border="0">
-                                <tr>
-                                    <td colspan="2">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="100" align="right"></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td width="100" align="right"><b>Email:</b>&nbsp;</td>
-                                    <td><input name="email" style="width: 150px;" /></td>
-                                </tr>
-                                <tr>
-                                    <td width="100" align="right"><b>Password:</b>&nbsp;</td>
-                                    <td><input name="password" type="password" style="width: 150px;" /></td>
-                                </tr>
-                                <tr>
-                                    <td width="100" align="right"></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td width="100" align="right"></td>
-                                    <td align="right">
-                                        <input name='Login' type='image' value='Login'
-                                               title="Login" src="images/admin_login/b_login.gif"/>
-                                    </td>
-                                </tr>
+<table border="0" cellpadding="0" cellspacing="0" class="login_table">
+    <tr>
+        <td class="login_table_top_bar" colspan="2">
+            Administration Login
+        </td>
+    </tr>
+    <tr>
+        <td width="30%" class="login_table_left_panel" valign="middle" align="center">
+            <img src="images/locker.png" width="80" height="80"/>
+        </td>
+        <td class="login_table_right_panel">
+            <form method='post' action='control/login.php'>
+                <table width="300" border="0">
+                    <tr>
+                        <td colspan="2" height="50">
+                            <?
+                            include_once('view/message_bar.php');
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100" class="login_table_label">Email:</td>
+                        <td><input name="email" class="login_table_input"/></td>
+                    </tr>
+                    <tr>
+                        <td width="100"class="login_table_label">Password:</td>
+                        <td><input name="password" type="password" class="login_table_input"/></td>
+                    </tr>
+                    <tr>
+                        <td width="100" align="right"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td width="100" align="right"></td>
+                        <td align="right">
+                            <input name='Login' type='image' value='Login' title="Login" src="images/login_btn.gif"/>
+                        </td>
+                    </tr>
 
-                            </table>
-                        </form>
-                    </td>
-                </tr>
-                <tr >
-                    <td class="login_footer" colspan="2">
-                        <b>&copy; 2009 Rings of Software Engineers</b>
-                    </td>
-                </tr>
-            </table>
-        </center>
-    </body>
+                </table>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td class="login_table_footer" colspan="2">
+            <b>&copy; 2013 Rings of Software Engineers</b>
+        </td>
+    </tr>
+</table>
+</body>
 </html>

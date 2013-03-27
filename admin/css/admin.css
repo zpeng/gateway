@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.msg_bar {
+    font-weight: bold;
+}
+
+.notify_icon {
+    margin: 0px 5px 0px 5px;
+}
+
+/* admin login page */
+.login_table {
+    margin: auto; /* so that the login box will float in the center of the page */
+    margin-top: 100px;
+    width: 500px;
+    border-bottom: 1px gray solid;
+}
+
+.login_table_top_bar {
+    background: url(../images/login_top_bar.jpg) center no-repeat;
+    height: 35px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.login_table_left_panel {
+    border-left: 1px gray solid;
+    border-top: 3px gray solid;
+}
+
+.login_table_right_panel {
+    border-right: 1px gray solid;
+    border-top: 3px gray solid;
+}
+
+.login_table_footer {
+    border-left: 1px gray solid;
+    border-right: 1px gray solid;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.login_table_label {
+    width: 100px;
+    font-size: 11px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.login_table_input {
+    width: 200px;
+}
