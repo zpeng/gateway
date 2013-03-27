@@ -40,6 +40,6 @@ if ($result) {
 
 
 }else {
-    header( "Location: ../admin_login.php?error=Wrong username or password!" );
+    header( "Location: ../login.php?error=Wrong username or password!" );
 }
 ?>

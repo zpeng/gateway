@@ -8,6 +8,6 @@ unset($_SESSION['role']);
 unset($_SESSION['login']);
 
 
-header( "Location: admin_login.php" );
+header( "Location: login.php" );
 
 ?>

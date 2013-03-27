@@ -24,7 +24,7 @@ if (!isset ($_SESSION['configuration'])) {
 
 if (!$login){
     // did not pass the authenticaion, kick back to login page
-    header( "Location: admin_login.php");
+    header( "Location: login.php");
 
 }
 

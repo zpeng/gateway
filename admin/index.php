@@ -1,5 +1,5 @@
 <?php
-require_once('admin_authentication.php') ;
+require_once('authentication.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -24,7 +24,7 @@ require_once('admin_authentication.php') ;
                 <div class="top_bar_nav">
                     <a href='../index.php'>Website</a>&nbsp;|&nbsp;
                     <a href='index.php?view=admin_cp'>Administration Home</a>&nbsp;|&nbsp;
-                    <a href='admin_logout.php'>Logout</a>
+                    <a href='logout.php'>Logout</a>
                 </div>
             </div>
 
