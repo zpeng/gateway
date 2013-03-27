@@ -6,8 +6,8 @@ require_once('authentication.php');
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Gemini E-Shop</title>
-        <link rel="stylesheet" type="text/css" href="styles/style.css" />
-        <link rel="stylesheet" type="text/css" href="styles/top_menu_styles.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/top_menu_styles.css" />
         <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.7.1.custom/css/custom-theme/jquery-ui-1.8.2.custom.css" />
         <script type="text/javascript" src="js/jquery-ui-1.7.1.custom/js/jquery-1.3.2.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.7.1.custom/js/jquery-ui-1.7.1.custom.min.js"></script>
