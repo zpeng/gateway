@@ -24,7 +24,7 @@
                     <tr>
                         <td colspan="2" height="50">
                             <?
-                            include_once('view/message_bar.php');
+                            include_once('view/notification_bar.php');
                             ?>
                         </td>
                     </tr>
