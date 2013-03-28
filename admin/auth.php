@@ -11,11 +11,8 @@ if (md5($admin_email) != $admin_access_code){
     // did not pass the authentication, kick back to login page
     header( "Location: login.php");
 }else{
-
     // to setup the configuration
     setup_configuration_in_session();
-
 }
-
 
 ?>

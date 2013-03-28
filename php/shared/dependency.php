@@ -1,6 +1,5 @@
 <?php
-
-$module_list = array(
+$PHP_MODULE_LIST = array(
     "Administrator" => "php/shared/classes/Administrator.php",
     "AdministratorManager" => "php/shared/classes/AdministratorManager.php",
     "Attribute" => "php/shared/classes/Attribute.php",
@@ -64,9 +63,25 @@ $module_list = array(
     "EmailTag" => "php/shared/classes/EmailTag.php",
     "EmailSender" => "php/shared/classes/EmailSender.php",
 
+    "page_builder" => "php/shared/page_builder.php",
     "database_utils" => "php/shared/database_utils.php",
     "html_functions" => "php/shared/ui/html_functions.php",
     "common_functions" => "php/shared/utils/common_functions.php",
 );
+
+$CSS_BACKEND_LIST = array(
+    "admin_css" => "admin/css/admin.css",
+);
+
+$CSS_FRONTEND_LIST = array(
+    "front_css" => "",
+);
+
+
+$JS_SHARED_LIST = array(
+    "tiny_mce_3.5.8" => "js/shared/tiny_mce_3.5.8/tiny_mce.js",
+);
+
+
 
 ?>

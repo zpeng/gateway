@@ -1,11 +1,10 @@
 <?php
 require_once('auth.php');
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-</head>
-<body>
-</body>
-</html>
+
+<?= outputHTMLStart("admin cp", $JS_SHARED_LIST, $CSS_BACKEND_LIST); ?>
+
+<div class='content'></div>
+
+
+<?= outputHTMLEnd(); ?>

@@ -2,8 +2,10 @@
 
 require_once('../../php/shared/config.php');
 
-$email = secureRequestParameter($_REQUEST['email']);
-$password =  secureRequestParameter($_REQUEST['password']);
+echo "i am here";
+
+$email = ($_REQUEST['email']);
+$password =  ($_REQUEST['password']);
 
 $adminManager = new AdministratorManager();
 $result = $adminManager->adminLogin($email, $password);
@@ -14,21 +16,8 @@ if ($result) {
     $_SESSION['admin_name'] = $email;
     $_SESSION['admin_access_code'] =md5($email);
 
-    /*
     // to setup the configuration
-    if (!isset ($_SESSION['configuration'])) {
-        $s_configManager = new ConfigurationManager();
-        unset ($_SESSION['$configManager']);
-        $_SESSION['configuration'] = serialize($s_configManager);
-
-    }else {
-        $str =  unserialize($_SESSION['configuration']);
-        $s_configManager = ConfigurationManager::cast($str);
-
-        unset ($_SESSION['configuration']);
-        $_SESSION['configuration'] = serialize($s_configManager);
-    }
-    */
+    setup_configuration_in_session();
 
     header( "Location: ../index.php?view=admin_cp" );
 
