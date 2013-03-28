@@ -1,11 +1,29 @@
 <?php
 
-function outputHTMLStart($page_title = "", $JS_LIST, $CSS_LIST)
+function outputHTMLStartBackend($page_title = "", $JS_LIST, $CSS_LIST)
 {
     echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"
        \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html><head>";
 
-    echo output_page_title($page_title);
+    echo "<title>" . $page_title . "</title>";
+
+    echo output_js_dependencies($JS_LIST);
+    echo output_css_dependencies($CSS_LIST);
+
+
+    echo "</head><body>";
+}
+
+
+function outputHTMLStartFrontend($JS_LIST, $CSS_LIST, $s_configManager)
+{
+    echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"
+       \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html><head>";
+
+    echo "<title>" . $s_configManager->getValueByKey("shop_name") . "</title>";
+    echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />";
+    echo "<meta name=\"description\" content=\"" . $s_configManager->getValueByKey("meta_description") ."\" />";
+    echo "<meta name=\"keywords\" content=\"" . $s_configManager->getValueByKey("meta_keywords") . "\" />";
 
     echo output_js_dependencies($JS_LIST);
     echo output_css_dependencies($CSS_LIST);
@@ -19,15 +37,6 @@ function outputHTMLEnd()
     echo "</body></html>";
 }
 
-
-function output_meta_data()
-{
-}
-
-function output_page_title($page_title)
-{
-    echo "<title>" . $page_title . "</title>";
-}
 
 function output_js_dependencies($JS_LIST)
 {
