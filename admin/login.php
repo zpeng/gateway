@@ -1,12 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Administration Login</title>
-    <link rel="stylesheet" type="text/css" href="css/admin.css"/>
-</head>
-<body>
+<?php
+require_once('../php/shared/config.php');
+?>
+
+<?= outputHTMLStartBackend("Administration Login", [] , $CSS_BACKEND_LIST); ?>
 
 <table border="0" cellpadding="0" cellspacing="0" class="login_table">
     <tr>
@@ -57,5 +53,4 @@
         </td>
     </tr>
 </table>
-</body>
-</html>
+<?= outputHTMLEnd(); ?>
