@@ -72,7 +72,7 @@ class ConfigurationGroup {
     }
 
     private function loadConfigurationEntityList(){
-        $configurationEntityList = null;
+        $configurationEntityList = [];
         $count = 0;
         $link = getConnection();
         $query="select 	configuration_id,

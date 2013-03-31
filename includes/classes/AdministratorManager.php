@@ -41,7 +41,7 @@ class AdministratorManager {
     }
 
     public function getAdminList() {
-        $adminList;
+        $adminList = [];
         $count =  0;
         $link = getConnection();
 
