@@ -24,8 +24,8 @@ if (!defined('BASE_PATH'))
 include_once(BASE_PATH . "includes/deps.php");
 
 // reads the project config and loads each module deps
-include_once("project_config.php");
-foreach ($project_config as $project_deps) {
+include_once("project_deps_config.php");
+foreach ($project_deps_config as $project_deps) {
     include_once(BASE_PATH . $project_deps);
     //echo BASE_PATH . $project_deps . "<br/>";
 }

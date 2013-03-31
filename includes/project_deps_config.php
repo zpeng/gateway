@@ -3,7 +3,7 @@
  * To define global modules configurations
  */
 
-$project_config = array(
+$project_deps_config = array(
     "cms" => "modules/cms/deps.php",
 );
 
