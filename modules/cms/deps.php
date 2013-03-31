@@ -32,4 +32,5 @@ $JS_BACKEND_LIST = array_merge($JS_BACKEND_LIST, array(
 $JS_FRONTEND_LIST = array_merge($JS_FRONTEND_LIST, array(
 ));
 
+
 ?>

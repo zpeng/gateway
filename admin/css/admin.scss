@@ -1,6 +1,8 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
+  margin: 0;
+  padding: 0;
 }
 
 .msg_bar {
@@ -55,6 +57,194 @@ body {
 
   .login_table_input {
     width: 200px;
+  }
+}
+
+/* admin cp page top header bar */
+.top_header_bar {
+  background: url(../images/top_bar.jpg) repeat;
+  height: 50px;
+
+  span.product_title {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin-left: 20px;
+    margin-top: 15px;
+    float: left;
+  }
+  span.product_title_version {
+    color: #FFFFFF;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 20px;
+    float: left;
+  }
+
+  .top_header_bar_nav {
+    float: right;
+    color: #FFFFFF;
+    margin-top: 5px;
+    margin-right: 10px;
+
+    a {
+      color: #FFFFFF;
+    }
+  }
+}
+
+/* admin top menu */
+.admin_top_menu_container {
+  font: 15px 'Trebuchet MS', helvetica, arial, verdana;
+  color: #333;
+  line-height: 1.5;
+  text-align: left;
+  height: 35px;
+  min-width: 1000px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  border-top: 5px gray solid;
+  border-bottom: 1px gray solid;
+
+  .menu {
+    text-align: left;
+    font-family: verdana, sans-serif;
+    font-size: 0.85em;
+    background: transparent;
+    width: 100%;
+    height: 30px;
+    margin: 0;
+    float: left;
+    margin-top: 5px;
+
+  }
+
+  .menu img {
+    border: 0px;
+  }
+
+  .menu ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  .menu ul li {
+    float: left;
+    position: relative;
+    width: 150px;
+  }
+
+  .menu ul li a, .menu ul li a:visited {
+    display: block;
+    text-decoration: none;
+    width: 150px;
+    height: 30px;
+    color: #000;
+    padding-left: 10px;
+    line-height: 29px;
+  }
+
+  * html .menu ul li a,
+  .menu ul li a:visited {
+    width: 150px;
+  }
+
+  .menu ul li ul {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: 200;
+  }
+
+  /* fist line style for IE7 and non-IE browsers and the second line for IE5.5 and IE6 */
+  .menu ul li:hover a, .menu ul li a:hover {
+    color: blue;
+    text-decoration: none;
+    border: 0;
+  }
+  .menu ul li:hover ul, .menu ul li a:hover ul {
+    visibility: visible;
+    width: 200px;
+    height: auto;
+    position: absolute;
+    top: 30px;
+    left: -1px;
+    background: #fff;
+    border: 1px solid gray;
+    overflow: visible;
+    text-decoration: none;
+  }
+  .menu ul li:hover ul li a,
+  .menu ul li a:hover ul li a {
+    display: block;
+    background: transparent;
+    text-decoration: none;
+    color: #000;
+    height: auto;
+    line-height: 1.5em;
+    padding: 5px 10px 5px 15px;
+    width: 200px;
+  }
+  .menu ul li:hover ul li a.drop,
+  .menu ul li a:hover ul li a.drop {
+    display: block;
+    color: #000;
+    height: auto;
+    line-height: 1.5em;
+    padding: 5px 10px 5px 35px;
+    width: 200px;
+    text-decoration: none;
+  }
+  .menu ul li:hover ul li ul,
+  .menu ul li a:hover ul li a ul {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .menu ul li:hover ul li a:hover,
+  .menu ul li a:hover ul li a:hover {
+    color: #00f;
+    text-decoration: none;
+  }
+  .menu ul li:hover ul li:hover ul,
+  .menu ul li a:hover ul li a:hover ul {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    color: #000;
+    left: 166px;
+    height: auto;
+    border: 1px solid gray;
+  }
+  .menu ul li:hover ul li:hover ul.left,
+  .menu ul li a:hover ul li a:hover ul.left {
+    left: -166px;
+  }
+  .menu ul li:hover ul li:hover ul li a,
+  .menu ul li a:hover ul li a:hover ul li a {
+    display: block;
+    color: #00f;
+    height: auto;
+    line-height: 1.5em;
+    padding: 5px 10px 4px 35px;
+    width: 200px;
+  }
+  * html .menu ul li a:hover ul li a:hover ul li a {
+    padding: 4px 10px 4px 35px;
+  }
+
+  .menu ul li:hover ul li:hover ul li:hover a,
+  .menu ul li a:hover ul li a:hover ul li a:hover {
+    color: #000;
+    text-decoration: underline;
   }
 
 }
