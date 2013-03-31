@@ -16,7 +16,7 @@ class AdministratorManager {
         $loginResult = false;
         $password = md5($password);
 
-        $query = " select 	admin_id,
+        $query = " select admin_id,
                         admin_name,
                         admin_password,
                         admin_archived
@@ -62,9 +62,13 @@ class AdministratorManager {
             $admin->set_admin_archived($newArray['admin_archived']);
 
             $adminList[$count] = $admin;
-            $count++;
+            ++$count;
         }
         return $adminList;
+    }
+
+    public function getAdminListAsJSON(){
+        return  str_replace('\\u0000', "", json_encode( (array) $this->getAdminList() ));
     }
 }
 ?>

@@ -1,55 +1,44 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
-*/
-
-/**
- * Description of User
- *
- * @author
- */
 class Administrator {
-    private $_admin_id;
-    private $_admin_name;
-    private $_admin_password;
-    private $_admin_archived;
+    public  $admin_id;
+    public  $admin_name;
+    public  $admin_password;
+    public  $admin_archived;
 
     public function get_admin_id() {
-        return $this->_admin_id;
+        return $this->admin_id;
     }
 
-    public function set_admin_id($_admin_id) {
-        $this->_admin_id = $_admin_id;
+    public function set_admin_id($admin_id) {
+        $this->admin_id = $admin_id;
     }
 
     public function get_admin_name() {
-        return $this->_admin_name;
+        return $this->admin_name;
     }
 
-    public function set_admin_name($_admin_name) {
-        $this->_admin_name = $_admin_name;
+    public function set_admin_name($admin_name) {
+        $this->admin_name = $admin_name;
     }
 
     public function get_admin_password() {
-        return $this->_admin_password;
+        return $this->admin_password;
     }
 
-    public function set_admin_password($_admin_password) {
-        $this->_admin_password = $_admin_password;
+    public function set_admin_password($admin_password) {
+        $this->admin_password = $admin_password;
     }
 
     public function get_admin_archived() {
-        return $this->_admin_archived;
+        return $this->admin_archived;
     }
 
-    public function set_admin_archived($_admin_archived) {
-        $this->_admin_archived = $_admin_archived;
+    public function set_admin_archived($admin_archived) {
+        $this->admin_archived = $admin_archived;
     }
 
     public function loadByEmail($email) {
         $link = getConnection();
-        $password = md5($password);
 
         $query = " select 	admin_id,
                         admin_name,
@@ -58,8 +47,6 @@ class Administrator {
                 from    core_admin
                 where   admin_archived =   'N'
                 and     admin_name =       '".$email."'";
-
-
 
         $result = executeNonUpdateQuery($link , $query);
         closeConnection($link);
@@ -130,7 +117,6 @@ class Administrator {
     }
 
     public function delete() {
-
         //delete user account
         $link = getConnection();
         $query = " UPDATE core_admin
@@ -139,6 +125,10 @@ class Administrator {
 
         executeUpdateQuery($link , $query);
         closeConnection($link);
+    }
+
+    public function toJSON(){
+        return  str_replace('\\u0000', "", json_encode( (array) $this ));
     }
 
 }
