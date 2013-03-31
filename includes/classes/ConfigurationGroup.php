@@ -58,7 +58,7 @@ class ConfigurationGroup {
         $query="select 	configuration_group_id, 
                         configuration_group_title, 
                         configuration_group_description
-                from    tb_configuration_group 
+                from    core_configuration_group 
                 where   configuration_group_id = ".$configuration_group_id;
 
         $result = executeNonUpdateQuery($link , $query);
@@ -82,7 +82,7 @@ class ConfigurationGroup {
                         configuration_value,
                         configuration_description,
                         configuration_datatype
-                from    tb_configuration
+                from    core_configuration
                 where   configuration_group_id = ".$this->get_configuration_group_id();
 
         $result = executeNonUpdateQuery($link , $query);

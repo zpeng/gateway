@@ -2,7 +2,7 @@
 
 /** define the database **/
 define('DB_HOST', "localhost");
-define('DB_NAME', "gateway");
+define('DB_NAME', "olly");
 define('DB_USER', "root");
 define('DB_PASSWORD', "");
 
@@ -22,7 +22,7 @@ if ( !defined('BASE_PATH') )
 //ini_set('display_errors', '0');
 
 // load all the dependency
-include_once("dependency.php");
+include_once("deps.php");
 foreach ($PHP_MODULE_LIST as $module ) {
     include_once(BASE_PATH.$module);
     //echo BASE_PATH.$module."<br/>";

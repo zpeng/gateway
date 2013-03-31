@@ -33,7 +33,7 @@ class ConfigurationManager {
                         configuration_value,
                         configuration_description,
                         configuration_datatype
-                from    tb_configuration ";
+                from    core_configuration ";
 
         $result = executeNonUpdateQuery($link , $query);
         closeConnection($link);

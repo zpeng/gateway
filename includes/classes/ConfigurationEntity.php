@@ -80,7 +80,7 @@ class ConfigurationEntity {
 
     public function update() {
         $link = getConnection();
-        $query = "UPDATE tb_configuration
+        $query = "UPDATE core_configuration
                   SET    configuration_value = '".$this->get_configuration_value()."'
                   WHERE  configuration_id    = ".$this->get_configuration_id();
 

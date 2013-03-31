@@ -55,7 +55,7 @@ class Administrator {
                         admin_name,
                         admin_password,
                         admin_archived
-                from    tb_administrator
+                from    core_admin
                 where   admin_archived =   'N'
                 and     admin_name =       '".$email."'";
 
@@ -78,7 +78,7 @@ class Administrator {
                         admin_name,
                         admin_password,
                         admin_archived
-                from    tb_administrator
+                from    core_admin
                 where   admin_archived =   'N'
                 and     admin_id =  ".$id;
 
@@ -97,7 +97,7 @@ class Administrator {
         $link = getConnection();
 
         $query = "  INSERT
-                    INTO   tb_administrator
+                    INTO   core_admin
                            (
                                   admin_name           ,
                                   admin_password        ,
@@ -121,7 +121,7 @@ class Administrator {
     public function updatePassword($new_password) {
         $link = getConnection();
         $newPassword = md5($new_password);
-        $query = " UPDATE tb_administrator
+        $query = " UPDATE core_admin
                SET    admin_password = '".$newPassword."'
                WHERE  admin_id = ".$this->get_admin_id();
 
@@ -133,7 +133,7 @@ class Administrator {
 
         //delete user account
         $link = getConnection();
-        $query = " UPDATE tb_administrator
+        $query = " UPDATE core_admin
                    SET    admin_archived = 'Y'
                    WHERE  admin_id = ".$this->get_admin_id();
 

@@ -1,5 +1,5 @@
 <?php
-require_once('../php/shared/config.php');
+require_once('../includes/config.php');
 ?>
 
 <?= outputHTMLStartBackend("Administration Login", [] , $CSS_BACKEND_LIST); ?>

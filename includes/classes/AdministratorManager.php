@@ -20,7 +20,7 @@ class AdministratorManager {
                         admin_name,
                         admin_password,
                         admin_archived
-                from    tb_administrator
+                from    core_admin
                 where   admin_archived =   'N'
                 and     admin_name =       '".$email."'
                 and     admin_password =   '".$password."'";
@@ -49,7 +49,7 @@ class AdministratorManager {
                         admin_name,
                         admin_password,
                         admin_archived
-                from    tb_administrator
+                from    core_admin
                 where   admin_archived =   'N'";
 
         $result = executeNonUpdateQuery($link , $query);
