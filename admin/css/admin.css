@@ -196,3 +196,14 @@ body {
   .admin_top_menu_container .menu ul li a:hover ul li a:hover ul li a:hover {
     color: #000;
     text-decoration: underline; }
+
+/* admin cp footer */
+.footer {
+  width: 100%;
+  min-width: 1000px;
+  height: 20px;
+  border-top: 1px solid gray;
+  text-align: center;
+  padding-top: 10px;
+  position: absolute;
+  bottom: 0; }
