@@ -58,7 +58,7 @@ include_once 'admin_msg_view.php';
                 require_once("../included/class_loader.php") ;
                 require_once("../included/html_functions.php") ;
 
-                $adminManager = new AdministratorManager();
+                $adminManager = new UserManager();
                 $adminList = $adminManager->getAdminList();
 
                 if (sizeof($adminList) > 0 ) {

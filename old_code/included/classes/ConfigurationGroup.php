@@ -89,7 +89,7 @@ class ConfigurationGroup {
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
-            $configurationEntity = new ConfigurationEntity();
+            $configurationEntity = new Configuration();
             $configurationEntity->set_configuration_id($newArray['configuration_id']);
             $configurationEntity->set_configuration_group_id($newArray['configuration_group_id']);
             $configurationEntity->set_configuration_title($newArray['configuration_title']);

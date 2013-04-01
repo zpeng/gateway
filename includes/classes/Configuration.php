@@ -9,72 +9,72 @@
  *
  * @author ziyang
  */
-class ConfigurationEntity {
+class Configuration {
     //put your code here
-    private $_configuration_id;
-    private $_configuration_group_id;
-    private $_configuration_title;
-    private $_configuration_key;
-    private $_configuration_value;
-    private $_configuration_description;
-    private $_configuration_datatype;
+    public $configuration_id;
+    public $configuration_module_id;
+    public $configuration_title;
+    public $configuration_key;
+    public $configuration_value;
+    public $configuration_description;
+    public $configuration_datatype;
 
 
 
     public function get_configuration_id() {
-        return $this->_configuration_id;
+        return $this->configuration_id;
     }
 
     public function set_configuration_id($_configuration_id) {
-        $this->_configuration_id = $_configuration_id;
+        $this->configuration_id = $_configuration_id;
     }
 
-    public function get_configuration_group_id() {
-        return $this->_configuration_group_id;
+    public function get_configuration_module_id() {
+        return $this->configuration_module_id;
     }
 
-    public function set_configuration_group_id($_configuration_group_id) {
-        $this->_configuration_group_id = $_configuration_group_id;
+    public function set_configuration_module_id($_configuration_module_id) {
+        $this->configuration_module_id = $_configuration_module_id;
     }
 
     public function get_configuration_title() {
-        return $this->_configuration_title;
+        return $this->configuration_title;
     }
 
     public function set_configuration_title($_configuration_title) {
-        $this->_configuration_title = $_configuration_title;
+        $this->configuration_title = $_configuration_title;
     }
 
     public function get_configuration_key() {
-        return $this->_configuration_key;
+        return $this->configuration_key;
     }
 
     public function set_configuration_key($_configuration_key) {
-        $this->_configuration_key = $_configuration_key;
+        $this->configuration_key = $_configuration_key;
     }
 
     public function get_configuration_value() {
-        return $this->_configuration_value;
+        return $this->configuration_value;
     }
 
     public function set_configuration_value($_configuration_value) {
-        $this->_configuration_value = $_configuration_value;
+        $this->configuration_value = $_configuration_value;
     }
 
     public function get_configuration_description() {
-        return $this->_configuration_description;
+        return $this->configuration_description;
     }
 
     public function set_configuration_description($_configuration_description) {
-        $this->_configuration_description = $_configuration_description;
+        $this->configuration_description = $_configuration_description;
     }
 
     public function get_configuration_datatype() {
-        return $this->_configuration_datatype;
+        return $this->configuration_datatype;
     }
 
     public function set_configuration_datatype($_configuration_datatype) {
-        $this->_configuration_datatype = $_configuration_datatype;
+        $this->configuration_datatype = $_configuration_datatype;
     }
 
 

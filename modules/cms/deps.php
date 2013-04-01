@@ -25,7 +25,6 @@ $CSS_FRONTEND_LIST = array_merge($CSS_FRONTEND_LIST, array(
 
 
 $JS_BACKEND_LIST = array_merge($JS_BACKEND_LIST, array(
-    "jquery1.9.1" => "js/shared/jquery/jquery-1.9.1.min.js"
 ));
 
 

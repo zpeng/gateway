@@ -1,11 +1,13 @@
 <?php
 $PHP_MODULE_LIST = array(
-    "Administrator" => "includes/classes/Administrator.php",
-    "AdministratorManager" => "includes/classes/AdministratorManager.php",
+    "User" => "includes/classes/User.php",
+    "UserManager" => "includes/classes/UserManager.php",
 
-    "ConfigurationEntity" => "includes/classes/ConfigurationEntity.php",
-    "ConfigurationGroup" => "includes/classes/ConfigurationGroup.php",
+    "Configuration" => "includes/classes/Configuration.php",
     "ConfigurationManager" => "includes/classes/ConfigurationManager.php",
+
+    "Module" => "includes/classes/Module.php",
+    "ModuleManager" => "includes/classes/ModuleManager.php",
 
     "PageBuilder" => "includes/page_builder.php",
     "DatabaseUtils" => "includes/database_utils.php",

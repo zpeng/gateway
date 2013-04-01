@@ -5,8 +5,8 @@ require_once('../../included/class_loader.php');
 $email = secureRequestParameter($_REQUEST['email']);
 $password =  secureRequestParameter($_REQUEST['password']);
 
-$adminManager = new AdministratorManager();
-$result = $adminManager->adminLogin($email, $password);
+$adminManager = new UserManager();
+$result = $adminManager->login($email, $password);
 
 
 if ($result) {
