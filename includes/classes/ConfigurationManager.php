@@ -1,38 +1,27 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
-*/
 
-/**
- * Description of ConfigurationManager
- *
- * @author ziyang
- */
 class ConfigurationManager {
     //put your code here
     public $configEntityList = [];
 
-    static public function cast(ConfigurationManager $object) {
-        return $object;
+    function __construct($user_id) {
+        $this->loadByUserID($user_id);
     }
 
-    function __construct() {
-        $this->load();
-    }
-
-    private function load() {
+    private function loadByUserID($user_id) {
         $this->configEntityList =[];
         $count = 0;
         $link = getConnection();
         $query="select 	module_config_id,
-                        module_id,
+                        core_module_configuration.module_id,
                         module_config_title,
                         module_config_key,
                         module_config_value,
                         module_config_desc,
                         module_config_type
-                from    core_module_configuration ";
+                FROM core_user_module_access, core_module_configuration
+                WHERE core_user_module_access.module_id = core_module_configuration.module_id
+                AND core_user_module_access.user_id = ".$user_id;
 
         $result = executeNonUpdateQuery($link , $query);
         closeConnection($link);

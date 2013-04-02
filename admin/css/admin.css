@@ -4,6 +4,13 @@ body {
   margin: 0;
   padding: 0; }
 
+#main_content {
+  width: 100%;
+  margin: 0; }
+
+.clear {
+  clear: both; }
+
 .msg_bar {
   font-weight: bold; }
 
@@ -46,31 +53,31 @@ body {
     width: 200px; }
 
 /* admin cp page top header bar */
-.top_header_bar {
+#header_bar {
   background: url(../images/top_bar.jpg) repeat;
   height: 50px; }
-  .top_header_bar span.product_title {
+  #header_bar span.product_title {
     color: #FFFFFF;
     font-size: 24px;
     margin-left: 20px;
     margin-top: 15px;
     float: left; }
-  .top_header_bar span.product_title_version {
+  #header_bar span.product_title_version {
     color: #FFFFFF;
     font-size: 12px;
     margin-left: 10px;
     margin-top: 20px;
     float: left; }
-  .top_header_bar .top_header_bar_nav {
+  #header_bar .header_bar_nav {
     float: right;
     color: #FFFFFF;
     margin-top: 5px;
     margin-right: 10px; }
-    .top_header_bar .top_header_bar_nav a {
+    #header_bar .header_bar_nav a {
       color: #FFFFFF; }
 
-/* admin top menu */
-.admin_top_menu_container {
+/* admin top_panel */
+#top_panel {
   font: 15px 'Trebuchet MS', helvetica, arial, verdana;
   color: #333;
   line-height: 1.5;
@@ -84,7 +91,7 @@ body {
   border-top: 5px gray solid;
   border-bottom: 1px gray solid;
   /* fist line style for IE7 and non-IE browsers and the second line for IE5.5 and IE6 */ }
-  .admin_top_menu_container .menu {
+  #top_panel .menu {
     text-align: left;
     font-family: verdana, sans-serif;
     font-size: 0.85em;
@@ -94,17 +101,17 @@ body {
     margin: 0;
     float: left;
     margin-top: 5px; }
-  .admin_top_menu_container .menu img {
+  #top_panel .menu img {
     border: 0px; }
-  .admin_top_menu_container .menu ul {
+  #top_panel .menu ul {
     padding: 0;
     margin: 0;
     list-style-type: none; }
-  .admin_top_menu_container .menu ul li {
+  #top_panel .menu ul li {
     float: left;
     position: relative;
     width: 150px; }
-  .admin_top_menu_container .menu ul li a, .admin_top_menu_container .menu ul li a:visited {
+  #top_panel .menu ul li a, #top_panel .menu ul li a:visited {
     display: block;
     text-decoration: none;
     width: 150px;
@@ -112,10 +119,10 @@ body {
     color: #000;
     padding-left: 10px;
     line-height: 29px; }
-  .admin_top_menu_container * html .menu ul li a,
-  .admin_top_menu_container .menu ul li a:visited {
+  #top_panel * html .menu ul li a,
+  #top_panel .menu ul li a:visited {
     width: 150px; }
-  .admin_top_menu_container .menu ul li ul {
+  #top_panel .menu ul li ul {
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -123,11 +130,11 @@ body {
     height: 0;
     overflow: hidden;
     z-index: 200; }
-  .admin_top_menu_container .menu ul li:hover a, .admin_top_menu_container .menu ul li a:hover {
+  #top_panel .menu ul li:hover a, #top_panel .menu ul li a:hover {
     color: blue;
     text-decoration: none;
     border: 0; }
-  .admin_top_menu_container .menu ul li:hover ul, .admin_top_menu_container .menu ul li a:hover ul {
+  #top_panel .menu ul li:hover ul, #top_panel .menu ul li a:hover ul {
     visibility: visible;
     width: 200px;
     height: auto;
@@ -138,8 +145,8 @@ body {
     border: 1px solid gray;
     overflow: visible;
     text-decoration: none; }
-  .admin_top_menu_container .menu ul li:hover ul li a,
-  .admin_top_menu_container .menu ul li a:hover ul li a {
+  #top_panel .menu ul li:hover ul li a,
+  #top_panel .menu ul li a:hover ul li a {
     display: block;
     background: transparent;
     text-decoration: none;
@@ -148,8 +155,8 @@ body {
     line-height: 1.5em;
     padding: 5px 10px 5px 15px;
     width: 200px; }
-  .admin_top_menu_container .menu ul li:hover ul li a.drop,
-  .admin_top_menu_container .menu ul li a:hover ul li a.drop {
+  #top_panel .menu ul li:hover ul li a.drop,
+  #top_panel .menu ul li a:hover ul li a.drop {
     display: block;
     color: #000;
     height: auto;
@@ -157,8 +164,8 @@ body {
     padding: 5px 10px 5px 35px;
     width: 200px;
     text-decoration: none; }
-  .admin_top_menu_container .menu ul li:hover ul li ul,
-  .admin_top_menu_container .menu ul li a:hover ul li a ul {
+  #top_panel .menu ul li:hover ul li ul,
+  #top_panel .menu ul li a:hover ul li a ul {
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -166,12 +173,12 @@ body {
     height: 0;
     overflow: hidden;
     text-decoration: none; }
-  .admin_top_menu_container .menu ul li:hover ul li a:hover,
-  .admin_top_menu_container .menu ul li a:hover ul li a:hover {
+  #top_panel .menu ul li:hover ul li a:hover,
+  #top_panel .menu ul li a:hover ul li a:hover {
     color: #00f;
     text-decoration: none; }
-  .admin_top_menu_container .menu ul li:hover ul li:hover ul,
-  .admin_top_menu_container .menu ul li a:hover ul li a:hover ul {
+  #top_panel .menu ul li:hover ul li:hover ul,
+  #top_panel .menu ul li a:hover ul li a:hover ul {
     visibility: visible;
     position: absolute;
     top: 0;
@@ -179,31 +186,93 @@ body {
     left: 166px;
     height: auto;
     border: 1px solid gray; }
-  .admin_top_menu_container .menu ul li:hover ul li:hover ul.left,
-  .admin_top_menu_container .menu ul li a:hover ul li a:hover ul.left {
+  #top_panel .menu ul li:hover ul li:hover ul.left,
+  #top_panel .menu ul li a:hover ul li a:hover ul.left {
     left: -166px; }
-  .admin_top_menu_container .menu ul li:hover ul li:hover ul li a,
-  .admin_top_menu_container .menu ul li a:hover ul li a:hover ul li a {
+  #top_panel .menu ul li:hover ul li:hover ul li a,
+  #top_panel .menu ul li a:hover ul li a:hover ul li a {
     display: block;
     color: #00f;
     height: auto;
     line-height: 1.5em;
     padding: 5px 10px 4px 35px;
     width: 200px; }
-  .admin_top_menu_container * html .menu ul li a:hover ul li a:hover ul li a {
+  #top_panel * html .menu ul li a:hover ul li a:hover ul li a {
     padding: 4px 10px 4px 35px; }
-  .admin_top_menu_container .menu ul li:hover ul li:hover ul li:hover a,
-  .admin_top_menu_container .menu ul li a:hover ul li a:hover ul li a:hover {
+  #top_panel .menu ul li:hover ul li:hover ul li:hover a,
+  #top_panel .menu ul li a:hover ul li a:hover ul li a:hover {
     color: #000;
     text-decoration: underline; }
 
+/* admin left panel */
+#left_panel {
+  float: left;
+  margin-right: 10px;
+  width: 200px;
+  min-height: 500px;
+  border-right: 1px solid grey;
+  display: block;
+  background-color: #d3d3d3;
+  /* the left vertical menu css */ }
+  #left_panel #panel_module_title {
+    height: 30px;
+    color: #000066;
+    text-align: center;
+    padding-top: 10px; }
+  #left_panel #left_vertical_menu {
+    width: 100%; }
+    #left_panel #left_vertical_menu ul {
+      margin: 0px;
+      padding: 0px; }
+    #left_panel #left_vertical_menu li {
+      list-style: none; }
+    #left_panel #left_vertical_menu ul.top-level {
+      background: #d3d3d3; }
+    #left_panel #left_vertical_menu ul.top-level li {
+      border-bottom: #fff solid;
+      border-top: #fff solid;
+      border-width: 1px; }
+    #left_panel #left_vertical_menu a {
+      color: #000075;
+      cursor: pointer;
+      display: block;
+      height: 25px;
+      line-height: 25px;
+      text-indent: 10px;
+      text-decoration: none;
+      width: 100%; }
+    #left_panel #left_vertical_menu a:hover {
+      text-decoration: underline; }
+    #left_panel #left_vertical_menu li:hover {
+      background: #f90;
+      position: relative; }
+    #left_panel #left_vertical_menu ul.sub-level {
+      display: none; }
+    #left_panel #left_vertical_menu li:hover .sub-level {
+      background: #d3d3d3;
+      border: #fff solid;
+      border-width: 1px;
+      display: block;
+      position: absolute;
+      left: 75px;
+      top: 5px; }
+    #left_panel #left_vertical_menu ul.sub-level li {
+      border: none;
+      float: left;
+      width: 150px; }
+
+#right_panel {
+  float: left;
+  min-width: 900px;
+  border: 1px solid grey;
+  display: block; }
+
 /* admin cp footer */
-.footer {
+#footer {
   width: 100%;
   min-width: 1000px;
   height: 20px;
   border-top: 1px solid gray;
   text-align: center;
   padding-top: 10px;
-  position: absolute;
   bottom: 0; }

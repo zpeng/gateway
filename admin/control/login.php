@@ -15,7 +15,8 @@ if ($result) {
     $_SESSION['user_session_code'] =md5($email);
 
     // to setup the configuration
-    setup_configuration_in_session();
+    //setup_configuration_in_session();
+    require_once('userSessionSerialization.php');
 
     header( "Location: ../index.php?view=admin_cp" );
 

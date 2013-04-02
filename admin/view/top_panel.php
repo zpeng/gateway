@@ -1,4 +1,9 @@
-<div class="admin_top_menu_container">
+<div id="top_panel">
+    Available modules:
+    <?php
+       echo $s_user_session->toJSON();
+    ?>
+    <!--
     <div class="menu">
         <ul>
             <li><a href="#"><img src="images/star.jpg" />&nbsp;Global Setting</a>
@@ -9,4 +14,5 @@
             </li>
         </ul>
     </div>
+    -->
 </div>

@@ -2,6 +2,7 @@
 $PHP_MODULE_LIST = array(
     "User" => "includes/classes/User.php",
     "UserManager" => "includes/classes/UserManager.php",
+    "UserSession" => "includes/classes/UserSession.php",
 
     "Configuration" => "includes/classes/Configuration.php",
     "ConfigurationManager" => "includes/classes/ConfigurationManager.php",
