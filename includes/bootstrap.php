@@ -18,22 +18,31 @@ if (!defined('BASE_PATH'))
 //disable error display
 //ini_set('display_errors', '0');
 
+
+$GLOBAL_DEPS = [];
+
 // loading the core deps
 include_once(BASE_PATH . "includes/deps.php");
 
+
 // reads the module config and loads each module deps
 include_once("module_deps_config.php");
-foreach ($MODULE_DEPS_CONFIG_LIST as $module_deps) {
+foreach ($MODULE_DEPS_LIST as $module_key => $module_deps) {
     include_once(BASE_PATH . $module_deps);
-    //echo BASE_PATH . $module_deps . "<br/>";
+    $GLOBAL_DEPS = array_merge($GLOBAL_DEPS, array(
+        "$module_key" => $module_config
+    ));
 }
 
-// now you have all the phps you need
-foreach ($PHP_MODULE_LIST as $module) {
-    include_once(BASE_PATH . $module);
-    //echo BASE_PATH . $module . "<br/>";
+//print_r($GLOBAL_DEPS);
+
+// now loads all the required php files for all the available modules
+foreach ($GLOBAL_DEPS as $module_key => $module_deps_config) {
+    foreach ($GLOBAL_DEPS[$module_key]["php_list"] as $php_file) {
+        include_once(BASE_PATH . $php_file);
+        //echo BASE_PATH . $php_file . "<br/>";
+    }
 }
-unset($PHP_MODULE_LIST);
 
 
 ?>

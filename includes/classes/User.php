@@ -12,32 +12,32 @@ class User {
         return $this->user_id;
     }
 
-    public function set_user_id($user_id) {
-        $this->user_id = $user_id;
+    public function set_user_id($_user_id) {
+        $this->user_id = $_user_id;
     }
 
     public function get_user_name() {
         return $this->user_name;
     }
 
-    public function set_user_name($user_name) {
-        $this->user_name = $user_name;
+    public function set_user_name($_user_name) {
+        $this->user_name = $_user_name;
     }
 
     public function get_user_password() {
         return $this->user_password;
     }
 
-    public function set_user_password($user_password) {
-        $this->user_password = $user_password;
+    public function set_user_password($_user_password) {
+        $this->user_password = $_user_password;
     }
 
     public function get_user_archived() {
         return $this->user_archived;
     }
 
-    public function set_user_archived($user_archived) {
-        $this->user_archived = $user_archived;
+    public function set_user_archived($_user_archived) {
+        $this->user_archived = $_user_archived;
     }
 
     public function loadByEmail($email) {

@@ -1,35 +1,40 @@
 <?php
-$PHP_MODULE_LIST = array_merge($PHP_MODULE_LIST, array(
-    "Content" => "modules/cms/includes/classes/Content.php",
-    "ContentDescription" => "modules/cms/includes/classes/ContentDescription.php",
-    "ContentManager" => "modules/cms/includes/classes/ContentManager.php",
 
-    "Menu" => "modules/cms/includes/classes/Menu.php",
-    "MenuType" => "modules/cms/includes/classes/MenuType.php",
-    "MenuDescription" => "modules/cms/includes/classes/MenuDescription.php",
-    "MenuManager" => "modules/cms/includes/classes/MenuManager.php",
+/*
+$CSS_BACKEND_LIST = array_merge($CSS_BACKEND_LIST, array( // define the backend css files which are required for the cms module
+));
 
-    "Language" => "modules/cms/includes/classes/Language.php",
-    "LanguageDefault" => "modules/cms/includes/classes/LanguageDefault.php",
-    "LanguageManager" => "modules/cms/includes/classes/LanguageManager.php",
+$CSS_FRONTEND_LIST = array_merge($CSS_FRONTEND_LIST, array( // define the front-end css files which are required for the cms module
 ));
 
 
-$CSS_BACKEND_LIST = array_merge($CSS_BACKEND_LIST, array(
-    // define the backend css files which are required for the cms module
-));
-
-$CSS_FRONTEND_LIST = array_merge($CSS_FRONTEND_LIST, array(
-    // define the front-end css files which are required for the cms module
-));
+$JS_BACKEND_LIST = array_merge($JS_BACKEND_LIST, array());
 
 
-$JS_BACKEND_LIST = array_merge($JS_BACKEND_LIST, array(
-));
+$JS_FRONTEND_LIST = array_merge($JS_FRONTEND_LIST, array());
+*/
 
+$module_config = array(
+    "module_name" => "CMS",
+    "module_location" => "modules/cms",
+    "php_list" => array(
+        "Content" => "modules/cms/includes/classes/Content.php",
+        "ContentDescription" => "modules/cms/includes/classes/ContentDescription.php",
+        "ContentManager" => "modules/cms/includes/classes/ContentManager.php",
 
-$JS_FRONTEND_LIST = array_merge($JS_FRONTEND_LIST, array(
-));
+        "Menu" => "modules/cms/includes/classes/Menu.php",
+        "MenuType" => "modules/cms/includes/classes/MenuType.php",
+        "MenuDescription" => "modules/cms/includes/classes/MenuDescription.php",
+        "MenuManager" => "modules/cms/includes/classes/MenuManager.php",
 
+        "Language" => "modules/cms/includes/classes/Language.php",
+        "LanguageDefault" => "modules/cms/includes/classes/LanguageDefault.php",
+        "LanguageManager" => "modules/cms/includes/classes/LanguageManager.php",
+    ),
+    "css_backend_list" => array_merge($CSS_SHARED_LIST, array()),
+    "css_frontend_list" => array_merge($CSS_SHARED_LIST, array()),
+    "js_backend_list" => array_merge($JS_SHARED_LIST, array()),
+    "js_frontend_list" => array_merge($JS_SHARED_LIST, array())
+);
 
 ?>

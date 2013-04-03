@@ -42,8 +42,8 @@ class ConfigurationManager {
 
     public function getValueByKey($key) {
         $value = "";
-        if (sizeof($this->_configEntityList) >0) {
-            foreach($this->_configEntityList as $configurationEntity) {
+        if (sizeof($this->configEntityList) >0) {
+            foreach($this->configEntityList as $configurationEntity) {
                 //find the configuration entity from list by key
                 if ($configurationEntity->get_configuration_key() == $key) {
                     $value = $configurationEntity->get_configuration_value();
