@@ -2,23 +2,29 @@
 // this is always required
 require_once('../includes/bootstrap.php');
 
-require_once(BASE_PATH .'admin/control/auth.php');
+require_once(BASE_PATH . 'admin/control/auth.php');
 ?>
 
-<?= outputHTMLStartBackend("Admin Control Panel", $JS_BACKEND_LIST, $CSS_BACKEND_LIST); ?>
+<?= outputHTMLStartBackend("Admin Control Panel", $GLOBAL_DEPS[$_REQUEST['module_code']]["js_backend_list"], $GLOBAL_DEPS[$_REQUEST['module_code']]["css_backend_list"]) ?>
 
-<div id='main_content'>
+    <div id='main_content'>
 
-    <? include_once('view/header_bar.php') ?>
+        <? include_once('view/header_bar.php') ?>
 
-    <? include_once('view/top_panel.php') ?>
+        <? include_once('view/top_panel.php') ?>
 
-    <? include_once('view/left_panel.php') ?>
+        <?
+        // load the left menu
+        include_once(BASE_PATH . $GLOBAL_DEPS[$_REQUEST['module_code']]["module_view_menu"]);
 
-    <? include_once('view/right_panel.php') ?>
-    <br class="clear" />
-</div>
+        // load the content
+        include_once(BASE_PATH . $GLOBAL_DEPS[$_REQUEST['module_code']]["module_view_content"]);
+        ?>
+
+        <br class="clear"/>
+    </div>
 <? include_once('view/footer.php') ?>
 
 
-<?= outputHTMLEnd(); ?>
+<?= outputHTMLEnd()
+; ?>

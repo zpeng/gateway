@@ -5,7 +5,7 @@ require_once('../includes/bootstrap.php');
 require_once(BASE_PATH .'admin/control/auth_landing.php');
 ?>
 
-<?= outputHTMLStartBackend("Admin Control Panel", $JS_BACKEND_LIST, $CSS_BACKEND_LIST); ?>
+<?= outputHTMLStartBackend("Admin Control Panel", $GLOBAL_DEPS["a74ad8dfacd4f985eb3977517615ce25"]["js_backend_list"], $GLOBAL_DEPS["a74ad8dfacd4f985eb3977517615ce25"]["css_backend_list"]) ?>
 
     <div class='content'>
 

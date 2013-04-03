@@ -15,8 +15,9 @@ $JS_FRONTEND_LIST = array_merge($JS_FRONTEND_LIST, array());
 */
 
 $module_config = array(
-    "module_name" => "CMS",
-    "module_location" => "modules/cms",
+    "module_name" => "Content Manager",
+    "module_view_menu" => "modules/cms/admin/view/left_panel.php",
+    "module_view_content" => "modules/cms/admin/view/right_panel.php",
     "php_list" => array(
         "Content" => "modules/cms/includes/classes/Content.php",
         "ContentDescription" => "modules/cms/includes/classes/ContentDescription.php",

@@ -3,7 +3,7 @@
 require_once('../includes/bootstrap.php');
 ?>
 
-<?= outputHTMLStartBackend("Administration Login", [] , $CSS_BACKEND_LIST); ?>
+<?= outputHTMLStartBackend("Administration Login", $GLOBAL_DEPS["a74ad8dfacd4f985eb3977517615ce25"]["js_backend_list"], $GLOBAL_DEPS["a74ad8dfacd4f985eb3977517615ce25"]["css_backend_list"]) ?>
 
 <table border="0" cellpadding="0" cellspacing="0" class="login_table">
     <tr>

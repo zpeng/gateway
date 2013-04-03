@@ -16,7 +16,8 @@ $PHP_CORE_LIST = array(
 );
 
 $CSS_SHARED_LIST = array(
-    "backgrid_css" => "js/shared/backgrid-0.2.0/backgrid.min.css"
+    "backgrid_css" => "js/shared/backgrid-0.2.0/backgrid.min.css",
+    "admin_css" => "admin/css/admin.css"
 );
 
 $JS_SHARED_LIST = array(
@@ -47,13 +48,12 @@ $JS_FRONTEND_LIST = array_merge($JS_SHARED_LIST, array());
 
 
 $GLOBAL_DEPS = array(
-    "CORE" => array(
-        "module_name" => "CORE",
-        "module_location" => "admin",
+    "a74ad8dfacd4f985eb3977517615ce25" => array(
+        "module_name" => "System Core",
+        "module_view_menu" => "admin/view/left_panel.php",
+        "module_view_content" => "admin/view/right_panel.php",
         "php_list" => $PHP_CORE_LIST,
-        "css_backend_list" => array_merge($CSS_SHARED_LIST, array(
-            "admin_css" => "admin/css/admin.css"
-        )),
+        "css_backend_list" => array_merge($CSS_SHARED_LIST, array()),
         "css_frontend_list" => array_merge($CSS_SHARED_LIST, array()),
         "js_backend_list" => array_merge($JS_SHARED_LIST, array()),
         "js_frontend_list" => array_merge($JS_SHARED_LIST, array())
