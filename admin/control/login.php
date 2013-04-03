@@ -12,7 +12,7 @@ if ($result) {
     session_start();
 
     $_SESSION['user_name'] = $email;
-    $_SESSION['user_session_code'] = md5($email);
+    $_SESSION['user_logged_in'] = $result;
 
     // to setup the configuration
     //setup_configuration_in_session();
