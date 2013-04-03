@@ -12,7 +12,7 @@ $PHP_MODULE_LIST = array(
 
     "PageBuilder" => "includes/page_builder.php",
     "DatabaseUtils" => "includes/database_utils.php",
-    "CommonFunction" => "includes/utils/common_functions.php",
+    "GlobalFunction" => "includes/utils/global_functions.php",
 );
 
 $CSS_SHARED_LIST = array(

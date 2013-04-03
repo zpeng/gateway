@@ -80,129 +80,38 @@ body {
 #top_panel {
   font: 15px 'Trebuchet MS', helvetica, arial, verdana;
   color: #333;
-  line-height: 1.5;
   text-align: left;
-  height: 35px;
+  height: 30px;
   min-width: 1000px;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding-left: 20px;
+  padding-top: 10px;
   vertical-align: middle;
   border-top: 5px gray solid;
-  border-bottom: 1px gray solid;
-  /* fist line style for IE7 and non-IE browsers and the second line for IE5.5 and IE6 */ }
-  #top_panel .menu {
-    text-align: left;
-    font-family: verdana, sans-serif;
-    font-size: 0.85em;
-    background: transparent;
-    width: 100%;
-    height: 30px;
-    margin: 0;
-    float: left;
-    margin-top: 5px; }
-  #top_panel .menu img {
-    border: 0px; }
-  #top_panel .menu ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none; }
-  #top_panel .menu ul li {
-    float: left;
-    position: relative;
-    width: 150px; }
-  #top_panel .menu ul li a, #top_panel .menu ul li a:visited {
-    display: block;
-    text-decoration: none;
+  border-bottom: 2px gray solid; }
+  #top_panel a.module_item {
     width: 150px;
-    height: 30px;
-    color: #000;
-    padding-left: 10px;
-    line-height: 29px; }
-  #top_panel * html .menu ul li a,
-  #top_panel .menu ul li a:visited {
-    width: 150px; }
-  #top_panel .menu ul li ul {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 0;
-    overflow: hidden;
-    z-index: 200; }
-  #top_panel .menu ul li:hover a, #top_panel .menu ul li a:hover {
-    color: blue;
-    text-decoration: none;
-    border: 0; }
-  #top_panel .menu ul li:hover ul, #top_panel .menu ul li a:hover ul {
-    visibility: visible;
+    margin-left: 20px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none; }
+    #top_panel a.module_item:hover {
+      text-decoration: dashed; }
+
+#landing_panel {
+  width: 800px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px; }
+  #landing_panel .module_box {
+    float: left;
     width: 200px;
-    height: auto;
-    position: absolute;
-    top: 30px;
-    left: -1px;
-    background: #fff;
-    border: 1px solid gray;
-    overflow: visible;
-    text-decoration: none; }
-  #top_panel .menu ul li:hover ul li a,
-  #top_panel .menu ul li a:hover ul li a {
-    display: block;
-    background: transparent;
-    text-decoration: none;
-    color: #000;
-    height: auto;
-    line-height: 1.5em;
-    padding: 5px 10px 5px 15px;
-    width: 200px; }
-  #top_panel .menu ul li:hover ul li a.drop,
-  #top_panel .menu ul li a:hover ul li a.drop {
-    display: block;
-    color: #000;
-    height: auto;
-    line-height: 1.5em;
-    padding: 5px 10px 5px 35px;
-    width: 200px;
-    text-decoration: none; }
-  #top_panel .menu ul li:hover ul li ul,
-  #top_panel .menu ul li a:hover ul li a ul {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 0;
-    overflow: hidden;
-    text-decoration: none; }
-  #top_panel .menu ul li:hover ul li a:hover,
-  #top_panel .menu ul li a:hover ul li a:hover {
-    color: #00f;
-    text-decoration: none; }
-  #top_panel .menu ul li:hover ul li:hover ul,
-  #top_panel .menu ul li a:hover ul li a:hover ul {
-    visibility: visible;
-    position: absolute;
-    top: 0;
-    color: #000;
-    left: 166px;
-    height: auto;
-    border: 1px solid gray; }
-  #top_panel .menu ul li:hover ul li:hover ul.left,
-  #top_panel .menu ul li a:hover ul li a:hover ul.left {
-    left: -166px; }
-  #top_panel .menu ul li:hover ul li:hover ul li a,
-  #top_panel .menu ul li a:hover ul li a:hover ul li a {
-    display: block;
-    color: #00f;
-    height: auto;
-    line-height: 1.5em;
-    padding: 5px 10px 4px 35px;
-    width: 200px; }
-  #top_panel * html .menu ul li a:hover ul li a:hover ul li a {
-    padding: 4px 10px 4px 35px; }
-  #top_panel .menu ul li:hover ul li:hover ul li:hover a,
-  #top_panel .menu ul li a:hover ul li a:hover ul li a:hover {
-    color: #000;
-    text-decoration: underline; }
+    height: 200px;
+    margin: 20px;
+    border: 1px solid grey; }
 
 /* admin left panel */
 #left_panel {

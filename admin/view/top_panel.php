@@ -1,8 +1,13 @@
 <div id="top_panel">
     Available modules:
     <?php
-       echo $s_user_session->toJSON();
+    $count = 0;
+    foreach ($s_user_session->userModuleAccessNameList as $module_name) {
+        echo "<a class='module_item' href='index.php?module_code=" . $s_user_session->userModuleAccessCodeList[$count] . "'>" . $module_name . "</a>";
+        $count++;
+    }
     ?>
+
     <!--
     <div class="menu">
         <ul>
