@@ -27,7 +27,8 @@ class UserSession
         $this->userModuleAccessCodeList = $user->accessModuleCodeList;
         $this->userModuleAccessNameList = $user->accessModuleNameList;
 
-        $configManager = new ConfigurationManager($this->userID);
+        $configManager = new ConfigurationManager();
+        $configManager->loadByUserID($this->userID);
         $this->configManager = $configManager;
     }
 

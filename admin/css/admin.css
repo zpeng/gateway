@@ -4,10 +4,6 @@ body {
   margin: 0;
   padding: 0; }
 
-#main_content {
-  width: 100%;
-  margin: 0; }
-
 .clear {
   clear: both; }
 
@@ -23,7 +19,7 @@ body {
   /* so that the login box will float in the center of the page */
   margin-top: 100px;
   width: 500px;
-  border-bottom: 1px gray solid; }
+  border-bottom: 1px #7d7d7d solid; }
   .login_table .login_table_top_bar {
     background: url(../images/login_top_bar.jpg) center no-repeat;
     height: 35px;
@@ -33,14 +29,14 @@ body {
     color: #FFFFFF;
     font-size: 14px; }
   .login_table .login_table_left_panel {
-    border-left: 1px gray solid;
-    border-top: 3px gray solid; }
+    border-left: 1px #7d7d7d solid;
+    border-top: 3px #7d7d7d solid; }
   .login_table .login_table_right_panel {
-    border-right: 1px gray solid;
-    border-top: 3px gray solid; }
+    border-right: 1px #7d7d7d solid;
+    border-top: 3px #7d7d7d solid; }
   .login_table .login_table_footer {
-    border-left: 1px gray solid;
-    border-right: 1px gray solid;
+    border-left: 1px #7d7d7d solid;
+    border-right: 1px #7d7d7d solid;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 10px; }
@@ -88,8 +84,8 @@ body {
   padding-left: 20px;
   padding-top: 10px;
   vertical-align: middle;
-  border-top: 5px gray solid;
-  border-bottom: 2px gray solid; }
+  border-top: 5px #7d7d7d solid;
+  border-bottom: 1px #7d7d7d solid; }
   #top_panel a.module_item {
     width: 150px;
     margin-left: 20px;
@@ -111,77 +107,87 @@ body {
     width: 200px;
     height: 200px;
     margin: 20px;
-    border: 1px solid grey; }
+    border: 1px solid #7d7d7d; }
 
-/* admin left panel */
-#left_panel {
-  float: left;
-  margin-right: 10px;
-  width: 200px;
-  min-height: 500px;
-  border-right: 1px solid grey;
-  display: block;
-  background-color: #d3d3d3;
-  /* the left vertical menu css */ }
-  #left_panel #panel_module_title {
-    height: 30px;
-    color: #000066;
-    text-align: center;
-    padding-top: 10px; }
-  #left_panel #left_vertical_menu {
-    width: 100%; }
-    #left_panel #left_vertical_menu ul {
-      margin: 0px;
-      padding: 0px; }
-    #left_panel #left_vertical_menu li {
-      list-style: none; }
-    #left_panel #left_vertical_menu ul.top-level {
-      background: #d3d3d3; }
-    #left_panel #left_vertical_menu ul.top-level li {
-      border-bottom: #fff solid;
-      border-top: #fff solid;
-      border-width: 1px; }
-    #left_panel #left_vertical_menu a {
-      color: #000075;
-      cursor: pointer;
-      display: block;
-      height: 25px;
-      line-height: 25px;
-      text-indent: 10px;
-      text-decoration: none;
+#main_content {
+  min-width: 1200px;
+  min-height: 300px; }
+  #main_content #left_panel {
+    float: left;
+    margin-right: 10px;
+    width: 200px;
+    border-right: 1px solid #7d7d7d;
+    background-color: #d3d3d3;
+    height: 100%;
+    /* the left vertical menu css */ }
+    #main_content #left_panel #panel_module_title {
+      height: 30px;
+      color: #152f7c;
+      text-align: center;
+      padding-top: 10px; }
+    #main_content #left_panel #left_vertical_menu {
       width: 100%; }
-    #left_panel #left_vertical_menu a:hover {
-      text-decoration: underline; }
-    #left_panel #left_vertical_menu li:hover {
-      background: #f90;
-      position: relative; }
-    #left_panel #left_vertical_menu ul.sub-level {
-      display: none; }
-    #left_panel #left_vertical_menu li:hover .sub-level {
-      background: #d3d3d3;
-      border: #fff solid;
-      border-width: 1px;
-      display: block;
-      position: absolute;
-      left: 75px;
-      top: 5px; }
-    #left_panel #left_vertical_menu ul.sub-level li {
-      border: none;
-      float: left;
-      width: 150px; }
-
-#right_panel {
-  float: left;
-  min-width: 900px;
-  border: 1px solid grey;
-  display: block; }
+      #main_content #left_panel #left_vertical_menu ul {
+        margin: 0px;
+        padding: 0px; }
+      #main_content #left_panel #left_vertical_menu li {
+        list-style: none; }
+      #main_content #left_panel #left_vertical_menu ul.top-level {
+        background: #d3d3d3; }
+      #main_content #left_panel #left_vertical_menu ul.top-level li {
+        border-bottom: #fff solid;
+        border-top: #fff solid;
+        border-width: 1px; }
+      #main_content #left_panel #left_vertical_menu a {
+        color: #152f7c;
+        cursor: pointer;
+        display: block;
+        height: 25px;
+        line-height: 25px;
+        text-indent: 10px;
+        text-decoration: none;
+        width: 100%; }
+      #main_content #left_panel #left_vertical_menu a:hover {
+        text-decoration: underline; }
+      #main_content #left_panel #left_vertical_menu li:hover {
+        background: #fc8c1d;
+        position: relative; }
+      #main_content #left_panel #left_vertical_menu ul.sub-level {
+        display: none; }
+      #main_content #left_panel #left_vertical_menu li:hover .sub-level {
+        background: #d3d3d3;
+        border: #fff solid;
+        border-width: 1px;
+        display: block;
+        position: absolute;
+        left: 75px;
+        top: 5px; }
+      #main_content #left_panel #left_vertical_menu ul.sub-level li {
+        border: none;
+        float: left;
+        width: 150px; }
+  #main_content #right_panel {
+    float: left;
+    height: 100%;
+    width: 900px; }
+    #main_content #right_panel h1.content_title {
+      margin: 10px;
+      font-size: 15px;
+      color: #152f7c;
+      font-weight: bolder;
+      border-bottom: 2px solid #fc8c1d;
+      width: 100%; }
+    #main_content #right_panel #content {
+      margin: 10px; }
+      #main_content #right_panel #content #data_table {
+        width: 100%; }
 
 /* admin cp footer */
 #footer {
   width: 100%;
   min-width: 1000px;
   height: 20px;
-  border-top: 1px solid gray;
+  border-top: 1px solid #7d7d7d;
   text-align: center;
   padding-top: 10px;
   bottom: 0; }

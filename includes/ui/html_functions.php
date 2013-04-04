@@ -80,15 +80,13 @@ function outputContentAsTreeNodeRadioBox() {
 
 
 /*-----   UI output ----*/
-function displayDeleteIcon($width, $height, $msg) {
-    $str = "<img  alt='$msg' title='$msg' width='$width' height='$height'
-             src='images/delete.png' border='0' />";
+function displayAdminDeleteIcon($width, $height, $msg) {
+    $str = "<img  alt='$msg' title='$msg' width='$width' height='$height' src='". SERVER_URL ."admin/images/delete.png' border='0' />";
     return $str;
 }
 
-function displayEditIcon($width, $height, $msg) {
-    $str = "<img  alt='$msg' title='$msg' width='$width' height='$height'
-             src='images/edit.png' border='0' />";
+function displayAdminEditIcon($width, $height, $msg) {
+    $str = "<img  alt='$msg' title='$msg' width='$width' height='$height' src='". SERVER_URL ."admin/images/edit.png' border='0' />";
     return $str;
 }
 

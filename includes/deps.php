@@ -13,11 +13,16 @@ $PHP_CORE_LIST = array(
     "PageBuilder" => "includes/page_builder.php",
     "DatabaseUtils" => "includes/database_utils.php",
     "GlobalFunction" => "includes/utils/global_functions.php",
+    "HtmlFunction" => "includes/ui/html_functions.php",
 );
 
 $CSS_SHARED_LIST = array(
-    "backgrid_css" => "js/shared/backgrid-0.2.0/backgrid.min.css",
-    "admin_css" => "admin/css/admin.css"
+    //"backgrid_css" => "js/shared/backgrid-0.2.0/backgrid.min.css",
+    //"backgrid-paginator_css"=>"js/shared/backgrid-0.2.0/extensions/paginator/backgrid-paginator.css",
+
+    "admin_css" => "admin/css/admin.css",
+
+    "tiny_table_css" => "js/shared/tiny_table/tiny_table.css"
 );
 
 $JS_SHARED_LIST = array(
@@ -26,25 +31,14 @@ $JS_SHARED_LIST = array(
     "backbone-1.0.0" => "js/shared/backbone-1.0.0/backbone-min.js",
 
     "tiny_mce-3.5.8" => "js/shared/tiny_mce-3.5.8/tiny_mce.js",
-    "backgrid-0.2.0" => "js/shared/backgrid-0.2.0/backgrid.min.js",
+
+    "tiny_table" => "js/shared/tiny_table/tiny_table.js",
+
+    //backgrid related
+    //"backgrid-0.2.0" => "js/shared/backgrid-0.2.0/backgrid.min.js",
+    //"backgrid-0.2.0-pageable" => "js/shared/backgrid-0.2.0/assets/js/backbone-pageable.js",
+    //"backgrid-0.2.0-pageable-js" => "js/shared/backgrid-0.2.0/extensions/paginator/backgrid-paginator.js",
 );
-
-
-/*
-$CSS_BACKEND_LIST = array_merge($CSS_SHARED_LIST, array(
-    "admin_css" => "admin/css/admin.css",
-));
-
-$CSS_FRONTEND_LIST = array_merge($CSS_SHARED_LIST, array());
-
-
-
-$JS_BACKEND_LIST = [];
-$JS_FRONTEND_LIST = [];
-
-$JS_BACKEND_LIST = array_merge($JS_SHARED_LIST, array());
-$JS_FRONTEND_LIST = array_merge($JS_SHARED_LIST, array());
-*/
 
 
 $GLOBAL_DEPS = array(

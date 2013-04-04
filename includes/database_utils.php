@@ -28,13 +28,4 @@ function executeUpdateQuery($link , $query , $location =""){
     mysql_query($query, $link)
     or die ( "<p>Database Execption: ".mysql_error(). " <p>Query: ".$query."</p><p> At: ".$location );
 }
-
-function secureRequestParameter($value){
-    $value = trim($value);
-    $value = mysql_real_escape_string($value);
-    return $value;
-}
-
-
-
 ?>

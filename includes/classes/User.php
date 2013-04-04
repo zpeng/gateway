@@ -45,7 +45,6 @@ class User {
 
         $query = " select 	user_id,
                         user_name,
-                        user_password,
                         user_archived
                 from    core_user
                 where   user_archived =   'N'
@@ -57,7 +56,6 @@ class User {
         while ($newArray = mysql_fetch_array($result)) {
             $this->set_user_id($newArray['user_id']);
             $this->set_user_name($newArray['user_name']);
-            $this->set_user_password($newArray['user_password']);
             $this->set_user_archived($newArray['user_archived']);
         }
 
@@ -68,7 +66,6 @@ class User {
         $link = getConnection();
         $query = " select user_id,
                         user_name,
-                        user_password,
                         user_archived
                 from    core_user
                 where   user_archived =   'N'
@@ -80,7 +77,6 @@ class User {
         while ($newArray = mysql_fetch_array($result)) {
             $this->set_user_id($newArray['user_id']);
             $this->set_user_name($newArray['user_name']);
-            $this->set_user_password($newArray['user_password']);
             $this->set_user_archived($newArray['user_archived']);
         }
 
