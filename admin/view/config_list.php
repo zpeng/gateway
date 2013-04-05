@@ -30,9 +30,9 @@
 </div>
 <script>
     window.onload = function() {
-        editableGrid = new EditableGrid("UserListGrid",{
+        var editableGrid = new EditableGrid("UserListGrid",{
             enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-            pageSize: 5
+            pageSize: 10
         });
 
         // we build and load the metadata in Javascript

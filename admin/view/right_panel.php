@@ -8,7 +8,7 @@
             include_once('view/config_list.php');
             break;
         default:
-            include_once('view/default.php');
+            include_once('view/config_list.php');
             break;
     }
     ?>
