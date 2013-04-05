@@ -100,7 +100,7 @@ body {
 
 /* admin top_panel */
 #top_panel {
-  font: 15px 'Trebuchet MS', helvetica, arial, verdana;
+  font: 13px 'Trebuchet MS', helvetica, arial, verdana;
   color: #333;
   text-align: left;
   height: 30px;
@@ -119,9 +119,12 @@ body {
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    &:hover {
-      text-decoration: dashed;
-    }
+    color: $orange3;
+    font-weight: bold;
+  }
+
+  a.module_item:hover {
+    text-decoration:underline;
   }
 }
 
@@ -143,7 +146,7 @@ body {
 }
 
 #main_content {
-  min-width: 1200px;
+  min-width: 1300px;
   min-height: 300px;
 
   #left_panel {
@@ -228,7 +231,7 @@ body {
   #right_panel {
     float: left;
     height: 100%;
-    width: 900px;
+    width: 950px;
 
     h1.content_title {
       margin: 10px;
@@ -236,15 +239,11 @@ body {
       color: $blue4;
       font-weight: bolder;
       border-bottom: 2px solid $orange3;
-      width: 100%;
+      width: 95%;
     }
 
     #content {
-      margin: 10px;
-
-      #data_table {
-        width: 100%;
-      }
+      padding: 10px 10px 30px 10px;
 
     }
 

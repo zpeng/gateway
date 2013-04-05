@@ -74,7 +74,7 @@ body {
 
 /* admin top_panel */
 #top_panel {
-  font: 15px 'Trebuchet MS', helvetica, arial, verdana;
+  font: 13px 'Trebuchet MS', helvetica, arial, verdana;
   color: #333;
   text-align: left;
   height: 30px;
@@ -91,9 +91,11 @@ body {
     margin-left: 20px;
     display: inline-block;
     text-align: center;
-    text-decoration: none; }
-    #top_panel a.module_item:hover {
-      text-decoration: dashed; }
+    text-decoration: none;
+    color: #fc8c1d;
+    font-weight: bold; }
+  #top_panel a.module_item:hover {
+    text-decoration: underline; }
 
 #landing_panel {
   width: 800px;
@@ -110,7 +112,7 @@ body {
     border: 1px solid #7d7d7d; }
 
 #main_content {
-  min-width: 1200px;
+  min-width: 1300px;
   min-height: 300px; }
   #main_content #left_panel {
     float: left;
@@ -169,18 +171,16 @@ body {
   #main_content #right_panel {
     float: left;
     height: 100%;
-    width: 900px; }
+    width: 950px; }
     #main_content #right_panel h1.content_title {
       margin: 10px;
       font-size: 15px;
       color: #152f7c;
       font-weight: bolder;
       border-bottom: 2px solid #fc8c1d;
-      width: 100%; }
+      width: 95%; }
     #main_content #right_panel #content {
-      margin: 10px; }
-      #main_content #right_panel #content #data_table {
-        width: 100%; }
+      padding: 10px 10px 30px 10px; }
 
 /* admin cp footer */
 #footer {

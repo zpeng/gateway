@@ -1,14 +1,5 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
-*/
 
-/**
- * Description of Configuration
- *
- * @author ziyang
- */
 class Configuration
 {
     //put your code here

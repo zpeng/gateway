@@ -17,12 +17,9 @@ $PHP_CORE_LIST = array(
 );
 
 $CSS_SHARED_LIST = array(
-    //"backgrid_css" => "js/shared/backgrid-0.2.0/backgrid.min.css",
-    //"backgrid-paginator_css"=>"js/shared/backgrid-0.2.0/extensions/paginator/backgrid-paginator.css",
-
     "admin_css" => "admin/css/admin.css",
 
-    "tiny_table_css" => "js/shared/tiny_table/tiny_table.css"
+    "editablegrid_css" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.css"
 );
 
 $JS_SHARED_LIST = array(
@@ -32,12 +29,9 @@ $JS_SHARED_LIST = array(
 
     "tiny_mce-3.5.8" => "js/shared/tiny_mce-3.5.8/tiny_mce.js",
 
-    "tiny_table" => "js/shared/tiny_table/tiny_table.js",
+    "editablegrid" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.js",
+    "editablegrid-extend" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1-extend.js"
 
-    //backgrid related
-    //"backgrid-0.2.0" => "js/shared/backgrid-0.2.0/backgrid.min.js",
-    //"backgrid-0.2.0-pageable" => "js/shared/backgrid-0.2.0/assets/js/backbone-pageable.js",
-    //"backgrid-0.2.0-pageable-js" => "js/shared/backgrid-0.2.0/extensions/paginator/backgrid-paginator.js",
 );
 
 
