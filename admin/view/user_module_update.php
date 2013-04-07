@@ -12,7 +12,7 @@
     <form action="<?= SERVER_URL ?>admin/control/user_module_update.php" method="post">
         <input type="hidden" value="<? echo $user_id ?>" name="user_id"/>
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
-        <table width="800" border="0" class="dialogTable">
+        <table class="inputTable">
             <tr>
                 <td>Currently subscribed modules:
                 </td>

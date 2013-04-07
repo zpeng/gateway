@@ -8,13 +8,12 @@
     $user = new User();
     $user->loadByID($user_id);
     ?>
-    <br/> <br/>
-
+    <br/>
     <form id="UserPasswordUpdateForm" action="<?= SERVER_URL ?>admin/control/user_password_update.php" method="post"
           onsubmit="return checkUserPasswordUpdateForm(this)">
         <input type="hidden" value="<? echo $user_id ?>" name="user_id"/>
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
-        <table width="800" border="0" class="dialogTable">
+        <table class="inputTable">
             <tr>
                 <td width="150" align="right"><b>User Name: </b></td>
                 <td><? echo $user->get_user_name()?>

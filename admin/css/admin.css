@@ -193,7 +193,14 @@ body {
   bottom: 0; }
 
 ul.checkbox_list {
-  list-style: none; }
+  list-style: none;
+  padding: 0px; }
+
+table.inputTable {
+  width: 800px;
+  border: 0px;
+  border-spacing: 10px;
+  border-collapse: separate; }
 
 /* icon */
 a.icon_delete {

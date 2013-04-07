@@ -1,8 +1,10 @@
 <?php
-class ModuleManager {
-    public function getModuleList() {
+class ModuleManager
+{
+    public function getModuleList()
+    {
         $moduleList = [];
-        $count =  0;
+        $count = 0;
         $link = getConnection();
 
         $query = " select module_id,
@@ -13,7 +15,7 @@ class ModuleManager {
                 from    core_module
                 where   module_archived =   'N'";
 
-        $result = executeNonUpdateQuery($link , $query);
+        $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
@@ -30,10 +32,23 @@ class ModuleManager {
         return $moduleList;
     }
 
-    public function getModuleListAsJSON(){
-        return  str_replace('\\u0000', "", json_encode( (array) $this->getModuleList() ));
+    public function outputModuleListAsHtmlCheckboxList()
+    {
+        $html = "<ul class='checkbox_list'>";
+        if (sizeof($this->getModuleList()) > 0) {
+            foreach ($this->getModuleList() as $module) {
+                $html = $html . "<li><input type='checkbox' name='subscribe_module_id_list[]' value='" . $module->get_module_id() . "'><label>" . $module->get_module_name() . "</label>";
+            }
+        }
+        return $html = $html . "</ul>";
+    }
+
+    public function getModuleListAsJSON()
+    {
+        return str_replace('\\u0000', "", json_encode((array)$this->getModuleList()));
     }
 
 
 }
+
 ?>

@@ -102,12 +102,44 @@ class Configuration
     public function update()
     {
         $link = getConnection();
-        $query = "UPDATE core_configuration
-                  SET    configuration_value = '" . $this->get_configuration_value() . "'
-                  WHERE  configuration_id    = " . $this->get_configuration_id();
+        $query = "UPDATE core_module_configuration
+                  SET    module_config_value = '" . $this->get_configuration_value() . "'
+                  WHERE  module_config_id    = " . $this->get_configuration_id();
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
+    }
+
+
+    public function loadById($id)
+    {   $link = getConnection();
+        $query = "SELECT  module_config_id,
+                        core_module_configuration.module_id,
+                        core_module.module_name,
+                        module_config_title,
+                        module_config_key,
+                        module_config_value,
+                        module_config_desc,
+                        module_config_type
+                FROM core_user_subscribe_module, core_module_configuration, core_module
+                WHERE core_user_subscribe_module.module_id = core_module_configuration.module_id
+                AND core_module_configuration.module_id = core_module.module_id
+                AND module_config_id = ".$id;
+
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+
+        while ($newArray = mysql_fetch_array($result)) {
+            $this->set_configuration_id($newArray['module_config_id']);
+            $this->set_configuration_module_id($newArray['module_id']);
+            $this->set_configuration_module_name($newArray['module_name']);
+            $this->set_configuration_title($newArray['module_config_title']);
+            $this->set_configuration_key($newArray['module_config_key']);
+            $this->set_configuration_value($newArray['module_config_value']);
+            $this->set_configuration_desc($newArray['module_config_desc']);
+            $this->set_configuration_type($newArray['module_config_type']);
+        }
     }
 
     public function outputConfigEntityAsHTML()

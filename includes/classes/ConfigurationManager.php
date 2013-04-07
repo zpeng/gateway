@@ -1,14 +1,16 @@
 <?php
 
-class ConfigurationManager {
+class ConfigurationManager
+{
     //put your code here
     public $configEntityList = [];
 
-    public function loadByUserID($user_id) {
-        $this->configEntityList =[];
+    public function loadByUserID($user_id)
+    {
+        $this->configEntityList = [];
         $count = 0;
         $link = getConnection();
-        $query="SELECT 	module_config_id,
+        $query = "SELECT 	module_config_id,
                         core_module_configuration.module_id,
                         core_module.module_name,
                         module_config_title,
@@ -19,11 +21,11 @@ class ConfigurationManager {
                 FROM core_user_subscribe_module, core_module_configuration, core_module
                 WHERE core_user_subscribe_module.module_id = core_module_configuration.module_id
                 AND core_module_configuration.module_id = core_module.module_id
-                AND core_user_subscribe_module.user_id = ".$user_id."
+                AND core_user_subscribe_module.user_id = " . $user_id . "
                 ORDER BY core_module_configuration.module_id ASC";
 
 
-        $result = executeNonUpdateQuery($link , $query);
+        $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
@@ -41,10 +43,11 @@ class ConfigurationManager {
         }
     }
 
-    public function getValueByKey($key) {
+    public function getValueByKey($key)
+    {
         $value = "";
-        if (sizeof($this->configEntityList) >0) {
-            foreach($this->configEntityList as $configurationEntity) {
+        if (sizeof($this->configEntityList) > 0) {
+            foreach ($this->configEntityList as $configurationEntity) {
                 //find the configuration entity from list by key
                 if ($configurationEntity->get_configuration_key() == $key) {
                     $value = $configurationEntity->get_configuration_value();
@@ -55,11 +58,12 @@ class ConfigurationManager {
         return $value;
     }
 
-    public function loadByModuleID($_module_id) {
-        $this->configEntityList =[];
+    public function loadByModuleID($_module_id)
+    {
+        $this->configEntityList = [];
         $count = 0;
         $link = getConnection();
-        $query="SELECT 	module_config_id,
+        $query = "SELECT 	module_config_id,
                         core_module_configuration.module_id,
                         core_module.module_name,
                         module_config_title,
@@ -69,9 +73,9 @@ class ConfigurationManager {
                         module_config_type
                 FROM    core_module_configuration, core_module
                 WHERE   core_module.module_id = core_module_configuration.module_id
-                AND core_module_configuration.module_id =  ".$_module_id;
+                AND core_module_configuration.module_id =  " . $_module_id;
 
-        $result = executeNonUpdateQuery($link , $query);
+        $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
@@ -89,11 +93,12 @@ class ConfigurationManager {
         }
     }
 
-    public function loadAllConfig() {
-        $this->configEntityList =[];
+    public function loadAllConfig()
+    {
+        $this->configEntityList = [];
         $count = 0;
         $link = getConnection();
-        $query="SELECT 	DISTINCT module_config_id,
+        $query = "SELECT 	DISTINCT module_config_id,
                         core_module_configuration.module_id,
                         core_module.module_name,
                         module_config_title,
@@ -107,7 +112,7 @@ class ConfigurationManager {
                 ORDER BY core_module_configuration.module_id ASC";
 
 
-        $result = executeNonUpdateQuery($link , $query);
+        $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
@@ -125,7 +130,7 @@ class ConfigurationManager {
             $count++;
         }
 
-        return  $this->configEntityList;
+        return $this->configEntityList;
     }
 
     public function outputAsHtmlTable($id = "", $class = "")
@@ -151,7 +156,9 @@ class ConfigurationManager {
                                 <td>" . $config->get_configuration_value() . "</td>
                                 <td>" . $config->get_configuration_desc() . "</td>
                                 <td>" . $config->get_configuration_type() . "</td>
-                                <td></td>
+                                <td>  <a class='icon_edit' title='Update Configuration' href='" . SERVER_URL . "admin/main.php?view=config_update&config_id=" .
+                    $config->get_configuration_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
+                                </td>
                                 </tr> ";
             }
         }
