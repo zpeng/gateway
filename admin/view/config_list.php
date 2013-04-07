@@ -1,4 +1,5 @@
 <h1 class="content_title">Configuration List</h1>
+<? include_once('view/notification_bar.php') ?>
 <div id="content">
     <!--  Number of rows per page and bars in chart -->
     <div id="pagecontrol" class="EditableGrid">
@@ -30,13 +31,13 @@
 </div>
 <script>
     window.onload = function() {
-        var editableGrid = new EditableGrid("UserListGrid",{
+        var ConfigListGrid = new EditableGrid("ConfigListGrid",{
             enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
             pageSize: 10
         });
 
         // we build and load the metadata in Javascript
-        editableGrid.load({ metadata: [
+        ConfigListGrid.load({ metadata: [
             { name: "Module Name", datatype: "string", editable: false },
             { name: "Config Title", datatype: "string", editable: false },
             { name: "Config Key", datatype: "string", editable: false },
@@ -47,8 +48,8 @@
         ]});
 
         // then we attach to the HTML table and render it
-        editableGrid.attachToHTMLTable('ConfigListGrid');
-        editableGrid.initializeGrid();
+        ConfigListGrid.attachToHTMLTable('ConfigListGrid');
+        ConfigListGrid.initializeGrid();
 
     }
 </script>

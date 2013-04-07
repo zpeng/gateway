@@ -4,9 +4,9 @@ class User {
     public  $user_name;
     public  $user_password;
     public  $user_archived;
-    public  $accessModuleNameList = [];
-    public  $accessModuleCodeList = [];
-    public  $accessModuleIDList = [];
+    public  $user_subscribe_module_name_list = [];
+    public  $user_subscribe_module_code_list = [];
+    public  $user_subscribe_module_id_list = [];
 
     public function get_user_id() {
         return $this->user_id;
@@ -59,7 +59,7 @@ class User {
             $this->set_user_archived($newArray['user_archived']);
         }
 
-        $this->getAccessList();
+        $this->getUserSubscribeModuleList();
     }
 
     public function loadByID($id) {
@@ -80,7 +80,7 @@ class User {
             $this->set_user_archived($newArray['user_archived']);
         }
 
-        $this->getAccessList();
+        $this->getUserSubscribeModuleList();
     }
 
     public function insert() {
@@ -108,6 +108,26 @@ class User {
 
     }
 
+    public function updateUserSubscribeModuleList(){
+        //delete all user module subscription
+        $link = getConnection();
+        $query1 = " DELETE
+                    FROM  core_user_subscribe_module
+                    WHERE user_id = ".$this->get_user_id();
+
+        executeUpdateQuery($link , $query1);
+
+        foreach($this->user_subscribe_module_id_list as $module_id){
+            $query2 = " INSERT INTO core_user_subscribe_module
+                        (user_id,  module_id)
+                        VALUES (
+                        ".$this->get_user_id().",".
+                        $module_id.")";
+            executeUpdateQuery($link , $query2);
+        }
+        closeConnection($link);
+    }
+
     public function updatePassword($new_password) {
         $link = getConnection();
         $newPassword = md5($new_password);
@@ -125,24 +145,31 @@ class User {
         $query = " UPDATE core_user
                    SET    user_archived = 'Y'
                    WHERE  user_id = ".$this->get_user_id();
-
         executeUpdateQuery($link , $query);
+
+        //delete user module access
+        $query1 = " DELETE
+                    FROM  core_user_subscribe_module
+                    WHERE user_id = ".$this->get_user_id();
+
+        executeUpdateQuery($link , $query1);
+
         closeConnection($link);
     }
 
-    private function getAccessList(){
-        $this->accessModuleNameList = [];
-        $this->accessModuleCodeList = [];
-        $this->accessModuleIDList = [];
+    private function getUserSubscribeModuleList(){
+        $this->user_subscribe_module_name_list = [];
+        $this->user_subscribe_module_code_list = [];
+        $this->user_subscribe_module_id_list = [];
         $count =  0;
         $link = getConnection();
 
         $query = "  SELECT core_module.module_id,
                            core_module.module_name,
                            core_module.module_code
-                    FROM core_user_module_access, core_module
-                    WHERE core_user_module_access.module_id = core_module.module_id
-                    AND core_user_module_access.user_id = ".$this->get_user_id();
+                    FROM core_user_subscribe_module, core_module
+                    WHERE core_user_subscribe_module.module_id = core_module.module_id
+                    AND core_user_subscribe_module.user_id = ".$this->get_user_id();
 
         $result = executeNonUpdateQuery($link , $query);
         closeConnection($link);
@@ -153,23 +180,27 @@ class User {
             $module->set_module_name($newArray['module_name']);
             $module->set_module_code($newArray['module_code']);
 
-            $this->accessModuleNameList[$count] = $newArray['module_name'];
-            $this->accessModuleCodeList[$count] = $newArray['module_code'];
-            $this->accessModuleIDList[$count] = $newArray['module_id'];
+            $this->user_subscribe_module_name_list[$count] = $newArray['module_name'];
+            $this->user_subscribe_module_code_list[$count] = $newArray['module_code'];
+            $this->user_subscribe_module_id_list[$count] = $newArray['module_id'];
             ++$count;
         }
     }
 
-    public function updateUserModuleAccess(){
-        //$_user_id, $_module_id
-        $link = getConnection();
-        $query = "  INSERT INTO core_user_module_access ($_user_id, $_module_id)
-                    VALUES(2, 1)
-                    ON DUPLICATE KEY
-                    UPDATE user_id=VALUES(user_id),
-                           module_id=VALUES(module_id)";
-        executeUpdateQuery($link , $query);
-        closeConnection($link);
+    public function outputUserSubscribeModuleAsHtmlCheckboxList()
+    {
+        $html = "<ul class='checkbox_list'>";
+        $moduleManager = new ModuleManager();
+        if (sizeof($moduleManager->getModuleList()) > 0) {
+            foreach ($moduleManager->getModuleList() as $module) {
+                if (in_array($module->get_module_id(), $this->user_subscribe_module_id_list)) {
+                    $html = $html . "<li><input  checked='true' type='checkbox' name='subscribe_module_id_list[]' value='" . $module->get_module_id() . "'><label>" . $module->get_module_name() . "</label>";
+                } else {
+                    $html = $html . "<li><input type='checkbox' name='subscribe_module_id_list[]' value='" . $module->get_module_id() . "'><label>" . $module->get_module_name() . "</label>";
+                }
+            }
+        }
+        return $html = $html . "</ul>";
     }
 
     public function toJSON(){

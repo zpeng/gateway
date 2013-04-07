@@ -1,5 +1,3 @@
-var SERVER_URL = "http://" + window.location.hostname + "/gateway/";
-
 // function to render the paginator control
 EditableGrid.prototype.updatePaginator = function () {
     var paginator = $("#paginator").empty();

@@ -24,8 +24,8 @@ class UserSession
         $user->loadByEmail($userName);
         $this->userName = $userName;
         $this->userID = $user->get_user_id();
-        $this->userModuleAccessCodeList = $user->accessModuleCodeList;
-        $this->userModuleAccessNameList = $user->accessModuleNameList;
+        $this->userModuleAccessCodeList = $user->user_subscribe_module_code_list;
+        $this->userModuleAccessNameList = $user->user_subscribe_module_name_list;
 
         $configManager = new ConfigurationManager();
         $configManager->loadByUserID($this->userID);

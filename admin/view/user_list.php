@@ -1,4 +1,5 @@
 <h1 class="content_title">User List</h1>
+<? include_once('view/notification_bar.php') ?>
 <div id="content">
     <!--  Number of rows per page and bars in chart -->
     <div id="pagecontrol" class="EditableGrid">
@@ -26,21 +27,24 @@
     <div id="paginator" class="EditableGrid"></div>
 </div>
 <script>
+
     window.onload = function () {
-        var editableGrid = new EditableGrid("UserListGrid", {
+        var UserListGrid = new EditableGrid("UserListGrid", {
             enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
             pageSize: 10
         });
         // we build and load the metadata in Javascript
-        editableGrid.load({ metadata: [
+        UserListGrid.load({ metadata: [
             { name: "ID", datatype: "integer", editable: false },
             { name: "User Name", datatype: "string", editable: false },
-            { name: "Accessible Modules", datatype: "string", editable: false },
+            { name: "Subscribed Modules", datatype: "string", editable: false },
             { name: "Action", datatype: "html", editable: false }
         ]});
 
         // then we attach to the HTML table and render it
-        editableGrid.attachToHTMLTable('UserListGrid');
-        editableGrid.initializeGrid();
+        UserListGrid.attachToHTMLTable('UserListGrid');
+        UserListGrid.initializeGrid();
     }
+
+
 </script>

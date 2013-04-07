@@ -64,22 +64,25 @@ class UserManager
         $htmlTable = $htmlTable . "<tr>
                                         <th>ID</th>
                                         <th>User Name</th>
-                                        <th>Accessible Modules</th>
+                                        <th>Subscribed Modules</th>
                                         <th>Action</th>
                                     </tr>";
 
         $userList = $this->getUserList();
-        if (sizeof($userList) > 0 ) {
-            foreach($userList as $user) {
+        if (sizeof($userList) > 0) {
+            foreach ($userList as $user) {
                 $htmlTable = $htmlTable . "  <tr>
-                        <td>".$user->get_user_id()."</td>
-                        <td>".$user->get_user_name()."</td>
-                        <td>".implode(", ",$user->accessModuleNameList)."</td>
+                        <td>" . $user->get_user_id() . "</td>
+                        <td>" . $user->get_user_name() . "</td>
+                        <td>" . implode(", ", $user->user_subscribe_module_name_list) . "</td>
                         <td>
-                        <a href='process/admin_admin_delete_process.php?admin_id=".$user->get_user_id()."'
-                        onclick='return confirmDeletion()'>".displayAdminDeleteIcon(15,15,'Delete this user account')."</a>
-                        <a href='index.php?view=admin_admin_password_update&admin_id=".$user->get_user_id()."'
-                        >".displayAdminEditIcon(15,15,'Update password')."</a>
+                        <a class='icon_delete' title='Delete this user account' href='" . SERVER_URL . "admin/control/user_delete_process.php?user_id=" .
+                    $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "'
+                        onclick='return confirmDeletion()'></a>
+                        <a class='icon_edit' title='Update password' href='" . SERVER_URL . "admin/main.php?view=user_password_update&user_id=" .
+                    $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
+                       <a class='icon_admin' title='Update module subscription' href='" . SERVER_URL . "admin/main.php?view=user_module_update&user_id=" .
+                    $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></
                         </td>
                         </tr> ";
             }

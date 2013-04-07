@@ -19,18 +19,31 @@ $PHP_CORE_LIST = array(
 $CSS_SHARED_LIST = array(
     "admin_css" => "admin/css/admin.css",
 
+    "validation_css" => "js/shared/validation/validation.css",
+
+    "jquery-ui-1.10.2.custom.css" => "js/shared/jquery-ui-1.10.2.custom/css/custom-theme/jquery-ui-1.10.2.custom.css",
+
     "editablegrid_css" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.css"
+
 );
 
 $JS_SHARED_LIST = array(
+    "global_constants" => "includes/global_constants.js",
+
+    "validation" => "js/shared/validation/validation.js",
+
     "jquery-1.9.1" => "js/shared/jquery-1.9.1/jquery-1.9.1.min.js",
+    "jquery-ui-1.10.2.js" => "js/shared/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js",
+
     "underscore-1.4.4" => "js/shared/underscore-1.4.4/underscore-min.js",
     "backbone-1.0.0" => "js/shared/backbone-1.0.0/backbone-min.js",
 
     "tiny_mce-3.5.8" => "js/shared/tiny_mce-3.5.8/tiny_mce.js",
 
     "editablegrid" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.js",
-    "editablegrid-extend" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1-extend.js"
+    "editablegrid-extend" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1-extend.js",
+
+    "admin_ui" => "admin/js/admin_ui.js"
 
 );
 

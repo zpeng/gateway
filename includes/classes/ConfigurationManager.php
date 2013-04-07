@@ -16,10 +16,10 @@ class ConfigurationManager {
                         module_config_value,
                         module_config_desc,
                         module_config_type
-                FROM core_user_module_access, core_module_configuration, core_module
-                WHERE core_user_module_access.module_id = core_module_configuration.module_id
+                FROM core_user_subscribe_module, core_module_configuration, core_module
+                WHERE core_user_subscribe_module.module_id = core_module_configuration.module_id
                 AND core_module_configuration.module_id = core_module.module_id
-                AND core_user_module_access.user_id = ".$user_id."
+                AND core_user_subscribe_module.user_id = ".$user_id."
                 ORDER BY core_module_configuration.module_id ASC";
 
 
@@ -93,7 +93,7 @@ class ConfigurationManager {
         $this->configEntityList =[];
         $count = 0;
         $link = getConnection();
-        $query="SELECT 	module_config_id,
+        $query="SELECT 	DISTINCT module_config_id,
                         core_module_configuration.module_id,
                         core_module.module_name,
                         module_config_title,
@@ -101,8 +101,8 @@ class ConfigurationManager {
                         module_config_value,
                         module_config_desc,
                         module_config_type
-                FROM core_user_module_access, core_module_configuration, core_module
-                WHERE core_user_module_access.module_id = core_module_configuration.module_id
+                FROM core_user_subscribe_module, core_module_configuration, core_module
+                WHERE core_user_subscribe_module.module_id = core_module_configuration.module_id
                 AND core_module_configuration.module_id = core_module.module_id
                 ORDER BY core_module_configuration.module_id ASC";
 

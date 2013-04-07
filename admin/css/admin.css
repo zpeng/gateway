@@ -191,3 +191,28 @@ body {
   text-align: center;
   padding-top: 10px;
   bottom: 0; }
+
+ul.checkbox_list {
+  list-style: none; }
+
+/* icon */
+a.icon_delete {
+  margin-left: 5px;
+  background: url(../images/delete.png) center no-repeat;
+  display: inline-block;
+  width: 15px;
+  height: 15px; }
+
+a.icon_edit {
+  margin-left: 5px;
+  background: url(../images/edit.png) center no-repeat;
+  display: inline-block;
+  width: 15px;
+  height: 15px; }
+
+a.icon_admin {
+  margin-left: 5px;
+  background: url(../images/admin.png) center no-repeat;
+  display: inline-block;
+  width: 15px;
+  height: 15px; }
