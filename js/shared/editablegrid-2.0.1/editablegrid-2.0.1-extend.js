@@ -10,9 +10,11 @@ EditableGrid.prototype.updatePaginator = function () {
 
     // get pages in interval (with links except for the current page)
     var pages = this.getPagesInInterval(interval, function (pageIndex, isCurrent) {
-        if (isCurrent) return "" + (pageIndex + 1);
+        if (isCurrent) {
+            return "" + (pageIndex + 1);
+        }
         return $("<a>").css("cursor", "pointer").html(pageIndex + 1).click(function (event) {
-            ref_this.setPageIndex(parseInt($(pages).html()) - 1);
+            ref_this.setPageIndex(parseInt($(this).html()) - 1);
         });
     });
 

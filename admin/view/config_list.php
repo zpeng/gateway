@@ -50,6 +50,5 @@
         // then we attach to the HTML table and render it
         ConfigListGrid.attachToHTMLTable('ConfigListGrid');
         ConfigListGrid.initializeGrid();
-
-    }
+    };
 </script>
