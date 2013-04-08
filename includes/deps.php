@@ -19,9 +19,9 @@ $PHP_CORE_LIST = array(
 $CSS_SHARED_LIST = array(
     "admin_css" => "admin/css/admin.css",
 
-    "validation_css" => "js/shared/validation/validation.css",
-
     "jquery-ui-1.10.2.custom.css" => "js/shared/jquery-ui-1.10.2.custom/css/custom-theme/jquery-ui-1.10.2.custom.css",
+
+    "jquery-form-validate-css" => "js/shared/jquery-form-validate/jquery.validate.css",
 
     "editablegrid_css" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.css"
 
@@ -30,10 +30,11 @@ $CSS_SHARED_LIST = array(
 $JS_SHARED_LIST = array(
     "global_constants" => "includes/global_constants.js",
 
-    "validation" => "js/shared/validation/validation.js",
-
     "jquery-1.9.1" => "js/shared/jquery-1.9.1/jquery-1.9.1.min.js",
     "jquery-ui-1.10.2.js" => "js/shared/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js",
+
+    "jquery-form-validate" => "js/shared/jquery-form-validate/jquery.validate.js",
+    "jquery-form-validate-func" => "js/shared/jquery-form-validate/jquery.validation.functions.js",
 
     "underscore-1.4.4" => "js/shared/underscore-1.4.4/underscore-min.js",
     "backbone-1.0.0" => "js/shared/backbone-1.0.0/backbone-min.js",

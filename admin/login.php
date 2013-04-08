@@ -27,11 +27,11 @@ require_once('../includes/bootstrap.php');
                     </tr>
                     <tr>
                         <td width="100" class="login_table_label">Email:</td>
-                        <td><input name="email" class="login_table_input"/></td>
+                        <td><input id="email" name="email" class="login_table_input"/></td>
                     </tr>
                     <tr>
                         <td width="100"class="login_table_label">Password:</td>
-                        <td><input name="password" type="password" class="login_table_input"/></td>
+                        <td><input id="password" name="password" type="password" class="login_table_input"/></td>
                     </tr>
                     <tr>
                         <td width="100" align="right"></td>
@@ -40,7 +40,7 @@ require_once('../includes/bootstrap.php');
                     <tr>
                         <td width="100" align="right"></td>
                         <td align="right">
-                            <input name='Login' type='image' value='Login' title="Login" src="images/login_btn.gif"/>
+                            <input id='Login' name='Login' type='submit' value='Login' title="Login"/>
                         </td>
                     </tr>
 
@@ -54,4 +54,18 @@ require_once('../includes/bootstrap.php');
         </td>
     </tr>
 </table>
+<script>
+    jQuery("#Login").button();
+
+    jQuery(function(){
+        jQuery("#email").validate({
+            expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+            message: "Please enter a valid Email"
+        });
+        jQuery("#password").validate({
+            expression: "if (VAL.length >= 8 && VAL) return true; else return false;",
+            message: "Please enter a valid Password (the length of password must exceed 8 characters)"
+        });
+    });
+</script>
 <?= outputHTMLEnd(); ?>
