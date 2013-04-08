@@ -25,7 +25,6 @@ $module_config = array(
 
         "Menu" => "modules/cms/includes/classes/Menu.php",
         "MenuType" => "modules/cms/includes/classes/MenuType.php",
-        "MenuDescription" => "modules/cms/includes/classes/MenuDescription.php",
         "MenuManager" => "modules/cms/includes/classes/MenuManager.php",
     ),
 

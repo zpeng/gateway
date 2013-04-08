@@ -10,6 +10,9 @@
         case "content_update":
             include_once(BASE_PATH.'modules/cms/admin/view/content_update.php');
             break;
+        case "menu_list":
+            include_once(BASE_PATH.'modules/cms/admin/view/menu_list.php');
+            break;
         default:
             include_once(BASE_PATH.'modules/cms/admin/view/content_list.php');
             break;

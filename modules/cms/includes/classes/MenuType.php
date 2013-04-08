@@ -69,50 +69,5 @@ class MenuType {
             $this->set_menu_type_archived($newArray['menu_type_archived']);
         }
     }
-
-    public function getMenuItemListByMenuType() {
-        $menuItemlist;
-        $count = 0;
-        $link = getConnection();
-
-        $query="    SELECT menu_id         ,
-                       menu_parent_id  ,
-                       menu_type_id    ,
-                       menu_order      ,
-                       menu_link       ,
-                       menu_archived
-                FROM   cms_menu
-                WHERE  menu_archived = 'N'
-                AND    menu_parent_id = 0
-                AND    menu_type_id = ".$this->get_menu_type_id()."
-                ORDER BY menu_order";
-
-        $result = executeNonUpdateQuery($link, $query);
-        closeConnection($link);
-
-        while ($newArray = mysql_fetch_array($result)) {
-            $menu = new Menu();
-            $menu->set_menu_id($newArray['menu_id']);
-            $menu->set_menu_parent_id($newArray['menu_parent_id']);
-            $menu->set_menu_type_id($newArray['menu_type_id']);
-            $menu->set_menu_order($newArray['menu_order']);
-            $menu->set_menu_link($newArray['menu_link']);
-            $menu->set_menu_archived($newArray['menu_archived']);
-
-            $menu->set_menu_description_list($menu->getMenuDescriptionList());
-
-            $subMenuItemlist = $menu->getSubMenuItemList();
-            if($subMenuItemlist != null) {
-                $menu->set_sub_menu_list($subMenuItemlist);
-            }else {
-                $menu->set_sub_menu_list(null);
-            }
-
-            $menuItemlist[$count] = $menu;
-            $count++;
-        }
-        return $menuItemlist;
-    }
-
 }
 ?>
