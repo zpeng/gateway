@@ -266,9 +266,12 @@ class Menu
         $query = "  UPDATE cms_menu
                     SET    menu_archived    = 'Y'
                     WHERE  menu_id          = " . $this->get_menu_id();
-
         executeUpdateQuery($link, $query);
         closeConnection($link);
+
+        foreach($this->_sub_menu_list as $sub_menu){
+            $sub_menu->delete();
+        }
     }
 
     public function outputAsHtmlTableRow($padding="")

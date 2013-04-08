@@ -17,7 +17,7 @@
             <tr>
                 <td align="right"></td>
                 <td>
-                    <textarea name='article_content' id='article_content'></textarea>
+                    <textarea name='article_content' id='article_content' style="height: 400px"></textarea>
                 </td>
             </tr>
             <tr>

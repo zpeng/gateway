@@ -21,7 +21,7 @@
             <tr>
                 <td align="right"></td>
                 <td>
-                    <textarea name='article_content' id='article_content'><?=$content->get_article()?></textarea>
+                    <textarea name='article_content' id='article_content' style="height: 400px"><?=$content->get_article()?></textarea>
                 </td>
             </tr>
             <tr>
