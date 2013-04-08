@@ -21,17 +21,12 @@ $module_config = array(
 
     "php_list" => array(
         "Content" => "modules/cms/includes/classes/Content.php",
-        "ContentDescription" => "modules/cms/includes/classes/ContentDescription.php",
         "ContentManager" => "modules/cms/includes/classes/ContentManager.php",
 
         "Menu" => "modules/cms/includes/classes/Menu.php",
         "MenuType" => "modules/cms/includes/classes/MenuType.php",
         "MenuDescription" => "modules/cms/includes/classes/MenuDescription.php",
         "MenuManager" => "modules/cms/includes/classes/MenuManager.php",
-
-        "Language" => "modules/cms/includes/classes/Language.php",
-        "LanguageDefault" => "modules/cms/includes/classes/LanguageDefault.php",
-        "LanguageManager" => "modules/cms/includes/classes/LanguageManager.php",
     ),
 
     "css_backend_list" => array_merge($CSS_SHARED_LIST, array()),

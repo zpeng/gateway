@@ -9,8 +9,7 @@
     $config->loadById($config_id);
     ?>
     <br/>
-    <form id="UserPasswordUpdateForm" action="<?= SERVER_URL ?>admin/control/config_update.php" method="post"
-          onsubmit="return checkUserPasswordUpdateForm(this)">
+    <form id="ConfigUpdateForm" action="<?= SERVER_URL ?>admin/control/config_update.php" method="post">
         <input type="hidden" value="<? echo $config_id ?>" name="config_id"/>
         <input type="hidden" value="<? echo $config->get_configuration_key() ?>" name="config_key"/>
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>

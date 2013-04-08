@@ -9,24 +9,34 @@
  *
  * @author
  */
-class Content {
+class Content
+{
 //put your code here
 
     private $_content_id;
     private $_author_name = "";
     private $_author_id;
-    private $_content_description_list = [];
+    private $_title;
+    private $_article;
+    private $_create_date;
+    private $_last_modify_date;
+    private $_last_modify_by;
+    private $_last_modify_by_user_id;
     private $_archived;
 
-    public function get_content_id() {
+
+    public function get_content_id()
+    {
         return $this->_content_id;
     }
 
-    public function set_content_id($_content_id) {
+    public function set_content_id($_content_id)
+    {
         $this->_content_id = $_content_id;
     }
- 
-    public function get_author_name() {
+
+    public function get_author_name()
+    {
         if ($this->_author_name == "") {
             $author = new User();
             $author->loadByID($this->get_author_id());
@@ -35,163 +45,171 @@ class Content {
         return $this->_author_name;
     }
 
-    public function set_author_name($_author_name) {
+    public function set_author_name($_author_name)
+    {
         $this->_author_name = $_author_name;
     }
 
-    public function get_author_id() {
+    public function get_author_id()
+    {
         return $this->_author_id;
     }
 
-    public function set_author_id($_author_id) {
+    public function set_author_id($_author_id)
+    {
         $this->_author_id = $_author_id;
     }
 
-    public function get_first_content_description() {
-        if ($this->_content_description_list == null) {
-            $this->set_content_description_list($this->getContentDescriptionList());
+    public function get_title()
+    {
+        return $this->_title;
+    }
+
+    public function set_title($_title)
+    {
+        $this->_title = $_title;
+    }
+
+    public function get_article()
+    {
+        return $this->_article;
+    }
+
+    public function set_article($_article)
+    {
+        $this->_article = $_article;
+    }
+
+    public function get_create_date()
+    {
+        return $this->_create_date;
+    }
+
+    public function set_create_date($_create_date)
+    {
+        $this->_create_date = $_create_date;
+    }
+
+    public function get_last_modify_date()
+    {
+        return $this->_last_modify_date;
+    }
+
+    public function set_last_modify_date($_last_modify_date)
+    {
+        $this->_last_modify_date = $_last_modify_date;
+    }
+
+    public function get_last_modify_by()
+    {
+        if ($this->_last_modify_by == null) {
+            $author = new User();
+            $author->loadByID($this->_last_modify_by_user_id);
+            $this->set_last_modify_by($author->get_user_name());
         }
-        return $this->_content_description_list[0];
+        return $this->_last_modify_by;
     }
 
-    public function get_content_description_list() {
-        if ($this->_content_description_list == null) {
-            $this->set_content_description_list($this->getContentDescriptionList());
-        }
-        return $this->_content_description_list;
+    public function set_last_modify_by($_last_modify_by)
+    {
+        $this->_last_modify_by = $_last_modify_by;
     }
 
-    public function set_content_description_list($_content_description_list) {
-        $this->_content_description_list = $_content_description_list;
+    public function get_last_modify_by_user_id()
+    {
+        return $this->_last_modify_by_user_id;
     }
 
-    public function get_archived() {
+    public function set_last_modify_by_user_id($_last_modify_by_user_id)
+    {
+        $this->_last_modify_by_user_id = $_last_modify_by_user_id;
+    }
+
+    public function get_archived()
+    {
         return $this->_archived;
     }
 
-    public function set_archived($_archived) {
+    public function set_archived($_archived)
+    {
         $this->_archived = $_archived;
     }
 
-    public function load($_content_id) {
+    public function loadByID($_content_id)
+    {
         $link = getConnection();
 
-        $query="select 	content_id,
-                        content_author_id, 
-                        content_archived 
-                from 	cms_content
-                where   content_id = ".$_content_id;
+        $query = "SELECT
+                      content_id,
+                      content_author_id,
+                      content_title,
+                      content_article,
+                      content_create_date,
+                      content_last_modify_by,
+                      content_last_modify_date,
+                      content_archived
+                    FROM cms_content
+                where   content_id = " . $_content_id;
 
-        $result = executeNonUpdateQuery($link , $query, "Content.load()");
+        $result = executeNonUpdateQuery($link, $query, "Content.load()");
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {
             $this->set_content_id($newArray['content_id']);
             $this->set_author_id($newArray['content_author_id']);
+            $this->set_title($newArray['content_title']);
+            $this->set_article($newArray['content_article']);
+            $this->set_create_date($newArray['content_create_date']);
+            $this->set_last_modify_date($newArray['content_last_modify_date']);
+            $this->set_last_modify_by_user_id($newArray['content_last_modify_by']);
             $this->set_archived($newArray['content_archived']);
-
         }
     }
 
-    public function getContentDescriptionList() {
+    public function insert()
+    {
         $link = getConnection();
-        $count = 0;
-        $content_description_list = null;
-        $query=" select content_description_id,
-                        content_id,
-                        content_language_id,
-                        content_title,
-                        content_abstract,
-                        content_article,
-                        content_create_date,
-                        content_last_modify_by,
-                        content_last_modify_date,
-                        content_description_archived
-                        from cms_content_description
-                  where content_id =  ".$this->get_content_id();
+        $query = "INSERT INTO cms_content
+                                (content_author_id,
+                                 content_title,
+                                 content_article,
+                                 content_create_date,
+                                 content_last_modify_by,
+                                 content_last_modify_date,
+                                 content_archived)
+                    VALUES (".$this->get_author_id().",
+                            '".$this->get_title()."',
+                            '".$this->get_article()."',
+                            now(),
+                            ".$this->get_author_id().",
+                            now(),
+                            'N')";
 
-        $result = executeNonUpdateQuery($link , $query);
+        executeUpdateQuery($link, $query, "Content.insert()");
         closeConnection($link);
-        while ($newArray = mysql_fetch_array($result)) {
-            $content_description = new ContentDescription();
-            $content_description->set_content_description_id($newArray['content_description_id']);
-            $content_description->set_content_id($newArray['content_id']);
-            $content_description->set_language_id($newArray['content_language_id']);
-            $content_description->set_title($newArray['content_title']);
-            $content_description->set_abstract($newArray['content_abstract']);
-            $content_description->set_article($newArray['content_article']);
-            $content_description->set_create_date($newArray['content_create_date']);
-            $content_description->set_last_modify_date($newArray['content_last_modify_date']);
-            $content_description->set_last_modify_by_user_id($newArray['content_last_modify_by']);
-            $content_description->set_archived($newArray['content_description_archived']);
-
-
-
-            $content_description_list[$count] = $content_description;
-            $count++;
-        }
-
-        return $content_description_list;
     }
 
-    public function loadContentDescriptionByLanguageID($language_id) {
-        if (sizeof($this->getContentDescriptionList()) > 0 ) {
-            foreach($this->getContentDescriptionList() as $_content_desc) {
-                if ($_content_desc->get_language_id() == $language_id) {
-                    return $_content_desc;
-                }
-            }
-        }
-        // no item match
-        return null;
-    }
-
-    public function insert() {
-        $link = getConnection();
-        $query = " insert into cms_content
-	(content_author_id, content_archived
-	)
-	values
-	(".$this->get_author_id().", 'N'
-	)";
-
-        executeUpdateQuery($link , $query, "Content.insert()");
-
-        //get the content id
-        $this->set_content_id(mysql_insert_id($link));
-        closeConnection($link);
-
-        // for loop of content description
-        if (sizeof($this->get_content_description_list()) > 0 ) {
-            foreach($this->get_content_description_list() as $_content_desc) {
-                $_content_desc->set_content_id($this->get_content_id());
-                $_content_desc->insert();
-            }
-        }
-    }
-
-    public function delete() {
+    public function delete()
+    {
         $link = getConnection();
         $query = "  update  cms_content
                     set	    content_archived = 'Y'
-                    where   content_id = ".$this->get_content_id();
+                    where   content_id = " . $this->get_content_id();
 
-        executeUpdateQuery($link , $query);
+        executeUpdateQuery($link, $query);
         closeConnection($link);
     }
 
     public function update() {
-        // update the content descriptions
-        $contentDescriptionList = $this->get_content_description_list();
-        if (sizeof($contentDescriptionList) > 0) {
-            foreach($contentDescriptionList as $contentDescription) {
-                if ($contentDescription->get_content_description_id() == 0) {
-                    $contentDescription->set_content_id($this->get_content_id());
-                    $contentDescription->insert();
-                }else {
-                    $contentDescription->update();
-                }
-            }
-        }
+        $link = getConnection();
+        $query = "  update  cms_content
+                    set	content_title = '".$this->get_title()."',
+                            content_article = '".$this->get_article()."',
+                            content_last_modify_by = ".$this->get_last_modify_by_user_id().",
+                            content_last_modify_date = now()
+                    where   content_id = ".$this->get_content_id();
+
+        executeUpdateQuery($link , $query);
+        closeConnection($link);
     }
 
 }

@@ -11,7 +11,11 @@ $result = $userManager->login($email, $password);
 if ($result) {
     session_start();
 
+    $user = new User();
+    $user->loadByEmail($email);
+
     $_SESSION['user_name'] = $email;
+    $_SESSION['user_id'] = $user->get_user_id();
     $_SESSION['user_logged_in'] = $result;
 
     // to setup the configuration

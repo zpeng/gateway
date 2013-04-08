@@ -6,8 +6,8 @@
         <ul class="top-level">
             <li><a href="#">Articles</a>
                 <ul class="sub-level">
-                    <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=article_list"?>">All Articles</a></li>
-                    <li><a href="#">Create New Article</a></li>
+                    <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=content_list"?>">All Articles</a></li>
+                    <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=content_create"?>">Create New Article</a></li>
                 </ul>
             </li>
             <li>

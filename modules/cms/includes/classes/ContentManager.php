@@ -18,23 +18,30 @@ class ContentManager
         $count = 0;
         $link = getConnection();
 
-        $query = "select 	content_id,
-                        content_author_id,
-                        content_archived
-                from 	cms_content
+        $query = "SELECT
+                      content_id,
+                      content_author_id,
+                      content_title,
+                      content_article,
+                      content_create_date,
+                      content_last_modify_by,
+                      content_last_modify_date,
+                      content_archived
+                    FROM cms_content
                 where   content_archived = 'N'";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {
             $content = new Content();
-
             $content->set_content_id($newArray['content_id']);
             $content->set_author_id($newArray['content_author_id']);
+            $content->set_title($newArray['content_title']);
+            $content->set_article($newArray['content_article']);
+            $content->set_create_date($newArray['content_create_date']);
+            $content->set_last_modify_date($newArray['content_last_modify_date']);
+            $content->set_last_modify_by_user_id($newArray['content_last_modify_by']);
             $content->set_archived($newArray['content_archived']);
-
-            $content->set_content_description_list($content->getContentDescriptionList());
-
             $this->contentList[$count] = $content;
             $count++;
         }
@@ -56,17 +63,13 @@ class ContentManager
         $this->getContentList();
         if (sizeof($this->contentList) > 0) {
             foreach ($this->contentList as $content) {
-                //$content = new Content();
-                $content_description = new ContentDescription();
-                $content_description = $content->get_first_content_description();
-
                 $htmlTable = $htmlTable . "  <tr>
                         <td>" . $content->get_content_id() . "</td>
-                        <td>" . $content_description->get_title() . "</td>
+                        <td>" . $content->get_title() . "</td>
                         <td>" . $content->get_author_name() . "</td>
-                        <td>" . $content_description->get_create_date() . "</td>
-                        <td>" . $content_description->get_last_modify_by() . "</td>
-                        <td>" . $content_description->get_last_modify_date() . "</td>
+                        <td>" . $content->get_create_date() . "</td>
+                        <td>" . $content->get_last_modify_by() . "</td>
+                        <td>" . $content->get_last_modify_date() . "</td>
                         <td>
                         <a class='icon_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/admin/control/content_delete.php?content_id=" .
                     $content->get_content_id() . "&module_code=" . $_REQUEST['module_code'] . "'

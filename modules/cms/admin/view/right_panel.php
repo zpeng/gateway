@@ -1,11 +1,17 @@
 <div id="right_panel">
     <?php
     switch (secureRequestParameter($_REQUEST["view"])) {
-        case "article_list":
-            include_once(BASE_PATH.'modules/cms/admin/view/article_list.php');
+        case "content_list":
+            include_once(BASE_PATH.'modules/cms/admin/view/content_list.php');
+            break;
+        case "content_create":
+            include_once(BASE_PATH.'modules/cms/admin/view/content_create.php');
+            break;
+        case "content_update":
+            include_once(BASE_PATH.'modules/cms/admin/view/content_update.php');
             break;
         default:
-            include_once(BASE_PATH.'modules/cms/admin/view/article_list.php');
+            include_once(BASE_PATH.'modules/cms/admin/view/content_list.php');
             break;
     }
     ?>

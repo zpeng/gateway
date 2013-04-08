@@ -23,8 +23,10 @@ $CSS_SHARED_LIST = array(
 
     "jquery-form-validate-css" => "js/shared/jquery-form-validate/jquery.validate.css",
 
-    "editablegrid_css" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.css"
+    "editablegrid_css" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.css",
 
+    "tiny_mce-3.5.8-skin-ui" => "js/shared/tiny_mce-3.5.8/themes/advanced/skins/default/ui.css",
+    "tiny_mce-3.5.8-skin-ui" => "js/shared/tiny_mce-3.5.8/themes/advanced/skins/default/ui.css"
 );
 
 $JS_SHARED_LIST = array(

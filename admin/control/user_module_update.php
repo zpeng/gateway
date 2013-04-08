@@ -14,7 +14,6 @@ $user->updateUserSubscribeModuleList();
 $url = SERVER_URL."admin/main.php?module_code=".$module_code."&view=user_list"; // target of the redirect
 $msg = "The module subscription for user account [".$user->get_user_name()."] has been updated";
 $url=$url."&info=".$msg;
-echo $url;
 
 header( "Location: ".$url );
 ?>

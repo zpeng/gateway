@@ -16,7 +16,6 @@ $config->update();
 $url = SERVER_URL . "admin/main.php?module_code=" . $module_code . "&view=config_list"; // target of the redirect
 $msg = "The value of configuration key [" . $config_key . "] has been update";
 $url = $url . "&info=" . $msg;
-echo $url;
 
 header("Location: " . $url);
 
