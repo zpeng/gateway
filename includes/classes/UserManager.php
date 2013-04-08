@@ -31,6 +31,28 @@ class UserManager
         return $loginResult;
     }
 
+    public function checkUserExistsByEmail($email)
+    {
+        $link = getConnection();
+        $check_result = false;
+        $query = " select user_id
+                from    core_user
+                where   user_archived =   'N'
+                and     user_name =  '" . $email."'";
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+
+        $num_rows = mysql_num_rows($result); // Find no. of rows retrieved from DB
+
+        if ($num_rows == 1) {
+            $check_result = true; // login successful
+        } else {
+            $check_result = false; // login failure
+        }
+        return $check_result;
+    }
+
     public function getUserList()
     {
         $userList = [];
