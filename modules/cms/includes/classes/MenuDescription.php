@@ -79,7 +79,7 @@ class MenuDescription {
                         language_id,
                         menu_name,
                         menu_description_archived
-                from    tb_menu_description
+                from    cms_menu_description
                 where   menu_description_id = ".$this->get_menu_descritpion_id();
 
         $result = executeNonUpdateQuery($link, $query);
@@ -96,7 +96,7 @@ class MenuDescription {
 
     public function insert() {
         $link = getConnection();
-        $query = "insert into tb_menu_description
+        $query = "insert into cms_menu_description
        (menu_id,
         language_id,
         menu_name,
@@ -113,7 +113,7 @@ class MenuDescription {
 
     public function delete() {
         $link = getConnection();
-        $query = "  UPDATE tb_menu_description
+        $query = "  UPDATE cms_menu_description
                     SET    menu_description_archived    = 'Y'
                     WHERE  menu_description_id          = ".$this->get_menu_descritpion_id();
 
@@ -123,7 +123,7 @@ class MenuDescription {
 
     public function update() {
         $link = getConnection();
-        $query = "  UPDATE tb_menu_description
+        $query = "  UPDATE cms_menu_description
                     SET    menu_name   = '".$this->get_menu_name()."'
                     WHERE  menu_description_id        = ".$this->get_menu_descritpion_id();
 

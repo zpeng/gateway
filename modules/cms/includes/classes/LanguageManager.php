@@ -16,7 +16,7 @@ class LanguageManager {
         $count = 0;
         $link = getConnection();
         $query="select 	language_default_id, language_default_name, language_default_initial,language_default_icon,language_default_archived
-                from	tb_language_default
+                from	cms_language_default
                 where   language_default_archived = 'N'";
 
         $result = executeNonUpdateQuery($link , $query);
@@ -42,7 +42,7 @@ class LanguageManager {
         $count = 0;
         $link = getConnection();
         $query="select 	language_id, language_name, language_initial,language_icon,language_archived
-                from	tb_language
+                from	cms_language
                 where   language_archived = 'N'";
 
         $result = executeNonUpdateQuery($link , $query);

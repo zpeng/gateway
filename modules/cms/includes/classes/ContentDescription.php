@@ -104,9 +104,9 @@ class ContentDescription {
 
     public function get_last_modify_by() {
         if ($this->_last_modify_by == null) {
-            $author = new Administrator();
+            $author = new User();
             $author->loadByID($this->_last_modify_by_user_id);
-            $this->set_last_modify_by($author);
+            $this->set_last_modify_by($author->get_user_name());
         }
         return $this->_last_modify_by;
     }
@@ -146,7 +146,7 @@ class ContentDescription {
                         content_last_modify_by,
                         content_last_modify_date,
                         content_description_archived
-                        from tb_content_description
+                        from cms_content_description
                         where content_description_id =  ".$content_description_id;
 
         $result = executeNonUpdateQuery($link , $query);
@@ -170,7 +170,7 @@ class ContentDescription {
 
     public function update() {
         $link = getConnection();
-        $query = "  update  tb_content_description
+        $query = "  update  cms_content_description
                     set	content_title = '".$this->get_title()."',
                             content_abstract = '".$this->get_abstract()."',
                             content_article = '".$this->get_article()."',
@@ -186,7 +186,7 @@ class ContentDescription {
 
     public function delete() {
         $link = getConnection();
-        $query = "  update  tb_content_description
+        $query = "  update  cms_content_description
                     set	    content_description_archived = 'Y'
                     where   content_description_id = ".$this->get_content_description_id();
 
@@ -196,7 +196,7 @@ class ContentDescription {
 
     public function insert() {
         $link = getConnection();
-        $query = "  insert into tb_content_description
+        $query = "  insert into cms_content_description
                    (content_id, content_language_id,
                     content_title,
                     content_abstract,

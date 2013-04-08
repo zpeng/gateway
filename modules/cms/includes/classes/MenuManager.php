@@ -21,7 +21,7 @@ class MenuManager {
                        menu_type_name       ,
                        menu_type_description,
                        menu_type_archived
-                FROM   tb_menu_type
+                FROM   cms_menu_type
                 WHERE  menu_type_archived = 'N'";
 
         $result = executeNonUpdateQuery($link , $query);

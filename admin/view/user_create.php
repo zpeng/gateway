@@ -1,4 +1,5 @@
 <h1 class="content_title">Create a New User</h1>
+<? include_once('view/notification_bar.php') ?>
 <div id="content">
     <?
     $module_code = secureRequestParameter($_REQUEST["module_code"]);

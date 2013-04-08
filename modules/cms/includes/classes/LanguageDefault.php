@@ -61,7 +61,7 @@ class LanguageDefault {
     public function load($language_default_id) {
         $link = getConnection();
         $query="select 	language_default_id, language_default_name, language_default_initial,language_default_icon,language_default_archived
-                from	tb_language_default
+                from	cms_language_default
                 where   language_default_id = ".$language_default_id;
 
         $result = executeNonUpdateQuery($link , $query);
@@ -80,12 +80,12 @@ class LanguageDefault {
     public function insertToLanguageTable() {
         $link = getConnection();
 
-        $query = "insert into tb_language
+        $query = "insert into cms_language
 	       (language_name, language_initial, language_icon, language_archived)
 	       select 	language_default_name, language_default_initial, 
                         language_default_icon, 
                         language_default_archived
-                from	tb_language_default 
+                from	cms_language_default
                 where   language_default_id = ".$this->get_language_default_id();
 
         executeUpdateQuery($link , $query);

@@ -18,6 +18,7 @@ $module_config = array(
     "module_name" => "Content Manager",
     "module_view_menu" => "modules/cms/admin/view/left_panel.php",
     "module_view_content" => "modules/cms/admin/view/right_panel.php",
+
     "php_list" => array(
         "Content" => "modules/cms/includes/classes/Content.php",
         "ContentDescription" => "modules/cms/includes/classes/ContentDescription.php",
@@ -32,6 +33,7 @@ $module_config = array(
         "LanguageDefault" => "modules/cms/includes/classes/LanguageDefault.php",
         "LanguageManager" => "modules/cms/includes/classes/LanguageManager.php",
     ),
+
     "css_backend_list" => array_merge($CSS_SHARED_LIST, array()),
     "css_frontend_list" => array_merge($CSS_SHARED_LIST, array()),
     "js_backend_list" => array_merge($JS_SHARED_LIST, array()),

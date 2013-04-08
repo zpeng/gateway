@@ -55,7 +55,7 @@ class MenuType {
                        menu_type_name       ,
                        menu_type_description,
                        menu_type_archived
-                FROM   tb_menu_type
+                FROM   cms_menu_type
                 WHERE  menu_type_archived = 'N'
                    AND menu_type_id       = ".$menu_type_id;
 
@@ -81,7 +81,7 @@ class MenuType {
                        menu_order      ,
                        menu_link       ,
                        menu_archived
-                FROM   tb_menu
+                FROM   cms_menu
                 WHERE  menu_archived = 'N'
                 AND    menu_parent_id = 0
                 AND    menu_type_id = ".$this->get_menu_type_id()."

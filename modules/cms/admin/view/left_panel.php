@@ -4,29 +4,17 @@
     </div>
     <div id="left_vertical_menu">
         <ul class="top-level">
-            <li><a href="#">Home</a>
+            <li><a href="#">Articles</a>
                 <ul class="sub-level">
-                    <li><a href="#">Sub Menu Item 1</a></li>
-                    <li><a href="#">Sub Menu Item 2</a></li>
-                    <li><a href="#">Sub Menu Item 3</a></li>
-                    <li><a href="#">Sub Menu Item 3</a></li>
-                </ul>
-            </li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li>
-                <a href="#">FAQ</a>
-                <ul class="sub-level">
-                    <li><a href="#">Sub Menu Item 1</a></li>
-                    <li><a href="#">Sub Menu Item 3</a></li>
+                    <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=article_list"?>">All Articles</a></li>
+                    <li><a href="#">Create New Article</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#">News</a>
+                <a href="#">Site Menu</a>
                 <ul class="sub-level">
-                    <li><a href="#">Sub Menu Item 1</a></li>
-                    <li><a href="#">Sub Menu Item 2</a></li>
-                    <li><a href="#">Sub Menu Item 3</a></li>
+                    <li><a href="#">All Menus</a></li>
+                    <li><a href="#">Create New Menu</a></li>
                 </ul>
             </li>
         </ul>

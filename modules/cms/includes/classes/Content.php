@@ -13,9 +13,9 @@ class Content {
 //put your code here
 
     private $_content_id;
-    private $_author;
+    private $_author_name = "";
     private $_author_id;
-    private $_content_description_list;
+    private $_content_description_list = [];
     private $_archived;
 
     public function get_content_id() {
@@ -26,17 +26,17 @@ class Content {
         $this->_content_id = $_content_id;
     }
  
-    public function get_author() {
-        if ($this->_author == null) {
-            $author = new Administrator();
+    public function get_author_name() {
+        if ($this->_author_name == "") {
+            $author = new User();
             $author->loadByID($this->get_author_id());
-            $this->set_author($author);
+            $this->set_author_name($author->get_user_name());
         }
-        return $this->_author;
+        return $this->_author_name;
     }
 
-    public function set_author($_author) {
-        $this->_author = $_author;
+    public function set_author_name($_author_name) {
+        $this->_author_name = $_author_name;
     }
 
     public function get_author_id() {
@@ -79,7 +79,7 @@ class Content {
         $query="select 	content_id,
                         content_author_id, 
                         content_archived 
-                from 	tb_content 
+                from 	cms_content
                 where   content_id = ".$_content_id;
 
         $result = executeNonUpdateQuery($link , $query, "Content.load()");
@@ -106,7 +106,7 @@ class Content {
                         content_last_modify_by,
                         content_last_modify_date,
                         content_description_archived
-                        from tb_content_description
+                        from cms_content_description
                   where content_id =  ".$this->get_content_id();
 
         $result = executeNonUpdateQuery($link , $query);
@@ -122,7 +122,7 @@ class Content {
             $content_description->set_create_date($newArray['content_create_date']);
             $content_description->set_last_modify_date($newArray['content_last_modify_date']);
             $content_description->set_last_modify_by_user_id($newArray['content_last_modify_by']);
-            $content_description->set_archived($newArray['content_archived']);
+            $content_description->set_archived($newArray['content_description_archived']);
 
 
 
@@ -147,7 +147,7 @@ class Content {
 
     public function insert() {
         $link = getConnection();
-        $query = " insert into tb_content
+        $query = " insert into cms_content
 	(content_author_id, content_archived
 	)
 	values
@@ -171,7 +171,7 @@ class Content {
 
     public function delete() {
         $link = getConnection();
-        $query = "  update  tb_content
+        $query = "  update  cms_content
                     set	    content_archived = 'Y'
                     where   content_id = ".$this->get_content_id();
 

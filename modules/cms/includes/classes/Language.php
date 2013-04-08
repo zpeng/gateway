@@ -71,7 +71,7 @@ src='images/languageicons/".$this->_language_icon."'/>";
     public function load($language_id) {
         $link = getConnection();
         $query="select 	language_id, language_name, language_initial,language_icon,language_archived
-                from	tb_language
+                from	cms_language
                 where   language_id = ".$language_id;
 
         $result = executeNonUpdateQuery($link , $query);
@@ -90,7 +90,7 @@ src='images/languageicons/".$this->_language_icon."'/>";
     public function delete() {
         $link = getConnection();
 
-        $query = "  update tb_language
+        $query = "  update cms_language
                     set language_archived = 'Y'
                     where language_id = ".$this->get_language_id();
 

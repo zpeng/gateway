@@ -109,7 +109,7 @@ class Menu {
                        menu_order      ,
                        menu_link       ,
                        menu_archived
-                FROM   tb_menu
+                FROM   cms_menu
                 WHERE  menu_archived = 'N'
                 AND    menu_id = ".$menu_id;
 
@@ -137,7 +137,7 @@ class Menu {
                         language_id,
                         menu_name,
                         menu_description_archived
-                from    tb_menu_description
+                from    cms_menu_description
                 where   menu_id = ".$this->get_menu_id();
 
         $result = executeNonUpdateQuery($link, $query);
@@ -167,7 +167,7 @@ class Menu {
                        menu_order      ,
                        menu_link       ,
                        menu_archived
-                FROM   tb_menu
+                FROM   cms_menu
                 WHERE  menu_archived = 'N'
                 AND    menu_parent_id = ".$this->get_menu_id()."
                 ORDER BY menu_order";
@@ -204,7 +204,7 @@ class Menu {
 
     public function insert() {
         $link = getConnection();
-        $query = "INSERT    INTO   tb_menu
+        $query = "INSERT    INTO   cms_menu
                                (
                                       menu_parent_id  ,
                                       menu_type_id    ,
@@ -237,7 +237,7 @@ class Menu {
 
     public function update() {
         $link = getConnection();
-        $query = "  UPDATE tb_menu
+        $query = "  UPDATE cms_menu
                 SET    menu_parent_id   = ".$this->get_menu_parent_id().",
                        menu_type_id     = ".$this->get_menu_type_id().",
                        menu_order       = ".$this->get_menu_order().",
@@ -264,7 +264,7 @@ class Menu {
 
     public function delete() {
         $link = getConnection();
-        $query = "  UPDATE tb_menu
+        $query = "  UPDATE cms_menu
                     SET    menu_archived    = 'Y'
                     WHERE  menu_id          = ".$this->get_menu_id();
 
