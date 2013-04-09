@@ -247,14 +247,11 @@ class Menu
     {
         $link = getConnection();
         $query = "  UPDATE cms_menu
-                SET    menu_parent_id   = " . $this->get_menu_parent_id() . ",
-                       menu_type_id     = " . $this->get_menu_type_id() . ",
-                       menu_order       = " . $this->get_menu_order() . ",
-                       menu_link        = '" . $this->get_menu_link() . "',
-                       menu_name        = '" . $this->get_menu_name() . "',
-                       menu_desc        = '" . $this->get_menu_desc() . "',
-                       menu_archived    = 'N'
-                WHERE  menu_id          = " . $this->get_menu_id();
+                SET    menu_name   = '".$this->get_menu_name()."',
+                       menu_order       = ".$this->get_menu_order().",
+                       menu_link        = '".$this->get_menu_link()."',
+                       menu_desc        = '".$this->get_menu_desc()."'
+                WHERE  menu_id          = ".$this->get_menu_id();
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
@@ -304,6 +301,24 @@ class Menu
         }
 
         return $htmlRow;
+    }
+
+    public function outputAsSelectOption($padding="")
+    {
+        if ($this->get_menu_parent_id() != "0"){
+            //this a sub-menu, need to add padding
+            $padding = $padding."&nbsp;&nbsp;";
+        }
+        $htmlOption = "<option value='" . $this->get_menu_id() . "'>" . $this->get_menu_name_as_table_cell($padding) . "</option>";
+
+
+        if (sizeof($this->_sub_menu_list) > 0){
+            foreach ($this->_sub_menu_list as $sub_menu){
+                $htmlOption = $htmlOption.$sub_menu->outputAsSelectOption($padding);
+            }
+        }
+
+        return $htmlOption;
     }
 }
 ?>

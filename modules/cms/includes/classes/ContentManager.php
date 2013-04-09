@@ -83,5 +83,18 @@ class ContentManager
         $htmlTable = $htmlTable . "</table>";
         return $htmlTable;
     }
+
+    public function outputAsHtmlListbox($id = "", $class = "", $style = "")
+    {
+        $field = "<select id='" . $id . "' name='" . $id . "' class='$class' style='$style' size='8'>";
+        $this->getContentList();
+        if (sizeof($this->contentList) > 0) {
+            foreach ($this->contentList as $content) {
+                $field = $field . "<option  value='" . $content->get_content_id() . "'>" . $content->get_title() . "</option>";
+            }
+        }
+        $field = $field . "</select>";
+        return $field;
+    }
 }
 ?>

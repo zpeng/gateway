@@ -14,7 +14,7 @@
                 <a href="#">Site Menu</a>
                 <ul class="sub-level">
                     <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=menu_list"?>">All Menus</a></li>
-                    <li><a href="#">Create New Menu</a></li>
+                    <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=menu_create"?>">Create New Menu</a></li>
                 </ul>
             </li>
         </ul>
