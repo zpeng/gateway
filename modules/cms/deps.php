@@ -19,7 +19,7 @@ $module_config = array(
     "module_view_menu" => "modules/cms/admin/view/left_panel.php",
     "module_view_content" => "modules/cms/admin/view/right_panel.php",
 
-    "php_list" => array(
+    "php" => array(
         "Content" => "modules/cms/includes/classes/Content.php",
         "ContentManager" => "modules/cms/includes/classes/ContentManager.php",
 
@@ -28,10 +28,14 @@ $module_config = array(
         "MenuManager" => "modules/cms/includes/classes/MenuManager.php",
     ),
 
-    "css_backend_list" => array_merge($CSS_SHARED_LIST, array()),
-    "css_frontend_list" => array_merge($CSS_SHARED_LIST, array()),
-    "js_backend_list" => array_merge($JS_SHARED_LIST, array()),
-    "js_frontend_list" => array_merge($JS_SHARED_LIST, array())
+    "css" => array(
+        "backend" => array_merge($CSS_SHARED, array()),
+        "frontend" => array()
+    ),
+    "js" => array(
+        "backend" => array_merge($JS_SHARED, array()),
+        "frontend" => array()
+    )
 );
 
 ?>

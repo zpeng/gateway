@@ -5,7 +5,7 @@ require_once('../includes/bootstrap.php');
 require_once(BASE_PATH . 'admin/control/auth.php');
 ?>
 
-<?= outputHTMLStartBackend("Admin Control Panel", $GLOBAL_DEPS[$_REQUEST['module_code']]["js_backend_list"], $GLOBAL_DEPS[$_REQUEST['module_code']]["css_backend_list"]) ?>
+<?= outputHTMLStartBackend("Admin Control Panel", $GLOBAL_DEPS[$_REQUEST['module_code']]) ?>
 
 
 <? include_once('view/header_bar.php') ?>

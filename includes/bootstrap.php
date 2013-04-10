@@ -38,8 +38,8 @@ foreach ($MODULE_DEPS_LIST as $module_key => $module_deps) {
 
 // now loads all the required php files for all the available modules
 foreach ($GLOBAL_DEPS as $module_key => $module_deps_config) {
-    foreach ($GLOBAL_DEPS[$module_key]["php_list"] as $php_file) {
-        include_once(BASE_PATH . $php_file);
+    foreach ($GLOBAL_DEPS[$module_key]["php"] as $php_deps) {
+        include_once(BASE_PATH . $php_deps);
         //echo BASE_PATH . $php_file . "<br/>";
     }
 }
