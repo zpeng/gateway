@@ -1,5 +1,5 @@
 <?
-require_once('../../includes/bootstrap.php');
+require_once('../../../../includes/bootstrap.php');
 
 
 $config_id = secureRequestParameter($_REQUEST["config_id"]);

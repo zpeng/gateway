@@ -9,7 +9,7 @@
     $user->loadByID($user_id);
     ?>
     <br/>
-    <form action="<?= SERVER_URL ?>admin/control/user_module_update.php" method="post">
+    <form action="<?= SERVER_URL ?>modules/core/admin/control/user_module_update.php" method="post">
         <input type="hidden" value="<? echo $user_id ?>" name="user_id"/>
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
         <table class="inputTable">

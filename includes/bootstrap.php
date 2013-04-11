@@ -22,7 +22,7 @@ if (!defined('BASE_PATH'))
 $GLOBAL_DEPS = [];
 
 // loading the core deps
-include_once(BASE_PATH . "includes/deps.php");
+include_once(BASE_PATH . "includes/shared_deps.php");
 
 
 // reads the module config and loads each module deps

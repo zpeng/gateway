@@ -31,40 +31,14 @@ $JS_SHARED = array(
 
 
 $GLOBAL_DEPS = array(
-    "a74ad8dfacd4f985eb3977517615ce25" => array(
-        "module_name" => "System Core",
-        "module_view_menu" => "admin/view/left_panel.php",
-        "module_view_content" => "admin/view/right_panel.php",
-
+    "shared_php" => array(
         "php" => array(
-            "User" => "includes/classes/User.php",
-            "UserManager" => "includes/classes/UserManager.php",
-            "UserSession" => "includes/classes/UserSession.php",
-
-            "Configuration" => "includes/classes/Configuration.php",
-            "ConfigurationManager" => "includes/classes/ConfigurationManager.php",
-
-            "Module" => "includes/classes/Module.php",
-            "ModuleManager" => "includes/classes/ModuleManager.php",
-
             "PageBuilder" => "includes/page_builder.php",
             "DatabaseUtils" => "includes/database_utils.php",
             "GlobalFunction" => "includes/utils/global_functions.php",
             "HtmlFunction" => "includes/ui/html_functions.php",
-        ),
-
-        "css" => array(
-            "backend" => array_merge($CSS_SHARED, array()),
-            "frontend" => array()
-        ),
-
-        "js" => array(
-            "backend" => array_merge($JS_SHARED, array(
-                "admin_ui" => "admin/js/admin_ui.js"
-            )),
-            "frontend" => array()
         )
     )
-);
+)
 
 ?>
