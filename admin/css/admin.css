@@ -106,10 +106,11 @@ body {
   margin-bottom: 50px; }
   #landing_panel .module_box {
     float: left;
-    width: 200px;
+    width: 175px;
     height: 200px;
-    margin: 20px;
-    border: 1px solid #7d7d7d; }
+    margin: 30px;
+    border: none;
+    text-align: center; }
 
 #main_content {
   min-width: 1300px;
@@ -195,6 +196,10 @@ body {
 ul.checkbox_list {
   list-style: none;
   padding: 0px; }
+
+.module_logo {
+  display: block;
+  border: none; }
 
 table.inputTable {
   width: 900px;

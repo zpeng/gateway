@@ -17,7 +17,10 @@ require_once(BASE_PATH . 'admin/control/auth_landing.php');
         <?php
         $count = 0;
         foreach ($s_user_session->userModuleAccessNameList as $module_name) {
-            echo "<div class='module_box' ><a href='main.php?module_code=" . $s_user_session->userModuleAccessCodeList[$count] . "&view=default'>" . $module_name . "</a></div>";
+            $module_code = $s_user_session->userModuleAccessCodeList[$count];
+            echo "<div class='module_box' ><a href='main.php?module_code=" . $module_code . "&view=default'>
+            <img src='".SERVER_URL . $GLOBAL_DEPS[$module_code]["module_logo"]."' class='module_logo' />
+            " . $module_name . "</a></div>";
             $count++;
         }
         ?>
