@@ -1,20 +1,4 @@
 <?php
-$PHP_CORE_LIST = array(
-    "User" => "includes/classes/User.php",
-    "UserManager" => "includes/classes/UserManager.php",
-    "UserSession" => "includes/classes/UserSession.php",
-
-    "Configuration" => "includes/classes/Configuration.php",
-    "ConfigurationManager" => "includes/classes/ConfigurationManager.php",
-
-    "Module" => "includes/classes/Module.php",
-    "ModuleManager" => "includes/classes/ModuleManager.php",
-
-    "PageBuilder" => "includes/page_builder.php",
-    "DatabaseUtils" => "includes/database_utils.php",
-    "GlobalFunction" => "includes/utils/global_functions.php",
-    "HtmlFunction" => "includes/ui/html_functions.php",
-);
 
 $CSS_SHARED = array(
     "admin_css" => "admin/css/admin.css",
