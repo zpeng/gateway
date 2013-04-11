@@ -138,10 +138,11 @@ body {
 
   .module_box {
     float: left;
-    width: 200px;
+    width: 175px;
     height: 200px;
-    margin: 20px;
-    border: 1px solid $grey5;
+    margin: 30px;
+    border: none;
+    text-align: center;
   }
 }
 
@@ -268,6 +269,11 @@ ul.checkbox_list{
   padding: 0px;
 }
 
+
+.module_logo{
+  display: block;
+  border: none;
+}
 
 table.inputTable{
   width: 900px;
