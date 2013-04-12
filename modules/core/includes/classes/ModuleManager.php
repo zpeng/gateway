@@ -12,7 +12,8 @@ class ModuleManager
                         module_desc,
                         module_archived
                 from    core_module
-                where   module_archived =   'N'";
+                where   module_archived =   'N'
+                ORDER BY (CASE WHEN module_name='System Core' THEN 0 ELSE 2 END)";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);

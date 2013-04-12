@@ -184,7 +184,8 @@ class User
                            core_module.module_code
                     FROM core_user_subscribe_module, core_module
                     WHERE core_user_subscribe_module.module_code = core_module.module_code
-                    AND core_user_subscribe_module.user_id = " . $this->get_user_id();
+                    AND core_user_subscribe_module.user_id = " . $this->get_user_id()."
+                    ORDER BY (CASE WHEN core_module.module_name='System Core' THEN 0 ELSE 1 END)";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
