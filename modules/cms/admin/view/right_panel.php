@@ -1,6 +1,12 @@
 <div id="right_panel">
     <?php
     switch (secureRequestParameter($_REQUEST["view"])) {
+        case "config_list":
+            include_once(BASE_PATH.'modules/cms/admin/view/config_list.php');
+            break;
+        case "config_update":
+            include_once(BASE_PATH.'modules/cms/admin/view/config_update.php');
+            break;
         case "content_list":
             include_once(BASE_PATH.'modules/cms/admin/view/content_list.php');
             break;

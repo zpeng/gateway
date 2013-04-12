@@ -22,7 +22,7 @@
 
     <?
     $configManager = new ConfigurationManager();
-    echo $configManager->outputAsHtmlTable("ConfigListGrid", "EditableGrid");
+    echo $configManager->outputModuleConfigsAsHtmlTable($_REQUEST["module_code"],"CoreConfigListGrid", "EditableGrid");
     ?>
 
     <!-- Paginator control -->
@@ -31,14 +31,13 @@
 </div>
 <script>
     window.onload = function() {
-        var ConfigListGrid = new EditableGrid("ConfigListGrid",{
+        var CoreConfigListGrid = new EditableGrid("CoreConfigListGrid",{
             enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
             pageSize: 10
         });
 
         // we build and load the metadata in Javascript
-        ConfigListGrid.load({ metadata: [
-            { name: "Module Name", datatype: "string", editable: false },
+        CoreConfigListGrid.load({ metadata: [
             { name: "Config Title", datatype: "string", editable: false },
             { name: "Config Key", datatype: "string", editable: false },
             { name: "Config Value", datatype: "string", editable: false },
@@ -48,7 +47,7 @@
         ]});
 
         // then we attach to the HTML table and render it
-        ConfigListGrid.attachToHTMLTable('ConfigListGrid');
-        ConfigListGrid.initializeGrid();
+        CoreConfigListGrid.attachToHTMLTable('CoreConfigListGrid');
+        CoreConfigListGrid.initializeGrid();
     };
 </script>

@@ -91,6 +91,43 @@ class ConfigurationManager
             $this->configEntityList[$count] = $configurationEntity;
             $count++;
         }
+        return $this->configEntityList;
+    }
+
+    public function loadByModuleCode($_module_code)
+    {
+        $this->configEntityList = [];
+        $count = 0;
+        $link = getConnection();
+        $query = "SELECT 	module_config_id,
+                        core_module_configuration.module_id,
+                        core_module.module_name,
+                        module_config_title,
+                        module_config_key,
+                        module_config_value,
+                        module_config_desc,
+                        module_config_type
+                FROM    core_module_configuration, core_module
+                WHERE   core_module.module_id = core_module_configuration.module_id
+                AND core_module.module_code =  '" . $_module_code."'";
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+
+        while ($newArray = mysql_fetch_array($result)) {
+            $configurationEntity = new Configuration();
+            $configurationEntity->set_configuration_id($newArray['module_config_id']);
+            $configurationEntity->set_configuration_module_id($newArray['module_id']);
+            $configurationEntity->set_configuration_module_name($newArray['module_name']);
+            $configurationEntity->set_configuration_title($newArray['module_config_title']);
+            $configurationEntity->set_configuration_key($newArray['module_config_key']);
+            $configurationEntity->set_configuration_value($newArray['module_config_value']);
+            $configurationEntity->set_configuration_desc($newArray['module_config_desc']);
+            $configurationEntity->set_configuration_type($newArray['module_config_type']);
+            $this->configEntityList[$count] = $configurationEntity;
+            $count++;
+        }
+        return $this->configEntityList;
     }
 
     public function loadAllConfig()
@@ -133,11 +170,10 @@ class ConfigurationManager
         return $this->configEntityList;
     }
 
-    public function outputAsHtmlTable($id = "", $class = "")
+    public function outputModuleConfigsAsHtmlTable($module_code, $id = "", $class = "")
     {
         $htmlTable = "<table id='$id' class='$class'>";
         $htmlTable = $htmlTable . "<tr>
-                                    <th>Module Name</th>
                                     <th>Config Title</th>
                                     <th>Config Key</th>
                                     <th>Config Value</th>
@@ -146,11 +182,11 @@ class ConfigurationManager
                                     <th>Action</th>
                                     </tr>";
 
-        $configList = $this->loadAllConfig();
+        $configList = $this->loadByModuleCode($module_code);
+
         if (sizeof($configList) > 0) {
             foreach ($configList as $config) {
                 $htmlTable = $htmlTable . " <tr>
-                                <td>" . $config->get_configuration_module_name() . "</td>
                                 <td>" . $config->get_configuration_title() . "</td>
                                 <td>" . $config->get_configuration_key() . "</td>
                                 <td>" . $config->get_configuration_value() . "</td>
