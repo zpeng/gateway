@@ -4,6 +4,8 @@
     </div>
     <div id="left_vertical_menu">
         <ul class="top-level">
+            <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=config_list"?>">Configurations</a>
+            </li>
             <li><a href="#">Articles</a>
                 <ul class="sub-level">
                     <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=content_list"?>">All Articles</a></li>
