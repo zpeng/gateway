@@ -15,13 +15,10 @@ require_once(BASE_PATH . 'admin/control/auth_landing.php');
 
     <div id="landing_panel">
         <?php
-        $count = 0;
-        foreach ($s_user_session->userModuleAccessNameList as $module_name) {
-            $module_code = $s_user_session->userModuleAccessCodeList[$count];
+        foreach ($s_user_session->user_subscribe_module_code_name_map as $module_code => $module_name) {
             echo "<div class='module_box' ><a href='main.php?module_code=" . $module_code . "&view=default'>
             <img src='".SERVER_URL . $GLOBAL_DEPS[$module_code]["module_logo"]."' class='module_logo' />
             " . $module_name . "</a></div>";
-            $count++;
         }
         ?>
 

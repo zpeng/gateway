@@ -1,10 +1,8 @@
 <div id="top_panel">
     Available modules:
     <?php
-    $count = 0;
-    foreach ($s_user_session->userModuleAccessNameList as $module_name) {
-        echo "<a class='module_item' href='main.php?module_code=" . $s_user_session->userModuleAccessCodeList[$count] . "&view=default'>" . $module_name . "</a>";
-        $count++;
+    foreach ($s_user_session->user_subscribe_module_code_name_map as $module_code => $module_name) {
+        echo "<a class='module_item' href='main.php?module_code=" .$module_code . "&view=default'>" . $module_name . "</a>";
     }
     ?>
 

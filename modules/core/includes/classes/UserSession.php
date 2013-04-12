@@ -3,8 +3,7 @@ class UserSession
 {
     public $userName;
     public $userID;
-    public $userModuleAccessCodeList =[];
-    public $userModuleAccessNameList =[];
+    public $user_subscribe_module_code_name_map =[];
     public $configManager;
 
 
@@ -24,8 +23,7 @@ class UserSession
         $user->loadByEmail($userName);
         $this->userName = $userName;
         $this->userID = $user->get_user_id();
-        $this->userModuleAccessCodeList = $user->user_subscribe_module_code_list;
-        $this->userModuleAccessNameList = $user->user_subscribe_module_name_list;
+        $this->user_subscribe_module_code_name_map = $user->user_subscribe_module_code_name_map;
 
         $configManager = new ConfigurationManager();
         $configManager->loadByUserID($this->userID);

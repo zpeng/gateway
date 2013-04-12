@@ -7,8 +7,7 @@ class ModuleManager
         $count = 0;
         $link = getConnection();
 
-        $query = " select module_id,
-                        module_name,
+        $query = " select module_name,
                         module_code,
                         module_desc,
                         module_archived
@@ -20,7 +19,6 @@ class ModuleManager
 
         while ($newArray = mysql_fetch_array($result)) {
             $module = new Module();
-            $module->set_module_id($newArray['module_id']);
             $module->set_module_name($newArray['module_name']);
             $module->set_module_code($newArray['module_code']);
             $module->set_module_desc($newArray['module_desc']);
@@ -37,7 +35,7 @@ class ModuleManager
         $html = "<ul class='checkbox_list'>";
         if (sizeof($this->getModuleList()) > 0) {
             foreach ($this->getModuleList() as $module) {
-                $html = $html . "<li><input type='checkbox' name='subscribe_module_id_list[]' value='" . $module->get_module_id() . "'><label>" . $module->get_module_name() . "</label>";
+                $html = $html . "<li><input type='checkbox' name='subscribe_module_code_list[]' value='" . $module->get_module_code() . "'><label>" . $module->get_module_name() . "</label>";
             }
         }
         return $html = $html . "</ul>";

@@ -4,7 +4,7 @@ class Configuration
 {
     //put your code here
     public $configuration_id;
-    public $configuration_module_id;
+    public $configuration_module_code;
     public $configuration_module_name;
     public $configuration_title;
     public $configuration_key;
@@ -24,14 +24,14 @@ class Configuration
         $this->configuration_id = $_configuration_id;
     }
 
-    public function get_configuration_module_id()
+    public function get_configuration_module_code()
     {
-        return $this->configuration_module_id;
+        return $this->configuration_module_code;
     }
 
-    public function set_configuration_module_id($_configuration_module_id)
+    public function set_configuration_module_code($_configuration_module_code)
     {
-        $this->configuration_module_id = $_configuration_module_id;
+        $this->configuration_module_code = $_configuration_module_code;
     }
 
     public function get_configuration_module_name()
@@ -114,7 +114,7 @@ class Configuration
     public function loadById($id)
     {   $link = getConnection();
         $query = "SELECT  module_config_id,
-                        core_module_configuration.module_id,
+                        core_module_configuration.module_code,
                         core_module.module_name,
                         module_config_title,
                         module_config_key,
@@ -122,8 +122,8 @@ class Configuration
                         module_config_desc,
                         module_config_type
                 FROM core_user_subscribe_module, core_module_configuration, core_module
-                WHERE core_user_subscribe_module.module_id = core_module_configuration.module_id
-                AND core_module_configuration.module_id = core_module.module_id
+                WHERE core_user_subscribe_module.module_code = core_module_configuration.module_code
+                AND core_module_configuration.module_code = core_module.module_code
                 AND module_config_id = ".$id;
 
 
@@ -132,7 +132,7 @@ class Configuration
 
         while ($newArray = mysql_fetch_array($result)) {
             $this->set_configuration_id($newArray['module_config_id']);
-            $this->set_configuration_module_id($newArray['module_id']);
+            $this->set_configuration_module_code($newArray['module_code']);
             $this->set_configuration_module_name($newArray['module_name']);
             $this->set_configuration_title($newArray['module_config_title']);
             $this->set_configuration_key($newArray['module_config_key']);

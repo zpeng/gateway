@@ -96,7 +96,7 @@ class UserManager
                 $htmlTable = $htmlTable . "  <tr>
                         <td>" . $user->get_user_id() . "</td>
                         <td>" . $user->get_user_name() . "</td>
-                        <td>" . implode(", ", $user->user_subscribe_module_name_list) . "</td>
+                        <td>" . implode(", ", array_values($user->user_subscribe_module_code_name_map)) . "</td>
                         <td>
                         <a class='icon_delete' title='Delete this user account' href='" . SERVER_URL . "admin/control/user_delete_process.php?user_id=" .
                     $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "'

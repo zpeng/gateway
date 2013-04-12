@@ -4,7 +4,7 @@ require_once('../../../../includes/bootstrap.php');
 
 $user_name = secureRequestParameter($_REQUEST["email"]);
 $user_password = secureRequestParameter($_REQUEST["password"]);
-$subscribe_module_id_list = $_REQUEST['subscribe_module_id_list'];
+$subscribe_module_code_list = $_REQUEST['subscribe_module_code_list'];
 
 $module_code = secureRequestParameter($_REQUEST["module_code"]);
 
@@ -15,7 +15,7 @@ if (!$result) {
     $user = new User();
     $user->set_user_name($user_name);
     $user->set_user_password(md5($_REQUEST["password"]));
-    $user->user_subscribe_module_id_list = $subscribe_module_id_list;
+    $user->user_subscribe_module_code_list = $subscribe_module_code_list;
     $user->insert();
     $user->updateUserSubscribeModuleList();
 

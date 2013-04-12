@@ -17,7 +17,7 @@ if (empty($_SESSION['user_logged_in']) || !$_SESSION['user_logged_in']) {
         header("Location: " . SERVER_URL . "admin/landing.php?info=No module code presents");
     } else {
         // ok, we have module_code, now check again the available list
-        if (!in_array($_REQUEST['module_code'], $s_user_session->userModuleAccessCodeList)) {
+        if (!array_key_exists($_REQUEST['module_code'], $s_user_session->user_subscribe_module_code_name_map)) {
             header("Location: " . SERVER_URL . "admin/landing.php?info==Invalid module code");
         }
     }
