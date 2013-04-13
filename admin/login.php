@@ -50,7 +50,7 @@ require_once('../includes/bootstrap.php');
     </tr>
     <tr>
         <td class="login_table_footer" colspan="2">
-            <b>&copy; 2013 Rings of Software Engineers</b>
+            <b>&copy; 2013 Olly Software</b>
         </td>
     </tr>
 </table>

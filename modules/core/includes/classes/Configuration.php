@@ -110,7 +110,6 @@ class Configuration
         closeConnection($link);
     }
 
-
     public function loadById($id)
     {   $link = getConnection();
         $query = "SELECT  module_config_id,
@@ -141,71 +140,5 @@ class Configuration
             $this->set_configuration_type($newArray['module_config_type']);
         }
     }
-
-    public function outputConfigEntityAsHTML()
-    {
-        $field = "";
-        switch ($this->get_configuration_type()) {
-            case "string" :
-                $field = $this->output_config_entity_datatype_string_as_html(400);
-                break;
-            case "text" :
-                $field = $this->output_config_entity_datatype_text_as_html(400);
-                break;
-            case "number" :
-                $field = $this->output_config_entity_datatype_number_as_html(100);
-                break;
-            case "boolean" :
-                $field = $this->output_config_entity_datatype_boolean_as_html(50);
-                break;
-        }
-        return $field;
-    }
-
-    private function output_config_entity_datatype_string_as_html($width = "100")
-    {
-        $field = "<input name='" . $this->get_configuration_key() . "'
-                         id='" . $this->get_configuration_key() . "'
-                         style='width: " . $width . "px'
-                         value='" . $this->get_configuration_value() . "'/>";
-        return $field;
-    }
-
-    private function output_config_entity_datatype_number_as_html($width = "100")
-    {
-        $field = "<input name='" . $this->get_configuration_key() . "'
-                         id='" . $this->get_configuration_key() . "'
-                         style='width: " . $width . "px'
-                         value='" . $this->get_configuration_value() . "'/>";
-        return $field;
-    }
-
-    private function output_config_entity_datatype_boolean_as_html($width = "100")
-    {
-        $field = "<select name='" . $this->get_configuration_key() . "'
-                          id='" . $this->get_configuration_key() . "'
-                          style='width:" . $width . "px' >";
-
-
-        if ("Y" == $this->get_configuration_value()) {
-            $field = $field . "<option  selected='selected' value='Y'>Yes</option>";
-            $field = $field . "<option  value='N'>No</option>";
-        } else {
-            $field = $field . "<option  value='Y'>Yes</option>";
-            $field = $field . "<option  selected='selected'  value='N'>No</option>";
-        }
-        $field = $field . "</select>";
-        return $field;
-    }
-
-    private function output_config_entity_datatype_text_as_html($width = "100")
-    {
-        $field = "<textarea name='" . $this->get_configuration_key() . "'
-                         id='" . $this->get_configuration_key() . "'
-                         style='width: " . $width . "px'
-                         rows='5'>" . $this->get_configuration_value() . "</textarea>";
-        return $field;
-    }
-
 }
 ?>

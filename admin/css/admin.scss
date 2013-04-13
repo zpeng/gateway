@@ -1,10 +1,15 @@
 @import "colors";
 
-body {
+html {
+  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
+}
+
+body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 .clear {
@@ -124,7 +129,8 @@ body {
   }
 
   a.module_item:hover {
-    text-decoration:underline;
+    text-decoration: none;
+    color: $blue4;
   }
 }
 
@@ -148,7 +154,7 @@ body {
 
 #main_content {
   min-width: 1300px;
-  min-height: 300px;
+  height: 100%;
 
   #left_panel {
     float: left;
@@ -249,7 +255,6 @@ body {
     }
 
   }
-
 }
 
 /* admin cp footer */
@@ -260,34 +265,30 @@ body {
   border-top: 1px solid $grey5;
   text-align: center;
   padding-top: 10px;
-  position: absolute;
   bottom: 0;
 }
 
-
-ul.checkbox_list{
+ul.checkbox_list {
   list-style: none;
   padding: 0px;
 }
 
-
-.module_logo{
+.module_logo {
   display: block;
   border: none;
 }
 
-table.inputTable{
+table.inputTable {
   width: 900px;
   border: 0px;
 
-  border-spacing:10px;
-  border-collapse:separate;
+  border-spacing: 10px;
+  border-collapse: separate;
 
 }
 
-
 /* icon */
-a.icon_delete{
+a.icon_delete {
   margin-left: 5px;
   background: url(../images/delete.png) center no-repeat;
   display: inline-block;
@@ -295,7 +296,7 @@ a.icon_delete{
   height: 15px;
 }
 
-a.icon_edit{
+a.icon_edit {
   margin-left: 5px;
   background: url(../images/edit.png) center no-repeat;
   display: inline-block;
@@ -303,7 +304,7 @@ a.icon_edit{
   height: 15px;
 }
 
-a.icon_admin{
+a.icon_admin {
   margin-left: 5px;
   background: url(../images/admin.png) center no-repeat;
   display: inline-block;
