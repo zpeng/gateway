@@ -233,3 +233,20 @@ a.icon_admin {
   display: inline-block;
   width: 15px;
   height: 15px; }
+
+/* notification */
+#notification {
+  font-weight: bold;
+  padding-left: 10px; }
+  #notification span.info {
+    padding-left: 20px;
+    color: #152f7c;
+    background: url(../images/information.png) left no-repeat; }
+  #notification span.error {
+    padding-left: 20px;
+    color: red;
+    background: url(../images/exclamation-red.png) left no-repeat; }
+  #notification span.warning {
+    padding-left: 20px;
+    color: yellow;
+    background: url(../images/exclamation.png) left no-repeat; }

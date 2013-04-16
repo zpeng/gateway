@@ -25,7 +25,8 @@ function executeNonUpdateQuery($link , $query , $location =""){
 }
 
 function executeUpdateQuery($link , $query , $location =""){
-    mysql_query($query, $link)
+    $result = mysql_query($query, $link)
     or die ( "<p>Database Execption: ".mysql_error(). " <p>Query: ".$query."</p><p> At: ".$location );
+    return $result;
 }
 ?>

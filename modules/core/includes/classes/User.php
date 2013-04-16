@@ -128,8 +128,9 @@ class User
                SET    user_password = '" . $newPassword . "'
                WHERE  user_id = " . $this->get_user_id();
 
-        executeUpdateQuery($link, $query);
+        $result = executeUpdateQuery($link, $query);
         closeConnection($link);
+        return $result;
     }
 
     public function delete()

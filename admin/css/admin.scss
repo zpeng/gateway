@@ -311,3 +311,27 @@ a.icon_admin {
   width: 15px;
   height: 15px;
 }
+
+/* notification */
+#notification {
+  font-weight: bold;
+  padding-left: 10px;
+
+  span.info {
+    padding-left: 20px;
+    color: $blue4;
+    background: url(../images/information.png) left no-repeat;
+  }
+
+  span.error {
+    padding-left: 20px;
+    color: $red1;
+    background: url(../images/exclamation-red.png) left no-repeat;
+  }
+
+  span.warning {
+    padding-left: 20px;
+    color: $yellow1;
+    background: url(../images/exclamation.png) left no-repeat;
+  }
+}
