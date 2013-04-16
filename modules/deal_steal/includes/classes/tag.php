@@ -63,3 +63,6 @@ class Tag
         closeConnection($link);
     }
 }
+
+
+?>

@@ -100,6 +100,7 @@ class Supplier{
         return $this->supplier_url;
     }
 
-
-
 }
+
+
+?>

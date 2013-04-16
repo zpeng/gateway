@@ -11,7 +11,7 @@ $module_config = array(
         "Deal" => "modules/deal_steal/includes/classes/Deal.php",
         "DealImage" => "modules/deal_steal/includes/classes/DealImage.php",
         "DealTagManager" => "modules/deal_steal/includes/classes/DealTagManager.php",
-        "Location" => "modules/deal_steal/includes/classes/Location.php",
+        "City" => "modules/deal_steal/includes/classes/City.php",
         "LoveHate" => "modules/deal_steal/includes/classes/LoveHate.php",
         "RatingReview" => "modules/deal_steal/includes/classes/RatingReview.php",
         "Supplier" => "modules/deal_steal/includes/classes/Supplier.php",
@@ -30,3 +30,6 @@ $module_config = array(
         "frontend" => array()
     )
 );
+
+
+?>

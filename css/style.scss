@@ -16,10 +16,11 @@ body {
   #header_top_bar {
     width: 100%;
     height: 40px;
-    background-color: $black2;
+    background-color: $blue0;
+    color: $golden;
 
     #header_top_content {
-      width: 1100px;
+      width: 1000px;
       height: 100%;
       margin: 0 auto 0 auto;
     }
@@ -27,7 +28,7 @@ body {
 
   #header_content {
     margin: 0 auto 0 auto;
-    width: 1100px;
+    width: 1000px;
     height: 130px;
     position: relative;
 
@@ -64,7 +65,7 @@ body {
         float: left;
         padding: 0 12px;
         font-size: 1.3em;
-        color: #eee;
+        color: $golden;
         text-decoration: none;
         line-height: 34px;
         position: relative;
@@ -73,7 +74,6 @@ body {
         position: relative;
         top: 0;
         left: 0;
-
       }
       li a span.jq-shadow {
         top: .1em;
@@ -84,6 +84,7 @@ body {
       }
       li a:hover, {
         color: #fff;
+        background-color: $blue0;
       }
     }
   }
@@ -101,14 +102,14 @@ body {
   width: 100%;
 
   #main_content {
-    width: 1100px;
+    width: 1000px;
     margin: auto;
     margin-top: 0;
     padding: 0;
     height: auto;
 
     #left_content {
-      width: 70%;
+      width: 75%;
       border: 1px solid red;
       float: left;
       margin-top: 10px;
@@ -116,8 +117,9 @@ body {
 
     #right_content {
       margin-top: 10px;
-      width: 28%;
+      width: 24%;
       border: 1px solid red;
+      background-color: $golden;
       float: right;
     }
 
@@ -127,17 +129,18 @@ body {
 #footer {
   width: 100%;
   margin-top: 10px;
-  background-color: $black3;
+  background-color: $blue0;
   height: 200px;
   position: absolute;
   bottom: 0;
 
   #footer_content {
-    width: 1100px;
+    width: 1000px;
     margin: auto;
     margin-top: 0;
     margin-bottom: 0;
     height: 100%;
+    color: $golden;
   }
 }
 

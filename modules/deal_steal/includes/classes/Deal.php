@@ -4,7 +4,6 @@ class Deal
     public $deal_id;
     public $deal_supplier_id;
     public $deal_category_id;
-    public $deal_location_id;
     public $deal_title;
     public $deal_type;
     public $deal_desc;
@@ -64,16 +63,6 @@ class Deal
     public function getDealId()
     {
         return $this->deal_id;
-    }
-
-    public function setDealLocationId($deal_location_id)
-    {
-        $this->deal_location_id = $deal_location_id;
-    }
-
-    public function getDealLocationId()
-    {
-        return $this->deal_location_id;
     }
 
     public function setDealOfferPrice($deal_offer_price)
@@ -166,8 +155,6 @@ class Deal
 
     }
 
-    public function getLocation(){
-
-    }
 
 }
+?>
