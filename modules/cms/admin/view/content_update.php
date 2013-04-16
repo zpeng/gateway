@@ -1,18 +1,16 @@
 <h1 class="content_title">Edit Article</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="main_content">
     <?
-    $module_code = secureRequestParameter($_REQUEST["module_code"]);
     $content_id = $_REQUEST["content_id"];
     $content = new Content();
     $content->loadByID($content_id);
     ?>
     <br/>
 
-    <form id="ArticleCreationForm" action="<?= SERVER_URL ?>modules/cms/admin/control/content_update.php" method="post">
-        <input type="hidden" value="<?=$module_code ?>" name="module_code"/>
-        <input type="hidden" value="<?=$_SESSION['user_id'] ?>" name="user_id"/>
-        <input type="hidden" value="<?=$content_id ?>" name="content_id"/>
+    <form id="ArticleCreationForm"  method="post">
+        <input type="hidden" value="<?=$_SESSION['user_id'] ?>" name="user_id" id="user_id"/>
+        <input type="hidden" value="<?=$content_id ?>" name="content_id" id="content_id"/>
         <table class="inputTable">
             <tr>
                 <td width="100" align="right"><b>Article Title: </b></td>
@@ -37,12 +35,7 @@
     <script>
         jQuery("#update_btn").button();
 
-        jQuery(function () {
-            jQuery("#title").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please enter the article title"
-            });
-        });
+
 
         tinyMCE.init({
             // General options
@@ -68,7 +61,43 @@
             external_link_list_url: "js/link_list.js",
             external_image_list_url: "js/image_list.js",
             media_external_list_url: "js/media_list.js"
-
         });
+
+        jQuery(function () {
+            jQuery("#title").validate({
+                expression: "if (VAL) return true; else return false;",
+                message: "Please enter the article title"
+            });
+
+            jQuery('form#ArticleCreationForm').validated(function () {
+                var user_id = $("#user_id").val();
+                var content_id = $("#content_id").val();
+                var title = $("#title").val();
+                var article_content = tinyMCE.get('article_content').getContent()
+                $.ajax({
+                    url: SERVER_URL + "modules/cms/admin/control/content_update.php",
+                    type: "POST",
+                    data: {user_id: user_id,
+                        content_id: content_id,
+                        title:title,
+                        article_content:article_content
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == "success"){
+                            jQuery("div#notification").html("<span class='info'>The content has been updated successfully!</span>");
+                        }else{
+                            jQuery("div#notification").html("<span class='error'>Unable to update the content. Try again please!</span>");
+                        }
+                    },
+                    error: function () {
+                        jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                    }
+                });
+                return false;
+            });
+        });
+
+
     </script>
 </div>
