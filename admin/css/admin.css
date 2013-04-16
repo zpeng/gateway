@@ -248,5 +248,5 @@ a.icon_admin {
     background: url(../images/exclamation-red.png) left no-repeat; }
   #notification span.warning {
     padding-left: 20px;
-    color: yellow;
+    color: #ffcc00;
     background: url(../images/exclamation.png) left no-repeat; }

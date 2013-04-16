@@ -1,5 +1,4 @@
 <h1 class="content_title">Update User Password</h1>
-<? include_once('view/notification_bar.php') ?>
 <div id="notification"></div>
 <div id="content">
     <?
@@ -62,7 +61,7 @@
                     }
                 },
                 error: function () {
-                    jQuery("div#notification").html("<span class='warning'>There was an error. Try again please!</span>");
+                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
                 }
             });
             return false;

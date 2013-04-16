@@ -1,17 +1,14 @@
 <h1 class="content_title">Update User Module Subscription</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
     <?
     $user_id = secureRequestParameter($_REQUEST["user_id"]);
-    $module_code = secureRequestParameter($_REQUEST["module_code"]);
-
     $user = new User();
     $user->loadByID($user_id);
     ?>
     <br/>
-    <form action="<?= SERVER_URL ?>modules/core/admin/control/user_module_update.php" method="post">
-        <input type="hidden" value="<? echo $user_id ?>" name="user_id"/>
-        <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
+    <form id="UserModuleUpdateForm" method="post">
+        <input type="hidden" value="<? echo $user_id ?>" name="user_id" id="user_id"/>
         <table class="inputTable">
             <tr>
                 <td>Currently subscribed modules:
@@ -31,5 +28,31 @@
     </form>
     <script>
         $("#update_btn").button();
+
+        jQuery('form#UserModuleUpdateForm').submit(function () {
+            var user_id = $("#user_id").val();
+            var subscribe_module_code_list = [];
+            $('#subscribe_module_code_checkbox_list input:checked').each(function() {
+                subscribe_module_code_list.push(this.value);
+            });
+            $.ajax({
+                url: SERVER_URL + "modules/core/admin/control/user_module_update.php",
+                type: "POST",
+                data: {user_id: user_id,
+                    subscribe_module_code_list: subscribe_module_code_list },
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == "success"){
+                        jQuery("div#notification").html("<span class='info'>Module subscription has been updated successfully!</span>");
+                    }else{
+                        jQuery("div#notification").html("<span class='error'>Unable to update the module subscription. Try again please!</span>");
+                    }
+                },
+                error: function () {
+                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                }
+            });
+            return false;
+        });
     </script>
 </div>
