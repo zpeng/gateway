@@ -23,7 +23,6 @@ class ConfigurationManager
     public function loadByUserID($user_id)
     {
         $this->configEntityList = [];
-        $count = 0;
         $link = getConnection();
         $query = "SELECT 	module_config_id,
                         core_module_configuration.module_code,
@@ -53,15 +52,13 @@ class ConfigurationManager
             $configurationEntity->set_configuration_value($newArray['module_config_value']);
             $configurationEntity->set_configuration_desc($newArray['module_config_desc']);
             $configurationEntity->set_configuration_type($newArray['module_config_type']);
-            $this->configEntityList[$count] = $configurationEntity;
-            $count++;
+            array_push($this->configEntityList, $configurationEntity);
         }
     }
 
     public function loadByModuleCode($_module_code)
     {
         $this->configEntityList = [];
-        $count = 0;
         $link = getConnection();
         $query = "SELECT 	module_config_id,
                         core_module_configuration.module_code,
@@ -73,7 +70,7 @@ class ConfigurationManager
                         module_config_type
                 FROM    core_module_configuration, core_module
                 WHERE   core_module.module_code = core_module_configuration.module_code
-                AND core_module.module_code =  '" . $_module_code."'";
+                AND core_module.module_code =  '" . $_module_code . "'";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
@@ -88,8 +85,7 @@ class ConfigurationManager
             $configurationEntity->set_configuration_value($newArray['module_config_value']);
             $configurationEntity->set_configuration_desc($newArray['module_config_desc']);
             $configurationEntity->set_configuration_type($newArray['module_config_type']);
-            $this->configEntityList[$count] = $configurationEntity;
-            $count++;
+            array_push($this->configEntityList, $configurationEntity);
         }
         return $this->configEntityList;
     }
@@ -97,7 +93,6 @@ class ConfigurationManager
     public function loadAllConfig()
     {
         $this->configEntityList = [];
-        $count = 0;
         $link = getConnection();
         $query = "SELECT 	DISTINCT module_config_id,
                         core_module_configuration.module_code,
@@ -112,7 +107,6 @@ class ConfigurationManager
                 AND core_module_configuration.module_code = core_module.module_code
                 ORDER BY core_module_configuration.module_code ASC";
 
-
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
@@ -126,9 +120,7 @@ class ConfigurationManager
             $configurationEntity->set_configuration_value($newArray['module_config_value']);
             $configurationEntity->set_configuration_desc($newArray['module_config_desc']);
             $configurationEntity->set_configuration_type($newArray['module_config_type']);
-
-            $this->configEntityList[$count] = $configurationEntity;
-            $count++;
+            array_push($this->configEntityList, $configurationEntity);
         }
 
         return $this->configEntityList;

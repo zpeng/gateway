@@ -178,7 +178,6 @@ class User
 
         $this->user_subscribe_module_code_name_map = [];
         $this->user_subscribe_module_code_list = [];
-        $count = 0;
         $link = getConnection();
 
         $query = "  SELECT core_module.module_name,
@@ -193,8 +192,7 @@ class User
 
         while ($newArray = mysql_fetch_array($result)) {
             $this->user_subscribe_module_code_name_map[$newArray['module_code']] = $newArray['module_name'];
-            $this->user_subscribe_module_code_list[$count] = $newArray['module_code'];
-            ++$count;
+            array_push($this->user_subscribe_module_code_list, $newArray['module_code']);
         }
     }
 

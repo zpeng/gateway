@@ -40,13 +40,13 @@ class Menu
         return $this->_menu_name;
     }
 
-    public function get_menu_name_as_table_cell($padding="")
+    public function get_menu_name_as_table_cell($padding = "")
     {
         $output = $padding;
-        if ($this->get_menu_parent_id() != "0"){
-            $output = $output."|_ ".$this->_menu_name;
-        }else{
-            $output = $output.$this->_menu_name;
+        if ($this->get_menu_parent_id() != "0") {
+            $output = $output . "|_ " . $this->_menu_name;
+        } else {
+            $output = $output . $this->_menu_name;
         }
         return $output;
     }
@@ -176,7 +176,6 @@ class Menu
 
     public function getSubMenuItemList()
     {
-        $count = 0;
         $link = getConnection();
         $query = "SELECT    menu_id,
                           menu_parent_id,
@@ -207,9 +206,7 @@ class Menu
             $menu->set_menu_archived($newArray['menu_archived']);
 
             $menu->set_sub_menu_list($menu->getSubMenuItemList());
-
-            $this->_sub_menu_list[$count] = $menu;
-            $count++;
+            array_push($this->_sub_menu_list, $menu);
         }
 
         return $this->_sub_menu_list;
@@ -247,11 +244,11 @@ class Menu
     {
         $link = getConnection();
         $query = "  UPDATE cms_menu
-                SET    menu_name   = '".$this->get_menu_name()."',
-                       menu_order       = ".$this->get_menu_order().",
-                       menu_link        = '".$this->get_menu_link()."',
-                       menu_desc        = '".$this->get_menu_desc()."'
-                WHERE  menu_id          = ".$this->get_menu_id();
+                SET    menu_name   = '" . $this->get_menu_name() . "',
+                       menu_order       = " . $this->get_menu_order() . ",
+                       menu_link        = '" . $this->get_menu_link() . "',
+                       menu_desc        = '" . $this->get_menu_desc() . "'
+                WHERE  menu_id          = " . $this->get_menu_id();
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
@@ -266,16 +263,16 @@ class Menu
         executeUpdateQuery($link, $query);
         closeConnection($link);
 
-        foreach($this->_sub_menu_list as $sub_menu){
+        foreach ($this->_sub_menu_list as $sub_menu) {
             $sub_menu->delete();
         }
     }
 
-    public function outputAsHtmlTableRow($padding="")
+    public function outputAsHtmlTableRow($padding = "")
     {
-        if ($this->get_menu_parent_id() != "0"){
+        if ($this->get_menu_parent_id() != "0") {
             //this a sub-menu, need to add padding
-            $padding = $padding."      ";
+            $padding = $padding . "      ";
         }
         $htmlRow = "<tr>";
         $htmlRow = $htmlRow . "
@@ -294,27 +291,27 @@ class Menu
         ";
         $htmlRow . "</tr>";
 
-        if (sizeof($this->_sub_menu_list) > 0){
-           foreach ($this->_sub_menu_list as $sub_menu){
-               $htmlRow = $htmlRow.$sub_menu->outputAsHtmlTableRow($padding);
-           }
+        if (sizeof($this->_sub_menu_list) > 0) {
+            foreach ($this->_sub_menu_list as $sub_menu) {
+                $htmlRow = $htmlRow . $sub_menu->outputAsHtmlTableRow($padding);
+            }
         }
 
         return $htmlRow;
     }
 
-    public function outputAsSelectOption($padding="")
+    public function outputAsSelectOption($padding = "")
     {
-        if ($this->get_menu_parent_id() != "0"){
+        if ($this->get_menu_parent_id() != "0") {
             //this a sub-menu, need to add padding
-            $padding = $padding."&nbsp;&nbsp;";
+            $padding = $padding . "&nbsp;&nbsp;";
         }
         $htmlOption = "<option value='" . $this->get_menu_id() . "'>" . $this->get_menu_name_as_table_cell($padding) . "</option>";
 
 
-        if (sizeof($this->_sub_menu_list) > 0){
-            foreach ($this->_sub_menu_list as $sub_menu){
-                $htmlOption = $htmlOption.$sub_menu->outputAsSelectOption($padding);
+        if (sizeof($this->_sub_menu_list) > 0) {
+            foreach ($this->_sub_menu_list as $sub_menu) {
+                $htmlOption = $htmlOption . $sub_menu->outputAsSelectOption($padding);
             }
         }
 

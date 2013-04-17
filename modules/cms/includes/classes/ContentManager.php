@@ -15,7 +15,6 @@ class ContentManager
 
     public function getContentList()
     {
-        $count = 0;
         $link = getConnection();
 
         $query = "SELECT
@@ -42,8 +41,7 @@ class ContentManager
             $content->set_last_modify_date($newArray['content_last_modify_date']);
             $content->set_last_modify_by_user_id($newArray['content_last_modify_by']);
             $content->set_archived($newArray['content_archived']);
-            $this->contentList[$count] = $content;
-            $count++;
+            array_push($this->contentList, $content);
         }
         return $this->contentList;
     }

@@ -56,7 +56,6 @@ class UserManager
     public function getUserList()
     {
         $userList = [];
-        $count = 0;
         $link = getConnection();
 
         $query = "select 	user_id
@@ -69,8 +68,7 @@ class UserManager
         while ($newArray = mysql_fetch_array($result)) {
             $user = new User();
             $user->loadByID($newArray['user_id']);
-            $userList[$count] = $user;
-            ++$count;
+            array_push($userList, $user);
         }
         return $userList;
     }

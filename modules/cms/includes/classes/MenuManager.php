@@ -15,8 +15,6 @@ class MenuManager
     public function getMenuTypeList()
     {
         $menuTypelist = [];
-        $count = 0;
-
         $link = getConnection();
 
         $query = "    SELECT menu_type_id         ,
@@ -35,9 +33,8 @@ class MenuManager
             $menuType->set_menu_type_name($newArray['menu_type_name']);
             $menuType->set_menu_type_description($newArray['menu_type_description']);
             $menuType->set_menu_type_archived($newArray['menu_type_archived']);
+            array_push($menuTypelist, $menuType);
 
-            $menuTypelist[$count] = $menuType;
-            $count++;
         }
         return $menuTypelist;
     }
@@ -45,7 +42,6 @@ class MenuManager
     public function getMenuItemListByMenuTypeId($menu_type_id)
     {
         $menuItemlist = [];
-        $count = 0;
         $link = getConnection();
 
         $query = " SELECT   menu_id,
@@ -76,13 +72,12 @@ class MenuManager
             $menu->set_menu_archived($newArray['menu_archived']);
 
             $menu->set_sub_menu_list($menu->getSubMenuItemList());
-            $menuItemlist[$count] = $menu;
-            $count++;
+            array_push($menuItemlist, $menu);
         }
         return $menuItemlist;
     }
 
-    public function outputMenuTypeListAsListbox($id = "", $class = "", $style="")
+    public function outputMenuTypeListAsListbox($id = "", $class = "", $style = "")
     {
         $menuTypelist = $this->getMenuTypeList();
         $listbox = "<select name='$id' id='$id' class ='$class' style='$style' size='" . sizeof($menuTypelist) . "'>";
@@ -92,16 +87,17 @@ class MenuManager
         return $listbox . "</select>";
     }
 
-    function outputMenuListAsListbox($menu_type_id, $id = "", $class = "", $style="") {
+    function outputMenuListAsListbox($menu_type_id, $id = "", $class = "", $style = "")
+    {
         $menulist = $this->getMenuItemListByMenuTypeId($menu_type_id);
         $field = "<select name='$id' id='$id' class ='$class' style='$style' size='5'>";
-        $field= $field."<option value='0'> As parent </option>";
+        $field = $field . "<option value='0'> As parent </option>";
         if (sizeof($menulist) > 0) {
-            foreach($menulist as $menu) {
-                $field= $field.$menu->outputAsSelectOption("&nbsp;&nbsp;");
+            foreach ($menulist as $menu) {
+                $field = $field . $menu->outputAsSelectOption("&nbsp;&nbsp;");
             }
         }
-        $field= $field."</select>";
+        $field = $field . "</select>";
         return $field;
     }
 
@@ -127,11 +123,12 @@ class MenuManager
     }
 
 
-    function outputListTypeAsListbox( $id='', $class='', $style = '') {
-        $field = "<select id='".$id."' name='".$id."' class='$class' style='$style' size='2'>";
-        $field= $field."<option  value='0'>&nbsp;&nbsp;-Customize Link</option>";
-        $field= $field."<option  value='1'>&nbsp;&nbsp;-Contents</option>";
-        $field= $field."</select>";
+    function outputListTypeAsListbox($id = '', $class = '', $style = '')
+    {
+        $field = "<select id='" . $id . "' name='" . $id . "' class='$class' style='$style' size='2'>";
+        $field = $field . "<option  value='0'>&nbsp;&nbsp;-Customize Link</option>";
+        $field = $field . "<option  value='1'>&nbsp;&nbsp;-Contents</option>";
+        $field = $field . "</select>";
         return $field;
     }
 }

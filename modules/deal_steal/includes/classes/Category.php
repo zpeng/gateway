@@ -36,6 +36,42 @@ class Category
         return $this->category_parent_id;
     }
 
+    public function loadAll()
+    {
+        $link = getConnection();
+        $query="select 	category_id, category_parent_id, category_name,
+                from	tb_category";
+
+        $result = executeNonUpdateQuery($link , $query);
+        closeConnection($link);
+
+        while ($newArray = mysql_fetch_array($result)) {
+            $this->setCategoryId($newArray['category_id']);
+            $this->setCategoryParentId($newArray['category_parent_id']);
+            $this->setCategoryName($newArray['category_name']);
+            $this->loadSubCategories();
+        }
+    }
+
+    private function loadSubCategories(){
+        $link = getConnection();
+        $query="select 	category_id, category_parent_id, category_name,
+                from	tb_category
+                where   category_parent_id = ". $this->getCategoryId();
+
+        $result = executeNonUpdateQuery($link , $query);
+        closeConnection($link);
+        $this->sub_category_list = [];
+        while ($newArray = mysql_fetch_array($result)) {
+            $sub_category = new Category();
+            $sub_category->setCategoryId($newArray['category_id']);
+            $sub_category->setCategoryParentId($newArray['category_parent_id']);
+            $sub_category->setCategoryName($newArray['category_name']);
+            $sub_category->loadSubCategories();
+            array_push($this->sub_category_list, $sub_category);
+        }
+    }
+
     public function insert()
     {
         $link = getConnection();
@@ -51,37 +87,39 @@ class Category
     {
         $link = getConnection();
         $query = " UPDATE ds_category
-                   SET    category_parent_id = " . $this->getCategoryParentId() . ",
-                          category_name = '" . $this->getCategoryName() . "'
+                   SET    category_name = '" . $this->getCategoryName() . "'
                    WHERE  category_id = " . $this->getCategoryId();
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
     }
 
-    public function getSubCategoryList(){
-        $this->sub_category_list = [];
-        $count = 0;
+    public function move()
+    {
         $link = getConnection();
-        $query = "SELECT  category_id,
-                          category_parent_id,
-                          category_name
-                        FROM category_parent_id " . $this->getCategoryId();
+        $query = " UPDATE ds_category
+                   SET    category_parent_id = " . $this->getCategoryParentId() . "
+                   WHERE  category_id = " . $this->getCategoryId();
 
-        $result = executeNonUpdateQuery($link, $query);
-
+        executeUpdateQuery($link, $query);
         closeConnection($link);
-        while ($newArray = mysql_fetch_array($result)) {
-            $subCategory = new Category();
-            $subCategory->setCategoryId($newArray['category_id']);
-            $subCategory->setCategoryParentId($newArray['category_parent_id']);
-            $subCategory->setCategoryName($newArray['category_name']);
+    }
 
-            $subCategory->sub_category_list = $subCategory->getSubCategoryList();
-            $this->sub_category_list[$count] = $subCategory;
-            $count++;
-        }
-        return $this->sub_category_list;
+    public function delete()
+    {
+        $link = getConnection();
+        $query = " DELETE
+                   FROM   ds_category
+                   WHERE  category_id = " . $this->getCategoryId() . "
+                   AND    category_parent_id = " . $this->getCategoryId() . ",";
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function toJSON()
+    {
+        return str_replace('\\u0000', "", json_encode((array)$this));
     }
 
 }

@@ -4,7 +4,6 @@ class ModuleManager
     public function getModuleList()
     {
         $moduleList = [];
-        $count = 0;
         $link = getConnection();
 
         $query = " select module_name,
@@ -25,8 +24,7 @@ class ModuleManager
             $module->set_module_desc($newArray['module_desc']);
             $module->set_module_archived($newArray['module_archived']);
 
-            $moduleList[$count] = $module;
-            ++$count;
+            array_push($moduleList, $module);
         }
         return $moduleList;
     }
