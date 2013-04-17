@@ -36,11 +36,12 @@ class Category
         return $this->category_parent_id;
     }
 
-    public function loadAll()
+    public function load()
     {
         $link = getConnection();
-        $query="select 	category_id, category_parent_id, category_name,
-                from	tb_category";
+        $query="select 	category_id, category_parent_id, category_name
+                from	ds_category
+                where   category_id = ".$this->getCategoryId();
 
         $result = executeNonUpdateQuery($link , $query);
         closeConnection($link);
@@ -49,15 +50,15 @@ class Category
             $this->setCategoryId($newArray['category_id']);
             $this->setCategoryParentId($newArray['category_parent_id']);
             $this->setCategoryName($newArray['category_name']);
-            $this->loadSubCategories();
+            $this->loadSubCategories($this->getCategoryId());
         }
     }
 
-    private function loadSubCategories(){
+    public function loadSubCategories($_parent_id){
         $link = getConnection();
-        $query="select 	category_id, category_parent_id, category_name,
-                from	tb_category
-                where   category_parent_id = ". $this->getCategoryId();
+        $query="select 	category_id, category_parent_id, category_name
+                from	ds_category
+                where   category_parent_id = ". $_parent_id;
 
         $result = executeNonUpdateQuery($link , $query);
         closeConnection($link);
@@ -67,7 +68,7 @@ class Category
             $sub_category->setCategoryId($newArray['category_id']);
             $sub_category->setCategoryParentId($newArray['category_parent_id']);
             $sub_category->setCategoryName($newArray['category_name']);
-            $sub_category->loadSubCategories();
+            $sub_category->loadSubCategories($sub_category->getCategoryId());
             array_push($this->sub_category_list, $sub_category);
         }
     }

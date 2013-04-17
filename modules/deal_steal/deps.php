@@ -7,6 +7,7 @@ $module_config = array(
 
     "php" => array(
         "Category" => "modules/deal_steal/includes/classes/Category.php",
+        "CategoryManager" => "modules/deal_steal/includes/classes/CategoryManager.php",
         "Client" => "modules/deal_steal/includes/classes/Client.php",
         "Deal" => "modules/deal_steal/includes/classes/Deal.php",
         "DealImage" => "modules/deal_steal/includes/classes/DealImage.php",

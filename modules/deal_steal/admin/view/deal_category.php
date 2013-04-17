@@ -1,7 +1,13 @@
 <h1 class="content_title">Deal Category</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
+    <?
+    $categoryManager = new CategoryManager();
+    $categoryManager->loadTree();
 
+    echo $categoryManager->toJSON();
+
+    ?>
 
 
 </div>
