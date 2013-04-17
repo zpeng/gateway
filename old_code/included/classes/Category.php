@@ -66,18 +66,18 @@ class Category {
 
     public function load($category_id) {
         $link = getConnection();
-        $query="select 	category_id, category_parent_id, category_name,
+        $query="select 	id, parent_id, name,
                         category_description
                 from	tb_category 
-                where   category_id = ".$category_id;
+                where   id = ".$category_id;
 
         $result = executeNonUpdateQuery($link , $query);
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
-            $this->set_category_id($newArray['category_id']);
-            $this->set_category_parent_id($newArray['category_parent_id']);
-            $this->set_category_name($newArray['category_name']);
+            $this->set_category_id($newArray['id']);
+            $this->set_category_parent_id($newArray['parent_id']);
+            $this->set_category_name($newArray['name']);
             $this->set_category_desc($newArray['category_description']);
         }
     }
@@ -87,8 +87,8 @@ class Category {
         $query = "  INSERT
                     INTO   tb_category
                            (
-                                  category_parent_id,
-                                  category_name,
+                                  parent_id,
+                                  name,
                                   category_description
                            )
                            VALUES
@@ -105,14 +105,14 @@ class Category {
         // the delete function will remove the current category and all its sub-categories
         $link = getConnection();
         $query = "  DELETE FROM  tb_category
-                    WHERE  category_id    = ".$this->get_category_id()."
-                    OR     category_parent_id = ".$this->get_category_id();
+                    WHERE  id    = ".$this->get_category_id()."
+                    OR     parent_id = ".$this->get_category_id();
 
         executeUpdateQuery($link , $query);
 
         //delete those in the tb_product_to_category
         $query = "  DELETE FROM  tb_product_to_category
-                    WHERE  category_id    = ".$this->get_category_id();
+                    WHERE  id    = ".$this->get_category_id();
 
         executeUpdateQuery($link , $query);
 
@@ -122,10 +122,10 @@ class Category {
     public function update() {
         $link = getConnection();
         $query = "UPDATE tb_category
-                  SET    category_parent_id  = ".$this->get_category_parent_id().",
-                         category_name       = '".$this->get_category_name()."',
+                  SET    parent_id  = ".$this->get_category_parent_id().",
+                         name       = '".$this->get_category_name()."',
                          category_description= '".$this->get_category_desc()."'
-                  WHERE  category_id         = ".$this->get_category_id();
+                  WHERE  id         = ".$this->get_category_id();
 
         executeUpdateQuery($link , $query);
         closeConnection($link);
@@ -135,19 +135,19 @@ class Category {
         $_category_children_list = null;
         $count = 0;
         $link = getConnection();
-        $query="select 	category_id, category_parent_id, category_name,
+        $query="select 	id, parent_id, name,
                         category_description
                 from	tb_category 
-                where   category_parent_id = ".$this->get_category_id();
+                where   parent_id = ".$this->get_category_id();
 
         $result = executeNonUpdateQuery($link , $query, "Category.getCategoryChildrenList()");
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
             $category = new Category();
-            $category->set_category_id($newArray['category_id']);
-            $category->set_category_parent_id($newArray['category_parent_id']);
-            $category->set_category_name($newArray['category_name']);
+            $category->set_category_id($newArray['id']);
+            $category->set_category_parent_id($newArray['parent_id']);
+            $category->set_category_name($newArray['name']);
             $category->set_category_desc($newArray['category_description']);
 
             $_category_children_list[$count] =$category;

@@ -2,7 +2,7 @@
 require_once("../included/class_loader.php") ;
 require_once('../included/html_functions.php');
 
-$category_id = secureRequestParameter($_REQUEST["category_id"]);
+$category_id = secureRequestParameter($_REQUEST["id"]);
 $category = new Category();
 $category->load($category_id);
 

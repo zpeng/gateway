@@ -10,7 +10,7 @@
 </script>
 <?
 
-$category_id = secureRequestParameter($_REQUEST["category_id"]);
+$category_id = secureRequestParameter($_REQUEST["id"]);
 $category = new Category();
 $category->load($category_id);
 

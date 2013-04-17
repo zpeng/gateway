@@ -1,0 +1,66 @@
+[
+    {
+        "attr": {
+            "id": "node_45",
+            "rel": "folder"
+        },
+        "data": "TEST",
+        "state": "closed"
+    },
+    {
+        "attr": {
+            "id": "node_34",
+            "rel": "folder"
+        },
+        "data": "asdfasdf",
+        "state": "closed"
+    },
+    {
+        "attr": {
+            "id": "node_32",
+            "rel": "folder"
+        },
+        "data": "New node",
+        "state": "closed"
+    },
+    {
+        "attr": {
+            "id": "node_10",
+            "rel": "folder"
+        },
+        "data": "CP 6",
+        "state": "closed"
+    },
+    {
+        "attr": {
+            "id": "node_47",
+            "rel": "default"
+        },
+        "data": "New node",
+        "state": ""
+    },
+    {
+        "attr": {
+            "id": "node_50",
+            "rel": "default"
+        },
+        "data": "hfh",
+        "state": ""
+    },
+    {
+        "attr": {
+            "id": "node_56",
+            "rel": "folder"
+        },
+        "data": "New node",
+        "state": ""
+    },
+    {
+        "attr": {
+            "id": "node_12",
+            "rel": "folder"
+        },
+        "data": "CP 8",
+        "state": "closed"
+    }
+]

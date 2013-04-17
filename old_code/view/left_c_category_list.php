@@ -8,7 +8,7 @@
 
         if (sizeof($categoryList) > 0) {
             foreach($categoryList as $category) {
-                echo "<li><a href='index.php?view=product_by_category&category_id=".$category->get_category_id()."'>
+                echo "<li><a href='index.php?view=product_by_category&id=".$category->get_category_id()."'>
                         ".$category->get_category_name()."</a>";
                 if ($category->get_category_children_list() != null) {
                     if (sizeof($category->get_category_children_list()) > 0) {

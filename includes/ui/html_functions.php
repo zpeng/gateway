@@ -181,8 +181,8 @@ function outputCategoryAsTreeNode($category) {
     $field = "<li><label>".$category->get_category_name()."</label>";
 
     $field = $field." - (".sizeof($subCategoryList).") - ";
-    $field = $field." <a href='process/admin_category_delete_process.php?category_id=".$category->get_category_id()."' onclick='return confirmDeletion()'>".displayDeleteIcon(15,15,"Delete")."</a>";
-    $field = $field." <a href='index.php?view=admin_category_update&category_id=".$category->get_category_id()."'>".displayEditIcon(15,15,"Update")."</a>";
+    $field = $field." <a href='process/admin_category_delete_process.php?id=".$category->get_category_id()."' onclick='return confirmDeletion()'>".displayDeleteIcon(15,15,"Delete")."</a>";
+    $field = $field." <a href='index.php?view=admin_category_update&id=".$category->get_category_id()."'>".displayEditIcon(15,15,"Update")."</a>";
     $field = $field." <a href='index.php?view=admin_category_add_sub&parent_category_id=".$category->get_category_id()."'>".displayAddIcon(15,15,"Add sub-category")."</a>";
 
     // get more sub categories
@@ -547,7 +547,7 @@ function outputCategoryAsLinkList($categoryList) {
     if ($categoryList != null) {
         if (sizeof($categoryList) > 0) {
             foreach($categoryList as $category) {
-                $field = $field."<li><a href='index.php?view=product_by_category&category_id=".$category->get_category_id()."'>
+                $field = $field."<li><a href='index.php?view=product_by_category&id=".$category->get_category_id()."'>
                         ".$category->get_category_name()."</a>";
                 if ($category->get_category_children_list() != null) {
                     if (sizeof($category->get_category_children_list()) > 0) {

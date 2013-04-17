@@ -505,18 +505,18 @@ class Product {
         $link = getConnection();
         $count = 0;
         $category_list = null;
-        $query="SELECT 	tb_category.category_id, category_parent_id, category_name, category_description
+        $query="SELECT 	tb_category.id, parent_id, name, category_description
                 FROM	tb_category , tb_product_to_category
-                WHERE   tb_category.category_id = tb_product_to_category.category_id
+                WHERE   tb_category.id = tb_product_to_category.id
                 AND     tb_product_to_category.product_id =".$this->get_product_id();
 
         $result = executeNonUpdateQuery($link , $query, "product.get_product_to_category_list()" );
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {
             $category = new Category();
-            $category->set_category_id($newArray['category_id']);
-            $category->set_category_parent_id($newArray['category_parent_id']);
-            $category->set_category_name($newArray['category_name']);
+            $category->set_category_id($newArray['id']);
+            $category->set_category_parent_id($newArray['parent_id']);
+            $category->set_category_name($newArray['name']);
             $category->set_category_desc($newArray['category_description']);
 
             $category_list[$count] =$category;
@@ -549,7 +549,7 @@ class Product {
                 $link = getConnection();
                 $query = "INSERT INTO tb_product_to_category
                         (product_id,
-                         category_id)
+                         id)
                          VALUES	(
                          ".$this->get_product_id().",
                          ".$category_id.")";

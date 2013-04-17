@@ -2,7 +2,8 @@
 SQLyog Enterprise - MySQL GUI v6.5
 MySQL - 5.0.51b-community-nt-log : Database - rose_shoppingcart
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -71,11 +72,11 @@ insert  into `tb_attribute_value`(`attribute_value_id`,`attribute_id`,`attribute
 /*Table structure for table `tb_category` */
 
 CREATE TABLE `tb_category` (
-  `category_id` int(11) NOT NULL auto_increment,
-  `category_parent_id` int(11) NOT NULL default '0',
-  `category_name` varchar(50) NOT NULL default '',
+  `id` int(11) NOT NULL auto_increment,
+  `parent_id` int(11) NOT NULL default '0',
+  `name` varchar(50) NOT NULL default '',
   `category_description` varchar(500) default '',
-  PRIMARY KEY  (`category_id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_category` */
@@ -425,8 +426,8 @@ CREATE TABLE `tb_product_to_attribute_value` (
 
 CREATE TABLE `tb_product_to_category` (
   `product_id` int(11) unsigned zerofill NOT NULL default '00000000000',
-  `category_id` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`product_id`,`category_id`)
+  `id` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`product_id`,`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Data for the table `tb_product_to_category` */

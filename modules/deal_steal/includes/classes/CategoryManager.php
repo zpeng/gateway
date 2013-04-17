@@ -1,30 +1,37 @@
 <?php
-class CategoryManager{
-    public $category_tree;
+class CategoryManager
+{
+    public $data;
 
-    public function loadTree()
+    public function loadTree($parent_id=0)
     {
-        $this->category_tree = [];
+        $this->data = [];
         $link = getConnection();
-        $query="select 	category_id, category_parent_id, category_name
-                from	ds_category";
+        $query = "select 	category_id, category_parent_id, category_name
+                from	ds_category
+                where   category_parent_id = " . $parent_id;
 
-        $result = executeNonUpdateQuery($link , $query);
+        $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
             $category = new Category();
-            $category->setCategoryId($newArray['category_id']);
-            $category->setCategoryParentId($newArray['category_parent_id']);
-            $category->setCategoryName($newArray['category_name']);
+            $category->setId($newArray['category_id']);
+            $category->setParentId($newArray['category_parent_id']);
+            $category->setName($newArray['category_name']);
             $category->loadSubCategories($newArray['category_id']);
-            array_push($this->category_tree, $category);
+            array_push($this->data, $category);
         }
     }
 
     public function toJSON()
     {
-        return str_replace('\\u0000', "", json_encode((array)$this));
+        $json = array();
+        foreach ($this->data as $node) {
+            array_push($json, $node->getJSON());
+        }
+        return str_replace('\\u0000', "", json_encode($json));
     }
 }
+
 ?>

@@ -23,7 +23,7 @@ class ProductManager {
                 $condition_query = $condition_query." and ";
             }
             $condition_query = $condition_query." tb_product_to_category.product_id = tb_product.product_id
-                and tb_product_to_category.category_id in (";
+                and tb_product_to_category.id in (";
             foreach ($category_id_list as $category_id) {
                 $condition_query = $condition_query.$category_id.",";
             }
@@ -280,7 +280,7 @@ class ProductManager {
                     from    tb_product , tb_product_to_category
                     where   product_archived = 'N'
                     and     tb_product_to_category.product_id = tb_product.product_id
-                    and     tb_product_to_category.category_id = ".$category_id."
+                    and     tb_product_to_category.id = ".$category_id."
                     ORDER BY product_date_added desc ";
 
 

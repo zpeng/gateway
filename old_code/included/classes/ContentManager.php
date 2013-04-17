@@ -48,7 +48,7 @@ class ContentManager {
                         content_author_id,
                         content_archived
                 from 	tb_content, tb_content_to_category
-                where   tb_content_to_category.category_id = ".$category_id."
+                where   tb_content_to_category.id = ".$category_id."
                 and     tb_content.content_id = tb_content_to_category.content_id
                 and     content_archived = 'N'
                 order by tb_content.content_id desc

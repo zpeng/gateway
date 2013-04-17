@@ -3,8 +3,8 @@
 require_once('../../included/class_loader.php');
 $url = "../index.php?view=admin_category_list"; // target of the redirect
 
-$category_id = secureRequestParameter($_REQUEST["category_id"]);
-$category_name = secureRequestParameter($_REQUEST["category_name"]);
+$category_id = secureRequestParameter($_REQUEST["id"]);
+$category_name = secureRequestParameter($_REQUEST["name"]);
 $category_description = secureRequestParameter($_REQUEST["category_description"]);
 
 $category = new Category();

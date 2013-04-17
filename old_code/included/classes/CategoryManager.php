@@ -16,19 +16,19 @@ class CategoryManager {
         $count =  0;
         $link = getConnection();
 
-        $query="select 	category_id, category_parent_id, category_name,
+        $query="select 	id, parent_id, name,
                         category_description
                 from	tb_category
-                where   category_parent_id = 0 ";
+                where   parent_id = 0 ";
 
         $result = executeNonUpdateQuery($link , $query ,"CategoryManager.getTopCategoryList");
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
             $category = new Category();
-            $category->set_category_id($newArray['category_id']);
-            $category->set_category_parent_id($newArray['category_parent_id']);
-            $category->set_category_name($newArray['category_name']);
+            $category->set_category_id($newArray['id']);
+            $category->set_category_parent_id($newArray['parent_id']);
+            $category->set_category_name($newArray['name']);
             $category->set_category_desc($newArray['category_description']);
 
             $topCategoryList[$count] =$category;

@@ -44,7 +44,7 @@ function checkFormAdminPasswordUpdate(form) {
 
 function checkFormCategoryAdd(form) {
     if (form.category_name.value.length == 0) {
-        inlineMsg('category_name','You have to enter the category name.',1);
+        inlineMsg('name','You have to enter the category name.',1);
         return false;
     }
 
@@ -58,7 +58,7 @@ function checkFormCategoryAdd(form) {
 
 function checkFormCategoryUpdate(form) {
     if (form.category_name.value.length == 0) {
-        inlineMsg('category_name','You have to enter the category name.',1);
+        inlineMsg('name','You have to enter the category name.',1);
         return false;
     }
 

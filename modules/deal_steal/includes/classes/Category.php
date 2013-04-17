@@ -1,74 +1,75 @@
 <?php
 class Category
 {
-    public $category_id;
-    public $category_parent_id;
-    public $category_name;
+    public $id;
+    public $parent_id;
+    public $name;
     public $sub_category_list = [];
 
-    public function setCategoryId($category_id)
+    public function setId($category_id)
     {
-        $this->category_id = $category_id;
+        $this->id = $category_id;
     }
 
-    public function getCategoryId()
+    public function getId()
     {
-        return $this->category_id;
+        return $this->id;
     }
 
-    public function setCategoryName($category_name)
+    public function setName($category_name)
     {
-        $this->category_name = $category_name;
+        $this->name = $category_name;
     }
 
-    public function getCategoryName()
+    public function getName()
     {
-        return $this->category_name;
+        return $this->name;
     }
 
-    public function setCategoryParentId($category_parent_id)
+    public function setParentId($category_parent_id)
     {
-        $this->category_parent_id = $category_parent_id;
+        $this->parent_id = $category_parent_id;
     }
 
-    public function getCategoryParentId()
+    public function getParentId()
     {
-        return $this->category_parent_id;
+        return $this->parent_id;
     }
 
     public function load()
     {
         $link = getConnection();
-        $query="select 	category_id, category_parent_id, category_name
+        $query = "select 	category_id, category_parent_id, category_name
                 from	ds_category
-                where   category_id = ".$this->getCategoryId();
+                where   category_id = " . $this->getId();
 
-        $result = executeNonUpdateQuery($link , $query);
+        $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
         while ($newArray = mysql_fetch_array($result)) {
-            $this->setCategoryId($newArray['category_id']);
-            $this->setCategoryParentId($newArray['category_parent_id']);
-            $this->setCategoryName($newArray['category_name']);
-            $this->loadSubCategories($this->getCategoryId());
+            $this->setId($newArray['category_id']);
+            $this->setParentId($newArray['category_parent_id']);
+            $this->setName($newArray['category_name']);
+            $this->loadSubCategories($this->getId());
         }
     }
 
-    public function loadSubCategories($_parent_id){
+    public function loadSubCategories($_parent_id)
+    {
         $link = getConnection();
-        $query="select 	category_id, category_parent_id, category_name
+        $query = "select category_id, category_parent_id, category_name
                 from	ds_category
-                where   category_parent_id = ". $_parent_id;
+                where   category_parent_id = " . $_parent_id;
 
-        $result = executeNonUpdateQuery($link , $query);
+        $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
         $this->sub_category_list = [];
         while ($newArray = mysql_fetch_array($result)) {
             $sub_category = new Category();
-            $sub_category->setCategoryId($newArray['category_id']);
-            $sub_category->setCategoryParentId($newArray['category_parent_id']);
-            $sub_category->setCategoryName($newArray['category_name']);
-            $sub_category->loadSubCategories($sub_category->getCategoryId());
+            $sub_category->setId($newArray['category_id']);
+            $sub_category->setParentId($newArray['category_parent_id']);
+            $sub_category->setName($newArray['category_name']);
+            $sub_category->loadSubCategories($sub_category->getId());
             array_push($this->sub_category_list, $sub_category);
         }
     }
@@ -78,18 +79,20 @@ class Category
         $link = getConnection();
         $query = " INSERT INTO ds_category
                    (category_parent_id, category_name)
-                   VALUES (" . $this->getCategoryParentId() . ", '" . $this->getCategoryName() . "')";
+                   VALUES (" . $this->getParentId() . ", '" . $this->getName() . "')";
 
         executeUpdateQuery($link, $query);
+        $this->setId(mysql_insert_id());
         closeConnection($link);
+
     }
 
     public function update()
     {
         $link = getConnection();
         $query = " UPDATE ds_category
-                   SET    category_name = '" . $this->getCategoryName() . "'
-                   WHERE  category_id = " . $this->getCategoryId();
+                   SET    category_name = '" . $this->getName() . "'
+                   WHERE  category_id = " . $this->getId();
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
@@ -99,8 +102,8 @@ class Category
     {
         $link = getConnection();
         $query = " UPDATE ds_category
-                   SET    category_parent_id = " . $this->getCategoryParentId() . "
-                   WHERE  category_id = " . $this->getCategoryId();
+                   SET    category_parent_id = " . $this->getParentId() . "
+                   WHERE  category_id = " . $this->getId();
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
@@ -111,16 +114,37 @@ class Category
         $link = getConnection();
         $query = " DELETE
                    FROM   ds_category
-                   WHERE  category_id = " . $this->getCategoryId() . "
-                   AND    category_parent_id = " . $this->getCategoryId() . ",";
+                   WHERE  category_id = " . $this->getId() . "
+                   OR    category_parent_id = " . $this->getId();
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
     }
 
+    public function getJSON()
+    {
+        $children = array();
+        foreach ($this->sub_category_list as $child) {
+            array_push($children, $child->getJSON());
+        }
+
+
+        if (sizeof($children) == 0){
+            $children = null;
+        }
+
+        $json = array(
+            'data' => $this->getName(),
+            'attr' => array("id" => $this->getId()),
+            "state" => "open",
+            'children' => $children
+        );
+        return $json;
+    }
+
     public function toJSON()
     {
-        return str_replace('\\u0000', "", json_encode((array)$this));
+        return str_replace('\\u0000', "", json_encode($this->getJSON()));
     }
 
 }

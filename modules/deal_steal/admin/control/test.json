@@ -1,0 +1,24 @@
+[
+    {
+        "data": "A node",
+        "metadata": {
+            "id": "1"
+        },
+        "children": [
+            {
+                "data": "A node",
+                "metadata": {
+                    "id": "2"
+                },
+                "children": null
+            },
+            {
+                "data": "A node",
+                "metadata": {
+                    "id": "3"
+                },
+                "children": [ "Child 1", "Child 2" ]
+            }
+        ]
+    }
+]

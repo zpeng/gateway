@@ -6,6 +6,7 @@ $CSS_SHARED = array(
     "jquery-form-validate-css" => "js/shared/jquery-form-validate/jquery.validate.css",
     "editablegrid_css" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.css",
     "tiny_mce-3.5.8-skin-ui" => "js/shared/tiny_mce-3.5.8/themes/advanced/skins/default/ui.css",
+    "jstree_style" => "js/shared/jstree-v.pre1.0/themes/default/style.css"
 );
 
 $JS_SHARED = array(
@@ -17,13 +18,21 @@ $JS_SHARED = array(
     "underscore-1.4.4" => "js/shared/underscore-1.4.4/underscore-min.js",
     "backbone-1.0.0" => "js/shared/backbone-1.0.0/backbone-min.js",
 
-    "jquery-form-validate" => array("js/shared/jquery-form-validate/jquery.validate.js",
-        "js/shared/jquery-form-validate/jquery.validation.functions.js"),
+    "jquery-form-validate" => array(
+        "js/shared/jquery-form-validate/jquery.validate.js",
+        "js/shared/jquery-form-validate/jquery.validation.functions.js"
+    ),
 
+    "jsTree" => array(
+        "js/shared/jstree-v.pre1.0/jquery.jstree.js",
+        "js/shared/jstree-v.pre1.0/_lib/jquery.hotkeys.js",
+        "js/shared/jstree-v.pre1.0/_lib/jquery.cookie.js"
+    ),
 
     "tiny_mce-3.5.8" => "js/shared/tiny_mce-3.5.8/tiny_mce.js",
 
-    "editablegrid" => array("js/shared/editablegrid-2.0.1/editablegrid-2.0.1.js",
+    "editablegrid" => array(
+        "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.js",
         "js/shared/editablegrid-2.0.1/editablegrid-2.0.1-extend.js"),
 
     "admin_ui" => "admin/js/admin_ui.js"

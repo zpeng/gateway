@@ -2,7 +2,8 @@
 SQLyog Ultimate v10.2 
 MySQL - 5.5.24-log : Database - olly
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -155,10 +156,10 @@ insert  into `core_user_subscribe_module`(`user_id`,`module_code`) values (1,'39
 /*Table structure for table `ds_category` */
 
 CREATE TABLE `ds_category` (
-  `category_id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_parent_id` int(11) NOT NULL DEFAULT '0',
-  `category_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`category_id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `ds_category` */
@@ -184,7 +185,7 @@ CREATE TABLE `ds_client` (
 CREATE TABLE `ds_deal` (
   `deal_id` int(11) NOT NULL AUTO_INCREMENT,
   `supplier_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `location_id` int(11) NOT NULL,
   `deal_title` varchar(50) NOT NULL,
   `deal_type` char(1) NOT NULL DEFAULT 'S' COMMENT 'Single/Multiple',

@@ -1,0 +1,57 @@
+{"data": [
+    {
+        "metadata": {
+            "id": "1"
+        },
+        "data": "Sport",
+        "children": [
+            {
+                "data": "Football",
+                "metadata": {
+                    "id": "2"
+                },
+                "children": []
+            },
+            {
+                "data": "Basketball",
+                "metadata": {
+                    "id": "3"
+                },
+                "children": []
+            }
+        ]
+    },
+    {
+        "data": "IT",
+        "metadata": {
+            "id": "4"
+        },
+        "children": [
+            {
+                "data": "Programming",
+                "metadata": {
+                    "id": "5"
+                },
+                "children": [
+                    {
+                        "data": "Java",
+                        "metadata": {
+                            "id": "6"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": "C++",
+                        "metadata": {
+                            "id": "7"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
+]}
+
+
+
