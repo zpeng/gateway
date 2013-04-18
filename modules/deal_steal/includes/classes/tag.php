@@ -2,7 +2,7 @@
 class Tag
 {
     public $tag_id;
-    public $tag_text;
+    public $tag_value;
 
     public function setTagId($tag_id)
     {
@@ -14,32 +14,38 @@ class Tag
         return $this->tag_id;
     }
 
-    public function setTagText($tag_text)
+    public function setTagValue($tag_value)
     {
-        $this->tag_text = $tag_text;
+        $this->tag_value = $tag_value;
     }
 
-    public function getTagText()
+    public function getTagValue()
     {
-        return $this->tag_text;
+        return $this->tag_value;
+    }
+
+    public function loadByValue($tag_value)
+    {
+        $link = getConnection();
+        $query = " select   tag_id,
+                            tag_value
+                   from     ds_tag
+                   where    tag_value =  '".$tag_value."'";
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $this->setTagId($newArray['tag_id']);
+            $this->setTagValue($newArray['tag_value']);
+        }
     }
 
     public function insert()
     {
         $link = getConnection();
         $query = " INSERT INTO ds_tag
-                   (tag_text)
-                   VALUES ('".$this->getTagText()."')";
-
-        executeUpdateQuery($link, $query);
-        closeConnection($link);
-    }
-
-    public function update(){
-        $link = getConnection();
-        $query = " UPDATE ds_tag
-               SET    tag_text = '" . $this->getTagText() . "'
-               WHERE  tag_id = " . $this->getTagId();
+                   (tag_value)
+                   VALUES ('".$this->getTagValue()."')";
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
@@ -62,6 +68,7 @@ class Tag
         executeUpdateQuery($link, $query2);
         closeConnection($link);
     }
+
 }
 
 

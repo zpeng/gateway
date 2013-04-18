@@ -2,13 +2,17 @@
     <?php
     switch (secureRequestParameter($_REQUEST["view"])) {
         case "deal_category":
-            include_once(BASE_PATH.'modules/deal_steal/admin/view/deal_category.php');
+            include_once(BASE_PATH.'modules/deal_steal/admin/view/category.php');
             break;
         case "city_list":
             include_once(BASE_PATH.'modules/deal_steal/admin/view/city_list.php');
             break;
         case "city_update":
             include_once(BASE_PATH.'modules/deal_steal/admin/view/city_update.php');
+            break;
+
+        case "tags":
+            include_once(BASE_PATH.'modules/deal_steal/admin/view/tags.php');
             break;
 
 

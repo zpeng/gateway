@@ -18,6 +18,7 @@ $module_config = array(
         "RatingReview" => "modules/deal_steal/includes/classes/RatingReview.php",
         "Supplier" => "modules/deal_steal/includes/classes/Supplier.php",
         "Tag" => "modules/deal_steal/includes/classes/Tag.php",
+        "TagManager" => "modules/deal_steal/includes/classes/TagManager.php",
     ),
 
     "css" => array(

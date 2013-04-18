@@ -6,7 +6,8 @@ $CSS_SHARED = array(
     "jquery-form-validate-css" => "js/shared/jquery-form-validate/jquery.validate.css",
     "editablegrid_css" => "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.css",
     "tiny_mce-3.5.8-skin-ui" => "js/shared/tiny_mce-3.5.8/themes/advanced/skins/default/ui.css",
-    "jstree_style" => "js/shared/jstree-v.pre1.0/themes/default/style.css"
+    "jstree_style" => "js/shared/jstree-v.pre1.0/themes/default/style.css",
+    "jquery-tag-css" => "js/shared/jquery-tags/jquery.tagsinput.css"
 );
 
 $JS_SHARED = array(
@@ -28,6 +29,8 @@ $JS_SHARED = array(
         "js/shared/jstree-v.pre1.0/_lib/jquery.hotkeys.js",
         "js/shared/jstree-v.pre1.0/_lib/jquery.cookie.js"
     ),
+
+    "jquery-tag" => "js/shared/jquery-tags/jquery.tagsinput.min.js",
 
     "tiny_mce-3.5.8" => "js/shared/tiny_mce-3.5.8/tiny_mce.js",
 
