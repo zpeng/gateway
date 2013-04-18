@@ -234,6 +234,10 @@ a.icon_admin {
   width: 15px;
   height: 15px; }
 
+.anchor_button {
+  float: left;
+  margin-bottom: 10px; }
+
 /* notification */
 #notification {
   font-weight: bold;

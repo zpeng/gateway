@@ -23,7 +23,31 @@ class City{
         return $this->city_name;
     }
 
+    public function load($id)
+    {
+        $link = getConnection();
+        $query = " select   city_id,
+                            city_name
+                   from     ds_city
+                   where    city_id =  ".$id;
 
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $this->setCityId($newArray['city_id']);
+            $this->setCityName($newArray['city_name']);
+        }
+    }
+
+    public function delete()
+    {
+        $link = getConnection();
+        $query = " delete
+                   from   ds_city
+                   WHERE  city_id =  ".$this->getCityId();
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
 
     public function insert()
     {

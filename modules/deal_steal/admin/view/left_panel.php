@@ -6,10 +6,10 @@
         <ul class="top-level">
             <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=config_list"?>">Configuration</a>
             </li>
-            <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=deal_category"?>">Deal Category</a></li>
+            <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=deal_category"?>">Category</a></li>
 
 
-            <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=deal_category"?>">Deal Location</a></li>
+            <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=city_list"?>">Location/City</a></li>
 
             <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=deal_category"?>">Client Manager</a></li>
 
