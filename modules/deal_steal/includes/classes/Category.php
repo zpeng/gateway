@@ -39,7 +39,7 @@ class Category
     public function load()
     {
         $link = getConnection();
-        $query = "select 	category_id, category_parent_id, category_name
+        $query = "select category_id, category_parent_id, category_name
                 from	ds_category
                 where   category_id = " . $this->getId();
 
@@ -59,7 +59,8 @@ class Category
         $link = getConnection();
         $query = "select category_id, category_parent_id, category_name
                 from	ds_category
-                where   category_parent_id = " . $_parent_id;
+                where   category_parent_id = " . $_parent_id."
+                order by category_name";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);

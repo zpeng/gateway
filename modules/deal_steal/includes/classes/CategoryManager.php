@@ -9,7 +9,8 @@ class CategoryManager
         $link = getConnection();
         $query = "select 	category_id, category_parent_id, category_name
                 from	ds_category
-                where   category_parent_id = " . $parent_id;
+                where   category_parent_id = " . $parent_id."
+                order by category_name";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);

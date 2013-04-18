@@ -1,7 +1,7 @@
 <div id="right_panel">
     <?php
     switch (secureRequestParameter($_REQUEST["view"])) {
-        case "deal_category":
+        case "category":
             include_once(BASE_PATH.'modules/deal_steal/admin/view/category.php');
             break;
         case "city_list":
@@ -10,7 +10,6 @@
         case "city_update":
             include_once(BASE_PATH.'modules/deal_steal/admin/view/city_update.php');
             break;
-
         case "tags":
             include_once(BASE_PATH.'modules/deal_steal/admin/view/tags.php');
             break;
