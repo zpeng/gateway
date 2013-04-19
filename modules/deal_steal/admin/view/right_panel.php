@@ -14,6 +14,12 @@
             include_once(BASE_PATH.'modules/deal_steal/admin/view/tags.php');
             break;
 
+        case "supplier_list":
+            include_once(BASE_PATH.'modules/deal_steal/admin/view/supplier_list.php');
+            break;
+        case "supplier_update":
+            include_once(BASE_PATH.'modules/deal_steal/admin/view/supplier_update.php');
+            break;
 
         case "config_list":
             include_once(BASE_PATH.'modules/deal_steal/admin/view/config_list.php');

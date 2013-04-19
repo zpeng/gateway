@@ -7,8 +7,8 @@
     <br/>
 
     <form id="ArticleCreationForm" action="<?= SERVER_URL ?>modules/cms/admin/control/content_create.php" method="post">
-        <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
-        <input type="hidden" value="<? echo $_SESSION['user_id'] ?>" name="user_id"/>
+        <input type="hidden" value="<? echo $module_code ?>" name="module_code" id="module_code"/>
+        <input type="hidden" value="<? echo $_SESSION['user_id'] ?>" name="user_id" id="user_id"/>
         <table class="inputTable">
             <tr>
                 <td width="100" align="right"><b>Article Title: </b></td>

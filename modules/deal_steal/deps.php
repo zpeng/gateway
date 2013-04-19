@@ -5,6 +5,9 @@ $module_config = array(
     "module_view_menu" => "modules/deal_steal/admin/view/left_panel.php",
     "module_view_content" => "modules/deal_steal/admin/view/right_panel.php",
 
+    //customized config values
+    "supplier_logo_folder" => SERVER_URL."images/suppliers/logo/",
+
     "php" => array(
         "Category" => "modules/deal_steal/includes/classes/Category.php",
         "CategoryManager" => "modules/deal_steal/includes/classes/CategoryManager.php",
@@ -17,6 +20,7 @@ $module_config = array(
         "LoveHate" => "modules/deal_steal/includes/classes/LoveHate.php",
         "RatingReview" => "modules/deal_steal/includes/classes/RatingReview.php",
         "Supplier" => "modules/deal_steal/includes/classes/Supplier.php",
+        "SupplierManager" => "modules/deal_steal/includes/classes/SupplierManager.php",
         "Tag" => "modules/deal_steal/includes/classes/Tag.php",
         "TagManager" => "modules/deal_steal/includes/classes/TagManager.php",
     ),

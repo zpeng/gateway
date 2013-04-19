@@ -24,8 +24,7 @@ $finalFilename = "";
 if ($_FILES['image_uploaded']['tmp_name'] != null) {
 
     //get the file extension
-    $file_info = pathinfo($_FILES['image_uploaded']['name']) ;
-    $ext = $file_info['extension'];
+    $ext = pathinfo($_FILES['image_uploaded']['name']['extension']) ;
 
     //set up the new file name
     $finalFilename = time().".".$ext;

@@ -11,6 +11,7 @@
 
 
             <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=deal_category"?>">Client Manager</a></li>
+            <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=supplier_list"?>">Supplier Manager</a></li>
             <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=deal_category"?>">Deal Manager</a></li>
         </ul>
     </div>

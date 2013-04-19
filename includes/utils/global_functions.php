@@ -1,6 +1,4 @@
 <?php
-
-
 /* this function resize the photo size */
 
 /*** HTML fucntion ***/
@@ -43,15 +41,11 @@ function resizeImage($Dir, $Image, $NewDir, $NewImage, $MaxWidth, $MaxHeight, $Q
 function uploadImage($tempFile, $tempFileName, $finalDir, $finalFilename)
 {
     $result = false;
-
     $targetFile = $finalDir . basename($tempFileName);
-
     $originalFileName = basename($tempFileName);
-
 
     if (!(move_uploaded_file($tempFile, $targetFile))) {
         $result = false;
-        echo "failure";
     } else {
         // rezie the photo
         resizeImage($finalDir, $originalFileName, $finalDir, $finalFilename, 350, 350, 100);
@@ -63,7 +57,6 @@ function uploadImage($tempFile, $tempFileName, $finalDir, $finalFilename)
     }
     return $result;
 }
-
 
 function deleteImageFromServer($targetFile)
 {
@@ -103,12 +96,12 @@ function setup_configuration_in_session()
     }
 }
 
-function secureRequestParameter($value){
+function secureRequestParameter($value)
+{
     $value = trim($value);
     $value = mysql_real_escape_string($value);
     return $value;
 }
-
 
 
 ?>

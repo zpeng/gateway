@@ -100,6 +100,94 @@ class Supplier{
         return $this->supplier_url;
     }
 
+    public function loadByID($id)
+    {
+        $link = getConnection();
+        $query = " SELECT
+                              supplier_id,
+                              supplier_name,
+                              supplier_url,
+                              supplier_logo,
+                              supplier_email,
+                              supplier_address,
+                              supplier_tel,
+                              supplier_desc,
+                              supplier_archived
+                              FROM ds_supplier
+                   WHERE    supplier_id =  ".$id."
+                   AND      supplier_archived = 'N'";
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $this->setSupplierId($newArray['supplier_id']);
+            $this->setSupplierName($newArray['supplier_name']);
+            $this->setSupplierUrl($newArray['supplier_url']);
+            $this->setSupplierLogo($newArray['supplier_logo']);
+            $this->setSupplierEmail($newArray['supplier_email']);
+            $this->setSupplierAddress($newArray['supplier_address']);
+            $this->setSupplierTel($newArray['supplier_tel']);
+            $this->setSupplierDesc($newArray['supplier_desc']);
+            $this->setSupplierArchived($newArray['supplier_archived']);
+        }
+    }
+
+    public function insert()
+    {
+        $link = getConnection();
+        $query = " INSERT INTO ds_supplier
+                   ( supplier_name,
+                     supplier_url,
+                     supplier_logo,
+                     supplier_email,
+                     supplier_address,
+                     supplier_tel,
+                     supplier_desc,
+                     supplier_archived)
+                   VALUES ('".$this->getSupplierName()."',
+                   '".$this->getSupplierUrl()."',
+                   '".$this->getSupplierLogo()."',
+                   '".$this->getSupplierEmail()."',
+                   '".$this->getSupplierAddress()."',
+                   '".$this->getSupplierTel()."',
+                   '".$this->getSupplierDesc()."',
+                   'N')";
+
+        executeUpdateQuery($link, $query);
+        $last_insert_id = mysql_insert_id();
+        closeConnection($link);
+        return $last_insert_id;
+    }
+
+    public function update(){
+        $link = getConnection();
+        $query = " UPDATE  ds_supplier
+                   SET     supplier_name = '".$this->getSupplierName()."',
+                           supplier_url = '".$this->getSupplierUrl()."',
+                           supplier_logo = '".$this->getSupplierLogo()."',
+                           supplier_email = '".$this->getSupplierEmail()."',
+                           supplier_address = '".$this->getSupplierAddress()."',
+                           supplier_tel = '".$this->getSupplierTel()."',
+                           supplier_desc = '".$this->getSupplierDesc()."'
+                   WHERE   supplier_id = " . $this->getSupplierId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function delete(){
+        $link = getConnection();
+        $query = " UPDATE  ds_supplier
+                   SET     supplier_archived = 'Y'
+                   WHERE   supplier_id = " . $this->getSupplierId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function outputLogoAsImage($imageFolderPath, $class, $width, $height, $border=0 ) {
+        return "<img border='$border' width='$width' height='$height' class='$class' src='".$imageFolderPath.$this->getSupplierLogo()."' />";
+    }
 }
 
 

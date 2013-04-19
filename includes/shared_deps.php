@@ -49,6 +49,7 @@ $GLOBAL_DEPS = array(
             "DatabaseUtils" => "includes/database_utils.php",
             "GlobalFunction" => "includes/utils/global_functions.php",
             "HtmlFunction" => "includes/ui/html_functions.php",
+            "FileUploader" => "includes/classes/FileUploader.php",
         )
     )
 )
