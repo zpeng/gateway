@@ -12,6 +12,7 @@ $module_config = array(
         "Category" => "modules/deal_steal/includes/classes/Category.php",
         "CategoryManager" => "modules/deal_steal/includes/classes/CategoryManager.php",
         "Client" => "modules/deal_steal/includes/classes/Client.php",
+        "ClientManager" => "modules/deal_steal/includes/classes/ClientManager.php",
         "City" => "modules/deal_steal/includes/classes/City.php",
         "CityManager" => "modules/deal_steal/includes/classes/CityManager.php",
         "Deal" => "modules/deal_steal/includes/classes/Deal.php",

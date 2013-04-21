@@ -9,7 +9,6 @@ class Client{
     public $client_dob;
     public $client_tel;
     public $client_mobile;
-    public $client_address;
 
     public function setClientTitle($client_title)
     {
@@ -101,16 +100,101 @@ class Client{
         return $this->client_tel;
     }
 
-    public function setClientAddress($client_address)
+
+    public function loadByID($id)
     {
-        $this->client_address = $client_address;
+        $link = getConnection();
+        $query = " SELECT     client_id,
+                              client_email,
+                              client_password,
+                              client_title,
+                              client_firstname,
+                              client_surname,
+                              client_dob,
+                              client_tel,
+                              client_mobile
+                   FROM       ds_client
+                   WHERE      client_id =  ".$id;
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $this->setClientId($newArray['client_id']);
+            $this->setClientEmail($newArray['client_email']);
+            $this->setClientPassword($newArray['client_password']);
+            $this->setClientTitle($newArray['client_title']);
+            $this->setClientFirstname($newArray['client_firstname']);
+            $this->setClientSurname($newArray['client_surname']);
+            $this->setClientDob($newArray['client_dob']);
+            $this->setClientTel($newArray['client_tel']);
+            $this->setClientMobile($newArray['client_mobile']);
+        }
     }
 
-    public function getClientAddress()
+    public function insert()
     {
-        return $this->client_address;
+        $link = getConnection();
+        $query = " INSERT INTO ds_client
+                   (  client_email,
+                      client_password,
+                      client_title,
+                      client_firstname,
+                      client_surname,
+                      client_dob,
+                      client_tel,
+                      client_mobile)
+                   VALUES ('".$this->getClientEmail()."',
+                   '".$this->getClientPassword()."',
+                   '".$this->getClientTitle()."',
+                   '".$this->getClientFirstname()."',
+                   '".$this->getClientSurname()."',
+                   '".$this->getClientDob()."',
+                   '".$this->getClientTel()."',
+                   '".$this->getClientMobile()."')";
+
+        executeUpdateQuery($link, $query);
+        $last_insert_id = mysql_insert_id();
+        closeConnection($link);
+        return $last_insert_id;
     }
 
+    public function update(){
+        $link = getConnection();
+        $query = " UPDATE  ds_client
+                   SET     client_title = '".$this->getClientTitle()."',
+                           client_firstname = '".$this->getClientFirstname()."',
+                           client_surname = '".$this->getClientSurname()."',
+                           client_dob = '".$this->getClientDob()."',
+                           client_tel = '".$this->getClientTel()."',
+                           client_mobile = '".$this->getClientMobile()."'
+                   WHERE   client_id = " . $this->getClientId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function delete(){
+        $link = getConnection();
+        $query = " DELETE
+                   FROM    ds_client
+                   WHERE   client_id = " . $this->getClientId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function updatePassword($new_password)
+    {
+        $link = getConnection();
+        $newPassword = md5($new_password);
+        $query = " UPDATE ds_client
+                   SET    client_password = '" . $newPassword . "'
+                   WHERE  client_id = " . $this->getClientId();
+
+        $result = executeUpdateQuery($link, $query);
+        closeConnection($link);
+        return $result;
+    }
 
 }
 

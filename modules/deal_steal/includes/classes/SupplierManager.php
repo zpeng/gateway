@@ -27,7 +27,7 @@ class SupplierManager
             $supplier->setSupplierLogo($newArray['supplier_logo']);
             $supplier->setSupplierEmail($newArray['supplier_email']);
             $supplier->setSupplierAddress($newArray['supplier_address']);
-            $supplier->setSupplierUrl($newArray['supplier_tel']);
+            $supplier->setSupplierTel($newArray['supplier_tel']);
             $supplier->setSupplierDesc($newArray['supplier_desc']);
             $supplier->setSupplierArchived($newArray['supplier_archived']);
             array_push($supplier_list, $supplier);

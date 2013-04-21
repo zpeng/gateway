@@ -21,6 +21,10 @@
             include_once(BASE_PATH.'modules/deal_steal/admin/view/supplier_update.php');
             break;
 
+        case "client_list":
+            include_once(BASE_PATH.'modules/deal_steal/admin/view/client_list.php');
+            break;
+
         case "config_list":
             include_once(BASE_PATH.'modules/deal_steal/admin/view/config_list.php');
             break;
