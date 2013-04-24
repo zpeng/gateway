@@ -52,10 +52,6 @@
     <script>
         jQuery("#update_btn").button();
 
-        $.ajaxSetup ({
-            cache: false
-        });
-        var ajax_load = "<img src='"+SERVER_URL+"admin/images/loading.gif' alt='loading...' />";
         jQuery(document).ready(function(){
             jQuery("#menu_type_selector").change(function(){
                 $("#menuLevelSelection").load(SERVER_URL + "modules/cms/admin/view/ajax/MenuLevelSelection.php?menu_type_id="+this.value);
