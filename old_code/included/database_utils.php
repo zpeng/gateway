@@ -7,8 +7,8 @@
 function getConnection(){
     $hostname = "localhost";
     $user = "root";
-    $pass = "19840617";
-    $db = "rose_shoppingcart";
+    $pass = "";
+    $db = "gateway";
 
     $link = @mysql_connect($hostname, $user, $pass );
     if ( ! $link ) {

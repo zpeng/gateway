@@ -1,7 +1,7 @@
 <?php
 $module_config = array(
     "module_name" => "Deal Steal",
-    "module_logo" => "modules/deal_steal/admin/images/deal-steal-logo.png",
+    "module_logo" => "modules/deal_steal/admin/images/ds-logo-small.png",
     "module_view_menu" => "modules/deal_steal/admin/view/left_panel.php",
     "module_view_content" => "modules/deal_steal/admin/view/right_panel.php",
 
