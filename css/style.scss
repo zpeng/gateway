@@ -8,44 +8,88 @@ body {
   background-color: $blue10;
 }
 
-#header {
+#top_header {
   width: 100%;
   background-color: $blue0;
   border-bottom: 3px solid $golden;
 
-  #header_content {
+  #header {
     margin: 0 auto 0 auto;
     width: 1000px;
-    height: 130px;
+    height: 70px;
     position: relative;
 
-    #logo{
-      width: 375px;
+    #header_logo {
+      position: absolute;
+      left: 0;
+      width: 160px;
       height: 100%;
       float: left;
-      img{
+      img {
+        border: 0;
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: 10px;
+        height: 50px;
       }
     }
 
-    #header_right_content{
-      width: 600px;
+    #header_content {
+      width: 800px;
       height: 100%;
       border: 1px solid white;
       float: right;
 
+      #header_nav {
+        position: relative;
+        left: 0;
+        top: 20px;
+        width: 500px;
+        height: 30px;
+        float: left;
+        border: 1px solid white;
+
+      }
+
+      #site_search {
+        position: absolute;
+        right: 0;
+        top: 22px;
+        height: 27px;
+        border: 1px solid white;
+        width: 210px;
+        background-color: $white;
+
+        input{
+          border:0;
+        }
+
+        input#keywords {
+          vertical-align: top;
+          width: 175px;
+          height: 25px;
+          border: 0;
+          margin: 0;
+          padding: 1px;
+          background-color: $white;
+        }
+
+        input#search_btn {
+          vertical-align: top;
+          width: 25px;
+          height: 25px;
+
+
+        }
+      }
     }
   }
-
 
 }
 
 #main_body {
   height: auto;
   width: 100%;
-
 
   #main_content {
     width: 1000px;
