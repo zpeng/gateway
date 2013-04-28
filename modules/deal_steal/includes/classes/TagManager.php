@@ -1,7 +1,6 @@
 <?php
 class TagManager
 {
-
     public function loadAllTags()
     {
         $tags = array();

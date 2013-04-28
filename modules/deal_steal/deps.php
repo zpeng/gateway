@@ -24,6 +24,8 @@ $module_config = array(
         "SupplierManager" => "modules/deal_steal/includes/classes/SupplierManager.php",
         "Tag" => "modules/deal_steal/includes/classes/Tag.php",
         "TagManager" => "modules/deal_steal/includes/classes/TagManager.php",
+        "Template" => "modules/deal_steal/includes/classes/Template.php",
+        "TemplateManager" => "modules/deal_steal/includes/classes/TemplateManager.php",
     ),
 
     "css" => array(
