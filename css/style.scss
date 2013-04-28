@@ -50,7 +50,7 @@ body {
         padding: 0;
 
         /* dropdown menu */
-        nav W{
+        nav {
           float: left;
           text-align: center;
           margin: 0;
@@ -97,16 +97,15 @@ body {
             padding: 0;
             position: absolute;
             top: 100%;
+            font-size: 0.9em;
           }
           ul ul li {
             float: none;
             border-top: 1px solid $golden;
             position: relative;
-            font-size: 1.0em;
-            text-transform: uppercase;
           }
           ul ul li a {
-            padding: 5px 15px 5px 15px;
+            padding: 8px 20px 8px 20px;
             color: $golden1;
           }
           ul ul li a:hover {
