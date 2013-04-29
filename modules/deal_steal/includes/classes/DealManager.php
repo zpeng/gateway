@@ -59,45 +59,33 @@ class DealManager
         return $deal_list;
     }
 
-    public function outputAllDealsAsHtmlTable($id = "", $class = "")
+    public function getDealsTableDataSource()
     {
-        $htmlTable = "<table id='$id' class='$class'>";
-        $htmlTable = $htmlTable . "<tr>
-                                    <th>ID</th>
-                                    <th>Supplier</th>
-                                    <th>Category</th>
-                                    <th>City</th>
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>Available Quantity</th>
-                                    <th>Online Date</th>
-                                    <th>Offline Date</th>
-                                    <th>Action</th>
-                                    </tr>";
-
         $deal_list = $this->loadAllDeals();
-
+        $header = array("ID", "Supper", "Category", "City", "Title", "Type", "Available Quantity", "Online Date", "Offline Date", "Action");
+        $body = [];
         if (sizeof($deal_list) > 0) {
             foreach ($deal_list as $deal) {
-                $htmlTable = $htmlTable . " <tr>
-                                <td>" . $deal->getId() . "</td>
-                                <td>" . $deal->getSupplierName() . "</td>
-                                <td>" . $deal->getCategoryName() . "</td>
-                                <td>" . $deal->getCityName() . "</td>
-                                <td>" . $deal->getTitle() . "</td>
-                                <td>" . $deal->getType() . "</td>
-                                <td>" . $deal->getOriginalQuantity() . "/" . $deal->getQuantity() . "</td>
-                                <td>" . $deal->getOnlineDate() . "</td>
-                                <td>" . $deal->getOfflineDate() . "</td>
-                                <td>
-                                <a class='icon_edit' title='Update Deal' href='" . SERVER_URL . "admin/main.php?view=deal_detail&deal_id=" .
-                    $deal->getId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
-                                </td>
-                                </tr> ";
+                array_push($body, array(
+                    $deal->getId(),
+                    $deal->getSupplierName(),
+                    $deal->getCategoryName(),
+                    $deal->getCityName(),
+                    $deal->getTitle(),
+                    $deal->getType(),
+                    $deal->getOriginalQuantity() . "/" . $deal->getQuantity(),
+                    $deal->getOnlineDate(),
+                    $deal->getOfflineDate(),
+                    "<a class='icon_edit' title='Update Deal' href='" . SERVER_URL . "admin/main.php?view=deal_detail&deal_id=" .
+                        $deal->getId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                ));
             }
+            $dataSource = array(
+                "header" => $header,
+                "body" => $body
+            );
         }
-        $htmlTable = $htmlTable . "</table>";
-        return $htmlTable;
+        return $dataSource;
     }
 }
 
