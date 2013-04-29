@@ -1,160 +1,335 @@
 <?php
 class Deal
 {
-    public $deal_id;
-    public $deal_supplier_id;
-    public $deal_category_id;
-    public $deal_title;
-    public $deal_type;
-    public $deal_desc;
-    public $deal_quantity;
-    public $deal_original_price;
-    public $deal_offer_price;
-    public $deal_online_date;
-    public $deal_offline_date;
-    public $deal_fine_print;
-    public $deal_archived;
+    public $id;
+    public $supplier_id;
+    public $supplier_name;
+    public $category_id;
+    public $category_name;
+    public $city_id;
+    public $city_name;
+    public $title;
+    public $type;
+    public $desc;
+    public $original_quantity;
+    public $quantity;
+    public $original_price;
+    public $offer_price;
+    public $online_date;
+    public $offline_date;
+    public $fine_print;
+    public $archived;
 
-    public function setDealArchived($deal_archived)
+    public function setCategoryName($category_name)
     {
-        $this->deal_archived = $deal_archived;
+        $this->category_name = $category_name;
     }
 
-    public function getDealArchived()
+    public function getCategoryName()
     {
-        return $this->deal_archived;
+        return $this->category_name;
     }
 
-    public function setDealCategoryId($deal_category_id)
+    public function setCityName($city_name)
     {
-        $this->deal_category_id = $deal_category_id;
+        $this->city_name = $city_name;
     }
 
-    public function getDealCategoryId()
+    public function getCityName()
     {
-        return $this->deal_category_id;
+        return $this->city_name;
     }
 
-    public function setDealDesc($deal_desc)
+    public function setSupplierName($supplier_name)
     {
-        $this->deal_desc = $deal_desc;
+        $this->supplier_name = $supplier_name;
     }
 
-    public function getDealDesc()
+    public function getSupplierName()
     {
-        return $this->deal_desc;
+        return $this->supplier_name;
     }
 
-    public function setDealFinePrint($deal_fine_print)
+
+    public function setArchived($archived)
     {
-        $this->deal_fine_print = $deal_fine_print;
+        $this->archived = $archived;
     }
 
-    public function getDealFinePrint()
+    public function getArchived()
     {
-        return $this->deal_fine_print;
+        return $this->archived;
     }
 
-    public function setDealId($deal_id)
+    public function setCategoryId($category_id)
     {
-        $this->deal_id = $deal_id;
+        $this->category_id = $category_id;
     }
 
-    public function getDealId()
+    public function getCategoryId()
     {
-        return $this->deal_id;
+        return $this->category_id;
     }
 
-    public function setDealOfferPrice($deal_offer_price)
+    public function setCityId($city_id)
     {
-        $this->deal_offer_price = $deal_offer_price;
+        $this->city_id = $city_id;
     }
 
-    public function getDealOfferPrice()
+    public function getCityId()
     {
-        return $this->deal_offer_price;
+        return $this->city_id;
     }
 
-    public function setDealOfflineDate($deal_offline_date)
+    public function setDesc($desc)
     {
-        $this->deal_offline_date = $deal_offline_date;
+        $this->desc = $desc;
     }
 
-    public function getDealOfflineDate()
+    public function getDesc()
     {
-        return $this->deal_offline_date;
+        return $this->desc;
     }
 
-    public function setDealOnlineDate($deal_online_date)
+    public function setFinePrint($fine_print)
     {
-        $this->deal_online_date = $deal_online_date;
+        $this->fine_print = $fine_print;
     }
 
-    public function getDealOnlineDate()
+    public function getFinePrint()
     {
-        return $this->deal_online_date;
+        return $this->fine_print;
     }
 
-    public function setDealOriginalPrice($deal_original_price)
+    public function setId($id)
     {
-        $this->deal_original_price = $deal_original_price;
+        $this->id = $id;
     }
 
-    public function getDealOriginalPrice()
+    public function getId()
     {
-        return $this->deal_original_price;
+        return $this->id;
     }
 
-    public function setDealQuantity($deal_quantity)
+    public function setOfferPrice($offer_price)
     {
-        $this->deal_quantity = $deal_quantity;
+        $this->offer_price = $offer_price;
     }
 
-    public function getDealQuantity()
+    public function getOfferPrice()
     {
-        return $this->deal_quantity;
+        return $this->offer_price;
     }
 
-    public function setDealSupplierId($deal_supplier_id)
+    public function setOfflineDate($offline_date)
     {
-        $this->deal_supplier_id = $deal_supplier_id;
+        $this->offline_date = $offline_date;
     }
 
-    public function getDealSupplierId()
+    public function getOfflineDate()
     {
-        return $this->deal_supplier_id;
+        return $this->offline_date;
     }
 
-    public function setDealTitle($deal_title)
+    public function setOnlineDate($online_date)
     {
-        $this->deal_title = $deal_title;
+        $this->online_date = $online_date;
     }
 
-    public function getDealTitle()
+    public function getOnlineDate()
     {
-        return $this->deal_title;
+        return $this->online_date;
     }
 
-    public function setDealType($deal_type)
+    public function setOriginalPrice($original_price)
     {
-        $this->deal_type = $deal_type;
+        $this->original_price = $original_price;
     }
 
-    public function getDealType()
+    public function getOriginalPrice()
     {
-        return $this->deal_type;
+        return $this->original_price;
     }
 
-
-
-    public function getSupplier(){
-
+    public function setOriginalQuantity($original_quantity)
+    {
+        $this->original_quantity = $original_quantity;
     }
 
-    public function getCategory(){
-
+    public function getOriginalQuantity()
+    {
+        return $this->original_quantity;
     }
 
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    public function setSupplierId($supplier_id)
+    {
+        $this->supplier_id = $supplier_id;
+    }
+
+    public function getSupplierId()
+    {
+        return $this->supplier_id;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /********************** functions **********************/
+    public function loadById($id)
+    {
+        $link = getConnection();
+        $query = " SELECT     ds_deal.deal_id,
+                              ds_deal.supplier_id,
+                              ds_supplier.supplier_name,
+                              ds_deal.category_id,
+                              ds_category.category_name,
+                              ds_deal.city_id,
+                              ds_city.city_name,
+                              deal_title,
+                              deal_type,
+                              original_quantity,
+                              quantity,
+                              original_price,
+                              offer_price,
+                              online_date,
+                              offline_date,
+                              fine_print,
+                              deal_desc,
+                              deal_archived
+                            FROM
+                              ds_deal,
+                              ds_category,
+                              ds_supplier,
+                              ds_city
+                            WHERE ds_deal.deal_id = " . $id . "
+                              AND deal_archived = 'N'
+                              AND ds_category.category_id = ds_deal.category_id
+                              AND ds_city.city_id = ds_deal.city_id
+                              AND ds_supplier.supplier_id = ds_deal.supplier_id";
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $this->setId($newArray['deal_id']);
+            $this->setSupplierId($newArray['supplier_id']);
+            $this->setSupplierName($newArray['supplier_name']);
+            $this->setSupplierId($newArray['category_id']);
+            $this->setCategoryName($newArray['category_name']);
+            $this->setCityId($newArray['city_id']);
+            $this->setCityName($newArray['city_name']);
+            $this->setTitle($newArray['deal_title']);
+            $this->setType($newArray['deal_type']);
+            $this->setOriginalQuantity($newArray['original_quantity']);
+            $this->setQuantity($newArray['quantity']);
+            $this->setOriginalPrice($newArray['original_price']);
+            $this->setOfferPrice($newArray['offer_price']);
+            $this->setOnlineDate($newArray['online_date']);
+            $this->setOfflineDate($newArray['offline_date']);
+            $this->setFinePrint($newArray['fine_print']);
+            $this->setDesc($newArray['deal_desc']);
+            $this->setArchived($newArray['deal_archived']);
+        }
+    }
+
+    public function insert()
+    {
+        $link = getConnection();
+        $query = " INSERT INTO   ds_deal
+                                (supplier_id,
+                                 category_id,
+                                 city_id,
+                                 deal_title,
+                                 deal_type,
+                                 original_quantity,
+                                 quantity,
+                                 original_price,
+                                 offer_price,
+                                 online_date,
+                                 offline_date,
+                                 fine_print,
+                                 deal_desc,
+                                 deal_archived)
+                    VALUES (" . $this->getSupplierId() . ",
+                            " . $this->getCategoryId() . ",
+                            " . $this->getCityId() . ",
+                            '" . $this->getTitle() . "',
+                            '" . $this->getType() . "',
+                            " . $this->getOriginalQuantity() . ",
+                            " . $this->getQuantity() . ",
+                            " . $this->getOriginalPrice() . ",
+                            " . $this->getOfferPrice() . ",
+                            '" . $this->getOnlineDate() . "',
+                            '" . $this->getOfflineDate() . "',
+                            '" . $this->getFinePrint() . "',
+                            '" . $this->getDesc() . "',
+                            'N');";
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function update()
+    {
+        $link = getConnection();
+        $query = "  UPDATE ds_deal
+                    SET
+                      supplier_id = " . $this->getSupplierId() . ",
+                      category_id = " . $this->getCategoryId() . ",
+                      city_id = " . $this->getCityId() . ",
+                      deal_title = '" . $this->getTitle() . "',
+                      deal_type = '" . $this->getType() . "',
+                      original_quantity = " . $this->getOriginalQuantity() . ",
+                      quantity = " . $this->getQuantity() . ",
+                      original_price = " . $this->getOriginalPrice() . ",
+                      offer_price = " . $this->getOfferPrice() . ",
+                      online_date = '" . $this->getOnlineDate() . "',
+                      offline_date = '" . $this->getOfflineDate() . "',
+                      fine_print = '" . $this->getFinePrint() . "',
+                      deal_desc = '" . $this->getDesc() . "'
+                    WHERE deal_id  = " . $this->getId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function delete()
+    {
+        $link = getConnection();
+        $query = " UPDATE ds_deal
+                   SET    deal_archived = 'Y'
+                   WHERE deal_id  = " . $this->getId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
 
 }
+
 ?>
