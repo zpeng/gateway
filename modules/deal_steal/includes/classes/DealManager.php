@@ -80,11 +80,11 @@ class DealManager
                         $deal->getId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
                 ));
             }
-            $dataSource = array(
-                "header" => $header,
-                "body" => $body
-            );
         }
+        $dataSource = array(
+            "header" => $header,
+            "body" => $body
+        );
         return $dataSource;
     }
 }

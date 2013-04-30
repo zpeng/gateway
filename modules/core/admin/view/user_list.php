@@ -21,7 +21,7 @@
     <input type="text" id="filter" class="EditableGrid"/>
     <?
     $userManager = new UserManager();
-    echo $userManager->outputAsHtmlTable("UserListGrid", "EditableGrid");
+    echo createGenericTable("UserListGrid", "EditableGrid", $userManager->getUserTableDataSource());
     ?>
     <!-- Paginator control -->
     <div id="paginator" class="EditableGrid"></div>

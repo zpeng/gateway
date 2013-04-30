@@ -23,7 +23,7 @@
     <input type="text" id="filter" class="EditableGrid"/>
     <?
     $dealManager = new DealManager();
-    echo outputGenericTable("DealListGrid", "EditableGrid", $dealManager->getDealsTableDataSource());
+    echo createGenericTable("DealListGrid", "EditableGrid", $dealManager->getDealsTableDataSource());
     ?>
     <!-- Paginator control -->
     <div id="paginator" class="EditableGrid"></div>

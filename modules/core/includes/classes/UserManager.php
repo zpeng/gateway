@@ -38,7 +38,7 @@ class UserManager
         $query = " select user_id
                 from    core_user
                 where   user_archived =   'N'
-                and     user_name =  '" . $email."'";
+                and     user_name =  '" . $email . "'";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
@@ -78,37 +78,32 @@ class UserManager
         return str_replace('\\u0000', "", json_encode((array)$this->getUserList()));
     }
 
-    public function outputAsHtmlTable($id = "", $class = "")
+    public function getUserTableDataSource()
     {
-        $htmlTable = "<table id='$id' class='$class'>";
-        $htmlTable = $htmlTable . "<tr>
-                                        <th>ID</th>
-                                        <th>User Name</th>
-                                        <th>Subscribed Modules</th>
-                                        <th>Action</th>
-                                    </tr>";
-
         $userList = $this->getUserList();
+        $header = array("ID", "User Name", "Subscribed Modules", "Action");
+        $body = [];
         if (sizeof($userList) > 0) {
             foreach ($userList as $user) {
-                $htmlTable = $htmlTable . "  <tr>
-                        <td>" . $user->get_user_id() . "</td>
-                        <td>" . $user->get_user_name() . "</td>
-                        <td>" . implode(", ", array_values($user->user_subscribe_module_code_name_map)) . "</td>
-                        <td>
-                        <a class='icon_delete' title='Delete this user account' href='" . SERVER_URL . "admin/control/user_delete_process.php?user_id=" .
+                array_push($body, array(
+                    $user->get_user_id(),
+                    $user->get_user_name(),
+                    implode(", ", array_values($user->user_subscribe_module_code_name_map)),
+                    "<a class='icon_delete' title='Delete this user account' href='" . SERVER_URL . "admin/control/user_delete_process.php?user_id=" .
                     $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "'
-                        onclick='return confirmDeletion()'></a>
-                        <a class='icon_edit' title='Update password' href='" . SERVER_URL . "admin/main.php?view=user_password_update&user_id=" .
+                    onclick='return confirmDeletion()'></a>
+                    <a class='icon_edit' title='Update password' href='" . SERVER_URL . "admin/main.php?view=user_password_update&user_id=" .
                     $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
-                       <a class='icon_admin' title='Update module subscription' href='" . SERVER_URL . "admin/main.php?view=user_module_update&user_id=" .
-                    $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></
-                        </td>
-                        </tr> ";
+                    <a class='icon_admin' title='Update module subscription' href='" . SERVER_URL . "admin/main.php?view=user_module_update&user_id=" .
+                    $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                ));
             }
         }
-        $htmlTable = $htmlTable . "</table>";
-        return $htmlTable;
+        $dataSource = array(
+            "header" => $header,
+            "body" => $body
+        );
+        return $dataSource;
     }
 }
 ?>

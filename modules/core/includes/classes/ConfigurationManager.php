@@ -126,36 +126,29 @@ class ConfigurationManager
         return $this->configEntityList;
     }
 
-    public function outputModuleConfigsAsHtmlTable($module_code, $id = "", $class = "")
+    public function getConfigTableDataSource($module_code)
     {
-        $htmlTable = "<table id='$id' class='$class'>";
-        $htmlTable = $htmlTable . "<tr>
-                                    <th>Config Title</th>
-                                    <th>Config Key</th>
-                                    <th>Config Value</th>
-                                    <th>Config Description</th>
-                                    <th>Config Datatype</th>
-                                    <th>Action</th>
-                                    </tr>";
-
         $configList = $this->loadByModuleCode($module_code);
-
+        $header = array("Config Title", "Config Key", "Config Value", "Config Description", "Config Datatype", "Action");
+        $body = [];
         if (sizeof($configList) > 0) {
             foreach ($configList as $config) {
-                $htmlTable = $htmlTable . " <tr>
-                                <td>" . $config->get_configuration_title() . "</td>
-                                <td>" . $config->get_configuration_key() . "</td>
-                                <td>" . $config->get_configuration_value() . "</td>
-                                <td>" . $config->get_configuration_desc() . "</td>
-                                <td>" . $config->get_configuration_type() . "</td>
-                                <td>  <a class='icon_edit' title='Update Configuration' href='" . SERVER_URL . "admin/main.php?view=config_update&config_id=" .
-                    $config->get_configuration_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
-                                </td>
-                                </tr> ";
+                array_push($body, array(
+                    $config->get_configuration_title(),
+                    $config->get_configuration_key(),
+                    $config->get_configuration_value(),
+                    $config->get_configuration_desc(),
+                    $config->get_configuration_type(),
+                    "<a class='icon_edit' title='Update Configuration' href='" . SERVER_URL . "admin/main.php?view=config_update&config_id=" .
+                        $config->get_configuration_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                ));
             }
         }
-        $htmlTable = $htmlTable . "</table>";
-        return $htmlTable;
+        $dataSource = array(
+            "header" => $header,
+            "body" => $body
+        );
+        return $dataSource;
     }
 }
 ?>

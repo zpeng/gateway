@@ -22,7 +22,7 @@
 
     <?
     $configManager = new ConfigurationManager();
-    echo $configManager->outputModuleConfigsAsHtmlTable($_REQUEST["module_code"],"CoreConfigListGrid", "EditableGrid");
+    echo createGenericTable("CoreConfigListGrid", "EditableGrid", $configManager->getConfigTableDataSource($_REQUEST["module_code"]));
     ?>
 
     <!-- Paginator control -->

@@ -1,6 +1,6 @@
 <?php
 
-function outputGenericTable($id = "", $class = "", $dataSource)
+function createGenericTable($id = "", $class = "", $dataSource)
 {
     $htmlTable = "<table id='$id' class='$class'>";
     $htmlTable = $htmlTable . "<tr>";

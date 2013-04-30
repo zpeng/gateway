@@ -1,22 +1,10 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
-*/
-
-/**
- * Description of ContentManager
- *
- * @author ziyang
- */
 class ContentManager
 {
-    public $contentList = [];
-
     public function getContentList()
     {
+        $contentList = [];
         $link = getConnection();
-
         $query = "SELECT
                       content_id,
                       content_author_id,
@@ -41,53 +29,47 @@ class ContentManager
             $content->set_last_modify_date($newArray['content_last_modify_date']);
             $content->set_last_modify_by_user_id($newArray['content_last_modify_by']);
             $content->set_archived($newArray['content_archived']);
-            array_push($this->contentList, $content);
+            array_push($contentList, $content);
         }
-        return $this->contentList;
+        return $contentList;
     }
 
-    public function outputAsHtmlTable($id = "", $class = "")
+    public function getContentTableDataSource()
     {
-        $htmlTable = "<table id='$id' class='$class'>";
-        $htmlTable = $htmlTable . "<tr>
-                                        <th>ID</th>
-                                        <th>Article Title</th>
-                                        <th>Author</th>
-                                        <th>Created Date</th>
-                                        <th>Last Modified By</th>
-                                        <th>Last Modified Date</th>
-                                        <th>Action</th>
-                                    </tr>";
-        $this->getContentList();
-        if (sizeof($this->contentList) > 0) {
-            foreach ($this->contentList as $content) {
-                $htmlTable = $htmlTable . "  <tr>
-                        <td>" . $content->get_content_id() . "</td>
-                        <td>" . $content->get_title() . "</td>
-                        <td>" . $content->get_author_name() . "</td>
-                        <td>" . $content->get_create_date() . "</td>
-                        <td>" . $content->get_last_modify_by() . "</td>
-                        <td>" . $content->get_last_modify_date() . "</td>
-                        <td>
-                        <a class='icon_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/admin/control/content_delete.php?content_id=" .
-                    $content->get_content_id() . "&module_code=" . $_REQUEST['module_code'] . "'
+        $contentList = $this->getContentList();
+        $header = array("ID", "Article Title", "Author", "Created Date", "Last Modified By", "Last Modified Date", "Action");
+        $body = [];
+        if (sizeof($contentList) > 0) {
+            foreach ($contentList as $content) {
+                array_push($body, array(
+                    $content->get_content_id(),
+                    $content->get_title(),
+                    $content->get_author_name(),
+                    $content->get_create_date(),
+                    $content->get_last_modify_by(),
+                    $content->get_last_modify_date(),
+                    "<a class='icon_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/admin/control/content_delete.php?content_id=" .
+                        $content->get_content_id() . "&module_code=" . $_REQUEST['module_code'] . "'
                         onclick='return confirmDeletion()'></a>
                         <a class='icon_edit' title='Update this article' href='" . SERVER_URL . "admin/main.php?view=content_update&content_id=" .
-                    $content->get_content_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
-                        </td>
-                        </tr> ";
+                        $content->get_content_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                ));
             }
         }
-        $htmlTable = $htmlTable . "</table>";
-        return $htmlTable;
+        $dataSource = array(
+            "header" => $header,
+            "body" => $body
+        );
+        return $dataSource;
     }
 
     public function outputAsHtmlListbox($id = "", $class = "", $style = "")
     {
+        $contentList = [];
         $field = "<select id='" . $id . "' name='" . $id . "' class='$class' style='$style' size='8'>";
-        $this->getContentList();
-        if (sizeof($this->contentList) > 0) {
-            foreach ($this->contentList as $content) {
+        $contentList = $this->getContentList();
+        if (sizeof($contentList) > 0) {
+            foreach ($contentList as $content) {
                 $field = $field . "<option  value='" . $content->get_content_id() . "'>" . $content->get_title() . "</option>";
             }
         }
