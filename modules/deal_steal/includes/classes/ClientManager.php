@@ -1,7 +1,8 @@
 <?php
 class ClientManager
 {
-    public function loadAllClients(){
+    public function loadAllClients()
+    {
         $clientList = array();
         $link = getConnection();
         $query = "SELECT      client_id,
@@ -33,41 +34,32 @@ class ClientManager
         return $clientList;
     }
 
-    public function outputClientsAsHtmlTable($id = "", $class = "")
+    public function getClientTableDataSource()
     {
-        $htmlTable = "<table id='$id' class='$class'>";
-        $htmlTable = $htmlTable . "<tr>
-                                    <th>ID</th>
-                                    <th>Email</th>
-                                    <th>Title</th>
-                                    <th>Name</th>
-                                    <th>Telephone</th>
-                                    <th>Mobile</th>
-                                    <th>Action</th>
-                                    </tr>";
-
-        $client_list = $this->loadAllClients();
-
-        if (sizeof($client_list) > 0) {
-            foreach ($client_list as $client) {
-
-                $htmlTable = $htmlTable . " <tr>
-                                <td>" . $client->getClientId() . "</td>
-                                <td>" . $client->getClientEmail() . "</td>
-                                <td>" . $client->getClientTitle() . "</td>
-                                <td>" . $client->getClientFirstname()." ".$client->getClientSurname() . "</td>
-                                <td>" . $client->getClientTel() . "</td>
-                                <td>" . $client->getClientMobile() . "</td>
-                                <td>
-                                <a class='icon_edit' title='Update City' href='" . SERVER_URL . "admin/main.php?view=client_detail&client_id=" .
-                    $client->getClientId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
-                                </td>
-                                </tr> ";
+        $clientList = $this->loadAllClients();
+        $header = array("ID", "Email", "Title", "Name", "Telephone", "Mobile", "Action");
+        $body = [];
+        if (sizeof($clientList) > 0) {
+            foreach ($clientList as $client) {
+                array_push($body, array(
+                    $client->getClientId(),
+                    $client->getClientEmail(),
+                    $client->getClientTitle(),
+                    $client->$client->getClientFirstname() . " " . $client->getClientSurname(),
+                    $client->getClientTel(),
+                    $client->getClientMobile(),
+                    "<a class='icon_edit' title='Update City' href='" . SERVER_URL . "admin/main.php?view=client_detail&client_id=" .
+                        $client->getClientId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                ));
             }
         }
-        $htmlTable = $htmlTable . "</table>";
-        return $htmlTable;
+        $dataSource = array(
+            "header" => $header,
+            "body" => $body
+        );
+        return $dataSource;
     }
+
 }
 
 

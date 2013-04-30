@@ -4,13 +4,13 @@
 
     <?
     $clientManager = new ClientManager();
-    echo $clientManager->outputClientsAsHtmlTable("ClientListGrid", "EditableGrid");
+    echo createGenericTable("ClientListGrid", "EditableGrid", $clientManager->getClientTableDataSource());
     ?>
 
 </div>
 
 <script>
-   //data grid
+    //data grid
     window.onload = function () {
         var ClientListGrid = new EditableGrid("ClientListGrid");
 

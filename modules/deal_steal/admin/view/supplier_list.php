@@ -1,7 +1,7 @@
 <h1 class="content_title">All Suppliers</h1>
 <? include_once('view/notification_bar.php') ?>
 <div id="content">
-    <a id="add_new_supplier" class="anchor_button"  href="#">Add New Supplier</a>
+    <a id="add_new_supplier" class="anchor_button" href="#">Add New Supplier</a>
     <br class="clear"/>
 
     <!--  Number of rows per page and bars in chart -->
@@ -25,7 +25,7 @@
 
     <?
     $supplierManager = new SupplierManager();
-    echo $supplierManager->outputSuppliersAsHtmlTable("SupplierListGrid", "EditableGrid", $GLOBAL_DEPS[$_REQUEST['module_code']]["supplier_logo_folder"]);
+    echo createGenericTable("SupplierListGrid", "EditableGrid", $supplierManager->getSupplierTableDataSource($GLOBAL_DEPS[$_REQUEST['module_code']]["supplier_logo_folder"]));
     ?>
     <!-- Paginator control -->
     <div id="paginator" class="EditableGrid"></div>
@@ -34,17 +34,19 @@
 
 <div id="dialog" title="Create New Supplier">
     <br/>
-    <form id="createSupplierForm"  action="<?= SERVER_URL ?>modules/deal_steal/admin/control/supplier_create.php" method='post'>
+
+    <form id="createSupplierForm" action="<?= SERVER_URL ?>modules/deal_steal/admin/control/supplier_create.php"
+          method='post'>
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
-        <table width="500" border="0" class="dialogTable" >
+        <table width="500" border="0" class="dialogTable">
             <tr>
                 <td width="150" align="right"><b>Supplier Name: </b></td>
-                <td><input name="supplier_name" id="supplier_name" style="width: 200px;" /></td>
+                <td><input name="supplier_name" id="supplier_name" style="width: 200px;"/></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <input name='Add' id="add_button" type='submit'  value='Create' />
+                    <input name='Add' id="add_button" type='submit' value='Create'/>
                     <input name='Reset' id="reset_button" type='reset' value='Reset'/>
                 </td>
             </tr>
@@ -84,7 +86,7 @@
 
     //data grid
     window.onload = function () {
-        var SupplierListGrid = new EditableGrid("SupplierListGrid",{
+        var SupplierListGrid = new EditableGrid("SupplierListGrid", {
             enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
             pageSize: 10
         });

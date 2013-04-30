@@ -5,7 +5,7 @@
 
     <?
     $cityManager = new CityManager();
-    echo $cityManager->outputCitiesAsHtmlTable("CityListGrid", "EditableGrid");
+    echo createGenericTable("CityListGrid", "EditableGrid", $cityManager->getCityTableDataSource());
     ?>
 
 </div>

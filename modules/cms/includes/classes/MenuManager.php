@@ -89,11 +89,11 @@ class MenuManager
 
     function outputMenuListAsListbox($menu_type_id, $id = "", $class = "", $style = "")
     {
-        $menulist = $this->getMenuItemListByMenuTypeId($menu_type_id);
+        $menu_list = $this->getMenuItemListByMenuTypeId($menu_type_id);
         $field = "<select name='$id' id='$id' class ='$class' style='$style' size='5'>";
         $field = $field . "<option value='0'> As parent </option>";
-        if (sizeof($menulist) > 0) {
-            foreach ($menulist as $menu) {
+        if (sizeof($menu_list) > 0) {
+            foreach ($menu_list as $menu) {
                 $field = $field . $menu->outputAsSelectOption("&nbsp;&nbsp;");
             }
         }
