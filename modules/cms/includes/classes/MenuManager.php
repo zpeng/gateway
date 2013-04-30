@@ -101,25 +101,48 @@ class MenuManager
         return $field;
     }
 
-    public function outputAsHtmlTable($id = "", $class = "", $menu_type_id)
+    public function getMenuTableDataSource($menu_type_id)
     {
-        $htmlTable = "<table id='$id' class='$class'>";
-        $htmlTable = $htmlTable . "<tr>
-                                        <th>ID</th>
-                                        <th>Menu Title</th>
-                                        <th>Link</th>
-                                        <th>Order</th>
-                                        <th>Description</th>
-                                        <th>Action</th>
-                                    </tr>";
         $menu_list = $this->getMenuItemListByMenuTypeId($menu_type_id);
+        $header = array("ID", "Menu Title", "Link", "Order", "Description", "Action");
+        $body = [];
         if (sizeof($menu_list) > 0) {
             foreach ($menu_list as $menu) {
-                $htmlTable = $htmlTable . $menu->outputAsHtmlTableRow("");
+                $this->getMenuTableRowDataSet($body, $menu, "");
             }
         }
-        $htmlTable = $htmlTable . "</table>";
-        return $htmlTable;
+        $dataSource = array(
+            "header" => $header,
+            "body" => $body
+        );
+        return $dataSource;
+    }
+
+    private function getMenuTableRowDataSet(&$body, $menu, $padding)
+    {
+        // note that the parameter $body is passed by reference
+        if ($menu->get_menu_parent_id() != "0") {
+            //this a sub-menu, need to add padding
+            $padding = $padding . "      ";
+        }
+        array_push($body, array(
+            $menu->get_menu_id(),
+            $menu->get_menu_name_with_padding($padding),
+            $menu->get_menu_link(),
+            $menu->get_menu_order(),
+            $menu->get_menu_desc(),
+            "<a class='icon_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/admin/control/menu_delete.php?menu_id=" .
+                $menu->get_menu_id() . "&module_code=" . $_REQUEST['module_code'] . "'
+                        onclick='return confirmDeletion()'></a>
+                        <a class='icon_edit' title='Update this article' href='" . SERVER_URL . "admin/main.php?view=menu_update&menu_id=" .
+                $menu->get_menu_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+        ));
+        $sub_menu_list = $menu->get_sub_menu_list();
+        if (sizeof($sub_menu_list) > 0) {
+            foreach ($sub_menu_list as $sub_menu) {
+                $this->getMenuTableRowDataSet($body, $sub_menu, $padding);
+            }
+        }
     }
 
 

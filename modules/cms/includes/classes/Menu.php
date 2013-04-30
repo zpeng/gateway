@@ -40,7 +40,7 @@ class Menu
         return $this->_menu_name;
     }
 
-    public function get_menu_name_as_table_cell($padding = "")
+    public function get_menu_name_with_padding($padding = "")
     {
         $output = $padding;
         if ($this->get_menu_parent_id() != "0") {
@@ -268,45 +268,13 @@ class Menu
         }
     }
 
-    public function outputAsHtmlTableRow($padding = "")
-    {
-        if ($this->get_menu_parent_id() != "0") {
-            //this a sub-menu, need to add padding
-            $padding = $padding . "      ";
-        }
-        $htmlRow = "<tr>";
-        $htmlRow = $htmlRow . "
-                        <td>" . $this->get_menu_id() . "</td>
-                        <td>" . $this->get_menu_name_as_table_cell($padding) . "</td>
-                        <td>" . $this->get_menu_link() . "</td>
-                        <td>" . $this->get_menu_order() . "</td>
-                        <td>" . $this->get_menu_desc() . "</td>
-                        <td>
-                        <a class='icon_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/admin/control/menu_delete.php?menu_id=" .
-            $this->get_menu_id() . "&module_code=" . $_REQUEST['module_code'] . "'
-                        onclick='return confirmDeletion()'></a>
-                        <a class='icon_edit' title='Update this article' href='" . SERVER_URL . "admin/main.php?view=menu_update&menu_id=" .
-            $this->get_menu_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
-                        </td>
-        ";
-        $htmlRow . "</tr>";
-
-        if (sizeof($this->_sub_menu_list) > 0) {
-            foreach ($this->_sub_menu_list as $sub_menu) {
-                $htmlRow = $htmlRow . $sub_menu->outputAsHtmlTableRow($padding);
-            }
-        }
-
-        return $htmlRow;
-    }
-
     public function outputAsSelectOption($padding = "")
     {
         if ($this->get_menu_parent_id() != "0") {
             //this a sub-menu, need to add padding
             $padding = $padding . "&nbsp;&nbsp;";
         }
-        $htmlOption = "<option value='" . $this->get_menu_id() . "'>" . $this->get_menu_name_as_table_cell($padding) . "</option>";
+        $htmlOption = "<option value='" . $this->get_menu_id() . "'>" . $this->get_menu_name_with_padding($padding) . "</option>";
 
 
         if (sizeof($this->_sub_menu_list) > 0) {

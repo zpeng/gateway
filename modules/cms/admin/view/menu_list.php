@@ -8,20 +8,19 @@
     <div id="tabs-1">
         <?
         $menuManager = new MenuManager();
-        echo $menuManager->outputAsHtmlTable("TopMenuListGrid", "EditableGrid", 1);
+        echo createGenericTable("TopMenuListGrid", "EditableGrid", $menuManager->getMenuTableDataSource(1));
         ?>
     </div>
     <div id="tabs-2">
         <?
-        $menuManager = new MenuManager();
-        echo $menuManager->outputAsHtmlTable("BottomMenuListGrid", "EditableGrid", 2);
+        echo createGenericTable("BottomMenuListGrid", "EditableGrid", $menuManager->getMenuTableDataSource(2));
         ?>
     </div>
 </div>
 <br/>
 <script>
-    jQuery(function() {
-        jQuery( "#content" ).tabs();
+    jQuery(function () {
+        jQuery("#content").tabs();
     });
 
     window.onload = function () {

@@ -3,13 +3,14 @@
 function createGenericTable($id = "", $class = "", $dataSource)
 {
     $htmlTable = "<table id='$id' class='$class'>";
-    $htmlTable = $htmlTable . "<tr>";
+    $htmlTable = $htmlTable . "<thead><tr>";
 
     foreach ($dataSource["header"] as $head_value) {
         $htmlTable = $htmlTable . "<th>" . $head_value . "</th>";
     }
-    $htmlTable = $htmlTable . "</tr>";
+    $htmlTable = $htmlTable . "</tr></thead>";
 
+    $htmlTable = $htmlTable . "<tbody>";
     foreach ($dataSource["body"] as $row) {
         $htmlTable = $htmlTable . "<tr>";
         foreach ($row as $cell) {
@@ -17,6 +18,8 @@ function createGenericTable($id = "", $class = "", $dataSource)
         }
         $htmlTable = $htmlTable . "</tr>";
     }
+    $htmlTable = $htmlTable . "</tbody>";
+
     $htmlTable = $htmlTable . "</table>";
     return $htmlTable;
 }
