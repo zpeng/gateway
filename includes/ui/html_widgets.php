@@ -25,6 +25,36 @@ function createGenericTable($id = "", $class = "", $dataSource)
 }
 
 
+function createCheckboxList($id = "", $class = "", $name = "", $data_source)
+{
+    /*
+    $dataSource = array(
+        "data" => array(
+            "key1" => "value1",
+            "key2" => "value2",
+            "key3" => "value3",
+            "key4" => "value4",
+            "key5" => "value5",
+        ),
+        "selected" => array(
+            "key1" => "value1",
+            "key4" => "value4",
+        )
+    );
+    */
+
+    $html = "<ul class='$class' id='$id'>";
+    if (array_key_exists("data", $dataSource) && sizeof($dataSource["data"]) > 0) {
+        foreach ($dataSource["data"] as $key => $value) {
+            if (array_key_exists("selected", $dataSource) && array_key_exists($key, $dataSource["selected"])) {
+                $html = $html . "<li><input  checked='true' type='checkbox'  name='$name' value='" . $value . "'><label>" . $key . "</label>";
+            } else {
+                $html = $html . "<li><input type='checkbox'  name='$name' value='" . $value . "'><label>" . $key . "</label>";
+            }
+        }
+    }
+    return $html = $html . "</ul>";
+}
 
 
 

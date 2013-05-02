@@ -17,7 +17,7 @@ require_once(BASE_PATH . 'admin/control/auth_landing.php');
         <?php
         foreach ($s_user_session->user_subscribe_module_code_name_map as $module_code => $module_name) {
             echo "<div class='module_box' ><a href='main.php?module_code=" . $module_code . "&view=default'>
-            <img src='".SERVER_URL . $GLOBAL_DEPS[$module_code]["module_logo"]."' class='module_logo' />
+            <img src='" . SERVER_URL . $GLOBAL_DEPS[$module_code]["module_logo"] . "' class='module_logo' />
             " . $module_name . "</a></div>";
         }
         ?>
