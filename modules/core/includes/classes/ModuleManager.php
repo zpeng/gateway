@@ -29,15 +29,19 @@ class ModuleManager
         return $moduleList;
     }
 
-    public function outputModuleListAsHtmlCheckboxList()
+    public function getModuleCheckboxListDataSource()
     {
-        $html = "<ul class='checkbox_list'>";
-        if (sizeof($this->getModuleList()) > 0) {
-            foreach ($this->getModuleList() as $module) {
-                $html = $html . "<li><input type='checkbox' name='subscribe_module_code_list[]' value='" . $module->get_module_code() . "'><label>" . $module->get_module_name() . "</label>";
+        $module_list = $this->getModuleList();
+        $data = array();
+        if (sizeof($module_list) > 0) {
+            foreach ($module_list as $module) {
+                $data[$module->get_module_name()] = $module->get_module_code();
             }
         }
-        return $html = $html . "</ul>";
+        $dataSource = array(
+            "data" => $data
+        );
+        return $dataSource;
     }
 
     public function getModuleListAsJSON()

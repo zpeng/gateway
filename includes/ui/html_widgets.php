@@ -25,7 +25,7 @@ function createGenericTable($id = "", $class = "", $dataSource)
 }
 
 
-function createCheckboxList($id = "", $class = "", $name = "", $data_source)
+function createCheckboxList($id = "", $class = "", $name = "", $dataSource)
 {
     /*
     $dataSource = array(

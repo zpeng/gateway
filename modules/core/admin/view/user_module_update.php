@@ -7,6 +7,7 @@
     $user->loadByID($user_id);
     ?>
     <br/>
+
     <form id="UserModuleUpdateForm" method="post">
         <input type="hidden" value="<? echo $user_id ?>" name="user_id" id="user_id"/>
         <table class="inputTable">
@@ -17,7 +18,7 @@
             <tr>
                 <td>
                     <?
-                    echo $user->outputUserSubscribeModuleAsHtmlCheckboxList();
+                    echo createCheckboxList("subscribe_module_code_checkbox_list", "checkbox_list", "subscribe_module_code_list[]", $user->getUserSubscribeModuleDataSource());
                     ?>
                 </td>
             </tr>
@@ -32,7 +33,7 @@
         jQuery('form#UserModuleUpdateForm').submit(function () {
             var user_id = $("#user_id").val();
             var subscribe_module_code_list = [];
-            $('#subscribe_module_code_checkbox_list input:checked').each(function() {
+            $('#subscribe_module_code_checkbox_list input:checked').each(function () {
                 subscribe_module_code_list.push(this.value);
             });
             $.ajax({
@@ -42,9 +43,9 @@
                     subscribe_module_code_list: subscribe_module_code_list },
                 dataType: "json",
                 success: function (data) {
-                    if (data.status == "success"){
+                    if (data.status == "success") {
                         jQuery("div#notification").html("<span class='info'>Module subscription has been updated successfully!</span>");
-                    }else{
+                    } else {
                         jQuery("div#notification").html("<span class='error'>Unable to update the module subscription. Try again please!</span>");
                     }
                 },

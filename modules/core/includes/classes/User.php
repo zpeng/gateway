@@ -162,7 +162,7 @@ class User
 
         executeUpdateQuery($link, $query1);
 
-        foreach ($this->user_subscribe_module_code_list as $module_code ) {
+        foreach ($this->user_subscribe_module_code_list as $module_code) {
             $query2 = " INSERT INTO core_user_subscribe_module
                         (user_id,  module_code)
                         VALUES (
@@ -184,7 +184,7 @@ class User
                            core_module.module_code
                     FROM core_user_subscribe_module, core_module
                     WHERE core_user_subscribe_module.module_code = core_module.module_code
-                    AND core_user_subscribe_module.user_id = " . $this->get_user_id()."
+                    AND core_user_subscribe_module.user_id = " . $this->get_user_id() . "
                     ORDER BY (CASE WHEN core_module.module_name='System Core' THEN 0 ELSE 1 END)";
 
         $result = executeNonUpdateQuery($link, $query);
@@ -194,6 +194,29 @@ class User
             $this->user_subscribe_module_code_name_map[$newArray['module_code']] = $newArray['module_name'];
             array_push($this->user_subscribe_module_code_list, $newArray['module_code']);
         }
+    }
+
+    public function getUserSubscribeModuleDataSource()
+    {
+        $moduleManager = new ModuleManager();
+        $module_list = $moduleManager->getModuleList();
+        $data = array();
+        if (sizeof($module_list) > 0) {
+            foreach ($module_list as $module) {
+                $data[$module->get_module_name()] = $module->get_module_code();
+            }
+        }
+
+        if (sizeof($this->user_subscribe_module_code_name_map) > 0) {
+            foreach ($this->user_subscribe_module_code_name_map as $code => $name) {
+                $selected[$name] = $code;
+            }
+        }
+        $dataSource = array(
+            "data" => $data,
+            "selected" => $selected
+        );
+        return $dataSource;
     }
 
     public function outputUserSubscribeModuleAsHtmlCheckboxList()

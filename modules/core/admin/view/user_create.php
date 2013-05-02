@@ -30,7 +30,7 @@
                 <td>
                     <?
                     $moduleManager = new ModuleManager();
-                    echo $moduleManager->outputModuleListAsHtmlCheckboxList();
+                    echo createCheckboxList("checkbox_list","checkbox_list","subscribe_module_code_list[]",$moduleManager->getModuleCheckboxListDataSource())
                     ?>
                 </td>
             </tr>
