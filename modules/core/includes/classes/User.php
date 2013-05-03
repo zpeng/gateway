@@ -219,22 +219,6 @@ class User
         return $dataSource;
     }
 
-    public function outputUserSubscribeModuleAsHtmlCheckboxList()
-    {
-        $html = "<ul class='checkbox_list' id='subscribe_module_code_checkbox_list'>";
-        $moduleManager = new ModuleManager();
-        if (sizeof($moduleManager->getModuleList()) > 0) {
-            foreach ($moduleManager->getModuleList() as $module) {
-                if (array_key_exists($module->get_module_code(), $this->user_subscribe_module_code_name_map)) {
-                    $html = $html . "<li><input  checked='true' type='checkbox' id='subscribe_module_code_list' name='subscribe_module_code_list[]' value='" . $module->get_module_code() . "'><label>" . $module->get_module_name() . "</label>";
-                } else {
-                    $html = $html . "<li><input type='checkbox' id='subscribe_module_code_list'  name='subscribe_module_code_list[]' value='" . $module->get_module_code() . "'><label>" . $module->get_module_name() . "</label>";
-                }
-            }
-        }
-        return $html = $html . "</ul>";
-    }
-
     public function toJSON()
     {
         return str_replace('\\u0000', "", json_encode((array)$this));

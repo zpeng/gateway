@@ -30,10 +30,10 @@
 
 </div>
 
-<div id="dialog" title="Create New City">
+<div id="dialog" title="Create New Deal">
     <br/>
 
-    <form id="createCityForm" action="<?= SERVER_URL ?>modules/deal_steal/admin/control/city_create.php" method='post'>
+    <form id="createDealForm" action="<?= SERVER_URL ?>modules/deal_steal/admin/control/deal_create.php" method='post'>
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
         <table width="500" border="0" class="dialogTable">
             <tr>

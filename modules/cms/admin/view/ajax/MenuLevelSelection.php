@@ -2,15 +2,14 @@
 require_once('../../../../../includes/bootstrap.php');
 ?>
 
-    <td width="150" align="right"><b>Menu Parent:</b></td>
-    <td>
-        <?
-        $menuManager = new MenuManager();
-        echo $menuManager->outputMenuListAsListbox($_REQUEST["menu_type_id"], "menu_level_selector", "menu_level_selector", "width: 300px;");
-        ?>
-    </td>
-
-
+<td width="150" align="right"><b>Menu Parent:</b></td>
+<td>
+    <?
+    $menuManager = new MenuManager();
+    echo createDropdownList("menu_level_selector", "menu_level_selector", "menu_level_selector", "width: 300px;", "10",
+        $menuManager->getMenuListDataSource($_REQUEST["menu_type_id"]));
+    ?>
+</td>
 
 
 <script>

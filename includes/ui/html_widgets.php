@@ -57,6 +57,37 @@ function createCheckboxList($id = "", $class = "", $name = "", $dataSource)
 }
 
 
+function createDropdownList($id = "", $class = "", $name = "", $style = "", $display_size = "1", $dataSource)
+{
+    /*
+    $dataSource = array(
+        "data" => array(
+            "key1" => "value1",
+            "key2" => "value2",
+            "key3" => "value3",
+            "key4" => "value4",
+            "key5" => "value5",
+        ),
+        "selected" => array(
+            "key1" => "value1",
+            "key4" => "value4",
+        )
+    );
+    */
+
+    $html = "<select id='" . $id . "' name='" . $name . "' class='$class' style='$style' size='$display_size'>";
+    if (sizeof($dataSource["data"]) > 0) {
+        foreach ($dataSource["data"] as $key => $value) {
+            if (array_key_exists("selected", $dataSource) && array_key_exists($key, $dataSource["selected"])) {
+                $html = $html . "<option  value='" . $value . "' selected>" . $key . "</option>";
+            } else {
+                $html = $html . "<option  value='" . $value . "'>" . $key . "</option>";
+            }
+        }
+    }
+    return $html = $html . "</select>";
+}
+
 
 /* 
  * To change this template, choose Tools | Templates

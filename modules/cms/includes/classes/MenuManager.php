@@ -77,28 +77,51 @@ class MenuManager
         return $menuItemlist;
     }
 
-    public function outputMenuTypeListAsListbox($id = "", $class = "", $style = "")
+    public function getMenuTypeListDataSource()
     {
         $menuTypelist = $this->getMenuTypeList();
-        $listbox = "<select name='$id' id='$id' class ='$class' style='$style' size='" . sizeof($menuTypelist) . "'>";
-        foreach ($menuTypelist as $menuType) {
-            $listbox = $listbox . "<option value='" . $menuType->get_menu_type_id() . "'>" . $menuType->get_menu_type_name() . "</option>";
-        }
-        return $listbox . "</select>";
-    }
-
-    function outputMenuListAsListbox($menu_type_id, $id = "", $class = "", $style = "")
-    {
-        $menu_list = $this->getMenuItemListByMenuTypeId($menu_type_id);
-        $field = "<select name='$id' id='$id' class ='$class' style='$style' size='5'>";
-        $field = $field . "<option value='0'> As parent </option>";
-        if (sizeof($menu_list) > 0) {
-            foreach ($menu_list as $menu) {
-                $field = $field . $menu->outputAsSelectOption("&nbsp;&nbsp;");
+        $data = array();
+        if (sizeof($menuTypelist) > 0) {
+            foreach ($menuTypelist as $menuType) {
+                $data[$menuType->get_menu_type_name()] = $menuType->get_menu_type_id();
             }
         }
-        $field = $field . "</select>";
-        return $field;
+        $dataSource = array(
+            "data" => $data
+        );
+        return $dataSource;
+    }
+
+    public function getMenuListDataSource($menu_type_id)
+    {
+        $menu_list = $this->getMenuItemListByMenuTypeId($menu_type_id);
+        $data = array();
+        $data["As parent"] = '0';
+        if (sizeof($menu_list) > 0) {
+            foreach ($menu_list as $menu) {
+                $data = array_merge($data, $this->getMenuDataAsKeyValuePair($menu, "&nbsp;&nbsp;&nbsp;&nbsp;"));
+            }
+        }
+        $dataSource = array(
+            "data" => $data
+        );
+        return $dataSource;
+    }
+
+    private function getMenuDataAsKeyValuePair($menu, $padding=""){
+        $data = array();
+        if ($menu->get_menu_parent_id() != "0") {
+            //this a sub-menu, need to add padding
+            $padding = $padding . "&nbsp;&nbsp;&nbsp;&nbsp;";
+        }
+        $data[$menu->get_menu_name_with_padding($padding)] = $menu->get_menu_id();
+
+        if (sizeof($menu->_sub_menu_list) > 0) {
+            foreach ($menu->_sub_menu_list as $sub_menu) {
+                $data = array_merge($data, $this->getMenuDataAsKeyValuePair($sub_menu, $padding));
+            }
+        }
+        return $data;
     }
 
     public function getMenuTableDataSource($menu_type_id)
@@ -145,14 +168,5 @@ class MenuManager
         }
     }
 
-
-    function outputListTypeAsListbox($id = '', $class = '', $style = '')
-    {
-        $field = "<select id='" . $id . "' name='" . $id . "' class='$class' style='$style' size='2'>";
-        $field = $field . "<option  value='0'>&nbsp;&nbsp;-Customize Link</option>";
-        $field = $field . "<option  value='1'>&nbsp;&nbsp;-Contents</option>";
-        $field = $field . "</select>";
-        return $field;
-    }
 }
 ?>

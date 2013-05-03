@@ -24,7 +24,9 @@
                 <td>
                     <?
                     $menuManager = new MenuManager();
-                    echo $menuManager->outputMenuTypeListAsListbox("menu_type_selector", "menu_type_selector", "width: 300px;");
+                    echo createDropdownList("menu_type_selector", "menu_type_selector", "menu_type_selector", "width: 300px;", "3",
+                        $menuManager->getMenuTypeListDataSource());
+
                     ?>
                 </td>
             </tr>
@@ -36,7 +38,13 @@
                 <td width="150" align="right"><b>Link Type:</b></td>
                 <td>
                     <?
-                    echo $menuManager->outputListTypeAsListbox("link_type_selector", "link_type_selector", "width: 300px;");
+                    $dataSource = array(
+                        "data" => array(
+                            "Customize Link" => "0",
+                            "Contents" => "1"
+                        )
+                    );
+                    echo createDropdownList("link_type_selector", "link_type_selector","link_type_selector","width: 300px;", "2", $dataSource);
                     ?>
                 </td>
             </tr>

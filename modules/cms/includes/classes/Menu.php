@@ -13,16 +13,16 @@ class Menu
 {
 //put your code here
 
-    private $_menu_id;
-    private $_menu_parent_id;
-    private $_menu_type;
-    private $_menu_type_id;
-    private $_menu_order;
-    private $_menu_link;
-    private $_menu_name;
-    private $_menu_desc;
-    private $_sub_menu_list = [];
-    private $_menu_archived;
+    public $_menu_id;
+    public $_menu_parent_id;
+    public $_menu_type;
+    public $_menu_type_id;
+    public $_menu_order;
+    public $_menu_link;
+    public $_menu_name;
+    public $_menu_desc;
+    public $_sub_menu_list = [];
+    public $_menu_archived;
 
 
     public function get_menu_id()

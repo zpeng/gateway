@@ -63,18 +63,19 @@ class ContentManager
         return $dataSource;
     }
 
-    public function outputAsHtmlListbox($id = "", $class = "", $style = "")
+    public function getContentDropdownDataSource()
     {
-        $contentList = [];
-        $field = "<select id='" . $id . "' name='" . $id . "' class='$class' style='$style' size='8'>";
         $contentList = $this->getContentList();
+        $data = array();
         if (sizeof($contentList) > 0) {
             foreach ($contentList as $content) {
-                $field = $field . "<option  value='" . $content->get_content_id() . "'>" . $content->get_title() . "</option>";
+                $data[$content->get_title()] = $content->get_content_id();
             }
         }
-        $field = $field . "</select>";
-        return $field;
+        $dataSource = array(
+            "data" => $data
+        );
+        return $dataSource;
     }
 }
 ?>
