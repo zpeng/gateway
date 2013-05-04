@@ -37,8 +37,44 @@
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
         <table width="500" border="0" class="dialogTable">
             <tr>
-                <td width="150" align="right"><b>City Name: </b></td>
-                <td><input name="city_name" id="city_name" style="width: 200px;"/></td>
+                <td width="150" align="right"><b>Deal Title: </b></td>
+                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>Supplier: </b></td>
+                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>City: </b></td>
+                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>Deal Type: </b></td>
+                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>Available Quantity: </b></td>
+                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>Original Price: </b></td>
+                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>Offer Price: </b></td>
+                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>Original Price: </b></td>
+                <td><input name="deal_tile" id="deal_title" style="width: 120px;"/></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>Online Date: </b></td>
+                <td><input name="deal_tile" id="online_date" style="width: 120px;" /></td>
+            </tr>
+            <tr>
+                <td width="150" align="right"><b>Offline Date: </b></td>
+                <td><input name="deal_tile" id="offline_date" style="width: 120px;"/></td>
             </tr>
             <tr>
                 <td></td>
@@ -73,13 +109,23 @@
         return false;
     });
 
-    //form validation
-    jQuery(function () {
-        jQuery("input#city_name").validate({
-            expression: "if (VAL) return true; else return false;",
-            message: "Please enter the city name"
-        });
+    //date picker
+    $('#online_date').datetimepicker({
+        dateFormat:"yy-mm-dd",
+        timeFormat: "hh:mm:ss"
     });
+
+    $( "#offline_date" ).datetimepicker({
+        dateFormat:"yy-mm-dd",
+        timeFormat: "hh:mm:ss"
+    });
+
+    //form validation
+    jQuery("input#city_name").validate({
+        expression: "if (VAL) return true; else return false;",
+        message: "Please enter the city name"
+    });
+
 
     //data grid
     window.onload = function () {

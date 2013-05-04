@@ -268,22 +268,5 @@ class Menu
         }
     }
 
-    public function outputAsSelectOption($padding = "")
-    {
-        if ($this->get_menu_parent_id() != "0") {
-            //this a sub-menu, need to add padding
-            $padding = $padding . "&nbsp;&nbsp;";
-        }
-        $htmlOption = "<option value='" . $this->get_menu_id() . "'>" . $this->get_menu_name_with_padding($padding) . "</option>";
-
-
-        if (sizeof($this->_sub_menu_list) > 0) {
-            foreach ($this->_sub_menu_list as $sub_menu) {
-                $htmlOption = $htmlOption . $sub_menu->outputAsSelectOption($padding);
-            }
-        }
-
-        return $htmlOption;
-    }
 }
 ?>

@@ -32,6 +32,8 @@ $JS_SHARED = array(
 
     "jquery-tag" => "js/shared/jquery-tags/jquery.tagsinput.min.js",
 
+    "jquery-ui-timepicker" => "js/shared/jquery-plugin/jquery-ui-timepicker-addon.js",
+
     "tiny_mce-3.5.8" => "js/shared/tiny_mce-3.5.8/tiny_mce.js",
 
     "editablegrid" => array(
