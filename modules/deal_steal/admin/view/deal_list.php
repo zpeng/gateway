@@ -38,43 +38,57 @@
         <table width="500" border="0" class="dialogTable">
             <tr>
                 <td width="150" align="right"><b>Deal Title: </b></td>
-                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+                <td><input name="deal_title" id="deal_title" style="width: 200px;"/></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Supplier: </b></td>
-                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+                <td><?php
+                    $supplier_manager = new SupplierManager();
+                    echo createDropdownList("deal_supplier", "deal_supplier", "deal_supplier", "width: 150px;", "",
+                        $supplier_manager->getSupplierListDataSource());
+                    ?></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>City: </b></td>
-                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+                <td><?php
+                    $city_manager = new CityManager();
+                    echo createDropdownList("deal_city", "deal_city", "deal_city", "width: 150px;", "",
+                        $city_manager->getCityListDataSource());
+                    ?>
+                </td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Deal Type: </b></td>
-                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+                <td><?php
+                    $deal_type_ds = array(
+                        "data" => array(
+                            "Single" => "S",
+                            "Multiple" => "M"
+                        ),
+                    );
+                    echo createDropdownList("deal_type", "deal_type", "deal_type", "width: 80px;", "", $deal_type_ds)
+                    ?>
+                </td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Available Quantity: </b></td>
-                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+                <td><input name="available_quantity" id="available_quantity" style="width: 100px;"/></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Original Price: </b></td>
-                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
+                <td><input name="original_price" id="original_price" style="width: 100px;"/></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Offer Price: </b></td>
-                <td><input name="deal_tile" id="deal_title" style="width: 200px;"/></td>
-            </tr>
-            <tr>
-                <td width="150" align="right"><b>Original Price: </b></td>
-                <td><input name="deal_tile" id="deal_title" style="width: 120px;"/></td>
+                <td><input name="offer_price" id="offer_price" style="width: 100px;"/></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Online Date: </b></td>
-                <td><input name="deal_tile" id="online_date" style="width: 120px;" /></td>
+                <td><input name="online_date" id="online_date" style="width: 120px;"/></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Offline Date: </b></td>
-                <td><input name="deal_tile" id="offline_date" style="width: 120px;"/></td>
+                <td><input name="offline_date" id="offline_date" style="width: 120px;"/></td>
             </tr>
             <tr>
                 <td></td>
@@ -111,12 +125,12 @@
 
     //date picker
     $('#online_date').datetimepicker({
-        dateFormat:"yy-mm-dd",
+        dateFormat: "yy-mm-dd",
         timeFormat: "hh:mm:ss"
     });
 
-    $( "#offline_date" ).datetimepicker({
-        dateFormat:"yy-mm-dd",
+    $("#offline_date").datetimepicker({
+        dateFormat: "yy-mm-dd",
         timeFormat: "hh:mm:ss"
     });
 

@@ -49,16 +49,31 @@ class SupplierManager
                     $supplier->getSupplierEmail(),
                     $supplier->getSupplierTel(),
                     "<a class='icon_delete' title='Delete this supplier' href='" . SERVER_URL . "modules/deal_steal/admin/control/supplier_delete.php?supplier_id=" .
-                     $supplier->getSupplierId() . "&module_code=" . $_REQUEST['module_code'] . "'
+                        $supplier->getSupplierId() . "&module_code=" . $_REQUEST['module_code'] . "'
                      onclick='return confirmDeletion()'></a>
                      <a class='icon_edit' title='Update supplier' href='" . SERVER_URL . "admin/main.php?view=supplier_update&supplier_id=" .
-                     $supplier->getSupplierId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                        $supplier->getSupplierId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
                 ));
             }
         }
         $dataSource = array(
             "header" => $header,
             "body" => $body
+        );
+        return $dataSource;
+    }
+
+    public function getSupplierListDataSource()
+    {
+        $supplier_list = $this->loadAllSuppliers();
+        $data = array();
+        if (sizeof($supplier_list) > 0) {
+            foreach ($supplier_list as $supplier) {
+                $data[$supplier->getSupplierName()] = $supplier->getSupplierId();
+            }
+        }
+        $dataSource = array(
+            "data" => $data
         );
         return $dataSource;
     }

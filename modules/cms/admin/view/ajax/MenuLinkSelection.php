@@ -12,7 +12,7 @@ if ($link_type_id == 0) {
 } else if ($link_type_id == 1) {
     $contentManager = new ContentManager();
     echo "<td width='150' align='right'><b>Link to an article:</b></td><td>";
-    echo createDropdownList("content_list_selector", "content_list_selector", "", "width: 300px;", "8", $contentManager->getContentDropdownDataSource());
+    echo createDropdownList("content_list_selector", "content_list_selector", "content_list_selector", "width: 300px;", "8", $contentManager->getContentDropdownDataSource());
     echo "</td>";
 }
 ?>

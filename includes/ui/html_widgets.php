@@ -57,7 +57,7 @@ function createCheckboxList($id = "", $class = "", $name = "", $dataSource)
 }
 
 
-function createDropdownList($id = "", $class = "", $name = "", $style = "", $display_size = "1", $dataSource)
+function createDropdownList($id = "", $name = "", $class = "", $style = "", $display_size = "1", $dataSource)
 {
     /*
     $dataSource = array(
