@@ -135,11 +135,35 @@
     });
 
     //form validation
-    jQuery("input#city_name").validate({
+    jQuery("input#deal_title").validate({
         expression: "if (VAL) return true; else return false;",
-        message: "Please enter the city name"
+        message: "Please enter the deal title"
     });
 
+    jQuery("#available_quantity").validate({
+        expression: "if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
+        message: "Please enter a valid integer"
+    });
+
+    jQuery("#original_price").validate({
+        expression: "if (VAL.match(/^\\d+(?:\\.\\d{1,2})?$/) && VAL) return true; else return false;",
+        message: "Please enter a valid price"
+    });
+
+    jQuery("#offer_price").validate({
+        expression: "if (VAL.match(/^\\d+(?:\\.\\d{1,2})?$/) && VAL) return true; else return false;",
+        message: "Please enter a valid price"
+    });
+
+    jQuery("#online_date").validate({
+        expression: "if (VAL) return true; else return false;",
+        message: "Please enter a valid Date"
+    });
+
+    jQuery("#offline_date").validate({
+        expression: "if (VAL) return true; else return false;",
+        message: "Please enter a valid Date"
+    });
 
     //data grid
     window.onload = function () {

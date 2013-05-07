@@ -76,7 +76,7 @@ class DealManager
                     $deal->getOriginalQuantity() . "/" . $deal->getQuantity(),
                     $deal->getOnlineDate(),
                     $deal->getOfflineDate(),
-                    "<a class='icon_edit' title='Update Deal' href='" . SERVER_URL . "admin/main.php?view=deal_detail&deal_id=" .
+                    "<a class='icon_edit' title='Update Deal' href='" . SERVER_URL . "admin/main.php?view=deal_update&deal_id=" .
                         $deal->getId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
                 ));
             }

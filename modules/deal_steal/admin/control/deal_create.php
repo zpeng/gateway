@@ -16,7 +16,7 @@ $offline_date = secureRequestParameter($_REQUEST["offline_date"]);
 $deal = new Deal();
 $deal->setTitle($deal_title);
 $deal->setCityId($deal_city);
-$deal->setCategoryId(0);
+$deal->setCategoryId(1);
 $deal->setSupplierId($deal_supplier);
 $deal->setType($deal_type);
 $deal->setQuantity($available_quantity);
