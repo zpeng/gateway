@@ -27,30 +27,22 @@
                     <tr>
                         <td width="150" align="right"><b>Supplier: </b></td>
                         <td><?php
-                            $supplier_manager = new SupplierManager();
                             echo createDropdownList("deal_supplier", "deal_supplier", "deal_supplier", "width: 150px;", "",
-                                $supplier_manager->getSupplierListDataSource());
+                                $deal->getSelectedSupplierListDataSource());
                             ?></td>
                     </tr>
                     <tr>
                         <td width="150" align="right"><b>City: </b></td>
                         <td><?php
-                            $city_manager = new CityManager();
                             echo createDropdownList("deal_city", "deal_city", "deal_city", "width: 150px;", "",
-                                $city_manager->getCityListDataSource());
+                                $deal->getSelectedCityListDataSource());
                             ?>
                         </td>
                     </tr>
                     <tr>
                         <td width="150" align="right"><b>Deal Type: </b></td>
                         <td><?php
-                            $deal_type_ds = array(
-                                "data" => array(
-                                    "Single" => "S",
-                                    "Multiple" => "M"
-                                ),
-                            );
-                            echo createDropdownList("deal_type", "deal_type", "deal_type", "width: 80px;", "", $deal_type_ds)
+                            echo createDropdownList("deal_type", "deal_type", "deal_type", "width: 80px;", "", $deal->getSelectedDealTypeListDataSource())
                             ?>
                         </td>
                     </tr>

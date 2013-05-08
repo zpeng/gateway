@@ -332,6 +332,41 @@ class Deal
         closeConnection($link);
     }
 
+    public function getSelectedSupplierListDataSource()
+    {
+        $supplier_manager = new SupplierManager();
+        $dataSource= $supplier_manager->getSupplierListDataSource();
+        $selected = array();
+        $selected[$this->getSupplierName()] = $this->getSupplierId();
+        $dataSource["selected"] = $selected;
+        return $dataSource;
+    }
+
+    public function getSelectedDealTypeListDataSource()
+    {
+        $data = array(
+            "Single" => "S",
+            "Multiple" => "M"
+        );
+        $selected = array();
+        $selected[array_search($this->getType(), $data)] = $this->getType();
+        $dataSource = array(
+            "data" => $data,
+            "selected" => $selected
+        );
+        return $dataSource;
+    }
+
+    public function getSelectedCityListDataSource()
+    {
+        $city_manager = new CityManager();
+        $data_source = $city_manager->getCityListDataSource();
+        $data_source["selected"] = array(
+            $this->getCityName() => $this->getCityId()
+        );
+        return $data_source;
+    }
+
 }
 
 ?>
