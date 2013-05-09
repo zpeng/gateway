@@ -303,7 +303,6 @@ class Deal
         $query = "  UPDATE ds_deal
                     SET
                       supplier_id = " . $this->getSupplierId() . ",
-                      category_id = " . $this->getCategoryId() . ",
                       city_id = " . $this->getCityId() . ",
                       deal_title = '" . $this->getTitle() . "',
                       deal_type = '" . $this->getType() . "',
@@ -313,7 +312,6 @@ class Deal
                       offer_price = " . $this->getOfferPrice() . ",
                       online_date = '" . $this->getOnlineDate() . "',
                       offline_date = '" . $this->getOfflineDate() . "',
-                      fine_print = '" . $this->getFinePrint() . "',
                       deal_desc = '" . $this->getDesc() . "'
                     WHERE deal_id  = " . $this->getId();
 
