@@ -12,7 +12,7 @@ $deal->loadById($deal_id);
 <ul>
     <li><a href="#tabs-1">Deal Detail</a></li>
     <li><a href="#tabs-2">Category</a></li>
-    <li><a href="#tabs-3">Others</a></li>
+    <li><a href="#tabs-3">Deal Tags</a></li>
 </ul>
 <div id="tabs-1">
     <form id="DealDetailUpdateForm" method='post'>
@@ -173,7 +173,7 @@ $deal->loadById($deal_id);
                 dataType: "json",
                 success: function (data) {
                     if (data.status == "success") {
-                        jQuery("div#notification").html("<span class='info'>Deal has been updated successfully!</span>");
+                        jQuery("div#notification").html("<span class='info'>Deal detail has been updated successfully!</span>");
                     } else {
                         jQuery("div#notification").html("<span class='error'>Unable to update this deal. Try again please!</span>");
                     }
@@ -195,11 +195,12 @@ $deal->loadById($deal_id);
         $category_manager = new CategoryManager();
         echo createTreeviewRadioList("deal_category_list", "treeview", "deal_category_id", $category_manager->getCategoryTreeviewDataSource(), $deal->getCategoryId());
         ?>
-        <input name='update_deal_category_button' id="update_deal_category_button" type='submit' value='Update Category'/>
+        <input name='update_deal_category_button' id="update_deal_category_button" type='submit'
+               value='Update Category'/>
     </form>
     <script>
         $("#update_deal_category_button").button();
-        $("#update_deal_category_button").click(function() {
+        $("#update_deal_category_button").click(function () {
             var category_id = $('input[name="deal_category_id"]:checked', '#DealCategoryUpdateForm').val();
             var deal_id = $("#deal_id").val();
             $.ajax({
@@ -228,8 +229,93 @@ $deal->loadById($deal_id);
 </div>
 
 <div id="tabs-3">
+    <form id="DealTagsUpdateForm" method='post'>
+        <table width="400" border="0" class="dialogTable">
+            <tr>
+                <td width="200" align="left">
+                    <?php
+                    echo createMultipleDropdownList("tag_list", "tag_list", "multiple_selector", "width:180px;height:300px", $deal->getAvailableTagsDataSource());
+                    ?>
+                </td>
+                <td width="200" align="left">
+                    <?php
+                    echo createMultipleDropdownList("deal_tag_list", "deal_tag_list", "multiple_selector", "width:180px;height:300px", $deal->getDealTagsDataSource());
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td width="150" align="left">
+                    <a href="#" id="add_deal_tag">add &gt;&gt;</a>
+                </td>
+                <td width="150" align="left">
+                    <a href="#" id="remove_deal_tag">&lt;&lt; remove</a>
+                </td>
+            </tr>
+        </table>
 
+
+    </form>
+    <script>
+        var updateDealTagsCallBack = function () {
+            var deal_id = $("#deal_id").val();
+            var deal_tag_id_list = [];
+            $('#deal_tag_list option:selected').each(function(i, selected){
+                deal_tag_id_list[i] = $(selected).val();
+            });
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/admin/control/deal_update.php",
+                type: "POST",
+                data: {
+                    operation: "deal_tag_update",
+                    deal_tag_id_list: deal_tag_id_list,
+                    deal_id: deal_id
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == "success") {
+                        jQuery("div#notification").html("<span class='info'>Deal tags has been updated successfully!</span>");
+                    } else {
+                        jQuery("div#notification").html("<span class='error'>Unable to update this deal. Try again please!</span>");
+                    }
+                },
+                error: function () {
+                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                }
+            });
+        };
+
+        $().ready(function () {
+            $("#add_deal_tag").button();
+            $("#remove_deal_tag").button();
+            $('#add_deal_tag').click(function () {
+                $('#tag_list option:selected').remove().appendTo('#deal_tag_list');
+                $('#deal_tag_list option').each(function (i) {
+                    $(this).attr("selected", "selected");
+                });
+
+                updateDealTagsCallBack();
+                return false;
+            });
+            $('#remove_deal_tag').click(function () {
+                $('#deal_tag_list option:selected').remove().appendTo('#tag_list');
+                $('#deal_tag_list option').each(function (i) {
+                    $(this).attr("selected", "selected");
+                });
+                updateDealTagsCallBack();
+                return false;
+            });
+        });
+
+        $('DealTagsUpdateForm').submit(function () {
+            $('#deal_tag_list option').each(function (i) {
+                $(this).attr("selected", "selected");
+            });
+
+            console.log("fire!");
+        });
+    </script>
 </div>
+
 </div>
 
 </div>

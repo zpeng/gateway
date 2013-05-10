@@ -345,7 +345,7 @@ class Deal
     public function getSelectedSupplierListDataSource()
     {
         $supplier_manager = new SupplierManager();
-        $dataSource= $supplier_manager->getSupplierListDataSource();
+        $dataSource = $supplier_manager->getSupplierListDataSource();
         $selected = array();
         $selected[$this->getSupplierName()] = $this->getSupplierId();
         $dataSource["selected"] = $selected;
@@ -377,13 +377,47 @@ class Deal
         return $data_source;
     }
 
-    public function getSelectedCategoryDataSource()
+    public function getDealTagsDataSource()
     {
-        $category_manager = new CategoryManager();
-        $category_manager->data;
+        $data = array();
+        $link = getConnection();
+        $query = " SELECT ds_tag.tag_id, ds_tag.tag_value
+                    FROM  ds_deal_tag, ds_tag
+                    WHERE ds_deal_tag.tag_id = ds_tag.tag_id
+                    AND ds_deal_tag.deal_id = " . $this->getId();
 
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $data[$newArray['tag_id']] = $newArray['tag_value'];
+        }
+        $dataSource = array(
+            "data" => $data
+        );
+        return $dataSource;
     }
 
+    public function getAvailableTagsDataSource()
+    {
+        $data = array();
+        $link = getConnection();
+        $query = "SELECT tag_id,  tag_value
+                    FROM   ds_tag
+                    WHERE tag_id NOT IN
+                    (SELECT ds_tag.tag_id
+                    FROM  ds_deal_tag, ds_tag
+                    WHERE ds_deal_tag.tag_id = ds_tag.tag_id
+                    AND ds_deal_tag.deal_id = " . $this->getId() . ") ";
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $data[$newArray['tag_id']] = $newArray['tag_value'];
+        }
+        $dataSource = array(
+            "data" => $data
+        );
+        return $dataSource;
+    }
 }
 
 ?>

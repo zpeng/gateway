@@ -98,7 +98,7 @@ function createTreeviewRadioList($id = "", $class = "", $name = "", $dataSource 
 
 function createTreeviewRadioChild($name = "", $value = array(), $selectedValue = "")
 {
-    $html="";
+    $html = "";
     if ($value["id"] == $selectedValue) {
         $html = $html . "<li><input  checked='true' type='radio'  name='$name' value='" . $value["id"] . "'><label>" . $value["label"] . "</label>";
     } else {
@@ -146,6 +146,36 @@ function createDropdownList($id = "", $name = "", $class = "", $style = "", $dis
     return $html = $html . "</select>";
 }
 
+function createMultipleDropdownList($id = "", $name = "", $class = "", $style = "", $dataSource)
+{
+    /*
+    $dataSource = array(
+        "data" => array(
+            "key1" => "value1",
+            "key2" => "value2",
+            "key3" => "value3",
+            "key4" => "value4",
+            "key5" => "value5",
+        ),
+        "selected" => array(
+            "key1" => "value1",
+            "key4" => "value4",
+        )
+    );
+    */
+
+    $html = "<select multiple id='" . $id . "' name='" . $name . "' class='$class' style='$style'>";
+    if (!empty($dataSource) && sizeof($dataSource["data"]) > 0) {
+        foreach ($dataSource["data"] as $key => $value) {
+            if (array_key_exists("selected", $dataSource) && array_key_exists($key, $dataSource["selected"])) {
+                $html = $html . "<option  value='" . $key . "' selected>" . $value . "</option>";
+            } else {
+                $html = $html . "<option  value='" . $key . "'>" . $value . "</option>";
+            }
+        }
+    }
+    return $html = $html . "</select>";
+}
 
 /* 
  * To change this template, choose Tools | Templates

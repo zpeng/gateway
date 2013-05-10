@@ -274,6 +274,14 @@ ul.treeview{
   }
 }
 
+a.multiple_selector_btn{
+  text-decoration: none;
+
+  :hover{
+    text-decoration: none;
+  }
+}
+
 ul.checkbox_list {
   list-style: none;
   padding: 0px;

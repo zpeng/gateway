@@ -31,6 +31,21 @@ if (!empty($_REQUEST['operation'])) {
         $response_array['status'] = 'success';
         header('Content-type: application/json');
         echo json_encode($response_array);
+    } else if ($_REQUEST['operation'] == "deal_tag_update") {
+        $tagManager = new TagManager();
+        $deal_tag_id_list = array();
+        if (!empty($_REQUEST["deal_tag_id_list"])) {
+            $deal_tag_id_list = $_REQUEST["deal_tag_id_list"];
+        }
+        $tagManager->updateDealTags($_REQUEST["deal_id"], $deal_tag_id_list);
+
+        $response_array['status'] = 'success';
+        header('Content-type: application/json');
+        echo json_encode($response_array);
     }
+} else {
+    $response_array['status'] = 'failed';
+    header('Content-type: application/json');
+    echo json_encode($response_array);
 }
 ?>
