@@ -240,7 +240,7 @@ class Deal
             $this->setId($newArray['deal_id']);
             $this->setSupplierId($newArray['supplier_id']);
             $this->setSupplierName($newArray['supplier_name']);
-            $this->setSupplierId($newArray['category_id']);
+            $this->setCategoryId($newArray['category_id']);
             $this->setCategoryName($newArray['category_name']);
             $this->setCityId($newArray['city_id']);
             $this->setCityName($newArray['city_name']);
@@ -319,6 +319,18 @@ class Deal
         closeConnection($link);
     }
 
+    public function updateCategory()
+    {
+        $link = getConnection();
+        $query = "  UPDATE ds_deal
+                    SET
+                      category_id = " . $this->getCategoryId() . "
+                    WHERE deal_id  = " . $this->getId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
     public function delete()
     {
         $link = getConnection();
@@ -363,6 +375,13 @@ class Deal
             $this->getCityName() => $this->getCityId()
         );
         return $data_source;
+    }
+
+    public function getSelectedCategoryDataSource()
+    {
+        $category_manager = new CategoryManager();
+        $category_manager->data;
+
     }
 
 }

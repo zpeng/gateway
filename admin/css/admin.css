@@ -155,8 +155,6 @@ body {
         text-indent: 10px;
         text-decoration: none;
         width: 100%; }
-      #main_content #left_panel #left_vertical_menu a:hover {
-        text-decoration: underline; }
       #main_content #left_panel #left_vertical_menu li:hover {
         background: #fc8c1d;
         position: relative; }
@@ -197,6 +195,12 @@ body {
   text-align: center;
   padding-top: 10px;
   bottom: 0; }
+
+ul.treeview {
+  padding: 0px;
+  list-style: none; }
+  ul.treeview li {
+    list-style: none; }
 
 ul.checkbox_list {
   list-style: none;

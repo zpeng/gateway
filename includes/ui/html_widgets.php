@@ -24,7 +24,6 @@ function createGenericTable($id = "", $class = "", $dataSource)
     return $htmlTable;
 }
 
-
 function createCheckboxList($id = "", $class = "", $name = "", $dataSource)
 {
     /*
@@ -56,6 +55,65 @@ function createCheckboxList($id = "", $class = "", $name = "", $dataSource)
     return $html = $html . "</ul>";
 }
 
+function createTreeviewRadioList($id = "", $class = "", $name = "", $dataSource = array(), $selectedValue = "")
+{
+    /*
+    $dataSource = array(
+     array(
+            "id" => "1",
+            "label" => "item 1",
+            "children" => array(
+                "2" => array(
+                    "id" => "2",
+                    "label" => "item 2",
+                    "children" => array()
+                ),
+                "3" => array(
+                    "id" => "3",
+                    "label" => "item 3",
+                    "children" => array()
+                )
+            )
+    )
+    );*/
+
+    $html = "<ul class='$class' id='$id'>";
+    foreach ($dataSource as $value) {
+        if ($value["id"] == $selectedValue) {
+            $html = $html . "<li><input  checked='true' type='radio'  name='$name' value='" . $value["id"] . "'><label>" . $value["label"] . "</label>";
+        } else {
+            $html = $html . "<li><input type='radio'  name='$name' value='" . $value["id"] . "'><label>" . $value["label"] . "</label>";
+        }
+
+        if (sizeof($value["children"]) > 0) {
+            $html = $html . "<ul>";
+            foreach ($value["children"] as $child) {
+                $html = $html . createTreeviewRadioChild($name, $child, $selectedValue);
+            }
+            $html = $html . "</ul>";
+        }
+    }
+    return $html = $html . "</ul>";
+}
+
+function createTreeviewRadioChild($name = "", $value = array(), $selectedValue = "")
+{
+    $html="";
+    if ($value["id"] == $selectedValue) {
+        $html = $html . "<li><input  checked='true' type='radio'  name='$name' value='" . $value["id"] . "'><label>" . $value["label"] . "</label>";
+    } else {
+        $html = $html . "<li><input type='radio'  name='$name' value='" . $value["id"] . "'><label>" . $value["label"] . "</label>";
+    }
+
+    if (sizeof($value["children"]) > 0) {
+        $html = $html . "<ul>";
+        foreach ($value["children"] as $child) {
+            $html = $html . createTreeviewRadioChild($name, $child, $selectedValue);
+        }
+        $html = $html . "</ul>";
+    }
+    return $html;
+}
 
 function createDropdownList($id = "", $name = "", $class = "", $style = "", $display_size = "1", $dataSource)
 {

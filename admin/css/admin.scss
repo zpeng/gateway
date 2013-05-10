@@ -203,10 +203,6 @@ body {
         width: 100%;
       }
 
-      a:hover {
-        text-decoration: underline;
-      }
-
       li:hover {
         background: $orange3;
         position: relative;
@@ -266,6 +262,16 @@ body {
   text-align: center;
   padding-top: 10px;
   bottom: 0;
+}
+
+
+ul.treeview{
+  padding: 0px;
+  list-style: none;
+
+  li{
+    list-style: none;
+  }
 }
 
 ul.checkbox_list {

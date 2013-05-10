@@ -5,7 +5,6 @@ $deal = new Deal();
 
 if (!empty($_REQUEST['operation'])) {
     if ($_REQUEST['operation'] == "deal_detail_update") {
-
         $deal->setId($_REQUEST["deal_id"]);
         $deal->setTitle($_REQUEST["deal_title"]);
         $deal->setCityId($_REQUEST["deal_city"]);
@@ -24,7 +23,14 @@ if (!empty($_REQUEST['operation'])) {
         $response_array['status'] = 'success';
         header('Content-type: application/json');
         echo json_encode($response_array);
+    } else if ($_REQUEST['operation'] == "deal_category_update") {
+        $deal->setId($_REQUEST["deal_id"]);
+        $deal->setCategoryId($_REQUEST["category_id"]);
+        $deal->updateCategory();
 
+        $response_array['status'] = 'success';
+        header('Content-type: application/json');
+        echo json_encode($response_array);
     }
 }
 ?>
