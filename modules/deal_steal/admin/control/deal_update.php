@@ -42,6 +42,14 @@ if (!empty($_REQUEST['operation'])) {
         $response_array['status'] = 'success';
         header('Content-type: application/json');
         echo json_encode($response_array);
+    }else if ($_REQUEST['operation'] == "fine_print_update") {
+        $deal->setId($_REQUEST["deal_id"]);
+        $deal->setFinePrint($_REQUEST["fine_print"]);
+        $deal->updateFinePrint();
+
+        $response_array['status'] = 'success';
+        header('Content-type: application/json');
+        echo json_encode($response_array);
     }
 } else {
     $response_array['status'] = 'failed';

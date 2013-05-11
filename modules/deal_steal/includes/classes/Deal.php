@@ -331,6 +331,17 @@ class Deal
         closeConnection($link);
     }
 
+    public function updateFinePrint()
+    {
+        $link = getConnection();
+        $query = "  UPDATE ds_deal
+                    SET fine_print = '" . $this->getFinePrint() . "'
+                    WHERE deal_id  = " . $this->getId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
     public function delete()
     {
         $link = getConnection();
