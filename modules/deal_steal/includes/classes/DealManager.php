@@ -22,6 +22,7 @@ class DealManager
                               offline_date,
                               fine_print,
                               deal_desc,
+                              image,
                               deal_archived
                             FROM
                               ds_deal,
@@ -53,6 +54,7 @@ class DealManager
             $deal->setOfflineDate($newArray['offline_date']);
             $deal->setFinePrint($newArray['fine_print']);
             $deal->setDesc($newArray['deal_desc']);
+            $deal->setImage($newArray['image']);
             $deal->setArchived($newArray['deal_archived']);
             array_push($deal_list, $deal);
         }

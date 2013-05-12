@@ -7,6 +7,7 @@ $module_config = array(
 
     //customized config values
     "supplier_logo_folder" => SERVER_URL."images/suppliers/logo/",
+    "deal_image_folder" => SERVER_URL."images/deals/",
 
     "php" => array(
         "Category" => "modules/deal_steal/includes/classes/Category.php",

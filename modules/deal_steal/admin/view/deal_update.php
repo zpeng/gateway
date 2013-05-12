@@ -14,7 +14,9 @@ $deal->loadById($deal_id);
     <li><a href="#tabs-2">Fine Print</a></li>
     <li><a href="#tabs-3">Category</a></li>
     <li><a href="#tabs-4">Deal Tags</a></li>
+    <li><a href="#tabs-5">Image</a></li>
 </ul>
+
 <div id="tabs-1">
     <form id="DealDetailUpdateForm" method='post'>
         <input type="hidden" value="<? echo $deal_id ?>" id="deal_id" name="deal_id"/>
@@ -379,6 +381,60 @@ $deal->loadById($deal_id);
             });
 
             console.log("fire!");
+        });
+    </script>
+</div>
+
+<div id="tabs-5">
+    <form id="DealImagaeUpdateForm" action="<?= SERVER_URL ?>modules/deal_steal/admin/control/deal_update.php"
+          method="post"
+          enctype='multipart/form-data'>
+        <input type="hidden" value="<? echo $deal_id ?>" id="deal_id" name="deal_id"/>
+        <input type="hidden" value="update_deal_image" id="operation" name="operation"/>
+        <input type="hidden" value="<? echo $module_code ?>" name="module_code" id="module_code"/>
+        <table class="inputTable">
+            <tr>
+                <td width="150" align="right"></td>
+                <td>
+                    <?=createImage($GLOBAL_DEPS[$_REQUEST['module_code']]["deal_image_folder"] . $deal->getImage(), "deal_image", 300, "", 0)?>
+                    <input name="deal_image_uploaded" id="deal_image_uploaded" type="file"/>
+                    <span id="file_size"></span>
+                    <br/>
+                    <span>(Support Type:jpg, jpeg, png, gif.  Maximum file size: 2Mb)</span>
+
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input name='update_deal_image_button' id="update_deal_image_button" type='submit' value='update'
+                           title="update"/></td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        $("#update_deal_image_button").button();
+
+        var isFormValid = true;
+        var max_size = 2097152;
+        var support_type = ["jpg", "png", "jpeg", "gif"];
+        $('#deal_image_uploaded').bind('change', function () {
+            var iSize = (Math.round((this.files[0].size / 1024 / 1024) * 100) / 100)
+            jQuery("#file_size").html(iSize + "Mb");
+            var ext = $('#deal_image_uploaded').val().split('.').pop().toLowerCase();
+
+            if (this.files[0].size > max_size) {
+                alert("File size should not exceed 2mb!");
+                this.files = [];
+                jQuery("#file_size").html("");
+                jQuery("input#deal_image_uploaded").val("");
+            }
+
+            if ($.inArray(ext, support_type) == -1) {
+                alert("Un-supported file type!");
+                this.files = [];
+                jQuery("#file_size").html("");
+                jQuery("input#deal_image_uploaded").val("");
+            }
         });
     </script>
 </div>

@@ -99,7 +99,7 @@ function setup_configuration_in_session()
 function secureRequestParameter($value)
 {
     $value = trim($value);
-    $value = mysql_real_escape_string($value);
+    //$value = mysql_real_escape_string($value);
     return $value;
 }
 

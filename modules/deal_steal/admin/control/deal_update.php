@@ -50,6 +50,25 @@ if (!empty($_REQUEST['operation'])) {
         $response_array['status'] = 'success';
         header('Content-type: application/json');
         echo json_encode($response_array);
+    }else if ($_REQUEST['operation'] == "update_deal_image") {
+        $deal->setId($_REQUEST["deal_id"]);
+        $module_code = secureRequestParameter($_REQUEST["module_code"]);
+
+        if ($_FILES['deal_image_uploaded'] != null) {
+            $new_name = $deal->getId() . time();
+            $destination_path = BASE_PATH . "images/deals/";
+            $imgUploader = new FileUploader($_FILES['deal_image_uploaded'], $destination_path, $new_name, array("jpg", "png", "jpeg", "gif"), "2097152");
+            $result = $imgUploader->upload();
+
+            $image_name = $result["file_name"];
+            $deal->setImage($image_name);
+            $deal->updateImage();
+
+            $url = SERVER_URL . "admin/main.php?module_code=" . $module_code . "&view=deal_update&deal_id=" . $deal->getId(); // target of the redirect
+            $msg = "Deal image has been updated!";
+            $url = $url . "&info=" . $msg;
+            header("Location: " . $url);
+        }
     }
 } else {
     $response_array['status'] = 'failed';

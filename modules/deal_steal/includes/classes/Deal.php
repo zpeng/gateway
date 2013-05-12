@@ -18,6 +18,7 @@ class Deal
     public $online_date;
     public $offline_date;
     public $fine_print;
+    public $image;
     public $archived;
 
     public function setCategoryName($category_name)
@@ -201,6 +202,17 @@ class Deal
         return $this->type;
     }
 
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
     /********************** functions **********************/
     public function loadById($id)
     {
@@ -222,6 +234,7 @@ class Deal
                               offline_date,
                               fine_print,
                               deal_desc,
+                              image,
                               deal_archived
                             FROM
                               ds_deal,
@@ -254,6 +267,7 @@ class Deal
             $this->setOfflineDate($newArray['offline_date']);
             $this->setFinePrint($newArray['fine_print']);
             $this->setDesc($newArray['deal_desc']);
+            $this->setImage($newArray['image']);
             $this->setArchived($newArray['deal_archived']);
         }
     }
@@ -336,6 +350,17 @@ class Deal
         $link = getConnection();
         $query = "  UPDATE ds_deal
                     SET fine_print = '" . $this->getFinePrint() . "'
+                    WHERE deal_id  = " . $this->getId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function updateImage()
+    {
+        $link = getConnection();
+        $query = "  UPDATE ds_deal
+                    SET image = '" . $this->getImage() . "'
                     WHERE deal_id  = " . $this->getId();
 
         executeUpdateQuery($link, $query);

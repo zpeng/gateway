@@ -177,6 +177,26 @@ function createMultipleDropdownList($id = "", $name = "", $class = "", $style = 
     return $html = $html . "</select>";
 }
 
+function createImage($imageUrl, $class, $width, $height, $border = 0)
+{
+    return "<img border='$border' width='$width' height='$height' class='$class' src='" . $imageUrl . "' />";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
