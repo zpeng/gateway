@@ -1,8 +1,7 @@
 <?php
-class LoveHate{
+class LoveIt{
     public $deal_id;
     public $client_id;
-    public $love_it;
 
     public function setClientId($client_id)
     {
@@ -23,19 +22,6 @@ class LoveHate{
     {
         return $this->deal_id;
     }
-
-    public function setLoveIt($love_it)
-    {
-        $this->love_it = $love_it;
-    }
-
-    public function getLoveIt()
-    {
-        return $this->love_it;
-    }
-
-
-
 }
 
 
