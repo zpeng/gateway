@@ -34,10 +34,16 @@
 <div id="clock_div">
     <script type="application/javascript">
         var myCountdown1 = new Countdown({
-            time: 86400 * 30, // 86400 seconds = 1 day
+            year	: 2013,
+            month	: 7,
+            day		: 1,
+            hour	: 0,
+            ampm	: "am",
+            minute	: 0,
+            second	: 0,	// <- no comma on last item!!
             width: 300,
             height: 60,
-            rangeHi: "day",
+
             style: "flip"	// <- no comma on last item!
         });
     </script>
