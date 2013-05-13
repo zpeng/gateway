@@ -10,11 +10,12 @@ $deal->loadById($deal_id);
 
 <div id="tabs">
 <ul>
-    <li><a href="#tabs-1">Deal Detail</a></li>
-    <li><a href="#tabs-2">Fine Print</a></li>
-    <li><a href="#tabs-3">Category</a></li>
-    <li><a href="#tabs-4">Deal Tags</a></li>
-    <li><a href="#tabs-5">Image</a></li>
+    <li><a href="#tabs-1">Basic Detail</a></li>
+    <li><a href="#tabs-2">Deal Description</a></li>
+    <li><a href="#tabs-3">Fine Print</a></li>
+    <li><a href="#tabs-4">Category</a></li>
+    <li><a href="#tabs-5">Deal Tags</a></li>
+    <li><a href="#tabs-6">Image</a></li>
 </ul>
 
 <div id="tabs-1">
@@ -77,11 +78,6 @@ $deal->loadById($deal_id);
                 <td width="150" align="right"><b>Offline Date: </b></td>
                 <td><input name="offline_date" id="offline_date" style="width: 120px;"
                            value="<?= $deal->getOfflineDate() ?>"/></td>
-            </tr>
-            <tr>
-                <td width="150" align="right"><b>Deal Description: </b></td>
-                <td><textarea name='deal_desc' id='deal_desc' rows="4"
-                              cols="60"><?=$deal->getDesc()?></textarea></td>
             </tr>
             <tr>
                 <td></td>
@@ -170,8 +166,7 @@ $deal->loadById($deal_id);
                     original_price: original_price,
                     offer_price: offer_price,
                     online_date: online_date,
-                    offline_date: offline_date,
-                    deal_desc: deal_desc
+                    offline_date: offline_date
                 },
                 dataType: "json",
                 success: function (data) {
@@ -192,6 +187,72 @@ $deal->loadById($deal_id);
 </div>
 
 <div id="tabs-2">
+    <form id="DealDescUpdateForm" method='post'>
+        <input type="hidden" value="<? echo $deal_id ?>" id="deal_id" name="deal_id"/>
+        <textarea name='deal_desc' id='deal_desc' rows="4"
+                      cols="60"><?=$deal->getDesc()?></textarea>
+        <input name='"update_deal_desc_button' id="update_deal_desc_button" type='submit' value='Update'/>
+    </form>
+    <script>
+        tinyMCE.init({
+            // General options
+            elements: "deal_desc",
+            mode: "exact",
+            theme: "advanced",
+            plugins: "autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+
+            // Theme options
+            theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+            theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+            theme_advanced_buttons3: "",
+            theme_advanced_buttons4: "",
+            theme_advanced_toolbar_location: "top",
+            theme_advanced_toolbar_align: "left",
+            theme_advanced_statusbar_location: "bottom",
+            theme_advanced_resizing: true,
+
+            // Skin options            skin: "o2k7",
+            //skin_variant: "default",
+
+            // Drop lists for link/image/media/template dialogs
+            template_external_list_url: "js/template_list.js",
+            external_link_list_url: "js/link_list.js",
+            external_image_list_url: "js/image_list.js",
+            media_external_list_url: "js/media_list.js"
+        });
+
+        $("#update_deal_desc_button").button();
+
+        $("#update_deal_desc_button").click(function () {
+            var deal_id = $("#deal_id").val();
+            var deal_desc = tinyMCE.get('deal_desc').getContent()
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/admin/control/deal_update.php",
+                type: "POST",
+                data: {
+                    operation: "deal_desc_update",
+                    deal_id: deal_id,
+                    deal_desc: deal_desc
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == "success") {
+                        jQuery("div#notification").html("<span class='info'>Deal description has been updated successfully!</span>");
+                    } else {
+                        jQuery("div#notification").html("<span class='error'>Unable to update this deal. Try again please!</span>");
+                    }
+                },
+                error: function () {
+                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                }
+            });
+            return false;
+        });
+
+    </script>
+</div>
+
+<div id="tabs-3">
     <form id="DealFinePrintUpdateForm" method='post'>
         <input type="hidden" value="<? echo $deal_id ?>" id="deal_id" name="deal_id"/>
         <textarea name='fine_print' id='fine_print' rows="8"
@@ -258,7 +319,7 @@ $deal->loadById($deal_id);
     </script>
 </div>
 
-<div id="tabs-3">
+<div id="tabs-4">
     <form id="DealCategoryUpdateForm" method='post'>
         <?php
         $category_manager = new CategoryManager();
@@ -297,7 +358,7 @@ $deal->loadById($deal_id);
     </script>
 </div>
 
-<div id="tabs-4">
+<div id="tabs-5">
     <form id="DealTagsUpdateForm" method='post'>
         <table width="400" border="0" class="dialogTable">
             <tr>
@@ -385,7 +446,7 @@ $deal->loadById($deal_id);
     </script>
 </div>
 
-<div id="tabs-5">
+<div id="tabs-6">
     <form id="DealImagaeUpdateForm" action="<?= SERVER_URL ?>modules/deal_steal/admin/control/deal_update.php"
           method="post"
           enctype='multipart/form-data'>

@@ -325,8 +325,7 @@ class Deal
                       original_price = " . $this->getOriginalPrice() . ",
                       offer_price = " . $this->getOfferPrice() . ",
                       online_date = '" . $this->getOnlineDate() . "',
-                      offline_date = '" . $this->getOfflineDate() . "',
-                      deal_desc = '" . $this->getDesc() . "'
+                      offline_date = '" . $this->getOfflineDate() . "'
                     WHERE deal_id  = " . $this->getId();
 
         executeUpdateQuery($link, $query);
@@ -339,6 +338,18 @@ class Deal
         $query = "  UPDATE ds_deal
                     SET
                       category_id = " . $this->getCategoryId() . "
+                    WHERE deal_id  = " . $this->getId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function updateDescription()
+    {
+        $link = getConnection();
+        $query = "  UPDATE ds_deal
+                    SET
+                      deal_desc = '" . $this->getDesc() . "'
                     WHERE deal_id  = " . $this->getId();
 
         executeUpdateQuery($link, $query);

@@ -16,8 +16,6 @@ if (!empty($_REQUEST['operation'])) {
         $deal->setOfferPrice($_REQUEST["offer_price"]);
         $deal->setOnlineDate($_REQUEST["online_date"]);
         $deal->setOfflineDate($_REQUEST["offline_date"]);
-        $deal->setDesc($_REQUEST["deal_desc"]);
-
         $deal->update();
 
         $response_array['status'] = 'success';
@@ -38,6 +36,14 @@ if (!empty($_REQUEST['operation'])) {
             $deal_tag_id_list = $_REQUEST["deal_tag_id_list"];
         }
         $tagManager->updateDealTags($_REQUEST["deal_id"], $deal_tag_id_list);
+
+        $response_array['status'] = 'success';
+        header('Content-type: application/json');
+        echo json_encode($response_array);
+    }else if ($_REQUEST['operation'] == "deal_desc_update") {
+        $deal->setId($_REQUEST["deal_id"]);
+        $deal->setDesc($_REQUEST["deal_desc"]);
+        $deal->updateDescription();
 
         $response_array['status'] = 'success';
         header('Content-type: application/json');
