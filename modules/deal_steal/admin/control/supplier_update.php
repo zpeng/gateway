@@ -11,6 +11,7 @@ $supplier_tel = secureRequestParameter($_REQUEST["supplier_tel"]);
 $supplier_desc = secureRequestParameter($_REQUEST["supplier_desc"]);
 
 $supplier = new Supplier();
+$supplier->loadByID($supplier_id);
 $supplier->setSupplierId($supplier_id);
 $supplier->setSupplierName($supplier_name);
 $supplier->setSupplierUrl($supplier_url);
@@ -22,6 +23,10 @@ $supplier->setSupplierDesc($supplier_desc);
 if ($_FILES['logo_image_uploaded'] != null) {
     $new_name = $supplier_id . time();
     $destination_path = BASE_PATH . "images/suppliers/logo/";
+
+    if ($supplier->getSupplierLogo() != "default.jpg") {
+        unlink($destination_path . $supplier->getSupplierLogo()); // remove original image if necessary
+    }
     $imgUploader = new FileUploader($_FILES['logo_image_uploaded'], $destination_path, $new_name, array("jpg", "png", "jpeg", "gif"), "2097152");
     $result = $imgUploader->upload();
 

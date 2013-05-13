@@ -56,7 +56,13 @@ if (!empty($_REQUEST['operation'])) {
 
         if ($_FILES['deal_image_uploaded'] != null) {
             $new_name = $deal->getId() . time();
+            $deal->loadById($_REQUEST["deal_id"]);
             $destination_path = BASE_PATH . "images/deals/";
+
+            if ($deal->getImage() != "default.jpg") {
+                unlink($destination_path.$deal->getImage()); // remove original image if necessary
+            }
+
             $imgUploader = new FileUploader($_FILES['deal_image_uploaded'], $destination_path, $new_name, array("jpg", "png", "jpeg", "gif"), "2097152");
             $result = $imgUploader->upload();
 
