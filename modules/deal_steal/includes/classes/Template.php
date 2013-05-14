@@ -1,4 +1,6 @@
 <?php
+namespace  modules\deal_steal\includes\classes;
+
 class Template {
     //put your code here
     private $id;

@@ -1,5 +1,7 @@
 <?
 require_once('../../../../includes/bootstrap.php');
+use modules\cms\includes\classes\Content;
+
 
 $user_id = secureRequestParameter($_REQUEST["user_id"]);
 $module_code = secureRequestParameter($_REQUEST["module_code"]);

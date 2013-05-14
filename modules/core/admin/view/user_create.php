@@ -29,6 +29,7 @@
                 <td align="right"><b>Subscribe Modules: </b></td>
                 <td>
                     <?
+                    use modules\core\includes\classes\ModuleManager;
                     $moduleManager = new ModuleManager();
                     echo createCheckboxList("checkbox_list","checkbox_list","subscribe_module_code_list[]",$moduleManager->getModuleCheckboxListDataSource())
                     ?>

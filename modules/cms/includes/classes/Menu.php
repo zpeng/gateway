@@ -1,14 +1,6 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
-*/
+namespace  modules\cms\includes\classes;
 
-/**
- * Description of Menu
- *
- * @author
- */
 class Menu
 {
 //put your code here

@@ -1,14 +1,9 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
-*/
+namespace  modules\cms\includes\classes;
 
-/**
- * Description of Content
- *
- * @author
- */
+use modules\core\includes\classes\User;
+
+
 class Content
 {
 //put your code here

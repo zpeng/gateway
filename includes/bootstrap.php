@@ -16,13 +16,13 @@ if (!defined('BASE_PATH'))
 
 
 //disable error display
-//ini_set('display_errors', '0');
+ini_set('display_errors', '1');
 
 
 $GLOBAL_DEPS = [];
 
 // loading the core deps
-include_once(BASE_PATH . "includes/shared_deps.php");
+include_once(BASE_PATH . "includes/shared/shared_deps.php");
 
 
 // reads the module config and loads each module deps
@@ -44,5 +44,15 @@ foreach ($GLOBAL_DEPS as $module_key => $module_deps_config) {
     }
 }
 
+
+// Or, using an anonymous function as of PHP 5.3.0
+// auto loader register for auto loading php classes
+spl_autoload_register(function ($class) {
+    // get full name of file containing the required class
+    $file = BASE_PATH.str_replace('\\', '/', $class) . '.php';
+    // get file if it is readable
+    if (is_readable($file))
+        require_once $file;
+});
 
 ?>

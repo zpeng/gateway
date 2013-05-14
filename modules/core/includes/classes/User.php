@@ -1,4 +1,6 @@
 <?php
+namespace  modules\core\includes\classes;
+
 class User
 {
     public $user_id;

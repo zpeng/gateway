@@ -1,5 +1,6 @@
 <?
 require_once('../../../../../includes/bootstrap.php');
+use modules\cms\includes\classes\MenuManager;
 ?>
 
 <td width="150" align="right"><b>Menu Parent:</b></td>

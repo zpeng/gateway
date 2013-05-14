@@ -18,7 +18,7 @@ function outputHTMLStartFrontend($deps, $configManager)
     echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"
        \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html><head>";
 
-    echo "<title>" . $configManager->getValueByKey("shop_name") . "</title>";
+    echo "<title>" . $configManager->getValueByKey("site_title") . "</title>";
     echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />";
     echo "<meta name=\"description\" content=\"" . $configManager->getValueByKey("meta_description") . "\" />";
     echo "<meta name=\"keywords\" content=\"" . $configManager->getValueByKey("meta_keywords") . "\" />";

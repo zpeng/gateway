@@ -23,6 +23,7 @@
                 <td width="150" align="right"><b>Menu Type: </b></td>
                 <td>
                     <?
+                    use modules\cms\includes\classes\MenuManager;
                     $menuManager = new MenuManager();
                     echo createDropdownList("menu_type_selector", "menu_type_selector", "menu_type_selector", "width: 300px;", "3",
                         $menuManager->getMenuTypeListDataSource());

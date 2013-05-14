@@ -1,6 +1,6 @@
 <?
 require_once('../../../../includes/bootstrap.php');
-
+use modules\deal_steal\includes\classes\City;
 
 $city_id = secureRequestParameter($_REQUEST["city_id"]);
 $city_name = secureRequestParameter($_REQUEST["city_name"]);

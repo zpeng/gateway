@@ -1,4 +1,6 @@
 <?php
+namespace includes\shared\classes;
+
 class FileUploader
 {
     private $uploading_file;

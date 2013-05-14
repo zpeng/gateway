@@ -22,6 +22,7 @@
     <label for="filter" class="EditableGrid">Filter :</label>
     <input type="text" id="filter" class="EditableGrid"/>
     <?
+    use modules\deal_steal\includes\classes\DealManager;
     $dealManager = new DealManager();
     echo createGenericTable("DealListGrid", "EditableGrid", $dealManager->getDealsTableDataSource());
     ?>
@@ -43,6 +44,7 @@
             <tr>
                 <td width="150" align="right"><b>Supplier: </b></td>
                 <td><?php
+                    use modules\deal_steal\includes\classes\SupplierManager;
                     $supplier_manager = new SupplierManager();
                     echo createDropdownList("deal_supplier", "deal_supplier", "deal_supplier", "width: 150px;", "",
                         $supplier_manager->getSupplierListDataSource());
@@ -51,6 +53,7 @@
             <tr>
                 <td width="150" align="right"><b>City: </b></td>
                 <td><?php
+                    use modules\deal_steal\includes\classes\CityManager;
                     $city_manager = new CityManager();
                     echo createDropdownList("deal_city", "deal_city", "deal_city", "width: 150px;", "",
                         $city_manager->getCityListDataSource());

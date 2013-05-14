@@ -20,6 +20,7 @@
     <label for="filter" class="EditableGrid">Filter :</label>
     <input type="text" id="filter" class="EditableGrid"/>
     <?
+    use modules\cms\includes\classes\ContentManager;
     $contentManager = new ContentManager();
     echo createGenericTable("ArticleListGrid", "EditableGrid", $contentManager->getContentTableDataSource());
     ?>

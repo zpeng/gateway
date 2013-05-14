@@ -1,12 +1,11 @@
 <h1 class="content_title">All Clients</h1>
 <? include_once('view/notification_bar.php') ?>
 <div id="content">
-
     <?
+    use modules\deal_steal\includes\classes\ClientManager;
     $clientManager = new ClientManager();
     echo createGenericTable("ClientListGrid", "EditableGrid", $clientManager->getClientTableDataSource());
     ?>
-
 </div>
 
 <script>

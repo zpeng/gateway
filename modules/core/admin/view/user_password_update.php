@@ -2,6 +2,7 @@
 <div id="notification"></div>
 <div id="content">
     <?
+    use modules\core\includes\classes\User;
     $user_id = secureRequestParameter($_REQUEST["user_id"]);
     $user = new User();
     $user->loadByID($user_id);

@@ -1,5 +1,7 @@
 <?php
 require_once('../../../../includes/bootstrap.php');
+use modules\deal_steal\includes\classes\TagManager;
+
 $tagManager = new TagManager();
 
 if (!empty($_REQUEST['operation'])) {

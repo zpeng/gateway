@@ -1,8 +1,10 @@
 <?php
 // this is always required
 require_once('../includes/bootstrap.php');
+include(BASE_PATH."modules/core/includes/classes/UserSession.php");
 
 require_once(BASE_PATH . 'admin/control/auth_landing.php');
+
 ?>
 
 <?= outputHTMLStartBackend("Admin Control Panel", $GLOBAL_DEPS["a74ad8dfacd4f985eb3977517615ce25"]) ?>

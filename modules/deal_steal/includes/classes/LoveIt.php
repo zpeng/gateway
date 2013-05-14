@@ -1,4 +1,7 @@
 <?php
+namespace  modules\deal_steal\includes\classes;
+
+
 class LoveIt{
     public $deal_id;
     public $client_id;

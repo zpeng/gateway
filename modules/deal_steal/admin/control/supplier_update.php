@@ -1,5 +1,8 @@
 <?
 require_once('../../../../includes/bootstrap.php');
+use modules\deal_steal\includes\classes\Supplier;
+use includes\shared\classes\FileUploader;
+
 
 $module_code = secureRequestParameter($_REQUEST["module_code"]);
 $supplier_id = secureRequestParameter($_REQUEST["supplier_id"]);

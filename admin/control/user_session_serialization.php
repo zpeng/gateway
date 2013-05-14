@@ -1,9 +1,10 @@
 <?php
+require_once(BASE_PATH."modules/core/includes/classes/UserSession.php");
+
 if (!isset ($_SESSION['user_session'])) {
     $s_user_session = new UserSession($_SESSION['user_name']);
     unset ($_SESSION['$configManager']);
     $_SESSION['user_session'] = serialize($s_user_session);
-
 } else {
     $str = unserialize($_SESSION['user_session']);
     $s_user_session = UserSession::cast($str);

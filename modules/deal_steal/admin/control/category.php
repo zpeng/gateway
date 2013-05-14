@@ -1,6 +1,7 @@
 <?php
 require_once('../../../../includes/bootstrap.php');
-
+use modules\deal_steal\includes\classes\Category;
+use modules\deal_steal\includes\classes\CategoryManager;
 
 if (!empty($_REQUEST['operation'])) {
     if ($_REQUEST['operation'] == "create_category") {

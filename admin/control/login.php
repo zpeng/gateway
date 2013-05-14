@@ -1,6 +1,8 @@
 <?php
-
 require_once('../../includes/bootstrap.php');
+include(BASE_PATH."modules/core/includes/classes/UserSession.php");
+use modules\core\includes\classes\UserManager;
+use modules\core\includes\classes\User;
 
 $email = ($_REQUEST['email']);
 $password = ($_REQUEST['password']);

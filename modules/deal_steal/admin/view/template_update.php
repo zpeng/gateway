@@ -2,6 +2,7 @@
 <div id="notification"></div>
 <div id="content">
     <?
+    use modules\deal_steal\includes\classes\Template;
     $template_id = secureRequestParameter($_REQUEST["template_id"]);
     $template = new Template();
     $template->loadByID($template_id);

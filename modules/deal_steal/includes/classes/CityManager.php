@@ -1,4 +1,7 @@
 <?php
+namespace  modules\deal_steal\includes\classes;
+
+
 class CityManager
 {
     public function loadCityAsMap()

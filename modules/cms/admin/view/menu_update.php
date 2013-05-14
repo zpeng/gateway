@@ -3,6 +3,8 @@
 <div id="content">
     <?
     $menu_id = secureRequestParameter($_REQUEST["menu_id"]);
+    use modules\cms\includes\classes\Menu;
+
     $menu = new Menu();
     $menu->load($menu_id);
     ?>

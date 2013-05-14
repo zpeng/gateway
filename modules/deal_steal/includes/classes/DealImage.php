@@ -1,4 +1,7 @@
 <?php
+namespace  modules\deal_steal\includes\classes;
+
+
 class DealImage{
     public $deal_image_id;
     public $deal_id;

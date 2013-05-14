@@ -24,6 +24,7 @@
     <input type="text" id="filter" class="EditableGrid"/>
 
     <?
+    use modules\deal_steal\includes\classes\SupplierManager;
     $supplierManager = new SupplierManager();
     echo createGenericTable("SupplierListGrid", "EditableGrid", $supplierManager->getSupplierTableDataSource($GLOBAL_DEPS[$_REQUEST['module_code']]["supplier_logo_folder"]));
     ?>

@@ -1,4 +1,8 @@
 <?php
+
+use modules\core\includes\classes\User;
+use modules\core\includes\classes\ConfigurationManager;
+
 class UserSession
 {
     public $userName;

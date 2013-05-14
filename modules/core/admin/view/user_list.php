@@ -20,6 +20,7 @@
     <label for="filter" class="EditableGrid">Filter :</label>
     <input type="text" id="filter" class="EditableGrid"/>
     <?
+    use modules\core\includes\classes\UserManager;
     $userManager = new UserManager();
     echo createGenericTable("UserListGrid", "EditableGrid", $userManager->getUserTableDataSource());
     ?>

@@ -1,4 +1,5 @@
 <?php
+namespace  modules\core\includes\classes;
 
 class ConfigurationManager
 {

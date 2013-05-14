@@ -1,6 +1,6 @@
 <?
 require_once('../../../../includes/bootstrap.php');
-
+use modules\deal_steal\includes\classes\Template;
 
 $template_id = secureRequestParameter($_REQUEST["template_id"]);
 $template_title = secureRequestParameter($_REQUEST["template_title"]);

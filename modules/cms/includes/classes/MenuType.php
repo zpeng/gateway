@@ -1,14 +1,6 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace  modules\cms\includes\classes;
 
-/**
- * Description of MenuType
- *
- * @author
- */
 class MenuType {
 //put your code here
     private $_menu_type_id;

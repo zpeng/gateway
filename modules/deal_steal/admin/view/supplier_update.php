@@ -2,6 +2,7 @@
 <? include_once('view/notification_bar.php') ?>
 <div id="content">
     <?
+    use modules\deal_steal\includes\classes\Supplier;
     $supplier_id = secureRequestParameter($_REQUEST["supplier_id"]);
     $supplier = new Supplier();
     $supplier->loadByID($supplier_id);

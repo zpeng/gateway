@@ -1,4 +1,6 @@
 <?php
+namespace  modules\core\includes\classes;
+
 class Module {
     public $module_code;
     public $module_name;

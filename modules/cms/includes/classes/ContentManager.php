@@ -1,4 +1,6 @@
 <?php
+namespace  modules\cms\includes\classes;
+
 class ContentManager
 {
     public function getContentList()

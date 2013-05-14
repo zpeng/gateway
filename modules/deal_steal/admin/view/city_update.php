@@ -2,6 +2,7 @@
 <div id="notification"></div>
 <div id="content">
     <?
+    use modules\deal_steal\includes\classes\City;
     $city_id = secureRequestParameter($_REQUEST["city_id"]);
     $city = new City();
     $city->load($city_id);

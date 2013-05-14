@@ -1,4 +1,6 @@
 <?php
+namespace  modules\deal_steal\includes\classes;
+
 class CategoryManager
 {
     public $data;

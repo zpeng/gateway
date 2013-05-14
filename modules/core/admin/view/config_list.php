@@ -21,6 +21,7 @@
     <input type="text" id="filter" class="EditableGrid"/>
 
     <?
+    use modules\core\includes\classes\ConfigurationManager;
     $configManager = new ConfigurationManager();
     echo createGenericTable("CoreConfigListGrid", "EditableGrid", $configManager->getConfigTableDataSource($_REQUEST["module_code"]));
     ?>

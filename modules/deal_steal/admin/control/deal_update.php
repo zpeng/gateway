@@ -1,5 +1,9 @@
 <?
 require_once('../../../../includes/bootstrap.php');
+use modules\deal_steal\includes\classes\Deal;
+use modules\deal_steal\includes\classes\TagManager;
+use includes\shared\classes\FileUploader;
+
 
 $deal = new Deal();
 

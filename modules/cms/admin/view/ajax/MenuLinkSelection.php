@@ -1,6 +1,7 @@
 <?
 require_once('../../../../../includes/bootstrap.php');
 $link_type_id = $_REQUEST["link_type_id"];
+use modules\cms\includes\classes\ContentManager;
 ?>
 
 

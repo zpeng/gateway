@@ -7,6 +7,8 @@
     </ul>
     <div id="tabs-1">
         <?
+        use modules\cms\includes\classes\MenuManager;
+
         $menuManager = new MenuManager();
         echo createGenericTable("TopMenuListGrid", "EditableGrid", $menuManager->getMenuTableDataSource(1));
         ?>

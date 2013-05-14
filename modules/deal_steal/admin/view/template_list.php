@@ -20,6 +20,7 @@
     <input type="text" id="filter" class="EditableGrid"/>
 
     <?
+    use modules\deal_steal\includes\classes\TemplateManager;
     $templateManager = new TemplateManager();
     echo $templateManager->outputAllAsHtmlTable("TemplateListGrid", "EditableGrid");
     ?>

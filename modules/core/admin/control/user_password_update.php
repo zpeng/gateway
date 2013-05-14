@@ -1,6 +1,6 @@
 <?
 require_once('../../../../includes/bootstrap.php');
-
+use modules\core\includes\classes\User;
 
 $user_id = secureRequestParameter($_REQUEST["user_id"]);
 $new_password = secureRequestParameter($_REQUEST["password"]);

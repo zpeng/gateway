@@ -1,6 +1,5 @@
 <h1 class="content_title">Tags</h1>
 <div id="content">
-
     <input name="deal_tags" id="deal_tags" />
 </div>
 <script>

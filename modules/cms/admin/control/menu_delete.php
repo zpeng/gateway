@@ -1,5 +1,7 @@
 <?
 require_once('../../../../includes/bootstrap.php');
+use modules\cms\includes\classes\Menu;
+
 
 $module_code = secureRequestParameter($_REQUEST["module_code"]);
 $menu_id = secureRequestParameter($_REQUEST["menu_id"]);

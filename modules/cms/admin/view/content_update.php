@@ -3,6 +3,8 @@
 <div id="main_content">
     <?
     $content_id = $_REQUEST["content_id"];
+
+    use modules\cms\includes\classes\Content;
     $content = new Content();
     $content->loadByID($content_id);
     ?>

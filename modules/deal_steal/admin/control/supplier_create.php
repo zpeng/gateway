@@ -1,5 +1,6 @@
 <?
 require_once('../../../../includes/bootstrap.php');
+use modules\deal_steal\includes\classes\Supplier;
 
 $module_code = secureRequestParameter($_REQUEST["module_code"]);
 $supplier_name = secureRequestParameter($_REQUEST["supplier_name"]);

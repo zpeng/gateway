@@ -43,15 +43,16 @@ $JS_SHARED = array(
     "admin_ui" => "admin/js/admin_ui.js"
 );
 
-
 $GLOBAL_DEPS = array(
     "shared_php" => array(
         "php" => array(
-            "PageBuilder" => "includes/page_builder.php",
-            "DatabaseUtils" => "includes/database_utils.php",
-            "GlobalFunction" => "includes/utils/global_functions.php",
-            "HtmlWidgets" => "includes/ui/html_widgets.php",
-            "FileUploader" => "includes/classes/FileUploader.php",
+            "DatabaseUtils"  => "includes/shared/utils/database_utils.php",
+            "PageBuilder"    => "includes/shared/utils/page_builder.php",
+            "GlobalFunction" => "includes/shared/utils/global_functions.php",
+            "HtmlWidgets"    => "includes/shared/utils/html_widgets.php",
+
+
+            "FileUploader"   => "includes/shared/classes/FileUploader.php",
         )
     )
 )

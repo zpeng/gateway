@@ -1,6 +1,6 @@
 <?
 require_once('../../../../includes/bootstrap.php');
-
+use modules\core\includes\classes\Configuration;
 
 $config_id = secureRequestParameter($_REQUEST["config_id"]);
 $config_value = secureRequestParameter($_REQUEST["config_value"]);

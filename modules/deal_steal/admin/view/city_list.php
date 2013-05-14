@@ -4,6 +4,7 @@
     <a id="add_new_city" class="anchor_button" href="#">Add New City</a>
 
     <?
+    use modules\deal_steal\includes\classes\CityManager;
     $cityManager = new CityManager();
     echo createGenericTable("CityListGrid", "EditableGrid", $cityManager->getCityTableDataSource());
     ?>

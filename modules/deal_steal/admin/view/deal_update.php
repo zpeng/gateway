@@ -2,6 +2,7 @@
 <div id="notification"></div>
 <div id="content">
 <?
+use modules\deal_steal\includes\classes\Deal;
 $deal_id = secureRequestParameter($_REQUEST["deal_id"]);
 $deal = new Deal();
 $deal->loadById($deal_id);
@@ -322,6 +323,7 @@ $deal->loadById($deal_id);
 <div id="tabs-4">
     <form id="DealCategoryUpdateForm" method='post'>
         <?php
+        use modules\deal_steal\includes\classes\CategoryManager;
         $category_manager = new CategoryManager();
         echo createTreeviewRadioList("deal_category_list", "treeview", "deal_category_id", $category_manager->getCategoryTreeviewDataSource(), $deal->getCategoryId());
         ?>

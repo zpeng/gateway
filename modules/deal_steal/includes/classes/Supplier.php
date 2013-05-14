@@ -1,4 +1,7 @@
 <?php
+namespace  modules\deal_steal\includes\classes;
+
+
 class Supplier{
     public $supplier_id;
     public $supplier_name;
