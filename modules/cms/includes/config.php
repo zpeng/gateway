@@ -12,6 +12,7 @@ $module_config = array(
         "backend" => array_merge($CSS_SHARED, array()),
         "frontend" => array()
     ),
+
     "js" => array(
         "backend" => array_merge($JS_SHARED, array()),
         "frontend" => array()
