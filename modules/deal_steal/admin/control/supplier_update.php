@@ -23,7 +23,7 @@ $supplier->setSupplierEmail($supplier_email);
 $supplier->setSupplierTel($supplier_tel);
 $supplier->setSupplierDesc($supplier_desc);
 
-if ($_FILES['logo_image_uploaded'] != null) {
+if (!empty($_FILES['logo_image_uploaded']) && $_FILES['logo_image_uploaded']['size'] > 0) {
     $new_name = $supplier_id . time();
     $destination_path = BASE_PATH . "images/suppliers/logo/";
 
@@ -45,5 +45,4 @@ $msg = "Supplier [" . $supplier_name . "] has been updated!";
 $url = $url . "&info=" . $msg;
 
 header("Location: " . $url);
-
 ?>
