@@ -50,9 +50,6 @@ $GLOBAL_DEPS = array(
             "PageBuilder"    => "includes/shared/utils/page_builder.php",
             "GlobalFunction" => "includes/shared/utils/global_functions.php",
             "HtmlWidgets"    => "includes/shared/utils/html_widgets.php",
-
-
-            "FileUploader"   => "includes/shared/classes/FileUploader.php",
         )
     )
 )
