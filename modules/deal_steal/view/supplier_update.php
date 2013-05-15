@@ -97,8 +97,5 @@
                 jQuery("input#logo_image_uploaded").val("");
             }
         });
-
-
-
     </script>
 </div>

@@ -137,53 +137,52 @@ $deal->loadById($deal_id);
                 expression: "if (VAL) return true; else return false;",
                 message: "Please enter a valid Date"
             });
-        });
 
-        jQuery('form#DealDetailUpdateForm').validated(function () {
-            var deal_id = $("#deal_id").val();
-            var deal_title = $("#deal_title").val();
-            var deal_supplier = $("#deal_supplier").val();
-            var deal_city = $("#deal_city").val();
-            var deal_type = $("#deal_type").val();
-            var original_quantity = $("#original_quantity").val();
-            var available_quantity = $("#available_quantity").val();
-            var original_price = $("#original_price").val();
-            var offer_price = $("#offer_price").val();
-            var online_date = $("#online_date").val();
-            var offline_date = $("#offline_date").val();
-            var deal_desc = $("#deal_desc").val();
-            $.ajax({
-                url: SERVER_URL + "modules/deal_steal/control/deal_update.php",
-                type: "POST",
-                data: {
-                    operation: "deal_detail_update",
-                    deal_id: deal_id,
-                    deal_title: deal_title,
-                    deal_supplier: deal_supplier,
-                    deal_city: deal_city,
-                    deal_type: deal_type,
-                    original_quantity: original_quantity,
-                    available_quantity: available_quantity,
-                    original_price: original_price,
-                    offer_price: offer_price,
-                    online_date: online_date,
-                    offline_date: offline_date
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.status == "success") {
-                        jQuery("div#notification").html("<span class='info'>Deal detail has been updated successfully!</span>");
-                    } else {
-                        jQuery("div#notification").html("<span class='error'>Unable to update this deal. Try again please!</span>");
+            jQuery('form#DealDetailUpdateForm').validated(function () {
+                var deal_id = $("#deal_id").val();
+                var deal_title = $("#deal_title").val();
+                var deal_supplier = $("#deal_supplier").val();
+                var deal_city = $("#deal_city").val();
+                var deal_type = $("#deal_type").val();
+                var original_quantity = $("#original_quantity").val();
+                var available_quantity = $("#available_quantity").val();
+                var original_price = $("#original_price").val();
+                var offer_price = $("#offer_price").val();
+                var online_date = $("#online_date").val();
+                var offline_date = $("#offline_date").val();
+                var deal_desc = $("#deal_desc").val();
+                $.ajax({
+                    url: SERVER_URL + "modules/deal_steal/control/deal_update.php",
+                    type: "POST",
+                    data: {
+                        operation: "deal_detail_update",
+                        deal_id: deal_id,
+                        deal_title: deal_title,
+                        deal_supplier: deal_supplier,
+                        deal_city: deal_city,
+                        deal_type: deal_type,
+                        original_quantity: original_quantity,
+                        available_quantity: available_quantity,
+                        original_price: original_price,
+                        offer_price: offer_price,
+                        online_date: online_date,
+                        offline_date: offline_date
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == "success") {
+                            jQuery("div#notification").html("<span class='info'>Deal detail has been updated successfully!</span>");
+                        } else {
+                            jQuery("div#notification").html("<span class='error'>Unable to update this deal. Try again please!</span>");
+                        }
+                    },
+                    error: function () {
+                        jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
                     }
-                },
-                error: function () {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                }
+                });
+                return false;
             });
-            return false;
         });
-
     </script>
 </div>
 

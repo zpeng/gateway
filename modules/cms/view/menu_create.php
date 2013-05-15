@@ -6,7 +6,7 @@
     ?>
     <br/>
 
-    <form id="MenuCreateForm" action="<?= SERVER_URL ?>modules/cms/control/menu_create.php" method="post" onsubmit="greeting()">
+    <form id="MenuCreateForm" action="<?= SERVER_URL ?>modules/cms/control/menu_create.php" method="post">
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
         <table class="inputTable">
             <tr>
@@ -63,11 +63,6 @@
                 $("#MenuLinkSelection").load(SERVER_URL + "modules/cms//view/ajax/MenuLinkSelection.php?link_type_id="+this.value);
             });
         });
-
-        function greeting()
-        {
-            console.log("hello");
-        }
 
         jQuery(function () {
             jQuery("#menu_name").validate({
