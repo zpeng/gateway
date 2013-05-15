@@ -29,7 +29,7 @@ class CityManager
                 array_push($body, array(
                     $key,
                     $value,
-                    "<a class='icon_delete' title='Delete this city' href='" . SERVER_URL . "modules/deal_steal/admin/control/city_delete.php?city_id=" .
+                    "<a class='icon_delete' title='Delete this city' href='" . SERVER_URL . "modules/deal_steal/control/city_delete.php?city_id=" .
                         $key . "&module_code=" . $_REQUEST['module_code'] . "'
                      onclick='return confirmDeletion()'></a>
                      <a class='icon_edit' title='Update City' href='" . SERVER_URL . "admin/main.php?view=city_update&city_id=" .

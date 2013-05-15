@@ -1,9 +1,9 @@
 <?php
 $module_config = array(
     "module_name" => "System Core",
-    "module_logo" => "modules/core/admin/images/core-logo.png",
-    "module_view_menu" => "modules/core/admin/view/left_panel.php",
-    "module_view_content" => "modules/core/admin/view/right_panel.php",
+    "module_logo" => "modules/core/images/core-logo.png",
+    "module_view_menu" => "modules/core/view/left_panel.php",
+    "module_view_content" => "modules/core/view/right_panel.php",
 
     "php" => array(),
     "css" => array(

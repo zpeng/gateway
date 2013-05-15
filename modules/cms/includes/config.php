@@ -2,9 +2,9 @@
 
 $module_config = array(
     "module_name" => "Content Manager",
-    "module_logo" => "modules/cms/admin/images/cms-logo.gif",
-    "module_view_menu" => "modules/cms/admin/view/left_panel.php",
-    "module_view_content" => "modules/cms/admin/view/right_panel.php",
+    "module_logo" => "modules/cms/images/cms-logo.gif",
+    "module_view_menu" => "modules/cms/view/left_panel.php",
+    "module_view_content" => "modules/cms/view/right_panel.php",
 
     "php" => array(),
 
