@@ -16,7 +16,8 @@ class ClientManager
                               client_surname,
                               client_dob,
                               client_tel,
-                              client_mobile
+                              client_mobile,
+                              subscribed
                    FROM       ds_client";
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);

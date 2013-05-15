@@ -12,6 +12,17 @@ class Client{
     public $client_dob;
     public $client_tel;
     public $client_mobile;
+    public $subscribed;
+
+    public function setSubscribed($subscribed)
+    {
+        $this->subscribed = $subscribed;
+    }
+
+    public function getSubscribed()
+    {
+        return $this->subscribed;
+    }
 
     public function setClientTitle($client_title)
     {
@@ -115,7 +126,8 @@ class Client{
                               client_surname,
                               client_dob,
                               client_tel,
-                              client_mobile
+                              client_mobile,
+                              subscribed
                    FROM       ds_client
                    WHERE      client_id =  ".$id;
 
@@ -131,6 +143,7 @@ class Client{
             $this->setClientDob($newArray['client_dob']);
             $this->setClientTel($newArray['client_tel']);
             $this->setClientMobile($newArray['client_mobile']);
+            $this->setSubscribed($newArray['subscribed']);
         }
     }
 
@@ -145,7 +158,8 @@ class Client{
                       client_surname,
                       client_dob,
                       client_tel,
-                      client_mobile)
+                      client_mobile,
+                      subscribed)
                    VALUES ('".$this->getClientEmail()."',
                    '".$this->getClientPassword()."',
                    '".$this->getClientTitle()."',
@@ -153,7 +167,8 @@ class Client{
                    '".$this->getClientSurname()."',
                    '".$this->getClientDob()."',
                    '".$this->getClientTel()."',
-                   '".$this->getClientMobile()."')";
+                   '".$this->getClientMobile()."',
+                   '".$this->getSubscribed()."')";
 
         executeUpdateQuery($link, $query);
         $last_insert_id = mysql_insert_id();
@@ -169,7 +184,8 @@ class Client{
                            client_surname = '".$this->getClientSurname()."',
                            client_dob = '".$this->getClientDob()."',
                            client_tel = '".$this->getClientTel()."',
-                           client_mobile = '".$this->getClientMobile()."'
+                           client_mobile = '".$this->getClientMobile()."',
+                           subscribed = '".$this->getClientMobile()."'
                    WHERE   client_id = " . $this->getClientId();
 
         executeUpdateQuery($link, $query);
