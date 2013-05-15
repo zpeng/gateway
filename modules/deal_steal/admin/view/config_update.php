@@ -2,8 +2,9 @@
 <div id="notification"></div>
 <div id="content">
     <?
-    use modules\core\includes\classes\Configuration;
     $config_id = secureRequestParameter($_REQUEST["config_id"]);
+
+    use modules\core\includes\classes\Configuration;
     $config = new Configuration();
     $config->loadById($config_id);
     ?>
