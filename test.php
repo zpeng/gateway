@@ -16,57 +16,7 @@ require_once('includes/bootstrap.php');
     <script type="text/javascript" src="js/shared/head/head.min.js"></script>
 </head>
 <body>
-<div id="top_header">
-    <div id="header">
-        <div id="header_logo">
-            <img src="images/site/dealsteal.png"/>
-        </div>
 
-        <div id="header_content">
-            <div id="header_nav">
-                <nav>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Category</a>
-                            <ul>
-                                <li><a href="#">Photoshop</a></li>
-                                <li><a href="#">Illustrator</a></li>
-                                <li><a href="#">Web Design</a>
-                                    <ul>
-                                        <li><a href="#">HTML</a></li>
-                                        <li><a href="#">CSS</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#">City</a>
-                            <ul>
-                                <li><a href="#">Web Design</a></li>
-                                <li><a href="#">User Experience</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">My Deals</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div id="user_account_nav">
-                <span style="float: left">Login/Register</span>
-                <span>Basket: 0 items</span>
-            </div>
-
-            <div id="site_search">
-                <form method="get" action="/search">
-                    <input type="text" id="keywords" name="keywords" value="Search..."/>
-                    <input type="image" id="search_btn" name="search_btn" src="images/site/icon-search-top.gif"
-                           style="border-style:none;"/>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-</div>
 
 <div id="main_body">
     <div id="main_content">
@@ -95,17 +45,6 @@ require_once('includes/bootstrap.php');
     </div>
 </div>
 
-<div id="footer">
-    <div id="footer_content">
 
-    </div>
-</div>
-<script>
-    head.js(<?=outputDependencies(array("jquery-ui","jquery-form-validate","jsTree"), $JS_DEPS)?>, function () {
-            console.log("haha");
-        });
-
-
-</script>
 </body>
 </html>

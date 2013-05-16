@@ -5,10 +5,9 @@ define('DB_NAME', "olly");
 define('DB_USER', "root");
 define('DB_PASSWORD', "");
 
-
 /** define server and project location - used to load css and js files **/
 define('SERVER_URL', "http://localhost/gateway/");
-define('PROJECT_FOLDER', "/gateway");
+define('PROJECT_FOLDER', "/gateway"); // in case the project folder is sub-folder of the root folder
 
 /** define base path - used for loading php files */
 if (!defined('BASE_PATH'))

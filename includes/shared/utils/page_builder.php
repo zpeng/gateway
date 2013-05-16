@@ -13,7 +13,7 @@ function outputHTMLStartBackend($page_title = "", $deps)
     echo "</head><body>";
 }
 
-function outputHTMLStartFrontend($deps, $configManager)
+function outputHTMLStartFrontend($js_deps, $css_deps, $configManager)
 {
     echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"
        \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html><head>";
@@ -23,8 +23,8 @@ function outputHTMLStartFrontend($deps, $configManager)
     echo "<meta name=\"description\" content=\"" . $configManager->getValueByKey("meta_description") . "\" />";
     echo "<meta name=\"keywords\" content=\"" . $configManager->getValueByKey("meta_keywords") . "\" />";
 
-    output_js_tag($deps["js"]["frontend"]);
-    output_css_tag($deps["css"]["frontend"]);
+    output_js_tag($js_deps);
+    output_css_tag($css_deps);
 
     echo "</head><body>";
 }

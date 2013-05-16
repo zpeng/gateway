@@ -4,7 +4,7 @@ namespace  modules\core\includes\classes;
 class ConfigurationManager
 {
     //put your code here
-    private $configEntityList = [];
+    public $configEntityList = [];
 
     public function getValueByKey($key)
     {
