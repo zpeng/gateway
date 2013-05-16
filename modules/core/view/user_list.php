@@ -45,6 +45,11 @@
         // then we attach to the HTML table and render it
         UserListGrid.attachToHTMLTable('UserListGrid');
         UserListGrid.initializeGrid();
+
+        // Add Confirmation dialogs for all Deletes
+        jQuery("a.confirm_delete").click(function (event) {
+            return confirm('Are you sure you wish to delete this item?');
+        });
     };
 
 

@@ -91,9 +91,8 @@ class UserManager
                     $user->get_user_id(),
                     $user->get_user_name(),
                     implode(", ", array_values($user->user_subscribe_module_code_name_map)),
-                    "<a class='icon_delete' title='Delete this user account' href='" . SERVER_URL . "admin/control/user_delete_process.php?user_id=" .
-                    $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "'
-                    onclick='return confirmDeletion()'></a>
+                    "<a class='icon_delete confirm_delete' title='Delete this user account' href='" . SERVER_URL . "admin/control/user_delete_process.php?user_id=" .
+                    $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "'></a>
                     <a class='icon_edit' title='Update password' href='" . SERVER_URL . "admin/main.php?view=user_password_update&user_id=" .
                     $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
                     <a class='icon_admin' title='Update module subscription' href='" . SERVER_URL . "admin/main.php?view=user_module_update&user_id=" .

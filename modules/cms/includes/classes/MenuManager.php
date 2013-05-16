@@ -146,9 +146,9 @@ class MenuManager
             $menu->get_menu_link(),
             $menu->get_menu_order(),
             $menu->get_menu_desc(),
-            "<a class='icon_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/control/menu_delete.php?menu_id=" .
+            "<a class='icon_delete confirm_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/control/menu_delete.php?menu_id=" .
                 $menu->get_menu_id() . "&module_code=" . $_REQUEST['module_code'] . "'
-                        onclick='return confirmDeletion()'></a>
+                        ></a>
                         <a class='icon_edit' title='Update this article' href='" . SERVER_URL . "admin/main.php?view=menu_update&menu_id=" .
                 $menu->get_menu_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
         ));

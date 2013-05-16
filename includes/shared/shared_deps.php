@@ -38,9 +38,7 @@ $JS_SHARED = array(
 
     "editablegrid" => array(
         "js/shared/editablegrid-2.0.1/editablegrid-2.0.1.js",
-        "js/shared/editablegrid-2.0.1/editablegrid-2.0.1-extend.js"),
-
-    "admin_ui" => "admin/js/admin_ui.js"
+        "js/shared/editablegrid-2.0.1/editablegrid-2.0.1-extend.js")
 );
 
 $GLOBAL_DEPS = array(

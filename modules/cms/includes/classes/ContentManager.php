@@ -50,9 +50,8 @@ class ContentManager
                     $content->get_create_date(),
                     $content->get_last_modify_by(),
                     $content->get_last_modify_date(),
-                    "<a class='icon_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/control/content_delete.php?content_id=" .
-                        $content->get_content_id() . "&module_code=" . $_REQUEST['module_code'] . "'
-                        onclick='return confirmDeletion()'></a>
+                    "<a class='icon_delete confirm_delete' title='Delete this article' href='" . SERVER_URL . "modules/cms/control/content_delete.php?content_id=" .
+                        $content->get_content_id() . "&module_code=" . $_REQUEST['module_code'] . "'></a>
                         <a class='icon_edit' title='Update this article' href='" . SERVER_URL . "admin/main.php?view=content_update&content_id=" .
                         $content->get_content_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
                 ));
