@@ -21,47 +21,59 @@
 </div>
 <br/>
 <script>
-    jQuery(function () {
+
+    // load css
+    head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "editablegrid-css")
+    , $CSS_DEPS)?>);
+
+    // load js
+    head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "editablegrid")
+    , $JS_DEPS)?>, function () {
         jQuery("#content").tabs();
+
+        window.onload = function () {
+            var TopMenuListGrid = new EditableGrid("TopMenuListGrid");
+            // we build and load the metadata in Javascript
+            TopMenuListGrid.load({ metadata: [
+                { name: "ID", datatype: "integer", editable: false },
+                { name: "Menu Title", datatype: "string", editable: false },
+                { name: "Link", datatype: "string", editable: false },
+                { name: "Order", datatype: "integer", editable: false },
+                { name: "Description", datatype: "string", editable: false },
+                { name: "Action", datatype: "html", editable: false }
+            ]});
+
+            // then we attach to the HTML table and render it
+            TopMenuListGrid.attachToHTMLTable('TopMenuListGrid');
+            TopMenuListGrid.renderGrid();
+
+
+            var BottomMenuListGrid = new EditableGrid("BottomMenuListGrid");
+            // we build and load the metadata in Javascript
+            BottomMenuListGrid.load({ metadata: [
+                { name: "ID", datatype: "integer", editable: false },
+                { name: "Menu Title", datatype: "string", editable: false },
+                { name: "Link", datatype: "string", editable: false },
+                { name: "Order", datatype: "integer", editable: false },
+                { name: "Description", datatype: "string", editable: false },
+                { name: "Action", datatype: "html", editable: false }
+            ]});
+
+            // then we attach to the HTML table and render it
+            BottomMenuListGrid.attachToHTMLTable('BottomMenuListGrid');
+            BottomMenuListGrid.renderGrid();
+
+            // Add Confirmation dialogs for all Deletes
+            jQuery("a.confirm_delete").click(function (event) {
+                return confirm('Are you sure you wish to delete this item?');
+            });
+        };
+
     });
-
-    window.onload = function () {
-        var TopMenuListGrid = new EditableGrid("TopMenuListGrid");
-        // we build and load the metadata in Javascript
-        TopMenuListGrid.load({ metadata: [
-            { name: "ID", datatype: "integer", editable: false },
-            { name: "Menu Title", datatype: "string", editable: false },
-            { name: "Link", datatype: "string", editable: false },
-            { name: "Order", datatype: "integer", editable: false },
-            { name: "Description", datatype: "string", editable: false },
-            { name: "Action", datatype: "html", editable: false }
-        ]});
-
-        // then we attach to the HTML table and render it
-        TopMenuListGrid.attachToHTMLTable('TopMenuListGrid');
-        TopMenuListGrid.renderGrid();
-
-
-        var BottomMenuListGrid = new EditableGrid("BottomMenuListGrid");
-        // we build and load the metadata in Javascript
-        BottomMenuListGrid.load({ metadata: [
-            { name: "ID", datatype: "integer", editable: false },
-            { name: "Menu Title", datatype: "string", editable: false },
-            { name: "Link", datatype: "string", editable: false },
-            { name: "Order", datatype: "integer", editable: false },
-            { name: "Description", datatype: "string", editable: false },
-            { name: "Action", datatype: "html", editable: false }
-        ]});
-
-        // then we attach to the HTML table and render it
-        BottomMenuListGrid.attachToHTMLTable('BottomMenuListGrid');
-        BottomMenuListGrid.renderGrid();
-
-        // Add Confirmation dialogs for all Deletes
-        jQuery("a.confirm_delete").click(function (event) {
-            return confirm('Are you sure you wish to delete this item?');
-        });
-    };
-
-
 </script>

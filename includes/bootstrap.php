@@ -22,7 +22,7 @@ ini_set('display_errors', '1');
 $GLOBAL_DEPS = [];
 
 // loading the core deps
-include_once(BASE_PATH . "includes/shared/shared_deps.php");
+include_once(BASE_PATH . "includes/global_deps.php");
 
 
 // reads the module config and loads each module deps

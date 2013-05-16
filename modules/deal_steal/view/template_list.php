@@ -30,25 +30,40 @@
 </div>
 
 <script>
+    // load css
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid-css",
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-    //data grid
-    window.onload = function () {
-        var TemplateListGrid = new EditableGrid("TemplateListGrid",{
-            enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-            pageSize: 10
-        });
+    // load js
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid",
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+        //data grid
+        window.onload = function () {
+            var TemplateListGrid = new EditableGrid("TemplateListGrid", {
+                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
+                pageSize: 10
+            });
 
-        // we build and load the metadata in Javascript
-        TemplateListGrid.load({ metadata: [
-            { name: "ID", datatype: "string", editable: false },
-            { name: "Key", datatype: "string", editable: false },
-            { name: "Title", datatype: "string", editable: false },
-            { name: "Description", datatype: "string", editable: false },
-            { name: "Action", datatype: "html", editable: false }
-        ]});
+            // we build and load the metadata in Javascript
+            TemplateListGrid.load({ metadata: [
+                { name: "ID", datatype: "string", editable: false },
+                { name: "Key", datatype: "string", editable: false },
+                { name: "Title", datatype: "string", editable: false },
+                { name: "Description", datatype: "string", editable: false },
+                { name: "Action", datatype: "html", editable: false }
+            ]});
 
-        // then we attach to the HTML table and render it
-        TemplateListGrid.attachToHTMLTable('TemplateListGrid');
-        TemplateListGrid.initializeGrid();
-    };
+            // then we attach to the HTML table and render it
+            TemplateListGrid.attachToHTMLTable('TemplateListGrid');
+            TemplateListGrid.initializeGrid();
+        };
+    });
 </script>

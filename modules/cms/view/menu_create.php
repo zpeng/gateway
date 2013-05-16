@@ -11,12 +11,12 @@
         <table class="inputTable">
             <tr>
                 <td width="150" align="right"><b>Menu Name: </b></td>
-                <td><input name="menu_name" id="menu_name"  style="width: 300px;"/>
+                <td><input name="menu_name" id="menu_name" style="width: 300px;"/>
                 </td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Menu Order: </b></td>
-                <td><input name="menu_order" id="menu_order"  style="width: 30px;"/>
+                <td><input name="menu_order" id="menu_order" style="width: 30px;"/>
                 </td>
             </tr>
             <tr>
@@ -41,7 +41,7 @@
                             "Contents" => "1"
                         )
                     );
-                    echo createDropdownList("link_type_selector", "link_type_selector","link_type_selector","width: 300px;", "2", $dataSource);
+                    echo createDropdownList("link_type_selector", "link_type_selector", "link_type_selector", "width: 300px;", "2", $dataSource);
                     ?>
                 </td>
             </tr>
@@ -53,37 +53,51 @@
         </table>
     </form>
     <script>
-        jQuery("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        jQuery(document).ready(function(){
-            jQuery("#menu_type_selector").change(function(){
-                $("#menuLevelSelection").load(SERVER_URL + "modules/cms//view/ajax/MenuLevelSelection.php?menu_type_id="+this.value);
-            });
-            jQuery("#link_type_selector").change(function(){
-                $("#MenuLinkSelection").load(SERVER_URL + "modules/cms//view/ajax/MenuLinkSelection.php?link_type_id="+this.value);
-            });
-        });
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+            jQuery("#update_btn").button();
 
-        jQuery(function () {
-            jQuery("#menu_name").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please enter a valid menu name"
+            jQuery(document).ready(function () {
+                jQuery("#menu_type_selector").change(function () {
+                    $("#menuLevelSelection").load(SERVER_URL + "modules/cms//view/ajax/MenuLevelSelection.php?menu_type_id=" + this.value);
+                });
+                jQuery("#link_type_selector").change(function () {
+                    $("#MenuLinkSelection").load(SERVER_URL + "modules/cms//view/ajax/MenuLinkSelection.php?link_type_id=" + this.value);
+                });
             });
-            jQuery("#menu_order").validate({
-                expression: "if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
-                message: "Please enter a valid menu name"
-            });
-            jQuery("#menu_level_selector").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please make a selection"
-            });
-            jQuery("#menu_type_selector").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please make a selection"
-            });
-            jQuery("#link_type_selector").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please make a selection"
+
+            jQuery(function () {
+                jQuery("#menu_name").validate({
+                    expression: "if (VAL) return true; else return false;",
+                    message: "Please enter a valid menu name"
+                });
+                jQuery("#menu_order").validate({
+                    expression: "if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
+                    message: "Please enter a valid menu name"
+                });
+                jQuery("#menu_level_selector").validate({
+                    expression: "if (VAL) return true; else return false;",
+                    message: "Please make a selection"
+                });
+                jQuery("#menu_type_selector").validate({
+                    expression: "if (VAL) return true; else return false;",
+                    message: "Please make a selection"
+                });
+                jQuery("#link_type_selector").validate({
+                    expression: "if (VAL) return true; else return false;",
+                    message: "Please make a selection"
+                });
             });
         });
     </script>

@@ -30,7 +30,7 @@ require_once('../includes/bootstrap.php');
                         <td><input id="email" name="email" class="login_table_input"/></td>
                     </tr>
                     <tr>
-                        <td width="100"class="login_table_label">Password:</td>
+                        <td width="100" class="login_table_label">Password:</td>
                         <td><input id="password" name="password" type="password" class="login_table_input"/></td>
                     </tr>
                     <tr>
@@ -55,17 +55,35 @@ require_once('../includes/bootstrap.php');
     </tr>
 </table>
 <script>
-    jQuery("#Login").button();
+    // load css
+    head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-    jQuery(function(){
-        jQuery("#email").validate({
-            expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
-            message: "Please enter a valid Email"
+    // load js
+    head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+
+        jQuery("#Login").button();
+
+        jQuery(function () {
+            jQuery("#email").validate({
+                expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+                message: "Please enter a valid Email"
+            });
+            jQuery("#password").validate({
+                expression: "if (VAL.length >= 8 && VAL) return true; else return false;",
+                message: "Please enter a valid Password (the length of password must exceed 8 characters)"
+            });
         });
-        jQuery("#password").validate({
-            expression: "if (VAL.length >= 8 && VAL) return true; else return false;",
-            message: "Please enter a valid Password (the length of password must exceed 8 characters)"
-        });
+
     });
+
+
 </script>
 <?= outputHTMLEnd(); ?>

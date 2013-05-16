@@ -31,7 +31,7 @@
                     <?
                     use modules\core\includes\classes\ModuleManager;
                     $moduleManager = new ModuleManager();
-                    echo createCheckboxList("checkbox_list","checkbox_list","subscribe_module_code_list[]",$moduleManager->getModuleCheckboxListDataSource())
+                    echo createCheckboxList("checkbox_list", "checkbox_list", "subscribe_module_code_list[]", $moduleManager->getModuleCheckboxListDataSource())
                     ?>
                 </td>
             </tr>
@@ -42,22 +42,38 @@
         </table>
     </form>
     <script>
-        jQuery("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        jQuery(function(){
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
 
-            jQuery("#email").validate({
-                expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
-                message: "Please enter a valid Email"
+            jQuery("#update_btn").button();
+
+            jQuery(function () {
+
+                jQuery("#email").validate({
+                    expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+                    message: "Please enter a valid Email"
+                });
+                jQuery("#password").validate({
+                    expression: "if (VAL.length >= 8 && VAL) return true; else return false;",
+                    message: "Please enter a valid Password (the length of password must exceed 8 characters)"
+                });
+                jQuery("#confirm_password").validate({
+                    expression: "if ((VAL == jQuery('#password').val()) && VAL) return true; else return false;",
+                    message: "Confirm password field doesn't match the password field"
+                });
             });
-            jQuery("#password").validate({
-                expression: "if (VAL.length >= 8 && VAL) return true; else return false;",
-                message: "Please enter a valid Password (the length of password must exceed 8 characters)"
-            });
-            jQuery("#confirm_password").validate({
-                expression: "if ((VAL == jQuery('#password').val()) && VAL) return true; else return false;",
-                message: "Confirm password field doesn't match the password field"
-            });
+
         });
     </script>
 </div>

@@ -10,7 +10,7 @@
     ?>
     <br/>
 
-    <form id="MenuUpdateForm"  method="post">
+    <form id="MenuUpdateForm" method="post">
         <input type="hidden" value="<? echo $menu_id ?>" name="menu_id" id="menu_id"/>
         <table class="inputTable">
             <tr>
@@ -41,52 +41,67 @@
         </table>
     </form>
     <script>
-        jQuery("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        jQuery(function () {
-            jQuery("#menu_name").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please enter a valid menu name"
-            });
-            jQuery("#menu_link").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please enter a valid menu link"
-            });
-            jQuery("#menu_order").validate({
-                expression: "if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
-                message: "Please enter a valid menu name"
-            });
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+            jQuery("#update_btn").button();
 
-            jQuery('form#MenuUpdateForm').validated(function () {
-                var menu_id = $("#menu_id").val();
-                var menu_name = $("#menu_name").val();
-                var menu_link = $("#menu_link").val();
-                var menu_order = $("#menu_order").val();
-                var menu_desc = $("#menu_desc").val();
-
-                $.ajax({
-                    url: SERVER_URL + "modules/cms/control/menu_update.php",
-                    type: "POST",
-                    data: {menu_id: menu_id,
-                        menu_name: menu_name,
-                        menu_link: menu_link,
-                        menu_order: menu_order,
-                        menu_desc: menu_desc
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.status == "success") {
-                            jQuery("div#notification").html("<span class='info'>Menu item has been updated successfully!</span>");
-                        } else {
-                            jQuery("div#notification").html("<span class='error'>Unable to update this menu item. Try again please!</span>");
-                        }
-                    },
-                    error: function () {
-                        jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                    }
+            jQuery(function () {
+                jQuery("#menu_name").validate({
+                    expression: "if (VAL) return true; else return false;",
+                    message: "Please enter a valid menu name"
                 });
-                return false;
+                jQuery("#menu_link").validate({
+                    expression: "if (VAL) return true; else return false;",
+                    message: "Please enter a valid menu link"
+                });
+                jQuery("#menu_order").validate({
+                    expression: "if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
+                    message: "Please enter a valid menu name"
+                });
+
+                jQuery('form#MenuUpdateForm').validated(function () {
+                    var menu_id = $("#menu_id").val();
+                    var menu_name = $("#menu_name").val();
+                    var menu_link = $("#menu_link").val();
+                    var menu_order = $("#menu_order").val();
+                    var menu_desc = $("#menu_desc").val();
+
+                    $.ajax({
+                        url: SERVER_URL + "modules/cms/control/menu_update.php",
+                        type: "POST",
+                        data: {menu_id: menu_id,
+                            menu_name: menu_name,
+                            menu_link: menu_link,
+                            menu_order: menu_order,
+                            menu_desc: menu_desc
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.status == "success") {
+                                jQuery("div#notification").html("<span class='info'>Menu item has been updated successfully!</span>");
+                            } else {
+                                jQuery("div#notification").html("<span class='error'>Unable to update this menu item. Try again please!</span>");
+                            }
+                        },
+                        error: function () {
+                            jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                        }
+                    });
+                    return false;
+                });
             });
+
         });
     </script>
 </div>

@@ -56,59 +56,76 @@
 </div>
 
 <script>
-    $("a#add_new_supplier").button();
-    $("#add_button").button();
-    $("#reset_button").button();
+    // load css
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid-css",
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-    // Dialog
-    $('#dialog').dialog({
-        autoOpen: false, modal: true,
-        width: 550,
-        buttons: {
-            "Cancel": function () {
-                $(this).dialog("close");
+    // load js
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid",
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+        $("a#add_new_supplier").button();
+        $("#add_button").button();
+        $("#reset_button").button();
+
+        // Dialog
+        $('#dialog').dialog({
+            autoOpen: false, modal: true,
+            width: 550,
+            buttons: {
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
             }
-        }
-    });
-
-    // Dialog Link
-    $('a#add_new_supplier').click(function () {
-        $('#dialog').dialog('open');
-        return false;
-    });
-
-    //form validation
-    jQuery(function () {
-        jQuery("input#supplier_name").validate({
-            expression: "if (VAL) return true; else return false;",
-            message: "Please enter the supplier name"
-        });
-    });
-
-    //data grid
-    window.onload = function () {
-        var SupplierListGrid = new EditableGrid("SupplierListGrid", {
-            enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-            pageSize: 10
         });
 
-        // we build and load the metadata in Javascript
-        SupplierListGrid.load({ metadata: [
-            { name: "ID", datatype: "string", editable: false },
-            { name: "Name", datatype: "string", editable: false },
-            { name: "Logo", datatype: "html", editable: false },
-            { name: "Email", datatype: "string", editable: false },
-            { name: "Tel", datatype: "string", editable: false },
-            { name: "Action", datatype: "html", editable: false }
-        ]});
-
-        // then we attach to the HTML table and render it
-        SupplierListGrid.attachToHTMLTable('SupplierListGrid');
-        SupplierListGrid.initializeGrid();
-
-        // Add Confirmation dialogs for all Deletes
-        jQuery("a.confirm_delete").click(function (event) {
-            return confirm('Are you sure you wish to delete this item?');
+        // Dialog Link
+        $('a#add_new_supplier').click(function () {
+            $('#dialog').dialog('open');
+            return false;
         });
-    };
+
+        //form validation
+        jQuery(function () {
+            jQuery("input#supplier_name").validate({
+                expression: "if (VAL) return true; else return false;",
+                message: "Please enter the supplier name"
+            });
+        });
+
+        //data grid
+        window.onload = function () {
+            var SupplierListGrid = new EditableGrid("SupplierListGrid", {
+                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
+                pageSize: 10
+            });
+
+            // we build and load the metadata in Javascript
+            SupplierListGrid.load({ metadata: [
+                { name: "ID", datatype: "string", editable: false },
+                { name: "Name", datatype: "string", editable: false },
+                { name: "Logo", datatype: "html", editable: false },
+                { name: "Email", datatype: "string", editable: false },
+                { name: "Tel", datatype: "string", editable: false },
+                { name: "Action", datatype: "html", editable: false }
+            ]});
+
+            // then we attach to the HTML table and render it
+            SupplierListGrid.attachToHTMLTable('SupplierListGrid');
+            SupplierListGrid.initializeGrid();
+
+            // Add Confirmation dialogs for all Deletes
+            jQuery("a.confirm_delete").click(function (event) {
+                return confirm('Are you sure you wish to delete this item?');
+            });
+        };
+
+    });
 </script>

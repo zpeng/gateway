@@ -100,7 +100,7 @@ class FileUploader
         return $ext;
     }
 
-    function deleteFileFromServer($targetFile)
+    public function deleteFileFromServer($targetFile)
     {
         if (is_file($targetFile)) {
             unlink($targetFile);

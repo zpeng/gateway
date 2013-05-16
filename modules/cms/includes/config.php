@@ -9,12 +9,14 @@ $module_config = array(
     "php" => array(),
 
     "css" => array(
-        "backend" => array_merge($CSS_SHARED, array()),
+        "backend" => array(
+            "admin_css" => "admin/css/admin.css"
+        ),
         "frontend" => array()
     ),
 
     "js" => array(
-        "backend" => array_merge($JS_SHARED, array()),
+        "backend" => array_merge($JS_GLOBAL, array()),
         "frontend" => array()
     )
 );

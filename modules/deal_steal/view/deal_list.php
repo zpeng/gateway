@@ -105,93 +105,111 @@
 </div>
 
 <script>
-    $("a#add_new_deal").button();
-    $("#add_button").button();
-    $("#reset_button").button();
+    // load css
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid-css",
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-    // Dialog
-    $('#dialog').dialog({
-        autoOpen: false, modal: true,
-        width: 550,
-        buttons: {
-            "Cancel": function () {
-                $(this).dialog("close");
+    // load js
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid",
+    "jquery-ui",
+    "jquery-form-validate",
+    "jquery-ui-timepicker")
+    , $JS_DEPS)?>, function () {
+
+        $("a#add_new_deal").button();
+        $("#add_button").button();
+        $("#reset_button").button();
+
+        // Dialog
+        $('#dialog').dialog({
+            autoOpen: false, modal: true,
+            width: 550,
+            buttons: {
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
             }
-        }
-    });
-
-    // Dialog Link
-    $('a#add_new_deal').click(function () {
-        $('#dialog').dialog('open');
-        return false;
-    });
-
-    //date picker
-    $('#online_date').datetimepicker({
-        dateFormat: "yy-mm-dd",
-        timeFormat: "hh:mm:ss"
-    });
-
-    $("#offline_date").datetimepicker({
-        dateFormat: "yy-mm-dd",
-        timeFormat: "hh:mm:ss"
-    });
-
-    //form validation
-    jQuery("input#deal_title").validate({
-        expression: "if (VAL) return true; else return false;",
-        message: "Please enter the deal title"
-    });
-
-    jQuery("#available_quantity").validate({
-        expression: "if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
-        message: "Please enter a valid integer"
-    });
-
-    jQuery("#original_price").validate({
-        expression: "if (VAL.match(/^\\d+(?:\\.\\d{1,2})?$/) && VAL) return true; else return false;",
-        message: "Please enter a valid price"
-    });
-
-    jQuery("#offer_price").validate({
-        expression: "if (VAL.match(/^\\d+(?:\\.\\d{1,2})?$/) && VAL) return true; else return false;",
-        message: "Please enter a valid price"
-    });
-
-    jQuery("#online_date").validate({
-        expression: "if (VAL) return true; else return false;",
-        message: "Please enter a valid Date"
-    });
-
-    jQuery("#offline_date").validate({
-        expression: "if (VAL) return true; else return false;",
-        message: "Please enter a valid Date"
-    });
-
-    //data grid
-    window.onload = function () {
-        var DealListGrid = new EditableGrid("DealListGrid", {
-            enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-            pageSize: 10
         });
 
-        // we build and load the metadata in Javascript
-        DealListGrid.load({ metadata: [
-            { name: "ID", datatype: "string", editable: false },
-            { name: "Supplier", datatype: "string", editable: false },
-            { name: "Category", datatype: "string", editable: false },
-            { name: "City", datatype: "string", editable: false },
-            { name: "Title", datatype: "string", editable: false },
-            { name: "Type", datatype: "string", editable: false },
-            { name: "Running Quantity", datatype: "string", editable: false },
-            { name: "Online Date", datatype: "string", editable: false },
-            { name: "Offline Date", datatype: "string", editable: false },
-            { name: "Action", datatype: "html", editable: false }
-        ]});
+        // Dialog Link
+        $('a#add_new_deal').click(function () {
+            $('#dialog').dialog('open');
+            return false;
+        });
 
-        // then we attach to the HTML table and render it
-        DealListGrid.attachToHTMLTable('DealListGrid');
-        DealListGrid.initializeGrid();
+        //date picker
+        $('#online_date').datetimepicker({
+            dateFormat: "yy-mm-dd",
+            timeFormat: "hh:mm:ss"
+        });
 
-    };
+        $("#offline_date").datetimepicker({
+            dateFormat: "yy-mm-dd",
+            timeFormat: "hh:mm:ss"
+        });
+
+        //form validation
+        jQuery("input#deal_title").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter the deal title"
+        });
+
+        jQuery("#available_quantity").validate({
+            expression: "if (VAL.match(/^[0-9]*$/) && VAL) return true; else return false;",
+            message: "Please enter a valid integer"
+        });
+
+        jQuery("#original_price").validate({
+            expression: "if (VAL.match(/^\\d+(?:\\.\\d{1,2})?$/) && VAL) return true; else return false;",
+            message: "Please enter a valid price"
+        });
+
+        jQuery("#offer_price").validate({
+            expression: "if (VAL.match(/^\\d+(?:\\.\\d{1,2})?$/) && VAL) return true; else return false;",
+            message: "Please enter a valid price"
+        });
+
+        jQuery("#online_date").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a valid Date"
+        });
+
+        jQuery("#offline_date").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter a valid Date"
+        });
+
+        //data grid
+        window.onload = function () {
+            var DealListGrid = new EditableGrid("DealListGrid", {
+                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
+                pageSize: 10
+            });
+
+            // we build and load the metadata in Javascript
+            DealListGrid.load({ metadata: [
+                { name: "ID", datatype: "string", editable: false },
+                { name: "Supplier", datatype: "string", editable: false },
+                { name: "Category", datatype: "string", editable: false },
+                { name: "City", datatype: "string", editable: false },
+                { name: "Title", datatype: "string", editable: false },
+                { name: "Type", datatype: "string", editable: false },
+                { name: "Running Quantity", datatype: "string", editable: false },
+                { name: "Online Date", datatype: "string", editable: false },
+                { name: "Offline Date", datatype: "string", editable: false },
+                { name: "Action", datatype: "html", editable: false }
+            ]});
+
+            // then we attach to the HTML table and render it
+            DealListGrid.attachToHTMLTable('DealListGrid');
+            DealListGrid.initializeGrid();
+        };
+
+    });
 </script>

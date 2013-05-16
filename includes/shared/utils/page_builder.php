@@ -56,4 +56,23 @@ function output_css_tag($css_deps)
     }
 }
 
+function outputDependencies($key_array = [], $js_deps)
+{
+    $dep_list = [];
+    // load deps from config
+    foreach ($key_array as $key) {
+        if (array_key_exists($key, $js_deps)) {
+            $dep_list = array_merge($dep_list, $js_deps[$key]);
+        }
+    }
+
+    // add server_url to each deps
+    $count = 0;
+    foreach ($dep_list as $dep) {
+        $dep_list[$count] = SERVER_URL . $dep_list[$count];
+        ++$count;
+    }
+    echo "'" . implode("','", $dep_list) . "'";
+}
+
 ?>

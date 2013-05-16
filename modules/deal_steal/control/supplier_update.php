@@ -26,10 +26,12 @@ if (!empty($_FILES['logo_image_uploaded']) && $_FILES['logo_image_uploaded']['si
     $new_name = $supplier_id . time();
     $destination_path = BASE_PATH . "images/suppliers/logo/";
 
-    if ($supplier->getSupplierLogo() != "default.jpg") {
-        unlink($destination_path . $supplier->getSupplierLogo()); // remove original image if necessary
-    }
     $imgUploader = new FileUploader($_FILES['logo_image_uploaded'], $destination_path, $new_name, array("jpg", "png", "jpeg", "gif"), "2097152");
+
+    if ($supplier->getSupplierLogo() != "default.jpg") {
+        $imgUploader->deleteFileFromServer($destination_path . $supplier->getSupplierLogo());// remove original image if necessary
+    }
+
     $result = $imgUploader->upload();
 
     $logo_file_name = $result["file_name"];

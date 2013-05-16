@@ -16,7 +16,7 @@
             <tr>
                 <td width="150" align="right"><b>Template Key: </b></td>
                 <td><input type="text" value="<? echo $template->getKey() ?>" name="template_key" id="template_key"
-                           readonly="true" style="width: 400px" />
+                           readonly="true" style="width: 400px"/>
                 </td>
             </tr>
             <tr>
@@ -27,7 +27,8 @@
             </tr>
             <tr>
                 <td width="150" align="right" style="vertical-align: top"><b>Content: </b></td>
-                <td><textarea name='template_content' id='template_content' rows="40" cols="90"><?=$template->getContent()?></textarea>
+                <td><textarea name='template_content' id='template_content' rows="40"
+                              cols="90"><?=$template->getContent()?></textarea>
                 </td>
             </tr>
             <tr>
@@ -38,37 +39,48 @@
     </form>
     <br/>
     <script>
-        $("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        jQuery('form#TemplateUpdateForm').submit(function () {
-            var template_id = $("#template_id").val();
-            var template_title = $("#template_title").val();
-            var template_content = $("#template_content").val();
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+            $("#update_btn").button();
 
-            $.ajax({
-                url: SERVER_URL + "modules/deal_steal/control/template_update.php",
-                type: "POST",
-                data: {
-                    template_id: template_id,
-                    template_title: template_title,
-                    template_content: template_content
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.status == "success"){
-                        jQuery("div#notification").html("<span class='info'>Template content has been updated successfully!</span>");
-                    }else{
-                        jQuery("div#notification").html("<span class='error'>Unable to update this template. Try again please!</span>");
+            jQuery('form#TemplateUpdateForm').submit(function () {
+                var template_id = $("#template_id").val();
+                var template_title = $("#template_title").val();
+                var template_content = $("#template_content").val();
+
+                $.ajax({
+                    url: SERVER_URL + "modules/deal_steal/control/template_update.php",
+                    type: "POST",
+                    data: {
+                        template_id: template_id,
+                        template_title: template_title,
+                        template_content: template_content
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == "success") {
+                            jQuery("div#notification").html("<span class='info'>Template content has been updated successfully!</span>");
+                        } else {
+                            jQuery("div#notification").html("<span class='error'>Unable to update this template. Try again please!</span>");
+                        }
+                    },
+                    error: function () {
+                        jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
                     }
-                },
-                error: function () {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                }
+                });
+                return false;
             });
-            return false;
         });
-
-
-
     </script>
 </div>

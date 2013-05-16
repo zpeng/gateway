@@ -9,23 +9,16 @@ require_once(BASE_PATH . 'admin/control/auth.php');
 
 
 <? include_once('view/header_bar.php') ?>
-
 <? include_once('view/top_panel.php') ?>
-
-
     <div id='main_content'>
         <?
         // load the left menu
         include_once(BASE_PATH . $GLOBAL_DEPS[$_REQUEST['module_code']]["module_view_menu"]);
-
         // load the content
         include_once(BASE_PATH . $GLOBAL_DEPS[$_REQUEST['module_code']]["module_view_content"]);
         ?>
-
         <br class="clear"/>
     </div>
 
 <? include_once('view/footer.php') ?>
-
-
 <?= outputHTMLEnd() ?>

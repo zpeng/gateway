@@ -29,32 +29,48 @@
         </table>
     </form>
     <script>
-        $("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        jQuery('form#UserModuleUpdateForm').submit(function () {
-            var user_id = $("#user_id").val();
-            var subscribe_module_code_list = [];
-            $('#subscribe_module_code_checkbox_list input:checked').each(function () {
-                subscribe_module_code_list.push(this.value);
-            });
-            $.ajax({
-                url: SERVER_URL + "modules/core/control/user_module_update.php",
-                type: "POST",
-                data: {user_id: user_id,
-                    subscribe_module_code_list: subscribe_module_code_list },
-                dataType: "json",
-                success: function (data) {
-                    if (data.status == "success") {
-                        jQuery("div#notification").html("<span class='info'>Module subscription has been updated successfully!</span>");
-                    } else {
-                        jQuery("div#notification").html("<span class='error'>Unable to update the module subscription. Try again please!</span>");
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+
+            $("#update_btn").button();
+
+            jQuery('form#UserModuleUpdateForm').submit(function () {
+                var user_id = $("#user_id").val();
+                var subscribe_module_code_list = [];
+                $('#subscribe_module_code_checkbox_list input:checked').each(function () {
+                    subscribe_module_code_list.push(this.value);
+                });
+                $.ajax({
+                    url: SERVER_URL + "modules/core/control/user_module_update.php",
+                    type: "POST",
+                    data: {user_id: user_id,
+                        subscribe_module_code_list: subscribe_module_code_list },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == "success") {
+                            jQuery("div#notification").html("<span class='info'>Module subscription has been updated successfully!</span>");
+                        } else {
+                            jQuery("div#notification").html("<span class='error'>Unable to update the module subscription. Try again please!</span>");
+                        }
+                    },
+                    error: function () {
+                        jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
                     }
-                },
-                error: function () {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                }
+                });
+                return false;
             });
-            return false;
+
         });
     </script>
 </div>

@@ -69,11 +69,11 @@ if (!empty($_REQUEST['operation'])) {
             $deal->loadById($_REQUEST["deal_id"]);
             $destination_path = BASE_PATH . "images/deals/";
 
+            $imgUploader = new FileUploader($_FILES['deal_image_uploaded'], $destination_path, $new_name, array("jpg", "png", "jpeg", "gif"), "2097152");
             if ($deal->getImage() != "default.jpg") {
-                unlink($destination_path.$deal->getImage()); // remove original image if necessary
+                $imgUploader->deleteFileFromServer($destination_path.$deal->getImage());// remove original image if necessary
             }
 
-            $imgUploader = new FileUploader($_FILES['deal_image_uploaded'], $destination_path, $new_name, array("jpg", "png", "jpeg", "gif"), "2097152");
             $result = $imgUploader->upload();
 
             $image_name = $result["file_name"];

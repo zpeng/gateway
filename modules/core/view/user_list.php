@@ -28,29 +28,40 @@
     <div id="paginator" class="EditableGrid"></div>
 </div>
 <script>
+    // load css
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid-css")
+    , $CSS_DEPS)?>);
 
-    window.onload = function () {
-        var UserListGrid = new EditableGrid("UserListGrid", {
-            enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-            pageSize: 10
-        });
-        // we build and load the metadata in Javascript
-        UserListGrid.load({ metadata: [
-            { name: "ID", datatype: "integer", editable: false },
-            { name: "User Name", datatype: "string", editable: false },
-            { name: "Subscribed Modules", datatype: "string", editable: false },
-            { name: "Action", datatype: "html", editable: false }
-        ]});
+    // load js
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid")
+    , $JS_DEPS)?>, function () {
+        window.onload = function () {
+            var UserListGrid = new EditableGrid("UserListGrid", {
+                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
+                pageSize: 10
+            });
+            // we build and load the metadata in Javascript
+            UserListGrid.load({ metadata: [
+                { name: "ID", datatype: "integer", editable: false },
+                { name: "User Name", datatype: "string", editable: false },
+                { name: "Subscribed Modules", datatype: "string", editable: false },
+                { name: "Action", datatype: "html", editable: false }
+            ]});
 
-        // then we attach to the HTML table and render it
-        UserListGrid.attachToHTMLTable('UserListGrid');
-        UserListGrid.initializeGrid();
+            // then we attach to the HTML table and render it
+            UserListGrid.attachToHTMLTable('UserListGrid');
+            UserListGrid.initializeGrid();
 
-        // Add Confirmation dialogs for all Deletes
-        jQuery("a.confirm_delete").click(function (event) {
-            return confirm('Are you sure you wish to delete this item?');
-        });
-    };
+            // Add Confirmation dialogs for all Deletes
+            jQuery("a.confirm_delete").click(function (event) {
+                return confirm('Are you sure you wish to delete this item?');
+            });
+        };
+    });
 
 
 </script>

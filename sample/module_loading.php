@@ -4,7 +4,7 @@ $JS_SHARED = array(
     "global_constants" => "includes/global_constants.js",
 
     "jquery-1.9.1" => "js/shared/jquery-1.9.1/jquery-1.9.1.min.js",
-    "jquery-ui-1.10.2.js" => "js/shared/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js",
+    "jquery-ui" => "js/shared/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js",
 
     "jquery-form-validate" => "js/shared/jquery-form-validate/jquery.validate.js",
     "jquery-form-validate-func" => "js/shared/jquery-form-validate/jquery.validation.functions.js",

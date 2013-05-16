@@ -9,6 +9,7 @@
     $config->loadById($config_id);
     ?>
     <br/>
+
     <form id="ConfigUpdateForm" method="post">
         <input type="hidden" value="<? echo $config_id ?>" name="config_id" id="config_id"/>
         <table class="inputTable">
@@ -34,7 +35,8 @@
             </tr>
             <tr>
                 <td width="150" align="right"><b>Config Value: </b></td>
-                <td><textarea  name='config_value' id='config_value' rows="4" cols="50"><?=$config->get_configuration_value()?></textarea>
+                <td><textarea name='config_value' id='config_value' rows="4"
+                              cols="50"><?=$config->get_configuration_value()?></textarea>
                 </td>
             </tr>
             <tr>
@@ -44,31 +46,46 @@
         </table>
     </form>
     <script>
-        $("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        jQuery('form#ConfigUpdateForm').submit(function () {
-            var config_id = $("#config_id").val();
-            var config_value = $("#config_value").val();
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+            $("#update_btn").button();
 
-            $.ajax({
-                url: SERVER_URL + "modules/cms/control/config_update.php",
-                type: "POST",
-                data: {config_id: config_id,
-                    config_value: config_value
-                },
-                dataType: "json",
-                success: function (data) {
-                    if (data.status == "success"){
-                        jQuery("div#notification").html("<span class='info'>Configuration value has been updated successfully!</span>");
-                    }else{
-                        jQuery("div#notification").html("<span class='error'>Unable to update this configuration value. Try again please!</span>");
+            jQuery('form#ConfigUpdateForm').submit(function () {
+                var config_id = $("#config_id").val();
+                var config_value = $("#config_value").val();
+
+                $.ajax({
+                    url: SERVER_URL + "modules/cms/control/config_update.php",
+                    type: "POST",
+                    data: {config_id: config_id,
+                        config_value: config_value
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.status == "success") {
+                            jQuery("div#notification").html("<span class='info'>Configuration value has been updated successfully!</span>");
+                        } else {
+                            jQuery("div#notification").html("<span class='error'>Unable to update this configuration value. Try again please!</span>");
+                        }
+                    },
+                    error: function () {
+                        jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
                     }
-                },
-                error: function () {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                }
+                });
+                return false;
             });
-            return false;
+
         });
     </script>
 </div>

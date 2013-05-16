@@ -29,39 +29,53 @@
         </table>
     </form>
     <script>
-        $("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        //form validation
-        jQuery(function () {
-            jQuery("input#city_name").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please enter the city name"
-            });
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+            $("#update_btn").button();
 
-            jQuery('form#CityUpdateForm').validated(function () {
-                var city_id = $("#city_id").val();
-                var city_name = $("#city_name").val();
-
-                $.ajax({
-                    url: SERVER_URL + "modules/deal_steal/control/city_update.php",
-                    type: "POST",
-                    data: {city_id: city_id,
-                        city_name: city_name
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.status == "success") {
-                            jQuery("div#notification").html("<span class='info'>Value has been updated successfully!</span>");
-                            jQuery("#original_vale").html(city_name);
-                        } else {
-                            jQuery("div#notification").html("<span class='error'>Unable to update this city. Try again please!</span>");
-                        }
-                    },
-                    error: function () {
-                        jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                    }
+            //form validation
+            jQuery(function () {
+                jQuery("input#city_name").validate({
+                    expression: "if (VAL) return true; else return false;",
+                    message: "Please enter the city name"
                 });
-                return false;
+
+                jQuery('form#CityUpdateForm').validated(function () {
+                    var city_id = $("#city_id").val();
+                    var city_name = $("#city_name").val();
+
+                    $.ajax({
+                        url: SERVER_URL + "modules/deal_steal/control/city_update.php",
+                        type: "POST",
+                        data: {city_id: city_id,
+                            city_name: city_name
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.status == "success") {
+                                jQuery("div#notification").html("<span class='info'>Value has been updated successfully!</span>");
+                                jQuery("#original_vale").html(city_name);
+                            } else {
+                                jQuery("div#notification").html("<span class='error'>Unable to update this city. Try again please!</span>");
+                            }
+                        },
+                        error: function () {
+                            jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                        }
+                    });
+                    return false;
+                });
             });
         });
     </script>

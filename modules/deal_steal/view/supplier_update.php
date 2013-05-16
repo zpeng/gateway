@@ -73,29 +73,45 @@
         </table>
     </form>
     <script>
-        $("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        var isFormValid = true;
-        var max_size = 2097152;
-        var support_type = ["jpg","png","jpeg","gif"];
-        $('#logo_image_uploaded').bind('change', function () {
-            var iSize = (Math.round((this.files[0].size / 1024 / 1024) * 100) / 100)
-            jQuery("#file_size").html(iSize + "Mb");
-            var ext = $('#logo_image_uploaded').val().split('.').pop().toLowerCase();
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
 
-            if (this.files[0].size > max_size) {
-                alert("File size should not exceed 2mb!");
-                this.files = [];
-                jQuery("#file_size").html("");
-                jQuery("input#logo_image_uploaded").val("");
-            }
+            $("#update_btn").button();
 
-            if ($.inArray(ext, support_type) == -1) {
-                alert("Un-supported file type!");
-                this.files = [];
-                jQuery("#file_size").html("");
-                jQuery("input#logo_image_uploaded").val("");
-            }
+            var isFormValid = true;
+            var max_size = 2097152;
+            var support_type = ["jpg", "png", "jpeg", "gif"];
+            $('#logo_image_uploaded').bind('change', function () {
+                var iSize = (Math.round((this.files[0].size / 1024 / 1024) * 100) / 100)
+                jQuery("#file_size").html(iSize + "Mb");
+                var ext = $('#logo_image_uploaded').val().split('.').pop().toLowerCase();
+
+                if (this.files[0].size > max_size) {
+                    alert("File size should not exceed 2mb!");
+                    this.files = [];
+                    jQuery("#file_size").html("");
+                    jQuery("input#logo_image_uploaded").val("");
+                }
+
+                if ($.inArray(ext, support_type) == -1) {
+                    alert("Un-supported file type!");
+                    this.files = [];
+                    jQuery("#file_size").html("");
+                    jQuery("input#logo_image_uploaded").val("");
+                }
+            });
+
         });
     </script>
 </div>

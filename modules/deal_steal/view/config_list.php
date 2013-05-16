@@ -31,24 +31,37 @@
 
 </div>
 <script>
-    window.onload = function() {
-        var CoreConfigListGrid = new EditableGrid("CoreConfigListGrid",{
-            enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-            pageSize: 10
-        });
+    // load css
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid-css")
+    , $CSS_DEPS)?>);
 
-        // we build and load the metadata in Javascript
-        CoreConfigListGrid.load({ metadata: [
-            { name: "Config Title", datatype: "string", editable: false },
-            { name: "Config Key", datatype: "string", editable: false },
-            { name: "Config Value", datatype: "string", editable: false },
-            { name: "Config Description", datatype: "string", editable: false },
-            { name: "Config Datatype", datatype: "string", editable: false },
-            { name: "Action", datatype: "html", editable: false }
-        ]});
+    // load js
+    head.js(<?=outputDependencies(
+    array(
+    "editablegrid")
+    , $JS_DEPS)?>, function () {
+        window.onload = function () {
+            var CoreConfigListGrid = new EditableGrid("CoreConfigListGrid", {
+                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
+                pageSize: 10
+            });
 
-        // then we attach to the HTML table and render it
-        CoreConfigListGrid.attachToHTMLTable('CoreConfigListGrid');
-        CoreConfigListGrid.initializeGrid();
-    };
+            // we build and load the metadata in Javascript
+            CoreConfigListGrid.load({ metadata: [
+                { name: "Config Title", datatype: "string", editable: false },
+                { name: "Config Key", datatype: "string", editable: false },
+                { name: "Config Value", datatype: "string", editable: false },
+                { name: "Config Description", datatype: "string", editable: false },
+                { name: "Config Datatype", datatype: "string", editable: false },
+                { name: "Action", datatype: "html", editable: false }
+            ]});
+
+            // then we attach to the HTML table and render it
+            CoreConfigListGrid.attachToHTMLTable('CoreConfigListGrid');
+            CoreConfigListGrid.initializeGrid();
+        };
+
+    });
 </script>

@@ -32,42 +32,58 @@
         </table>
     </form>
     <script>
-        jQuery("#update_btn").button();
+        // load css
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui-css",
+    "jquery-form-validate-css")
+    , $CSS_DEPS)?>);
 
-        jQuery(function () {
-            jQuery("#password").validate({
-                expression: "if (VAL.length >= 8 && VAL) return true; else return false;",
-                message: "Please enter a valid Password (the length of password must exceed 8 characters)"
+        // load js
+        head.js(<?=outputDependencies(
+    array(
+    "jquery-ui",
+    "jquery-form-validate")
+    , $JS_DEPS)?>, function () {
+
+            jQuery("#update_btn").button();
+
+            jQuery(function () {
+                jQuery("#password").validate({
+                    expression: "if (VAL.length >= 8 && VAL) return true; else return false;",
+                    message: "Please enter a valid Password (the length of password must exceed 8 characters)"
+                });
+                jQuery("#confirm_password").validate({
+                    expression: "if ((VAL == jQuery('#password').val()) && VAL) return true; else return false;",
+                    message: "Confirm password field doesn't match the password field"
+                });
+
+                jQuery('form#UserPasswordUpdateForm').validated(function () {
+                    var user_id = $("#user_id").val();
+                    var password = $("#password").val();
+                    $.ajax({
+                        url: SERVER_URL + "modules/core/control/user_password_update.php",
+                        type: "POST",
+                        data: {user_id: user_id,
+                            password: password },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.status == "success") {
+                                jQuery("div#notification").html("<span class='info'>Password has been updated successfully!</span>");
+                            } else {
+                                jQuery("div#notification").html("<span class='error'>Unable to update the password. Try again please!</span>");
+                            }
+                        },
+                        error: function () {
+                            jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                        }
+                    });
+                    return false;
+                });
             });
-            jQuery("#confirm_password").validate({
-                expression: "if ((VAL == jQuery('#password').val()) && VAL) return true; else return false;",
-                message: "Confirm password field doesn't match the password field"
-            });
+
+
         });
-
-        jQuery('form#UserPasswordUpdateForm').validated(function () {
-            var user_id = $("#user_id").val();
-            var password = $("#password").val();
-            $.ajax({
-                url: SERVER_URL + "modules/core/control/user_password_update.php",
-                type: "POST",
-                data: {user_id: user_id,
-                    password: password },
-                dataType: "json",
-                success: function (data) {
-                    if (data.status == "success"){
-                        jQuery("div#notification").html("<span class='info'>Password has been updated successfully!</span>");
-                    }else{
-                        jQuery("div#notification").html("<span class='error'>Unable to update the password. Try again please!</span>");
-                    }
-                },
-                error: function () {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                }
-            });
-            return false;
-        });
-
 
     </script>
 </div>

@@ -1,5 +1,8 @@
+<?
+require_once('includes/bootstrap.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Deal Steal</title>
@@ -9,12 +12,8 @@
 
 
     <link rel="shortcut icon" href="http://localhost/gateway/images/site/favicon.png"/>
-
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-
-    <script type="text/javascript" src="js/shared/jquery-1.9.1/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="js/shared/jquery-plugin/jquery.corner.js"></script>
-
+    <script type="text/javascript" src="js/shared/head/head.min.js"></script>
 </head>
 <body>
 <div id="top_header">
@@ -52,8 +51,8 @@
             </div>
 
             <div id="user_account_nav">
-               <span style="float: left">Login/Register</span>
-               <span>Basket: 0 items</span>
+                <span style="float: left">Login/Register</span>
+                <span>Basket: 0 items</span>
             </div>
 
             <div id="site_search">
@@ -71,7 +70,7 @@
 
 <div id="main_body">
     <div id="main_content">
-        <div id="left_content" >
+        <div id="left_content">
             <div id="deal_of_the_day" class="shadow_box tile_box">
                 Deal of the Day
             </div>
@@ -96,11 +95,17 @@
     </div>
 </div>
 
-
 <div id="footer">
     <div id="footer_content">
 
     </div>
 </div>
+<script>
+    head.js(<?=outputDependencies(array("jquery-ui","jquery-form-validate","jsTree"), $JS_DEPS)?>, function () {
+            console.log("haha");
+        });
+
+
+</script>
 </body>
 </html>
