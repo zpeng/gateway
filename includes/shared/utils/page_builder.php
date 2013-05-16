@@ -7,8 +7,8 @@ function outputHTMLStartBackend($page_title = "", $deps)
 
     echo "<title>" . $page_title . "</title>";
 
-    echo output_js_dependencies($deps["js"]["backend"]);
-    echo output_css_dependencies($deps["css"]["backend"]);
+    echo output_js_tag($deps["js"]["backend"]);
+    echo output_css_tag($deps["css"]["backend"]);
 
     echo "</head><body>";
 }
@@ -23,8 +23,8 @@ function outputHTMLStartFrontend($deps, $configManager)
     echo "<meta name=\"description\" content=\"" . $configManager->getValueByKey("meta_description") . "\" />";
     echo "<meta name=\"keywords\" content=\"" . $configManager->getValueByKey("meta_keywords") . "\" />";
 
-    echo output_js_dependencies($deps["js"]["frontend"]);
-    echo output_css_dependencies($deps["css"]["frontend"]);
+    output_js_tag($deps["js"]["frontend"]);
+    output_css_tag($deps["css"]["frontend"]);
 
     echo "</head><body>";
 }
@@ -34,22 +34,22 @@ function outputHTMLEnd()
     echo "</body></html>";
 }
 
-function output_js_dependencies($js_deps)
+function output_js_tag($js_deps)
 {
     foreach ($js_deps as $js) {
         if (is_array($js) && sizeof($js) > 0) {
-            output_js_dependencies($js);
+            output_js_tag($js);
         } else {
             echo "<script type=\"text/javascript\" src=\"" . SERVER_URL . $js . "\"></script>";
         }
     }
 }
 
-function output_css_dependencies($css_deps)
+function output_css_tag($css_deps)
 {
     foreach ($css_deps as $css) {
         if (is_array($css) && sizeof($css) > 0) {
-            output_css_dependencies($css);
+            output_css_tag($css);
         } else {
             echo  "<link rel=\"stylesheet\" type=\"text/css\" href=" . SERVER_URL . $css . " />";
         }
