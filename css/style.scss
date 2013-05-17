@@ -40,7 +40,6 @@ body {
 
       #header_nav {
         position: relative;
-        border: 1px solid red;
         left: 0;
         top: 30px;
         width: 500px;
@@ -48,6 +47,8 @@ body {
         float: left;
         vertical-align: middle;
         padding: 0;
+        font-family: arial, verdana, sanas-serif;
+        font-size: 1.2em;
 
         /* dropdown menu */
         nav {
@@ -55,11 +56,8 @@ body {
           text-align: center;
           margin: 0;
           padding: 0;
-          font-family: arial, verdana, sanas-serif;
           text-transform: uppercase;
           background: $blue0;
-          font-size: 1.2em;
-          font-weight: 700;
 
           ul {
             list-style: none;
@@ -103,6 +101,7 @@ body {
             float: none;
             border-top: 1px solid $golden;
             position: relative;
+            font-size: 0.9em;
           }
           ul ul li a {
             padding: 8px 20px 8px 20px;
@@ -111,6 +110,7 @@ body {
           }
           ul ul li a:hover {
             background: $blue0;
+            font-size: 0.9em;
           }
           ul ul ul {
             position: absolute;
@@ -122,7 +122,6 @@ body {
 
       #user_account_nav {
         position: relative;
-        border: 1px solid red;
         right: 0;
         top: 5px;
         width: 210px;

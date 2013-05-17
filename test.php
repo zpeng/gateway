@@ -13,7 +13,7 @@ require_once('includes/bootstrap.php');
 
     <link rel="shortcut icon" href="http://localhost/gateway/images/site/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <script type="text/javascript" src="js/shared/head/head.min.js"></script>
+    <script type="text/javascript" src="external/js/shared/head/head.min.js"></script>
 </head>
 <body>
 
