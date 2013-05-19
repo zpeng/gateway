@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: $blue10;
+  height: 100%;
 }
 
 #top_header {
@@ -171,8 +172,9 @@ body {
 }
 
 #main_body {
-  height: auto;
+  height: 100%;
   width: 100%;
+  overflow: hidden;
 
   #main_content {
     width: 1000px;
@@ -199,9 +201,8 @@ body {
   background-color: $blue0;
   border-top: 3px solid $golden;
   height: 150px;
-  position: absolute;
-  bottom: 0;
-
+  position: fix;
+  bottom: 0; /* Sit it on the bottom */
   #footer_content {
     width: 1000px;
     margin: auto;

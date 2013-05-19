@@ -119,7 +119,8 @@ body {
 
 #main_content {
   min-width: 1300px;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
   #main_content #left_panel {
     float: left;
     margin-right: 10px;

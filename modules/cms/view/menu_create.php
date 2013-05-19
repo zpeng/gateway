@@ -70,10 +70,10 @@
 
             jQuery(document).ready(function () {
                 jQuery("#menu_type_selector").change(function () {
-                    $("#menuLevelSelection").load(SERVER_URL + "modules/cms//view/ajax/MenuLevelSelection.php?menu_type_id=" + this.value);
+                    $("#menuLevelSelection").load(SERVER_URL + "modules/cms/view/ajax/MenuLevelSelection.php?menu_type_id=" + this.value);
                 });
                 jQuery("#link_type_selector").change(function () {
-                    $("#MenuLinkSelection").load(SERVER_URL + "modules/cms//view/ajax/MenuLinkSelection.php?link_type_id=" + this.value);
+                    $("#MenuLinkSelection").load(SERVER_URL + "modules/cms/view/ajax/MenuLinkSelection.php?link_type_id=" + this.value);
                 });
             });
 
