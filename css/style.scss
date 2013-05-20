@@ -1,6 +1,6 @@
 @import "colors";
 
-body {
+html, body {
   font-family: Arial, sans-serif;
   font-size: 12px;
   margin: 0;
@@ -9,11 +9,16 @@ body {
   height: 100%;
 }
 
+#wapper{
+  min-height: 100%;
+  position:relative;
+}
+
+
 #top_header {
   width: 100%;
   background-color: $blue0;
   border-bottom: 3px solid $golden;
-
   #header {
     margin: 0 auto 0 auto;
     width: 1000px;
@@ -168,19 +173,16 @@ body {
       }
     }
   }
-
 }
 
 #main_body {
-  height: 100%;
   width: 100%;
   overflow: hidden;
-
+  padding-bottom: 160px;    /* height of footer */
   #main_content {
     width: 1000px;
     margin: auto;
     margin-top: 0;
-    padding: 0;
     height: auto;
 
     #left_content {
@@ -196,13 +198,12 @@ body {
 }
 
 #footer {
+  position: absolute;
+  bottom: 0; /* Sit it on the bottom */
   width: 100%;
-  margin-top: 10px;
   background-color: $blue0;
   border-top: 3px solid $golden;
   height: 150px;
-  position: fix;
-  bottom: 0; /* Sit it on the bottom */
   #footer_content {
     width: 1000px;
     margin: auto;
@@ -213,10 +214,24 @@ body {
   }
 }
 
-.round_corner_box {
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
+
+.supplier_carousel_item {
+  border: 1px solid $grey1;
+  margin: 5px;
+  width: 240px !important;
+}
+
+.round_corner_box_3px {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+.brand_thumbmail {
+  display: block;
+  border: 1px solid $grey1;
+  margin: 5px;
+  float: left;
 }
 
 .shadow_box {
@@ -231,6 +246,19 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
+}
+
+.tile_box_borderless {
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+h3 {
+  color: $golden1;
+  margin-top: 0px;
+  margin: 3px;
 }
 
 .clear {
