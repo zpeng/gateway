@@ -34,6 +34,8 @@
                     <span id="file_size"></span>
                     <br/>
                     <span>(Support Type:jpg, jpeg, png, gif.  Maximum file size: 2Mb)</span>
+                    <br/>
+                    <span>(It is better to keep image width/height ratio at 1 : 0.64)</span>
                 </td>
             </tr>
             <tr>
