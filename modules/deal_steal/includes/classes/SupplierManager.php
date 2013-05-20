@@ -80,25 +80,6 @@ class SupplierManager
         return $dataSource;
     }
 
-    public function getSupplierThumbnailListDataSource($imageFolderPath)
-    {
-        $supplier_list = $this->loadAllSuppliers();
-        $data = array();
-        if (sizeof($supplier_list) > 0) {
-            foreach ($supplier_list as $supplier) {
-                array_push($data, array(
-                    "index.php?supplier_id=".$supplier->getSupplierId()."&view=supplier_deal",
-                    $supplier->getSupplierName(),
-                    $imageFolderPath.$supplier->getSupplierLogo()
-
-                ));
-            }
-        }
-        $dataSource = array(
-            "data" => $data
-        );
-        return $dataSource;
-    }
 }
 
 ?>

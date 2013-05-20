@@ -18,7 +18,7 @@ echo  outputHTMLStartFrontend($JS_GLOBAL, array("css/style.css"), $configManager
         </div>
 
         <div id="right_content">
-            <? include_once('view/supplier_list.php') ?>
+            <? include_once('view/supplier_thumbnail_list.php') ?>
         </div>
     </div>
 </div>

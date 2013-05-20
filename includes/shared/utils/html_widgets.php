@@ -182,18 +182,4 @@ function createImage($imageUrl, $class, $width, $height, $border = 0)
     return "<img border='$border' width='$width' height='$height' class='$class' src='" . $imageUrl . "' />";
 }
 
-function createThumbnailList($dataSource, $class="", $width="", $height="", $border = 0)
-{
-    $html = "";
-    if (array_key_exists("data", $dataSource) && sizeof($dataSource["data"]) > 0) {
-        foreach ($dataSource["data"] as $value) {
-            $html=$html."<a href='$value[0]' >";
-            $html = $html . "<img border='$border' width='$width' height='$height' class='$class' alt='$value[1]' src='$value[2]' />";
-            $html=$html."</a>";
-        }
-    }
-    return $html;
-}
-
-
 ?>
