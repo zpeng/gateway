@@ -79,15 +79,44 @@
         head.js(<?=outputDependencies(
     array(
     "jquery-ui-css",
-    "jquery-form-validate-css")
+    "jquery-form-validate-css",
+    "tiny_mce-css")
     , $CSS_DEPS)?>);
 
         // load js
         head.js(<?=outputDependencies(
     array(
     "jquery-ui",
-    "jquery-form-validate")
+    "jquery-form-validate",
+    "tiny_mce")
     , $JS_DEPS)?>, function () {
+
+            tinyMCE.init({
+                // General options
+                elements: "supplier_desc",
+                mode: "exact",
+                theme: "advanced",
+                plugins: "autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+
+                // Theme options
+                theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+                theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+                theme_advanced_buttons3: "",
+                theme_advanced_buttons4: "",
+                theme_advanced_toolbar_location: "top",
+                theme_advanced_toolbar_align: "left",
+                theme_advanced_statusbar_location: "bottom",
+                theme_advanced_resizing: true,
+
+                // Skin options            skin: "o2k7",
+                //skin_variant: "default",
+
+                // Drop lists for link/image/media/template dialogs
+                template_external_list_url: "js/template_list.js",
+                external_link_list_url: "js/link_list.js",
+                external_image_list_url: "js/image_list.js",
+                media_external_list_url: "js/media_list.js"
+            });
 
             $("#update_btn").button();
 
@@ -113,6 +142,8 @@
                     jQuery("input#logo_image_uploaded").val("");
                 }
             });
+
+
 
         });
     </script>
