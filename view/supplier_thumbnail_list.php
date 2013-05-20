@@ -1,8 +1,7 @@
 <div id="supplier_list" class="tile_box_borderless">
-    <h3>MORE DEALS AT...</h3>
+    <h3>FIND MORE DEALS FROM...</h3>
     <?
     use modules\deal_steal\includes\classes\SupplierManager;
-    use modules\deal_steal\includes\classes\Supplier;
     $supplierManager = new SupplierManager();
     $supplier_list = $supplierManager->loadAllSuppliers();
     if (sizeof($supplier_list) > 0) {
