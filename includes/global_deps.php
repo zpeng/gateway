@@ -7,6 +7,7 @@ $CSS_DEPS = array(
     "tiny_mce-css" => array("external/js/tiny_mce-3.5.8/themes/advanced/skins/default/ui.css"),
     "jstree-css" => array("external/js/jstree-v.pre1.0/themes/default/style.css"),
     "jquery-tag-css" => array("external/js/jquery-tags/jquery.tagsinput.css"),
+    "jquery-CircularContentCarousel-css" => array("external/js/CircularContentCarousel/css/jquery.jscrollpane.css")
 );
 
 /*
@@ -48,6 +49,13 @@ $JS_DEPS = array(
     "editablegrid" => array(
         "external/js/editablegrid-2.0.1/editablegrid-2.0.1.js",
         "external/js/editablegrid-2.0.1/editablegrid-2.0.1-extend.js"),
+
+
+    "jquery-CircularContentCarousel" => array(
+        "external/js/CircularContentCarousel/js/jquery-1.6.2.min.js",
+        "external/js/CircularContentCarousel/js/jquery.contentcarousel.js",
+        "external/js/CircularContentCarousel/js/jquery.easing.1.3.js",
+        "external/js/CircularContentCarousel/js/jquery.mousewheel.js")
 
 );
 
