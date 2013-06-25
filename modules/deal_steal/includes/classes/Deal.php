@@ -404,8 +404,8 @@ class Deal
     public function getSelectedDealTypeListDataSource()
     {
         $data = array(
-            "Single" => "S",
-            "Multiple" => "M"
+            "Deal" => "D",
+            "Voucher" => "V"
         );
         $selected = array();
         $selected[array_search($this->getType(), $data)] = $this->getType();

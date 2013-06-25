@@ -65,8 +65,8 @@
                 <td><?php
                     $deal_type_ds = array(
                         "data" => array(
-                            "Single" => "S",
-                            "Multiple" => "M"
+                            "Deal" => "D",
+                            "Voucher" => "V"
                         ),
                     );
                     echo createDropdownList("deal_type", "deal_type", "deal_type", "width: 80px;", "", $deal_type_ds)

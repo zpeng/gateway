@@ -7,7 +7,7 @@
     if (sizeof($supplier_list) > 0) {
         foreach ($supplier_list as $supplier) {
             echo "<a href='index.php?supplier_id=".$supplier->getSupplierId()."&view=supplier_deal' >";
-            echo "<img border='0' width='60' height='60' class='brand_thumbmail round_corner_box_3px shadow_box'
+            echo "<img border='0' width='120' height='120' class='brand_thumbmail round_corner_box_3px shadow_box'
             alt='" . $supplier->getSupplierName() . "'
             src='" . SERVER_URL . "images/suppliers/logo/" . $supplier->getSupplierLogo() . "' />";
             echo "</a>";

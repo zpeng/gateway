@@ -1,4 +1,5 @@
 <div id="deal_list" class="tile_box_borderless">
+    <h3>MORE DEALS</h3>
     <?
     use modules\deal_steal\includes\classes\DealManager;
     $dealManager = new DealManager();
