@@ -76,8 +76,8 @@ class DealManager
                               ds_deal,
                               ds_deal_of_day
                             WHERE deal_archived = 'N'
-                              AND ds_deal_of_day.deal_id = ds_deal.deal_id
-                              AND ds_deal_of_day.date >= '" . $begin_of_month . "'";
+                              AND ds_deal_of_day.deal_id = ds_deal.deal_id";
+                             // AND ds_deal_of_day.date >= '" . $begin_of_month . "'";
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {

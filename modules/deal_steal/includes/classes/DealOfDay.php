@@ -70,6 +70,14 @@ class DealOfDay
         closeConnection($link);
     }
 
+    public function delete($id){
+        $link = getConnection();
+        $query = " DELETE FROM   ds_deal_of_day
+                   WHERE id = ".$id;
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
 
 }
 
