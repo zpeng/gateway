@@ -38,6 +38,9 @@
         case "deal_update":
             include_once(BASE_PATH.'modules/deal_steal/view/deal_update.php');
             break;
+        case "deal_of_the_day":
+            include_once(BASE_PATH.'modules/deal_steal/view/deal_of_the_day.php');
+            break;
 
         case "config_list":
             include_once(BASE_PATH.'modules/deal_steal/view/config_list.php');

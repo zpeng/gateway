@@ -6,10 +6,7 @@ include_once("../includes/bootstrap.php");
 <div class='content'>
 
     <?
-    $userManager = new UserManager();
-
-
-    echo     $userManager->getUserListAsJSON();
+    echo date("Y-m-1", strtotime( date("Y-m-t") ));
     ?>
 
 </div>

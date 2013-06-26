@@ -1,6 +1,5 @@
 <?php
-namespace  modules\deal_steal\includes\classes;
-
+namespace modules\deal_steal\includes\classes;
 
 class DealManager
 {
@@ -64,6 +63,34 @@ class DealManager
         return $deal_list;
     }
 
+    public function loadDealsOfTheDays()
+    {
+        $begin_of_month = date("Y-m-1", strtotime(date("Y-m-t")));
+        $deal_list = array();
+        $link = getConnection();
+        $query = " SELECT     ds_deal_of_day.id,
+                              ds_deal.deal_id,
+                              deal_title,
+                              ds_deal_of_day.date
+                            FROM
+                              ds_deal,
+                              ds_deal_of_day
+                            WHERE deal_archived = 'N'
+                              AND ds_deal_of_day.deal_id = ds_deal.deal_id
+                              AND ds_deal_of_day.date >= '" . $begin_of_month . "'";
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $dod = new DealOfDay();
+            $dod->setId($newArray['id']);
+            $dod->setDealId($newArray['deal_id']);
+            $dod->setTitle($newArray['deal_title']);
+            $dod->setDate($newArray['date']);
+            array_push($deal_list, $dod);
+        }
+        return $deal_list;
+    }
+
     public function getDealsTableDataSource()
     {
         $deal_list = $this->loadAllDeals();
@@ -90,6 +117,35 @@ class DealManager
             "header" => $header,
             "body" => $body
         );
+        return $dataSource;
+    }
+
+    public function getDealsListDataSource()
+    {
+        $deal_list = $this->loadAllDeals();
+        $dataSource = array();
+        if (sizeof($deal_list) > 0) {
+            foreach ($deal_list as $deal) {
+                $dataSource[$deal->getId()] = $deal->getTitle();
+            }
+        }
+        return $dataSource;
+    }
+
+    public function getDealOfTheDayDataSource()
+    {
+        $deal_list = $this->loadDealsOfTheDays();
+        $dataSource = array();
+        if (sizeof($deal_list) > 0) {
+            foreach ($deal_list as $dod) {
+                array_push($dataSource, array(
+                    'id' => $dod->getId(),
+                    'title' => $dod->getTitle(),
+                    'start' => $dod->getDate(),
+                    'url' => ""
+                ));
+            }
+        }
         return $dataSource;
     }
 }

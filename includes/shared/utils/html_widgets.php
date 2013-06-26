@@ -55,6 +55,23 @@ function createCheckboxList($id = "", $class = "", $name = "", $dataSource)
     return $html = $html . "</ul>";
 }
 
+function createList($list_id = "", $list_class = "", $list_item_class = "", $dataSource)
+{
+    /*
+    $dataSource = array(
+        "id" => "data",
+        "id" => "data",
+    );
+    */
+    $html = "<ul class='$list_class' id='$list_id'>";
+    if ( sizeof($dataSource) > 0) {
+        foreach ($dataSource as $key => $value) {
+           $html = $html . "<li id='$key' class='$list_item_class'>$value</li>";
+        }
+    }
+    return $html = $html . "</ul>";
+}
+
 function createTreeviewRadioList($id = "", $class = "", $name = "", $dataSource = array(), $selectedValue = "")
 {
     /*
