@@ -89,7 +89,7 @@
                 $(this).draggable({
                     zIndex: 999,
                     revert: true,      // will cause the event to go back to its
-                    revertDuration: 0,  //  original position after the drag,
+                    revertDuration: 0  //  original position after the drag,
                 });
 
             });
@@ -99,6 +99,7 @@
                 droppable: true, // this allows things to be dropped onto the calendar !!!
                 events: SERVER_URL + "modules/deal_steal/control/deal_of_the_day.php?operation=load",
 
+                //update
                 eventDrop: function (event, delta) {
                     $.ajax({
                         url: SERVER_URL + "modules/deal_steal/control/deal_of_the_day.php",
@@ -115,6 +116,7 @@
                             } else {
                                 jQuery("div#notification").html("<span class='error'>Unable to update this deal. Try again please!</span>");
                             }
+                            $('#calendar').fullCalendar('rerenderEvents');
                         },
                         error: function () {
                             jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
@@ -122,8 +124,8 @@
                     );
                 },
 
+                //create
                 drop: function (date, allDay) { // this function is called when something is dropped
-
                     // retrieve the dropped element's stored Event Object
                     var originalEventObject = $(this).data('eventObject');
 
@@ -133,10 +135,6 @@
                     // assign it the date that was reported
                     copiedEventObject.start = date;
                     copiedEventObject.allDay = allDay;
-
-                    // render the event on the calendar
-                    // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-                    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 
                     Date.prototype.yyyymmdd = function() {
                         var yyyy = this.getFullYear().toString();
@@ -158,6 +156,8 @@
                             success: function (data) {
                                 if (data.status == "success") {
                                     jQuery("div#notification").html("<span class='info'>Deal of the Day has been created successfully!</span>");
+                                    copiedEventObject.id = data.id;
+                                    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
                                 } else {
                                     jQuery("div#notification").html("<span class='error'>Unable to create. Try again please!</span>");
                                 }

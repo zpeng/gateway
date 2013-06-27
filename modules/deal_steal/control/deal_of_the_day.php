@@ -15,14 +15,15 @@ if (!empty($_REQUEST['operation'])) {
         $dod = new DealOfDay();
         $dod->setDealId($deal_id);
         $dod->setDate($dod_date);
-        $dod->insert();
+        $id = $dod->insert();
+        $response_array['id'] = $id;
         $response_array['status'] = 'success';
         header('Content-type: application/json');
         echo json_encode($response_array);
 
     }else if ($_REQUEST['operation'] == "update") {
-        $dod_id = secureRequestParameter($_REQUEST['dod_id']);
-        $dod_change_day = secureRequestParameter($_REQUEST['dod_change_day']);
+        $dod_id = $_REQUEST['dod_id'];
+        $dod_change_day = $_REQUEST['dod_change_day'];
         $dod = new DealOfDay();
         $dod->setId($dod_id);
         $dod->update($dod_change_day);

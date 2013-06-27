@@ -67,7 +67,9 @@ class DealOfDay
                             '" . $this->getDate() . "')";
 
         executeUpdateQuery($link, $query);
+        $last_insert_id = mysql_insert_id();
         closeConnection($link);
+        return $last_insert_id;
     }
 
     public function delete($id){
