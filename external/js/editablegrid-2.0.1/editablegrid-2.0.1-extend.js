@@ -19,7 +19,7 @@ EditableGrid.prototype.updatePaginator = function () {
     });
 
     // "first" link
-    var link = $("<a>").html("<img src='" + (SERVER_URL + "js/shared/editablegrid-2.0.1/images/gofirst.png") + "'/>&nbsp;");
+    var link = $("<a>").html("<img src='" + (SERVER_URL + "external/js/editablegrid-2.0.1/images/gofirst.png") + "'/>&nbsp;");
     if (!this.canGoBack()) link.css({ opacity: 0.4, filter: "alpha(opacity=40)" });
     else link.css("cursor", "pointer").click(function (event) {
         ref_this.firstPage();
@@ -27,7 +27,7 @@ EditableGrid.prototype.updatePaginator = function () {
     paginator.append(link);
 
     // "prev" link
-    link = $("<a>").html("<img src='" + (SERVER_URL + "js/shared/editablegrid-2.0.1/images/prev.png") + "'/>&nbsp;");
+    link = $("<a>").html("<img src='" + (SERVER_URL + "external/js/editablegrid-2.0.1/images/prev.png") + "'/>&nbsp;");
     if (!this.canGoBack()) link.css({ opacity: 0.4, filter: "alpha(opacity=40)" });
     else link.css("cursor", "pointer").click(function (event) {
         ref_this.prevPage();
@@ -38,7 +38,7 @@ EditableGrid.prototype.updatePaginator = function () {
     for (p = 0; p < pages.length; p++) paginator.append(pages[p]).append(" | ");
 
     // "next" link
-    link = $("<a>").html("<img src='" + (SERVER_URL + "js/shared/editablegrid-2.0.1/images/next.png") + "'/>&nbsp;");
+    link = $("<a>").html("<img src='" + (SERVER_URL + "external/js/editablegrid-2.0.1/images/next.png") + "'/>&nbsp;");
     if (!this.canGoForward()) link.css({ opacity: 0.4, filter: "alpha(opacity=40)" });
     else link.css("cursor", "pointer").click(function (event) {
         ref_this.nextPage();
@@ -46,7 +46,7 @@ EditableGrid.prototype.updatePaginator = function () {
     paginator.append(link);
 
     // "last" link
-    link = $("<a>").html("<img src='" + (SERVER_URL + "js/shared/editablegrid-2.0.1/images/golast.png") + "'/>&nbsp;");
+    link = $("<a>").html("<img src='" + (SERVER_URL + "external/js/editablegrid-2.0.1/images/golast.png") + "'/>&nbsp;");
     if (!this.canGoForward()) link.css({ opacity: 0.4, filter: "alpha(opacity=40)" });
     else link.css("cursor", "pointer").click(function (event) {
         ref_this.lastPage();
