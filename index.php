@@ -11,8 +11,10 @@ echo  outputHTMLStartFrontend($JS_GLOBAL, array("css/style.css"), $configManager
 
 <div id="main_body">
     <div id="main_content">
+        <? include_once('view/brands_slider.php') ?>
+
         <div id="left_content">
-            <? include_once('view/brands_slider.php') ?>
+
 
             <? include_once('view/deal_of_the_day.php') ?>
 

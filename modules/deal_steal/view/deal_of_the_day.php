@@ -18,11 +18,12 @@
         width: 150px;
         height: 150px;
         border: 1px solid #ccc;
-        background: #eee;
+        background: url(../admin/images/trash_icon.png) no-repeat;
     }
 
     ul.deals_list {
         padding: 0;
+        list-style: none;
     }
 
     .deal_item {
@@ -53,7 +54,7 @@
                     echo createList("", "deals_list", "deal_item", $dealManager->getDealsListDataSource());
                     ?>
         </div>
-        <div id="trash_div">Trash</div>
+        <div id="trash_div"></div>
     </div>
 
     <div id='calendar'></div>
