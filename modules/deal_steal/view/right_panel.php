@@ -42,6 +42,13 @@
             include_once(BASE_PATH.'modules/deal_steal/view/deal_of_the_day.php');
             break;
 
+        case "concierge_list":
+            include_once(BASE_PATH.'modules/deal_steal/view/concierge_list.php');
+            break;
+        case "concierge_update":
+            include_once(BASE_PATH.'modules/deal_steal/view/concierge_update.php');
+            break;
+
         case "config_list":
             include_once(BASE_PATH.'modules/deal_steal/view/config_list.php');
             break;
