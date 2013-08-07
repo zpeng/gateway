@@ -24,6 +24,9 @@
         case "client_list":
             include_once(BASE_PATH.'modules/deal_steal/view/client_list.php');
             break;
+        case "client_detail":
+            include_once(BASE_PATH.'modules/deal_steal/view/client_detail.php');
+            break;
 
         case "template_list":
             include_once(BASE_PATH.'modules/deal_steal/view/template_list.php');

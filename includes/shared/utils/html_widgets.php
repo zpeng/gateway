@@ -137,15 +137,15 @@ function createDropdownList($id = "", $name = "", $class = "", $style = "", $dis
     /*
     $dataSource = array(
         "data" => array(
-            "key1" => "value1",
-            "key2" => "value2",
-            "key3" => "value3",
-            "key4" => "value4",
-            "key5" => "value5",
+            "label1" => "value1",
+            "label2" => "value2",
+            "label3" => "value3",
+            "label4" => "value4",
+            "label5" => "value5",
         ),
         "selected" => array(
-            "key1" => "value1",
-            "key4" => "value4",
+            "label1" => "value1",
+            "label2" => "value4",
         )
     );
     */
@@ -153,7 +153,7 @@ function createDropdownList($id = "", $name = "", $class = "", $style = "", $dis
     $html = "<select id='" . $id . "' name='" . $name . "' class='$class' style='$style' size='$display_size'>";
     if (sizeof($dataSource["data"]) > 0) {
         foreach ($dataSource["data"] as $key => $value) {
-            if (array_key_exists("selected", $dataSource) && array_key_exists($key, $dataSource["selected"])) {
+            if (array_key_exists("selected", $dataSource) &&  in_array($value, $dataSource["selected"])) {
                 $html = $html . "<option  value='" . $value . "' selected>" . $key . "</option>";
             } else {
                 $html = $html . "<option  value='" . $value . "'>" . $key . "</option>";
@@ -168,15 +168,15 @@ function createMultipleDropdownList($id = "", $name = "", $class = "", $style = 
     /*
     $dataSource = array(
         "data" => array(
-            "key1" => "value1",
-            "key2" => "value2",
-            "key3" => "value3",
-            "key4" => "value4",
-            "key5" => "value5",
+            "label1" => "value1",
+            "label2" => "value2",
+            "label3" => "value3",
+            "label4" => "value4",
+            "label5" => "value5",
         ),
         "selected" => array(
-            "key1" => "value1",
-            "key4" => "value4",
+            "label1" => "value1",
+            "label2" => "value4",
         )
     );
     */
@@ -184,7 +184,7 @@ function createMultipleDropdownList($id = "", $name = "", $class = "", $style = 
     $html = "<select multiple id='" . $id . "' name='" . $name . "' class='$class' style='$style'>";
     if (!empty($dataSource) && sizeof($dataSource["data"]) > 0) {
         foreach ($dataSource["data"] as $key => $value) {
-            if (array_key_exists("selected", $dataSource) && array_key_exists($key, $dataSource["selected"])) {
+            if (array_key_exists("selected", $dataSource) &&  in_array($value, $dataSource["selected"])) {
                 $html = $html . "<option  value='" . $key . "' selected>" . $value . "</option>";
             } else {
                 $html = $html . "<option  value='" . $key . "'>" . $value . "</option>";

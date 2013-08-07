@@ -1,8 +1,9 @@
 <?php
-namespace  modules\deal_steal\includes\classes;
+namespace modules\deal_steal\includes\classes;
 
 
-class Client{
+class Client
+{
     public $client_id;
     public $client_email;
     public $client_password;
@@ -13,6 +14,7 @@ class Client{
     public $client_tel;
     public $client_mobile;
     public $subscribed;
+    public $client_archived;
 
     public function setSubscribed($subscribed)
     {
@@ -114,6 +116,15 @@ class Client{
         return $this->client_tel;
     }
 
+    public function setClientArchived($client_archived)
+    {
+        $this->client_archived = $client_archived;
+    }
+
+    public function getClientArchived()
+    {
+        return $this->client_archived;
+    }
 
     public function loadByID($id)
     {
@@ -127,9 +138,10 @@ class Client{
                               client_dob,
                               client_tel,
                               client_mobile,
-                              subscribed
+                              subscribed,
+                              client_archived
                    FROM       ds_client
-                   WHERE      client_id =  ".$id;
+                   WHERE      client_id =  " . $id;
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
@@ -144,6 +156,7 @@ class Client{
             $this->setClientTel($newArray['client_tel']);
             $this->setClientMobile($newArray['client_mobile']);
             $this->setSubscribed($newArray['subscribed']);
+            $this->setClientArchived($newArray['client_archived']);
         }
     }
 
@@ -159,16 +172,18 @@ class Client{
                       client_dob,
                       client_tel,
                       client_mobile,
-                      subscribed)
-                   VALUES ('".$this->getClientEmail()."',
-                   '".$this->getClientPassword()."',
-                   '".$this->getClientTitle()."',
-                   '".$this->getClientFirstname()."',
-                   '".$this->getClientSurname()."',
-                   '".$this->getClientDob()."',
-                   '".$this->getClientTel()."',
-                   '".$this->getClientMobile()."',
-                   '".$this->getSubscribed()."')";
+                      subscribed,
+                      client_archived)
+                   VALUES ('" . $this->getClientEmail() . "',
+                   '" . $this->getClientPassword() . "',
+                   '" . $this->getClientTitle() . "',
+                   '" . $this->getClientFirstname() . "',
+                   '" . $this->getClientSurname() . "',
+                   '" . $this->getClientDob() . "',
+                   '" . $this->getClientTel() . "',
+                   '" . $this->getClientMobile() . "',
+                   '" . $this->getSubscribed() . "',
+                   'N')";
 
         executeUpdateQuery($link, $query);
         $last_insert_id = mysql_insert_id();
@@ -176,26 +191,28 @@ class Client{
         return $last_insert_id;
     }
 
-    public function update(){
+    public function update()
+    {
         $link = getConnection();
         $query = " UPDATE  ds_client
-                   SET     client_title = '".$this->getClientTitle()."',
-                           client_firstname = '".$this->getClientFirstname()."',
-                           client_surname = '".$this->getClientSurname()."',
-                           client_dob = '".$this->getClientDob()."',
-                           client_tel = '".$this->getClientTel()."',
-                           client_mobile = '".$this->getClientMobile()."',
-                           subscribed = '".$this->getClientMobile()."'
+                   SET     client_title = '" . $this->getClientTitle() . "',
+                           client_firstname = '" . $this->getClientFirstname() . "',
+                           client_surname = '" . $this->getClientSurname() . "',
+                           client_dob = '" . $this->getClientDob() . "',
+                           client_tel = '" . $this->getClientTel() . "',
+                           client_mobile = '" . $this->getClientMobile() . "',
+                           subscribed = '" . $this->getSubscribed() . "'
                    WHERE   client_id = " . $this->getClientId();
 
         executeUpdateQuery($link, $query);
         closeConnection($link);
     }
 
-    public function delete(){
+    public function updateStatus()
+    {
         $link = getConnection();
-        $query = " DELETE
-                   FROM    ds_client
+        $query = " UPDATE  ds_client
+                   SET     client_archived = '" . $this->getClientArchived() . "'
                    WHERE   client_id = " . $this->getClientId();
 
         executeUpdateQuery($link, $query);

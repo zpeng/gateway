@@ -126,7 +126,7 @@ class DealManager
         $dataSource = array();
         if (sizeof($deal_list) > 0) {
             foreach ($deal_list as $deal) {
-                $dataSource[$deal->getId()] = $deal->getTitle();
+                $dataSource[$deal->getId()] = $deal->getTitle() . ", " . $deal->getSupplierName();
             }
         }
         return $dataSource;
@@ -140,7 +140,7 @@ class DealManager
             foreach ($deal_list as $dod) {
                 array_push($dataSource, array(
                     'id' => $dod->getId(),
-                    'title' => $dod->getTitle(),
+                    'title' => $dod->getTitle() . ", " . $dod->getSupplierName(),
                     'start' => $dod->getDate(),
                     'url' => ""
                 ));

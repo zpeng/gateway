@@ -2,10 +2,49 @@
 <? include_once('view/notification_bar.php') ?>
 <div id="content">
     <?
+    $dropdown_dataSource = array(
+        "data" => array(
+            "Active User" => "N",
+            "Inactive User" => "Y"
+        ));
+    $archived ="N";
+    if(isset($_REQUEST["archived"])){
+        $archived = secureRequestParameter($_REQUEST["archived"]);
+        $dropdown_dataSource["selected"] = array($archived => $archived);
+    }
+
+    echo createDropdownList("client_status_dropdown","client_status_dropdown", "", "", "", $dropdown_dataSource);
+    ?>
+
+    <br/><br/>
+
+    <!--  Number of rows per page and bars in chart -->
+    <div id="pagecontrol" class="EditableGrid">
+        <label for="pagecontrol">Rows per page: </label>
+        <select id="pagesize" name="pagesize">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+        </select>
+    </div>
+
+    <!-- Grid filter -->
+    <label for="filter" class="EditableGrid">Filter :</label>
+    <input type="text" id="filter" class="EditableGrid"/>
+
+    <?
     use modules\deal_steal\includes\classes\ClientManager;
     $clientManager = new ClientManager();
-    echo createGenericTable("ClientListGrid", "EditableGrid", $clientManager->getClientTableDataSource());
+    echo createGenericTable("ClientListGrid", "EditableGrid", $clientManager->getClientTableDataSource($archived));
     ?>
+
+    <!-- Paginator control -->
+    <div id="paginator" class="EditableGrid"></div>
 </div>
 
 <script>
@@ -41,4 +80,11 @@
         };
 
     });
+
+    $("#client_status_dropdown").change(function(e) {
+        window.location = updateParameter("archived", $("#client_status_dropdown option:selected").val());
+    });
+
+
+
 </script>

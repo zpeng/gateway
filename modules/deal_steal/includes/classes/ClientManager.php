@@ -4,7 +4,7 @@ namespace  modules\deal_steal\includes\classes;
 
 class ClientManager
 {
-    public function loadAllClients()
+    public function loadAllClients($archived='N')
     {
         $clientList = array();
         $link = getConnection();
@@ -17,8 +17,10 @@ class ClientManager
                               client_dob,
                               client_tel,
                               client_mobile,
-                              subscribed
-                   FROM       ds_client";
+                              subscribed,
+                              client_archived
+                   FROM       ds_client
+                   WHERE      client_archived = '".$archived."'";
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
@@ -33,14 +35,15 @@ class ClientManager
             $client->setClientDob($newArray['client_dob']);
             $client->setClientTel($newArray['client_tel']);
             $client->setClientMobile($newArray['client_mobile']);
+            $client->setClientArchived($newArray['client_archived']);
             array_push($clientList, $client);
         }
         return $clientList;
     }
 
-    public function getClientTableDataSource()
+    public function getClientTableDataSource($archived='N')
     {
-        $clientList = $this->loadAllClients();
+        $clientList = $this->loadAllClients($archived);
         $header = array("ID", "Email", "Title", "Name", "Telephone", "Mobile", "Action");
         $body = [];
         if (sizeof($clientList) > 0) {
@@ -49,10 +52,10 @@ class ClientManager
                     $client->getClientId(),
                     $client->getClientEmail(),
                     $client->getClientTitle(),
-                    $client->$client->getClientFirstname() . " " . $client->getClientSurname(),
+                    $client->getClientFirstname() . " " . $client->getClientSurname(),
                     $client->getClientTel(),
                     $client->getClientMobile(),
-                    "<a class='icon_edit' title='Update City' href='" . SERVER_URL . "admin/main.php?view=client_detail&client_id=" .
+                    "<a class='icon_edit' title='View Detail' href='" . SERVER_URL . "admin/main.php?view=client_detail&client_id=" .
                         $client->getClientId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
                 ));
             }
