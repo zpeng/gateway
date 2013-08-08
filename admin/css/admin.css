@@ -216,11 +216,12 @@ ul.checkbox_list {
   display: block;
   border: none; }
 
-table.inputTable {
-  width: 900px;
-  border: 0px;
+table.general_table {
+  width: 100%;
   border-spacing: 10px;
   border-collapse: separate; }
+  table.general_table tr {
+    vertical-align: middle; }
 
 /* icon */
 a.icon_delete {

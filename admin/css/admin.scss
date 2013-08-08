@@ -265,20 +265,19 @@ body {
   bottom: 0;
 }
 
-
-ul.treeview{
+ul.treeview {
   padding: 0px;
   list-style: none;
 
-  li{
+  li {
     list-style: none;
   }
 }
 
-a.multiple_selector_btn{
+a.multiple_selector_btn {
   text-decoration: none;
 
-  :hover{
+  :hover {
     text-decoration: none;
   }
 }
@@ -293,14 +292,17 @@ ul.checkbox_list {
   border: none;
 }
 
-table.inputTable {
-  width: 900px;
-  border: 0px;
-
+table.general_table {
+  width: 100%;
   border-spacing: 10px;
   border-collapse: separate;
 
+  tr {
+    vertical-align: middle;
+  }
 }
+
+
 
 /* icon */
 a.icon_delete {
@@ -327,7 +329,7 @@ a.icon_admin {
   height: 15px;
 }
 
-.anchor_button{
+.anchor_button {
   float: left;
   margin-bottom: 10px;
 }
