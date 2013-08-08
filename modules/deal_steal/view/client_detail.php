@@ -19,7 +19,7 @@
         <div id="tabs-1">
             <form id="DealDetailUpdateForm" method='post'>
                 <input type="hidden" value="<? echo $client_id ?>" id="client_id" name="client_id"/>
-                <table width="500" border="0" class="dialogTable">
+                <table class="general_table">
                     <tr>
                         <td width="150" align="right"><b>Client ID: </b></td>
                         <td><?= $client->getClientId() ?></td>
