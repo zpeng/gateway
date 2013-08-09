@@ -52,7 +52,8 @@ class ClientManager
                     "email" => $client->getClientEmail(),
                     "name" => $client->getClientFirstname() . " " . $client->getClientSurname(),
                     "tel" => $client->getClientTel(),
-                    "mobile" => $client->getClientMobile()
+                    "mobile" => $client->getClientMobile(),
+                    "action" => ""
                 );
                 ++$count;
             }

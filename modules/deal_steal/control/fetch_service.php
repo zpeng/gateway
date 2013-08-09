@@ -8,7 +8,7 @@ if (!empty($_REQUEST['operation_id'])) {
 
        case "fetch_client_list":
            $is_archived = "N";
-           if(isset($_REQUEST["archived"])){
+           if(isset($_REQUEST["is_archived"])){
                $is_archived = secureRequestParameter($_REQUEST["is_archived"]);
            }
            $clientManager = new ClientManager();
@@ -16,6 +16,7 @@ if (!empty($_REQUEST['operation_id'])) {
            $data = $clientManager->getClientListDataSource($is_archived);
            echo json_encode($data);
            break;
+
        default:
            $response_array['error_code'] = '1';
            $response_array['msg'] = "there is no matching operation id";

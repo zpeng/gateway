@@ -223,6 +223,12 @@ table.general_table {
   table.general_table tr {
     vertical-align: middle; }
 
+/* slickgrid table */
+div.slickgrid_table {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  border: 1px solid #e1e1e1; }
+
 /* icon */
 a.icon_delete {
   margin-left: 5px;

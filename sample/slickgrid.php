@@ -5,7 +5,7 @@ include_once("../includes/bootstrap.php");
 ?>
 
 <div class='content'>
-   <div id="client_grid" style="width: 800px; height:600px"></div>
+    <div id="client_grid" style="width: 800px; height:600px"></div>
 
 </div>
 <script>
@@ -22,20 +22,25 @@ include_once("../includes/bootstrap.php");
             , $JS_DEPS)?>, function () {
         var client_grid;
         var columns = [
-            {id: "id", name: "ID", field: "id"},
-            {id: "email", name: "Email", field: "email"},
-            {id: "name", name: "Name", field: "name"},
-            {id: "tel", name: "Telephone", field: "tel"},
-            {id: "mobile", name: "Mobile", field: "mobile"}
+            {id: "id", name: "ID", field: "id", width: 50},
+            {id: "email", name: "Email", field: "email", width: 150},
+            {id: "name", name: "Name", field: "name", width: 150},
+            {id: "tel", name: "Telephone", field: "tel", width: 150},
+            {id: "mobile", name: "Mobile", field: "mobile", width: 150},
+            {id: "action", name: "Action", field: "mobile", width: 100,
+                formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
+                    return "<a class='icon_edit' title='View Detail' href='" + SERVER_URL + "admin/main.php?view=client_detail&client_id="+
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";
+                }
+            },
         ];
-
         var options = {
             enableCellNavigation: true,
             enableColumnReorder: false
         };
 
-        //when page rendering comleted
-        $(document).ready(function() {
+        //when page rendering is completed
+        $(document).ready(function () {
             $.ajax({
                 url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
                 type: "POST",

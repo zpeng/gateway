@@ -7,83 +7,78 @@
             "Active User" => "N",
             "Inactive User" => "Y"
         ));
-    $archived ="N";
-    if(isset($_REQUEST["archived"])){
-        $archived = secureRequestParameter($_REQUEST["archived"]);
-        $dropdown_dataSource["selected"] = array($archived => $archived);
-    }
-
     echo createDropdownList("client_status_dropdown","client_status_dropdown", "", "", "", $dropdown_dataSource);
     ?>
 
     <br/><br/>
 
-    <!--  Number of rows per page and bars in chart -->
-    <div id="pagecontrol" class="EditableGrid">
-        <label for="pagecontrol">Rows per page: </label>
-        <select id="pagesize" name="pagesize">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-        </select>
-    </div>
-
-    <!-- Grid filter -->
-    <label for="filter" class="EditableGrid">Filter :</label>
-    <input type="text" id="filter" class="EditableGrid"/>
-
-    <?
-    use modules\deal_steal\includes\classes\ClientManager;
-    $clientManager = new ClientManager();
-    echo createGenericTable("ClientListGrid", "EditableGrid", $clientManager->getClientTableDataSource($archived));
-    ?>
-
-    <!-- Paginator control -->
-    <div id="paginator" class="EditableGrid"></div>
+    <div id="client_grid" class="slickgrid_table" style="width: 900px; height:600px"></div>
 </div>
 
 <script>
     // load css
     head.js(<?=outputDependencies(
     array(
-    "editablegrid-css")
+    "slickgrid-css")
     , $CSS_DEPS)?>);
 
     // load js
     head.js(<?=outputDependencies(
     array(
-    "editablegrid")
+    "slickgrid")
     , $JS_DEPS)?>, function () {
-        //data grid
-        window.onload = function () {
-            var ClientListGrid = new EditableGrid("ClientListGrid");
 
-            // we build and load the metadata in Javascript
-            ClientListGrid.load({ metadata: [
-                { name: "ID", datatype: "string", editable: false },
-                { name: "Email", datatype: "string", editable: false },
-                { name: "Title", datatype: "string", editable: false },
-                { name: "Name", datatype: "string", editable: false },
-                { name: "Telephone", datatype: "string", editable: false },
-                { name: "Mobile", datatype: "string", editable: false },
-                { name: "Action", datatype: "html", editable: false }
-            ]});
-
-            // then we attach to the HTML table and render it
-            ClientListGrid.attachToHTMLTable('ClientListGrid');
-            ClientListGrid.renderGrid();
+        var client_grid;
+        var columns = [
+            {id: "id", name: "ID", field: "id", width: 50},
+            {id: "email", name: "Email", field: "email", width: 150},
+            {id: "name", name: "Name", field: "name", width: 150},
+            {id: "tel", name: "Telephone", field: "tel", width: 150},
+            {id: "mobile", name: "Mobile", field: "mobile", width: 150},
+            {id: "action", name: "Action", field: "mobile", width: 100,
+                formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
+                    return "<a class='icon_edit' title='View Detail' href='" + SERVER_URL + "admin/main.php?view=client_detail&client_id="+
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";
+                }
+            }
+        ];
+        var options = {
+            enableCellNavigation: true,
+            enableColumnReorder: false
         };
 
+        //use ajax to load data source
+        function fetch_data(){
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
+                type: "POST",
+                data: {
+                    operation_id: "fetch_client_list",
+                    is_archived: $("#client_status_dropdown option:selected").val()
+                },
+                dataType: "json",
+                success: function (data) {
+                    client_grid = new Slick.Grid("#client_grid", data, columns, options);
+                },
+                error: function (msg) {
+                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                }
+            });
+        }
+
+        //when page rendering is completed
+        $(document).ready(function () {
+            fetch_data();
+        });
+
+        //when the client status dropdown selection is changed
+        $("#client_status_dropdown").change(function(e) {
+            fetch_data();
+        });
+
     });
 
-    $("#client_status_dropdown").change(function(e) {
-        window.location = updateParameter("archived", $("#client_status_dropdown option:selected").val());
-    });
+
 
 
 
