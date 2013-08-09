@@ -3,7 +3,7 @@
 <div id="content">
     <a id="add_new_city" class="anchor_button" href="#">Add New City</a>
     <br class="clear"/>
-    <div id="city_grid" class="slickgrid_table" style="width:600px; height:600px"></div>
+    <div id="city_grid" class="slickgrid_table" style="width:900px; height:600px"></div>
 
 
 </div>
@@ -66,6 +66,10 @@
             return false;
         });
 
+        function confirmDeletion(){
+            return confirm('Are you sure you wish to delete this item?');
+        }
+
         //form validation
         jQuery(function () {
             jQuery("input#city_name").validate({
@@ -82,7 +86,7 @@
             {id: "action", name: "Action", field: "mobile", width: 150,
                 formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
                     return "<a class='icon_delete confirm_delete' title='Delete this city' href='" + SERVER_URL + "modules/deal_steal/control/city_delete.php?city_id=" +
-                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "'></a>" +
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' onclick='confirmDeletion();'></a>" +
                         "<a class='icon_edit' title='Update City' href='" + SERVER_URL + "admin/main.php?view=city_update&city_id=" +
                         dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "'></a>";
                 }
@@ -139,6 +143,15 @@
         $(document).ready(function () {
             fetch_data();
         });
+
+        // Add Confirmation dialogs for all Deletes
+        jQuery("a.confirm_delete").click(function (event) {
+
+        });
+
+
+
+
 
     });
 </script>

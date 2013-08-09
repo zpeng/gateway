@@ -11,7 +11,7 @@
 
     <form id="CityUpdateForm">
         <input type="hidden" value="<?= $city_id ?>" name="city_id" id="city_id"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="150" align="right"><b>Original Value: </b></td>
                 <td id="original_vale"><? echo $city->getCityName()?>

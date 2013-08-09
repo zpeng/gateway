@@ -12,7 +12,7 @@
 
     <form id="MenuUpdateForm" method="post">
         <input type="hidden" value="<? echo $menu_id ?>" name="menu_id" id="menu_id"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="150" align="right"><b>Menu Name: </b></td>
                 <td><input name="menu_name" id="menu_name" value="<?= $menu->get_menu_name() ?>" style="width: 400px;"/>

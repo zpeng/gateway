@@ -8,7 +8,7 @@
 
     <form id="UserCreationForm" action="<?= SERVER_URL ?>modules/core/control/user_create.php" method="post">
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="150" align="right"><b>User Email: </b></td>
                 <td><input name="email" id="email" style="width: 200px;"/></td>

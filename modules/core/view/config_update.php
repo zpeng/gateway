@@ -2,8 +2,9 @@
 <div id="notification"></div>
 <div id="content">
     <?
-    use modules\core\includes\classes\Configuration;
     $config_id = secureRequestParameter($_REQUEST["config_id"]);
+
+    use modules\core\includes\classes\Configuration;
     $config = new Configuration();
     $config->loadById($config_id);
     ?>
@@ -11,7 +12,7 @@
 
     <form id="ConfigUpdateForm" method="post">
         <input type="hidden" value="<? echo $config_id ?>" name="config_id" id="config_id"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="150" align="right"><b>Config Title: </b></td>
                 <td><? echo $config->get_configuration_title()?>
@@ -45,20 +46,19 @@
         </table>
     </form>
     <script>
-    // load css
-    head.js(<?=outputDependencies(
+        // load css
+        head.js(<?=outputDependencies(
     array(
     "jquery-ui-css",
     "jquery-form-validate-css")
     , $CSS_DEPS)?>);
 
-    // load js
-    head.js(<?=outputDependencies(
+        // load js
+        head.js(<?=outputDependencies(
     array(
     "jquery-ui",
     "jquery-form-validate")
     , $JS_DEPS)?>, function () {
-
             $("#update_btn").button();
 
             jQuery('form#ConfigUpdateForm').submit(function () {
@@ -66,7 +66,7 @@
                 var config_value = $("#config_value").val();
 
                 $.ajax({
-                    url: SERVER_URL + "modules/core/control/config_update.php",
+                    url: SERVER_URL + "modules/deal_steal/control/config_update.php",
                     type: "POST",
                     data: {config_id: config_id,
                         config_value: config_value

@@ -35,7 +35,7 @@
             {id: "name", name: "Name", field: "name", width: 150},
             {id: "tel", name: "Telephone", field: "tel", width: 150},
             {id: "mobile", name: "Mobile", field: "mobile", width: 150},
-            {id: "action", name: "Action", field: "mobile", width: 100,
+            {id: "action", name: "Action", field: "action", width: 100,
                 formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
                     return "<a class='icon_edit' title='View Detail' href='" + SERVER_URL + "admin/main.php?view=client_detail&client_id="+
                         dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";

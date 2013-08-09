@@ -302,28 +302,39 @@ table.general_table {
   }
 }
 
-
 /* slickgrid table */
-div.slickgrid_table{
+div.slickgrid_table {
   font-family: Arial, sans-serif;
   font-size: 12px;
   border: 1px solid $grey9;
   margin-top: 10px;
+
+  .slick-cell {
+    padding-left: 15px;
+    padding-top: 3px;
+  }
+
+  .slick-column-name{
+    padding-left: 12px;
+
+  }
+
+  .slick-sort-indicator{
+    float:right
+  }
 }
-
-
 
 /* icon */
 a.icon_delete {
-  margin-left: 5px;
   background: url(../images/delete.png) center no-repeat;
   display: inline-block;
   width: 15px;
   height: 15px;
+  margin-right: 10px;
 }
 
 a.icon_edit {
-  margin-left: 5px;
+  margin-right: 10px;
   background: url(../images/edit.png) center no-repeat;
   display: inline-block;
   width: 15px;

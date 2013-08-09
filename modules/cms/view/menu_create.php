@@ -8,7 +8,7 @@
 
     <form id="MenuCreateForm" action="<?= SERVER_URL ?>modules/cms/control/menu_create.php" method="post">
         <input type="hidden" value="<? echo $module_code ?>" name="module_code"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="150" align="right"><b>Menu Name: </b></td>
                 <td><input name="menu_name" id="menu_name" style="width: 300px;"/>

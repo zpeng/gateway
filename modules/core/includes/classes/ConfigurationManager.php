@@ -130,25 +130,20 @@ class ConfigurationManager
     public function getConfigTableDataSource($module_code)
     {
         $configList = $this->loadByModuleCode($module_code);
-        $header = array("Config Title", "Config Key", "Config Value", "Config Description", "Config Datatype", "Action");
-        $body = [];
+        $dataSource = array();
         if (sizeof($configList) > 0) {
             foreach ($configList as $config) {
-                array_push($body, array(
-                    $config->get_configuration_title(),
-                    $config->get_configuration_key(),
-                    $config->get_configuration_value(),
-                    $config->get_configuration_desc(),
-                    $config->get_configuration_type(),
-                    "<a class='icon_edit' title='Update Configuration' href='" . SERVER_URL . "admin/main.php?view=config_update&config_id=" .
-                        $config->get_configuration_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                array_push($dataSource, array(
+                    "id" => $config->get_configuration_id(),
+                    "title" => $config->get_configuration_title(),
+                    "key" => $config->get_configuration_key(),
+                    "value" => $config->get_configuration_value(),
+                    "desc" => $config->get_configuration_desc(),
+                    "type" => $config->get_configuration_type(),
+                    "action" => ""
                 ));
             }
         }
-        $dataSource = array(
-            "header" => $header,
-            "body" => $body
-        );
         return $dataSource;
     }
 }

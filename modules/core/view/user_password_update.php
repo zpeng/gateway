@@ -11,7 +11,7 @@
 
     <form id="UserPasswordUpdateForm" method="post">
         <input type="hidden" value="<? echo $user_id ?>" name="user_id" id="user_id"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="150" align="right"><b>User Name: </b></td>
                 <td><? echo $user->get_user_name()?>

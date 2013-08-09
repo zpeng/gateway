@@ -1,12 +1,6 @@
 <div id="right_panel">
     <?php
     switch (secureRequestParameter($_REQUEST["view"])) {
-        case "config_list":
-            include_once(BASE_PATH.'modules/cms/view/config_list.php');
-            break;
-        case "config_update":
-            include_once(BASE_PATH.'modules/cms/view/config_update.php');
-            break;
         case "content_list":
             include_once(BASE_PATH.'modules/cms/view/content_list.php');
             break;
@@ -25,6 +19,14 @@
         case "menu_create":
             include_once(BASE_PATH.'modules/cms/view/menu_create.php');
             break;
+
+        case "config_list":
+            include_once(BASE_PATH.'modules/core/view/config_list.php');
+            break;
+        case "config_update":
+            include_once(BASE_PATH.'modules/core/view/config_update.php');
+            break;
+
         default:
             include_once(BASE_PATH.'modules/cms/view/content_list.php');
             break;

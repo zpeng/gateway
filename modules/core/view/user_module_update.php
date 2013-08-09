@@ -11,7 +11,7 @@
 
     <form id="UserModuleUpdateForm" method="post">
         <input type="hidden" value="<? echo $user_id ?>" name="user_id" id="user_id"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td>Currently subscribed modules:
                 </td>

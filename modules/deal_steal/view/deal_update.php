@@ -154,7 +154,7 @@
                 <input type="hidden" value="<? echo $deal_id ?>" id="deal_id" name="deal_id"/>
                 <input type="hidden" value="update_deal_image" id="operation" name="operation"/>
                 <input type="hidden" value="<? echo $module_code ?>" name="module_code" id="module_code"/>
-                <table class="inputTable">
+                <table class="general_table">
                     <tr>
                         <td width="150" align="right"></td>
                         <td>

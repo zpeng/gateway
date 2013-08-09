@@ -12,7 +12,7 @@
     <form id="TemplateUpdateForm" method="post">
         <input type="hidden" value="<? echo $module_code ?>" name="module_code" id="module_code"/>
         <input type="hidden" value="<? echo $template_id ?>" name="template_id" id="template_id"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="150" align="right"><b>Template Key: </b></td>
                 <td><input type="text" value="<? echo $template->getKey() ?>" name="template_key" id="template_key"

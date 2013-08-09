@@ -12,7 +12,7 @@
 
     <form id="ConciergeUpdateForm" method="post">
         <input type="hidden" value="<? echo $con_id ?>" name="con_id" id="con_id"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="150" align="right"><b>Concierge ID: </b></td>
                 <td><? echo $concierge->getId()?>

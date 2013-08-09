@@ -13,7 +13,7 @@
     <form id="ArticleCreationForm" method="post">
         <input type="hidden" value="<?= $_SESSION['user_id'] ?>" name="user_id" id="user_id"/>
         <input type="hidden" value="<?= $content_id ?>" name="content_id" id="content_id"/>
-        <table class="inputTable">
+        <table class="general_table">
             <tr>
                 <td width="100" align="right"><b>Article Title: </b></td>
                 <td><input name="title" id="title" style="width: 670px;" value="<?= $content->get_title() ?>"/></td>

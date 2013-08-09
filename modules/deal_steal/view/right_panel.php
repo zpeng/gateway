@@ -53,13 +53,13 @@
             break;
 
         case "config_list":
-            include_once(BASE_PATH.'modules/deal_steal/view/config_list.php');
+            include_once(BASE_PATH.'modules/core/view/config_list.php');
             break;
         case "config_update":
-            include_once(BASE_PATH.'modules/deal_steal/view/config_update.php');
+            include_once(BASE_PATH.'modules/core/view/config_update.php');
             break;
         default:
-            include_once(BASE_PATH.'modules/deal_steal/view/config_list.php');
+            include_once(BASE_PATH.'modules/core/view/config_list.php');
             break;
     }
     ?>
