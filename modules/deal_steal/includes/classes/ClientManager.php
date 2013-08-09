@@ -41,6 +41,25 @@ class ClientManager
         return $clientList;
     }
 
+    public function getClientListDataSource($archived='N'){
+        $clientList = $this->loadAllClients($archived);
+        $dataSource = array();
+        $count = 0;
+        if (sizeof($clientList) > 0) {
+            foreach ($clientList as $client) {
+                $dataSource[$count] = array(
+                    "id" => $client->getClientId(),
+                    "email" => $client->getClientEmail(),
+                    "name" => $client->getClientFirstname() . " " . $client->getClientSurname(),
+                    "tel" => $client->getClientTel(),
+                    "mobile" => $client->getClientMobile()
+                );
+                ++$count;
+            }
+        }
+        return $dataSource;
+    }
+
     public function getClientTableDataSource($archived='N')
     {
         $clientList = $this->loadAllClients($archived);

@@ -9,7 +9,9 @@ $CSS_DEPS = array(
     "jquery-tag-css" => array("external/js/jquery-tags/jquery.tagsinput.css"),
     "jquery-CircularContentCarousel-css" => array("external/js/CircularContentCarousel/css/jquery.jscrollpane.css"),
     "fullcalendar-css" => array("external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.css",
-        "external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.print.css")
+                                "external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.print.css"),
+    "slickgrid-css" => array("external/js/SlickGrid/slick.grid.css",
+        "external/js/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css")
 );
 
 /*
@@ -59,7 +61,17 @@ $JS_DEPS = array(
         "external/js/CircularContentCarousel/js/jquery.easing.1.3.js",
         "external/js/CircularContentCarousel/js/jquery.mousewheel.js"),
 
-    "fullcalendar-js" => array("external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.js")
+    "fullcalendar-js" => array("external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.js"),
+
+    "slickgrid" => array(
+        "external/js/SlickGrid/lib/jquery-1.7.min.js",
+        "external/js/SlickGrid/lib/jquery.event.drag-2.2.js",
+        //"external/js/SlickGrid/lib/jquery.event.drop-2.2.js",
+        "external/js/SlickGrid/slick.core.js",
+        "external/js/SlickGrid/slick.grid.js",
+        //"external/js/SlickGrid/slick.dataview.js",
+        //"external/js/SlickGrid/slick.formatters.js",
+    )
 
 );
 

@@ -73,11 +73,9 @@
         </div>
 
         <div id="tabs-2">
-
         </div>
 
         <div id="tabs-3">
-
         </div>
 
     </div>
