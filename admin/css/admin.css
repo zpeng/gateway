@@ -227,7 +227,8 @@ table.general_table {
 div.slickgrid_table {
   font-family: Arial, sans-serif;
   font-size: 12px;
-  border: 1px solid #e1e1e1; }
+  border: 1px solid #e1e1e1;
+  margin-top: 10px; }
 
 /* icon */
 a.icon_delete {

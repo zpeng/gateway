@@ -1,5 +1,5 @@
 <?php
-namespace  modules\deal_steal\includes\classes;
+namespace modules\deal_steal\includes\classes;
 
 
 class CityManager
@@ -22,24 +22,16 @@ class CityManager
     public function getCityTableDataSource()
     {
         $city_map = $this->loadCityAsMap();
-        $header = array("ID", "City Name", "Action");
-        $body = [];
+        $dataSource = array();
         if (sizeof($city_map) > 0) {
             foreach ($city_map as $key => $value) {
-                array_push($body, array(
-                    $key,
-                    $value,
-                    "<a class='icon_delete confirm_delete' title='Delete this city' href='" . SERVER_URL . "modules/deal_steal/control/city_delete.php?city_id=" .
-                        $key . "&module_code=" . $_REQUEST['module_code'] . "'></a>
-                     <a class='icon_edit' title='Update City' href='" . SERVER_URL . "admin/main.php?view=city_update&city_id=" .
-                        $key . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                array_push($dataSource, array(
+                    "id" => $key,
+                    "name" => $value,
+                    "action" => ""
                 ));
             }
         }
-        $dataSource = array(
-            "header" => $header,
-            "body" => $body
-        );
         return $dataSource;
     }
 

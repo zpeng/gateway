@@ -44,7 +44,8 @@
         ];
         var options = {
             enableCellNavigation: true,
-            enableColumnReorder: false
+            enableColumnReorder: false,
+            forceFitColumns: true
         };
 
         //use ajax to load data source

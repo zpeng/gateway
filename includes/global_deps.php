@@ -11,7 +11,8 @@ $CSS_DEPS = array(
     "fullcalendar-css" => array("external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.css",
                                 "external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.print.css"),
     "slickgrid-css" => array("external/js/SlickGrid/slick.grid.css",
-        "external/js/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css")
+        //"external/js/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css",
+        "external/js/jquery-ui-1.10.2.custom/css/custom-theme/jquery-ui-1.10.2.custom.css")
 );
 
 /*
@@ -66,11 +67,11 @@ $JS_DEPS = array(
     "slickgrid" => array(
         "external/js/SlickGrid/lib/jquery-1.7.min.js",
         "external/js/SlickGrid/lib/jquery.event.drag-2.2.js",
-        //"external/js/SlickGrid/lib/jquery.event.drop-2.2.js",
+        "external/js/SlickGrid/lib/jquery.event.drop-2.2.js",
         "external/js/SlickGrid/slick.core.js",
         "external/js/SlickGrid/slick.grid.js",
-        //"external/js/SlickGrid/slick.dataview.js",
-        //"external/js/SlickGrid/slick.formatters.js",
+        "external/js/SlickGrid/slick.dataview.js",
+        "external/js/SlickGrid/slick.formatters.js",
     )
 
 );
