@@ -1,4 +1,5 @@
 <h1 class="content_title">Tags</h1>
+<div id="notification"></div>
 <div id="content">
     <input name="deal_tags" id="deal_tags"/>
 </div>
@@ -34,7 +35,11 @@
                             },
                             success: function (data) {
                                 jQuery("input#deal_tags").val(data);
-                            }});
+                            },
+                            error: function (msg) {
+                                ajaxFailMsg(msg);
+                            }
+                        });
                     },
                     onRemoveTag: function (value) {
                         $.ajax({
@@ -46,7 +51,11 @@
                             },
                             success: function (data) {
                                 jQuery("input#deal_tags").val(data);
-                            }});
+                            },
+                            error: function (msg) {
+                                ajaxFailMsg(msg);
+                            }
+                        });
                     }
                 });
             }

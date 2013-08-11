@@ -1,4 +1,5 @@
 <h1 class="content_title">Concierge Service</h1>
+<div id="notification"></div>
 <div id="content">
     <?
     $dropdown_dataSource = array(
@@ -16,7 +17,7 @@
     echo createDropdownList("status_dropdown","status_dropdown", "", "", "", $dropdown_dataSource);
     ?>
 
-    <br/><br/>
+    <br/><br class="clear"/>
 
     <!--  Number of rows per page and bars in chart -->
     <div id="pagecontrol" class="EditableGrid">

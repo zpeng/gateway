@@ -1,7 +1,7 @@
 <h1 class="content_title">Deal of the Day</h1>
 <div id="notification"></div>
 <style>
-    #left_holder{
+    #left_holder {
         float: left;
         width: 150px;
     }
@@ -44,7 +44,6 @@
 </style>
 <div id="content">
     <div id='loading' style='display:none'>loading...</div>
-
     <div id="left_holder">
         <div id="deals_list_div">
             <h4>Available Deals<h4>
@@ -103,25 +102,25 @@
                 //update
                 eventDrop: function (event, delta) {
                     $.ajax({
-                        url: SERVER_URL + "modules/deal_steal/control/deal_of_the_day.php",
-                        dataType: 'json',
-                        data: {
-                            dod_id: event.id,
-                            dod_change_day: delta,
-                            operation: "update"
-                        },
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.status == "success") {
-                                jQuery("div#notification").html("<span class='info'>Deal of the Day has been updated successfully!</span>");
-                            } else {
-                                jQuery("div#notification").html("<span class='error'>Unable to update this deal. Try again please!</span>");
-                            }
-                            $('#calendar').fullCalendar('rerenderEvents');
-                        },
-                        error: function () {
-                            jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                        }}
+                            url: SERVER_URL + "modules/deal_steal/control/deal_of_the_day.php",
+                            dataType: 'json',
+                            data: {
+                                dod_id: event.id,
+                                dod_change_day: delta,
+                                operation: "update"
+                            },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.status == "success") {
+                                    jQuery("div#notification").html("<span class='info'>Deal of the Day has been updated successfully!</span>");
+                                } else {
+                                    jQuery("div#notification").html("<span class='error'>Unable to update this deal. Try again please!</span>");
+                                }
+                                $('#calendar').fullCalendar('rerenderEvents');
+                            },
+                            error: function () {
+                                jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                            }}
                     );
                 },
 
@@ -137,11 +136,11 @@
                     copiedEventObject.start = date;
                     copiedEventObject.allDay = allDay;
 
-                    Date.prototype.yyyymmdd = function() {
+                    Date.prototype.yyyymmdd = function () {
                         var yyyy = this.getFullYear().toString();
-                        var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
-                        var dd  = this.getDate().toString();
-                        return yyyy + (mm[1]?mm:"0"+mm[0]) + (dd[1]?dd:"0"+dd[0]); // padding
+                        var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+                        var dd = this.getDate().toString();
+                        return yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]); // padding
                     };
 
                     //now , update the database
@@ -176,9 +175,9 @@
                 }
             });
 
-            $( "#trash_div" ).droppable({
-                drop: function( event, ui ) {
-                    if (confirm('Are you sure you wish to delete this item?')){
+            $("#trash_div").droppable({
+                drop: function (event, ui) {
+                    if (confirm('Are you sure you wish to delete this item?')) {
                         //console.log(ui.draggable.attr("id"));
                         //now , update the database
                         $.ajax({
@@ -197,9 +196,10 @@
                                         jQuery("div#notification").html("<span class='error'>Unable to delete this item. Try again please!</span>");
                                     }
                                 },
-                                error: function () {
-                                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                                }}
+                                error: function (msg) {
+                                    ajaxFailMsg(msg);
+                                }
+                            }
                         );
                     }
                 }

@@ -77,7 +77,7 @@ class DealManager
                               ds_deal_of_day
                             WHERE deal_archived = 'N'
                               AND ds_deal_of_day.deal_id = ds_deal.deal_id";
-                             // AND ds_deal_of_day.date >= '" . $begin_of_month . "'";
+        // AND ds_deal_of_day.date >= '" . $begin_of_month . "'";
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {
@@ -94,29 +94,23 @@ class DealManager
     public function getDealsTableDataSource()
     {
         $deal_list = $this->loadAllDeals();
-        $header = array("ID", "Supper", "Category", "City", "Title", "Type", "Available Quantity", "Online Date", "Offline Date", "Action");
-        $body = [];
+        $dataSource = array();
         if (sizeof($deal_list) > 0) {
             foreach ($deal_list as $deal) {
-                array_push($body, array(
-                    $deal->getId(),
-                    $deal->getSupplierName(),
-                    $deal->getCategoryName(),
-                    $deal->getCityName(),
-                    $deal->getTitle(),
-                    $deal->getType(),
-                    $deal->getOriginalQuantity() . "/" . $deal->getQuantity(),
-                    $deal->getOnlineDate(),
-                    $deal->getOfflineDate(),
-                    "<a class='icon_edit' title='Update Deal' href='" . SERVER_URL . "admin/main.php?view=deal_update&deal_id=" .
-                        $deal->getId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                array_push($dataSource, array(
+                    "id" => $deal->getId(),
+                    "supplier" => $deal->getSupplierName(),
+                    "category" => $deal->getCategoryName(),
+                    "city" => $deal->getCityName(),
+                    "type" => $deal->getType(),
+                    "title" => $deal->getTitle(),
+                    "quantity" => $deal->getOriginalQuantity() . "/" . $deal->getQuantity(),
+                    "online_date" => $deal->getOnlineDate(),
+                    "offline_date" => $deal->getOfflineDate(),
+                    "action" => ""
                 ));
             }
         }
-        $dataSource = array(
-            "header" => $header,
-            "body" => $body
-        );
         return $dataSource;
     }
 

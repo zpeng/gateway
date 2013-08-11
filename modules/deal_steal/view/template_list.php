@@ -1,4 +1,5 @@
 <h1 class="content_title">All Templates</h1>
+<div id="notification"></div>
 <div id="content">
     <!--  Number of rows per page and bars in chart -->
     <div id="pagecontrol" class="EditableGrid">

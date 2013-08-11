@@ -70,8 +70,8 @@
                                 jQuery("div#notification").html("<span class='error'>Unable to update this city. Try again please!</span>");
                             }
                         },
-                        error: function () {
-                            jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                        error: function (msg) {
+                            ajaxFailMsg(msg);
                         }
                     });
                     return false;

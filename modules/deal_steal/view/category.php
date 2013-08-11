@@ -64,6 +64,9 @@
                             if (!r.status) {
                                 data.inst.refresh();
                             }
+                        },
+                        error: function (msg) {
+                            ajaxFailMsg(msg);
                         }
                     });
                 });
@@ -100,6 +103,9 @@
                             else {
                                 $(data.rslt.oc).attr("id", r.parent_id);
                             }
+                        },
+                        error: function (msg) {
+                            ajaxFailMsg(msg);
                         }
                     });
                 });

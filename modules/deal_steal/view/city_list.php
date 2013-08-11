@@ -1,10 +1,10 @@
 <h1 class="content_title">Deal Location/City</h1>
 <? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
     <a id="add_new_city" class="anchor_button" href="#">Add New City</a>
-    <br class="clear"/>
+    <br/><br class="clear"/>
     <div id="city_grid" class="slickgrid_table" style="width:900px; height:600px"></div>
-
 
 </div>
 
@@ -134,7 +134,7 @@
                     dataView.endUpdate();
                 },
                 error: function (msg) {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                    ajaxFailMsg(msg);
                 }
             });
         }

@@ -1,5 +1,5 @@
 <h1 class="content_title">Supplier Information</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
     <?
     use modules\deal_steal\includes\classes\Supplier;

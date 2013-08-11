@@ -1,33 +1,10 @@
 <h1 class="content_title">All Deals</h1>
+<div id="notification"></div>
 <div id="content">
     <a id="add_new_deal" class="anchor_button" href="#">Add New Deal</a>
 
-    <br/><br/><br/>
-    <!--  Number of rows per page and bars in chart -->
-    <div id="pagecontrol" class="EditableGrid">
-        <label for="pagecontrol">Rows per page: </label>
-        <select id="pagesize" name="pagesize">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-        </select>
-    </div>
-
-    <!-- Grid filter -->
-    <label for="filter" class="EditableGrid">Filter :</label>
-    <input type="text" id="filter" class="EditableGrid"/>
-    <?
-    use modules\deal_steal\includes\classes\DealManager;
-    $dealManager = new DealManager();
-    echo createGenericTable("DealListGrid", "EditableGrid", $dealManager->getDealsTableDataSource());
-    ?>
-    <!-- Paginator control -->
-    <div id="paginator" class="EditableGrid"></div>
+    <br/><br class="clear"/>
+    <div id="deal_grid" class="slickgrid_table" style="width: 900px; height:600px"></div>
 
 </div>
 
@@ -108,7 +85,7 @@
     // load css
     head.js(<?=outputDependencies(
     array(
-    "editablegrid-css",
+    "slickgrid-css",
     "jquery-ui-css",
     "jquery-form-validate-css")
     , $CSS_DEPS)?>);
@@ -116,7 +93,7 @@
     // load js
     head.js(<?=outputDependencies(
     array(
-    "editablegrid",
+    "slickgrid",
     "jquery-ui",
     "jquery-form-validate",
     "jquery-ui-timepicker")
@@ -186,30 +163,51 @@
         });
 
         //data grid
-        window.onload = function () {
-            var DealListGrid = new EditableGrid("DealListGrid", {
-                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-                pageSize: 10
-            });
-
-            // we build and load the metadata in Javascript
-            DealListGrid.load({ metadata: [
-                { name: "ID", datatype: "string", editable: false },
-                { name: "Supplier", datatype: "string", editable: false },
-                { name: "Category", datatype: "string", editable: false },
-                { name: "City", datatype: "string", editable: false },
-                { name: "Title", datatype: "string", editable: false },
-                { name: "Type", datatype: "string", editable: false },
-                { name: "Running Quantity", datatype: "string", editable: false },
-                { name: "Online Date", datatype: "string", editable: false },
-                { name: "Offline Date", datatype: "string", editable: false },
-                { name: "Action", datatype: "html", editable: false }
-            ]});
-
-            // then we attach to the HTML table and render it
-            DealListGrid.attachToHTMLTable('DealListGrid');
-            DealListGrid.initializeGrid();
+        var deal_grid;
+        var columns = [
+            {id: "id", name: "ID", field: "id", width: 50},
+            {id: "supplier", name: "Supplier", field: "supplier", width: 100},
+            {id: "category", name: "Category", field: "category", width: 100},
+            {id: "city", name: "City", field: "city", width: 100},
+            {id: "type", name: "Type", field: "type", width: 100},
+            {id: "title", name: "Title", field: "title", width: 150},
+            {id: "quantity", name: "Running Quantity", field: "quantity", width: 150},
+            {id: "online_date", name: "Online Date", field: "online_date", width: 150},
+            {id: "offline_date", name: "Offline Date", field: "offline_date", width: 150},
+            {id: "action", name: "Action", field: "action", width: 100,
+                formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
+                    return "<a class='icon_edit' title='Update Deal' href='" + SERVER_URL + "admin/main.php?view=deal_update&deal_id="+
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";
+                }
+            }
+        ];
+        var options = {
+            enableCellNavigation: true,
+            enableColumnReorder: false,
+            forceFitColumns: true
         };
 
+        //use ajax to load data source
+        function fetch_data(){
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
+                type: "POST",
+                data: {
+                    operation_id: "fetch_deal_list"
+                },
+                dataType: "json",
+                success: function (data) {
+                    deal_grid = new Slick.Grid("#deal_grid", data, columns, options);
+                },
+                error: function (msg) {
+                    ajaxFailMsg(msg);
+                }
+            });
+        }
+
+        //when page rendering is completed
+        $(document).ready(function () {
+            fetch_data();
+        });
     });
 </script>

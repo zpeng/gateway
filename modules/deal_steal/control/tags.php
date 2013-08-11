@@ -1,6 +1,7 @@
 <?php
 require_once('../../../includes/bootstrap.php');
 use modules\deal_steal\includes\classes\TagManager;
+use modules\deal_steal\includes\classes\Tag;
 
 $tagManager = new TagManager();
 

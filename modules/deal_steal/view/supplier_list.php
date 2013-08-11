@@ -1,5 +1,5 @@
 <h1 class="content_title">All Suppliers</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
     <a id="add_new_supplier" class="anchor_button" href="#">Add New Supplier</a>
     <br class="clear"/>
@@ -80,7 +80,7 @@
             {id: "id", name: "ID", field: "id", width: 50, sortable: true},
             {id: "logo", name: "Logo", field: "logo", width: 100, sortable: false,
                 formatter: function (row, cell, value, columnDef, dataContext) {
-                    return  "<img border='' width='15' height='15' class='' src='<?=$GLOBAL_DEPS[$_REQUEST['module_code']]["supplier_logo_folder"]?>"+ dataContext['logo'] + "' />";
+                    return  "<img border='' width='15' height='15' class='' src='<?=$GLOBAL_DEPS[$_REQUEST['module_code']]["supplier_logo_folder"]?>" + dataContext['logo'] + "' />";
                 }
             },
             {id: "name", name: "Name", field: "name", width: 400, sortable: true },
@@ -102,9 +102,9 @@
 
         supplier_grid = new Slick.Grid("#supplier_grid", dataView, columns, options);
 
-        supplier_grid.onSort.subscribe(function(e, args) {
+        supplier_grid.onSort.subscribe(function (e, args) {
             // We'll use a simple comparer function here.
-            var comparer = function(a, b) {
+            var comparer = function (a, b) {
                 return a[args.sortCol.field] > b[args.sortCol.field];
             }
 
@@ -115,13 +115,13 @@
             supplier_grid.render();
         });
 
-        dataView.onRowsChanged.subscribe(function(e,args) {
+        dataView.onRowsChanged.subscribe(function (e, args) {
             supplier_grid.invalidateRows(args.rows);
             supplier_grid.render();
         });
 
         //use ajax to load data source
-        function fetch_data(){
+        function fetch_data() {
             $.ajax({
                 url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
                 type: "POST",
@@ -135,7 +135,7 @@
                     dataView.endUpdate();
                 },
                 error: function (msg) {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                    ajaxFailMsg(msg);
                 }
             });
         }

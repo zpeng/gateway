@@ -1,5 +1,5 @@
 <h1 class="content_title">All Clients</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
     <?
     $dropdown_dataSource = array(
@@ -9,9 +9,7 @@
         ));
     echo createDropdownList("client_status_dropdown","client_status_dropdown", "", "", "", $dropdown_dataSource);
     ?>
-
-    <br/><br/>
-
+    <br/><br class="clear"/>
     <div id="client_grid" class="slickgrid_table" style="width: 900px; height:600px"></div>
 </div>
 
@@ -62,7 +60,7 @@
                     client_grid = new Slick.Grid("#client_grid", data, columns, options);
                 },
                 error: function (msg) {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                    ajaxFailMsg(msg);
                 }
             });
         }
