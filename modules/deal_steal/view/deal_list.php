@@ -171,10 +171,10 @@
             {id: "city", name: "City", field: "city", width: 100},
             {id: "type", name: "Type", field: "type", width: 100},
             {id: "title", name: "Title", field: "title", width: 150},
-            {id: "quantity", name: "Running Quantity", field: "quantity", width: 150},
+            {id: "quantity", name: "Availability", field: "quantity", width: 100},
             {id: "online_date", name: "Online Date", field: "online_date", width: 150},
             {id: "offline_date", name: "Offline Date", field: "offline_date", width: 150},
-            {id: "action", name: "Action", field: "action", width: 100,
+            {id: "action", name: "Action", field: "action", width: 70,
                 formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
                     return "<a class='icon_edit' title='Update Deal' href='" + SERVER_URL + "admin/main.php?view=deal_update&deal_id="+
                         dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";

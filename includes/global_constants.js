@@ -6,7 +6,7 @@ var ENVIRONMENT = "debug";
 
 
 function ajaxSuccessMsg(msg) {
-    jQuery("div#notification").html("<span class='info'>" + msg +"</span>");
+    jQuery("div#notification").html("<span class='info'>" + msg + "</span>");
 }
 
 function ajaxFailMsg(msg) {

@@ -74,11 +74,5 @@
         $("#client_status_dropdown").change(function(e) {
             fetch_data();
         });
-
     });
-
-
-
-
-
 </script>

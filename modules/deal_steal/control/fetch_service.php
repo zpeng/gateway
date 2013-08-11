@@ -5,7 +5,7 @@ use modules\deal_steal\includes\classes\ClientManager;
 use modules\deal_steal\includes\classes\CityManager;
 use modules\deal_steal\includes\classes\SupplierManager;
 use modules\deal_steal\includes\classes\DealManager;
-
+use modules\deal_steal\includes\classes\ConciergeManager;
 
 if (!empty($_REQUEST['operation_id'])) {
     switch ($_REQUEST['operation_id']) {
@@ -32,6 +32,15 @@ if (!empty($_REQUEST['operation_id'])) {
         case "fetch_deal_list":
             $dealManager = new DealManager();
             $data = $dealManager->getDealsTableDataSource();
+            break;
+
+        case "fetch_concierge_list":
+            $status = "Pending";
+            if (isset($_REQUEST["status"])) {
+                $status = secureRequestParameter($_REQUEST["status"]);
+            }
+            $conciergeManager = new ConciergeManager();
+            $data = $conciergeManager->getConciergeTableDataSource($status);
             break;
 
         default:

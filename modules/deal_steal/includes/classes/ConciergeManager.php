@@ -42,28 +42,22 @@ class ConciergeManager
         return $concierge_list;
     }
 
-    public function getConciergeListDataSource($status = "Pending")
+    public function getConciergeTableDataSource($status = "Pending")
     {
         $concierge_list = $this->loadConciergeList($status);
-        $header = array("Concierge ID", "Client Name", "Supplier", "Created Date", "Status", "Action");
-        $body = [];
+        $dataSource = array();
         if (sizeof($concierge_list) > 0) {
             foreach ($concierge_list as $concierge) {
-                array_push($body, array(
-                    $concierge->getId(),
-                    $concierge->getClientName(),
-                    $concierge->getSupplierName(),
-                    $concierge->getTimestamp(),
-                    $concierge->getStatus(),
-                    "<a class='icon_edit' title='View Detail' href='" . SERVER_URL . "admin/main.php?view= concierge_update&con_id=" .
-                        $concierge->getId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                array_push($dataSource, array(
+                    "id" => $concierge->getId(),
+                    "client" => $concierge->getClientName(),
+                    "supplier" => $concierge->getSupplierName() ,
+                    "create_date" => $concierge->getTimestamp(),
+                    "status" => $concierge->getStatus(),
+                    "action" => ""
                 ));
             }
         }
-        $dataSource = array(
-            "header" => $header,
-            "body" => $body
-        );
         return $dataSource;
     }
 }
