@@ -3,7 +3,7 @@ require_once('../../../includes/bootstrap.php');
 
 use modules\deal_steal\includes\classes\ClientManager;
 use modules\deal_steal\includes\classes\CityManager;
-
+use modules\deal_steal\includes\classes\SupplierManager;
 
 if (!empty($_REQUEST['operation_id'])) {
     switch ($_REQUEST['operation_id']) {
@@ -18,8 +18,13 @@ if (!empty($_REQUEST['operation_id'])) {
             break;
 
         case "fetch_city_list":
-            $cityManager = new CityManager();
-            $data = $cityManager->getCityTableDataSource();
+        $cityManager = new CityManager();
+        $data = $cityManager->getCityTableDataSource();
+        break;
+
+        case "fetch_supplier_list":
+            $supplierManager = new SupplierManager();
+            $data = $supplierManager->getSupplierTableDataSource();
             break;
 
         default:

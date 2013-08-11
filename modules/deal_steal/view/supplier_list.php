@@ -4,33 +4,7 @@
     <a id="add_new_supplier" class="anchor_button" href="#">Add New Supplier</a>
     <br class="clear"/>
 
-    <!--  Number of rows per page and bars in chart -->
-    <div id="pagecontrol" class="EditableGrid">
-        <label for="pagecontrol">Rows per page: </label>
-        <select id="pagesize" name="pagesize">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-        </select>
-    </div>
-
-    <!-- Grid filter -->
-    <label for="filter" class="EditableGrid">Filter :</label>
-    <input type="text" id="filter" class="EditableGrid"/>
-
-    <?
-    use modules\deal_steal\includes\classes\SupplierManager;
-    $supplierManager = new SupplierManager();
-    echo createGenericTable("SupplierListGrid", "EditableGrid", $supplierManager->getSupplierTableDataSource($GLOBAL_DEPS[$_REQUEST['module_code']]["supplier_logo_folder"]));
-    ?>
-    <!-- Paginator control -->
-    <div id="paginator" class="EditableGrid"></div>
-
+    <div id="supplier_grid" class="slickgrid_table" style="width:900px; height:600px"></div>
 </div>
 
 <div id="dialog" title="Create New Supplier">
@@ -59,7 +33,7 @@
     // load css
     head.js(<?=outputDependencies(
     array(
-    "editablegrid-css",
+    "slickgrid-css",
     "jquery-ui-css",
     "jquery-form-validate-css")
     , $CSS_DEPS)?>);
@@ -67,7 +41,7 @@
     // load js
     head.js(<?=outputDependencies(
     array(
-    "editablegrid",
+    "slickgrid",
     "jquery-ui",
     "jquery-form-validate")
     , $JS_DEPS)?>, function () {
@@ -101,31 +75,75 @@
         });
 
         //data grid
-        window.onload = function () {
-            var SupplierListGrid = new EditableGrid("SupplierListGrid", {
-                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-                pageSize: 10
-            });
-
-            // we build and load the metadata in Javascript
-            SupplierListGrid.load({ metadata: [
-                { name: "ID", datatype: "string", editable: false },
-                { name: "Name", datatype: "string", editable: false },
-                { name: "Logo", datatype: "html", editable: false },
-                { name: "Email", datatype: "string", editable: false },
-                { name: "Tel", datatype: "string", editable: false },
-                { name: "Action", datatype: "html", editable: false }
-            ]});
-
-            // then we attach to the HTML table and render it
-            SupplierListGrid.attachToHTMLTable('SupplierListGrid');
-            SupplierListGrid.initializeGrid();
-
-            // Add Confirmation dialogs for all Deletes
-            jQuery("a.confirm_delete").click(function (event) {
-                return confirm('Are you sure you wish to delete this item?');
-            });
+        var supplier_grid;
+        var columns = [
+            {id: "id", name: "ID", field: "id", width: 50, sortable: true},
+            {id: "logo", name: "Logo", field: "logo", width: 100, sortable: false,
+                formatter: function (row, cell, value, columnDef, dataContext) {
+                    return  "<img border='' width='15' height='15' class='' src='<?=$GLOBAL_DEPS[$_REQUEST['module_code']]["supplier_logo_folder"]?>"+ dataContext['logo'] + "' />";
+                }
+            },
+            {id: "name", name: "Name", field: "name", width: 400, sortable: true },
+            {id: "action", name: "Action", field: "mobile", width: 150,
+                formatter: function (row, cell, value, columnDef, dataContext) {
+                    return "<a class='icon_delete confirm_delete' title='Delete this supplier' href='" + SERVER_URL + "modules/deal_steal/control/supplier_delete.php?supplier_id=" +
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' onclick='confirmDeletion();'></a>" +
+                        "<a class='icon_edit' title='Update supplier' href='" + SERVER_URL + "admin/main.php?view=supplier_update&supplier_id=" +
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "'></a>";
+                }
+            }
+        ];
+        var options = {
+            enableCellNavigation: true,
+            enableColumnReorder: false,
+            forceFitColumns: true
         };
+        var dataView = new Slick.Data.DataView();
+
+        supplier_grid = new Slick.Grid("#supplier_grid", dataView, columns, options);
+
+        supplier_grid.onSort.subscribe(function(e, args) {
+            // We'll use a simple comparer function here.
+            var comparer = function(a, b) {
+                return a[args.sortCol.field] > b[args.sortCol.field];
+            }
+
+            // Delegate the sorting to DataView.
+            // This will fire the change events and update the grid.
+            dataView.sort(comparer, args.sortAsc);
+            supplier_grid.invalid
+            supplier_grid.render();
+        });
+
+        dataView.onRowsChanged.subscribe(function(e,args) {
+            supplier_grid.invalidateRows(args.rows);
+            supplier_grid.render();
+        });
+
+        //use ajax to load data source
+        function fetch_data(){
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
+                type: "POST",
+                data: {
+                    operation_id: "fetch_supplier_list"
+                },
+                dataType: "json",
+                success: function (data) {
+                    dataView.beginUpdate();
+                    dataView.setItems(data);
+                    dataView.endUpdate();
+                },
+                error: function (msg) {
+                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                }
+            });
+        }
+
+        //when page rendering is completed
+        $(document).ready(function () {
+            fetch_data();
+        });
 
     });
 </script>

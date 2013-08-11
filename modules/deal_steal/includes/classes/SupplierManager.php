@@ -38,30 +38,20 @@ class SupplierManager
         return $supplier_list;
     }
 
-    public function getSupplierTableDataSource($imageFolderPath)
+    public function getSupplierTableDataSource()
     {
         $supplier_list = $this->loadAllSuppliers();
-        $header = array("ID", "Name", "Logo", "Email", "Tel", "Action");
-        $body = [];
+        $dataSource = array();
         if (sizeof($supplier_list) > 0) {
             foreach ($supplier_list as $supplier) {
-                array_push($body, array(
-                    $supplier->getSupplierId(),
-                    $supplier->getSupplierName(),
-                    $supplier->outputLogoAsImage($imageFolderPath, "supplier_logo", 25, 25),
-                    $supplier->getSupplierEmail(),
-                    $supplier->getSupplierTel(),
-                    "<a class='icon_delete confirm_delete' title='Delete this supplier' href='" . SERVER_URL . "modules/deal_steal/control/supplier_delete.php?supplier_id=" .
-                        $supplier->getSupplierId() . "&module_code=" . $_REQUEST['module_code'] . "'></a>
-                     <a class='icon_edit' title='Update supplier' href='" . SERVER_URL . "admin/main.php?view=supplier_update&supplier_id=" .
-                        $supplier->getSupplierId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
+                array_push($dataSource, array(
+                    "id" => $supplier->getSupplierId(),
+                    "name" => $supplier->getSupplierName(),
+                    "logo" => $supplier->getSupplierLogo(),
+                    "action" => ""
                 ));
             }
         }
-        $dataSource = array(
-            "header" => $header,
-            "body" => $body
-        );
         return $dataSource;
     }
 
