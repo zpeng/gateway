@@ -1,5 +1,5 @@
 <h1 class="content_title">Configuration List</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
     <div id="config_grid" class="slickgrid_table" style="width: 900px; height:600px"></div>
 </div>
@@ -26,7 +26,7 @@
             {id: "type", name: "Data Type", field: "type", width: 100},
             {id: "action", name: "Action", field: "action", width: 100,
                 formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
-                    return "<a class='icon_edit' title='Update Configuration' href='" + SERVER_URL +  "admin/main.php?view=config_update&config_id="+
+                    return "<a class='icon_edit' title='Update Client' href='" + SERVER_URL +  "admin/main.php?view=config_update&config_id="+
                         dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";
                 }
             }
@@ -51,7 +51,7 @@
                     config_grid = new Slick.Grid("#config_grid", data, columns, options);
                 },
                 error: function (msg) {
-                    jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
+                    ajaxFailMsg(msg);
                 }
             });
         }

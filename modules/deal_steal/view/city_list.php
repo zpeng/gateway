@@ -1,5 +1,4 @@
 <h1 class="content_title">Deal Location/City</h1>
-<? include_once('view/notification_bar.php') ?>
 <div id="notification"></div>
 <div id="content">
     <a id="add_new_city" class="anchor_button" href="#">Add New City</a>

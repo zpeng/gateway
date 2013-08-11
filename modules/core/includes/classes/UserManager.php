@@ -82,12 +82,8 @@ class UserManager
 
     public function getUserTableDataSource()
     {
-        $userList = $this->getUserList();
-        $header = array("ID", "User Name", "Subscribed Modules", "Action");
-        $body = [];
-        if (sizeof($userList) > 0) {
-            foreach ($userList as $user) {
-                array_push($body, array(
+/*
+ *                 array_push($body, array(
                     $user->get_user_id(),
                     $user->get_user_name(),
                     implode(", ", array_values($user->user_subscribe_module_code_name_map)),
@@ -98,12 +94,19 @@ class UserManager
                     <a class='icon_admin' title='Update module subscription' href='" . SERVER_URL . "admin/main.php?view=user_module_update&user_id=" .
                     $user->get_user_id() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>"
                 ));
+ */
+        $userList = $this->getUserList();
+        $dataSource = array();
+        if (sizeof($userList) > 0) {
+            foreach ($userList as $user) {
+                array_push($dataSource, array(
+                    "id" => $user->get_user_id(),
+                    "name" => $user->get_user_name(),
+                    "modules" => implode(", ", array_values($user->user_subscribe_module_code_name_map)),
+                    "action" => ""
+                ));
             }
         }
-        $dataSource = array(
-            "header" => $header,
-            "body" => $body
-        );
         return $dataSource;
     }
 }

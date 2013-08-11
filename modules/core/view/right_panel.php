@@ -4,11 +4,8 @@
         case "user_list":
             include_once(BASE_PATH.'modules/core/view/user_list.php');
             break;
-        case "user_password_update":
-            include_once(BASE_PATH.'modules/core/view/user_password_update.php');
-            break;
-        case "user_module_update":
-            include_once(BASE_PATH.'modules/core/view/user_module_update.php');
+        case "user_update":
+            include_once(BASE_PATH.'modules/core/view/user_update.php');
             break;
         case "user_create":
             include_once(BASE_PATH.'modules/core/view/user_create.php');

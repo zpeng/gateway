@@ -1,67 +1,60 @@
 <h1 class="content_title">User List</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
-    <!--  Number of rows per page and bars in chart -->
-    <div id="pagecontrol" class="EditableGrid">
-        <label for="pagecontrol">Rows per page: </label>
-        <select id="pagesize" name="pagesize">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-        </select>
-    </div>
-
-    <!-- Grid filter -->
-    <label for="filter" class="EditableGrid">Filter :</label>
-    <input type="text" id="filter" class="EditableGrid"/>
-    <?
-    use modules\core\includes\classes\UserManager;
-    $userManager = new UserManager();
-    echo createGenericTable("UserListGrid", "EditableGrid", $userManager->getUserTableDataSource());
-    ?>
-    <!-- Paginator control -->
-    <div id="paginator" class="EditableGrid"></div>
+    <div id="user_grid" class="slickgrid_table" style="width: 900px; height:600px"></div>
 </div>
 <script>
     // load css
     head.js(<?=outputDependencies(
     array(
-    "editablegrid-css")
+    "slickgrid-css")
     , $CSS_DEPS)?>);
 
     // load js
     head.js(<?=outputDependencies(
     array(
-    "editablegrid")
+    "slickgrid")
     , $JS_DEPS)?>, function () {
-        window.onload = function () {
-            var UserListGrid = new EditableGrid("UserListGrid", {
-                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-                pageSize: 10
-            });
-            // we build and load the metadata in Javascript
-            UserListGrid.load({ metadata: [
-                { name: "ID", datatype: "integer", editable: false },
-                { name: "User Name", datatype: "string", editable: false },
-                { name: "Subscribed Modules", datatype: "string", editable: false },
-                { name: "Action", datatype: "html", editable: false }
-            ]});
-
-            // then we attach to the HTML table and render it
-            UserListGrid.attachToHTMLTable('UserListGrid');
-            UserListGrid.initializeGrid();
-
-            // Add Confirmation dialogs for all Deletes
-            jQuery("a.confirm_delete").click(function (event) {
-                return confirm('Are you sure you wish to delete this item?');
-            });
+        var user_grid;
+        var columns = [
+            {id: "id", name: "ID", field: "id", width: 50},
+            {id: "name", name: "User Name", field: "name", width: 150},
+            {id: "modules", name: "Subscribed Modules", field: "modules", width: 550},
+            {id: "action", name: "Action", field: "action", width: 100,
+                formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
+                    return "<a class='icon_edit' title='Update User' href='" + SERVER_URL +  "admin/main.php?view=user_update&user_id="+
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";
+                }
+            }
+        ];
+        var options = {
+            enableCellNavigation: true,
+            enableColumnReorder: false,
+            forceFitColumns: true
         };
+
+        //use ajax to load data source
+        function fetch_data(){
+            $.ajax({
+                url: SERVER_URL + "modules/core/control/fetch_service.php",
+                type: "POST",
+                data: {
+                    operation_id: "fetch_user_list",
+                    module_code: getParameterByName('module_code')
+                },
+                dataType: "json",
+                success: function (data) {
+                    user_grid = new Slick.Grid("#user_grid", data, columns, options);
+                },
+                error: function (msg) {
+                    ajaxFailMsg(msg);
+                }
+            });
+        }
+
+        //when page rendering is completed
+        $(document).ready(function () {
+            fetch_data();
+        });
     });
-
-
 </script>

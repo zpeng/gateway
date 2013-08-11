@@ -2,6 +2,7 @@
 require_once('../../../includes/bootstrap.php');
 
 use modules\core\includes\classes\ConfigurationManager;
+use modules\core\includes\classes\UserManager;
 
 if (!empty($_REQUEST['operation_id'])) {
     switch ($_REQUEST['operation_id']) {
@@ -10,6 +11,11 @@ if (!empty($_REQUEST['operation_id'])) {
             $module_code = secureRequestParameter($_REQUEST["module_code"]);
             $configurationManager = new ConfigurationManager();
             $data = $configurationManager->getConfigTableDataSource($module_code);
+            break;
+
+        case "fetch_user_list":
+            $userManager = new UserManager();
+            $data = $userManager->getUserTableDataSource();
             break;
 
         default:
