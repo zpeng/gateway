@@ -29,35 +29,22 @@ class TemplateManager
         return $templates;
     }
 
-    public function outputAllAsHtmlTable($id = "", $class = "")
+    public function getTemplateTableDataSource()
     {
-        $htmlTable = "<table id='$id' class='$class'>";
-        $htmlTable = $htmlTable . "<tr>
-                                    <th>ID</th>
-                                    <th>Key</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
-                                    </tr>";
-
         $template_list = $this->loadAllTemplates();
-
+        $dataSource = array();
         if (sizeof($template_list) > 0) {
             foreach ($template_list as $template) {
-                $htmlTable = $htmlTable . " <tr>
-                                <td>" . $template->getId() . "</td>
-                                <td>" . $template->getKey() . "</td>
-                                <td>" . $template->getTitle() . "</td>
-                                <td>" . $template->getDesc(). "</td>
-                                <td>
-                                <a class='icon_edit' title='Update Template' href='" . SERVER_URL . "admin/main.php?view=template_update&template_id=" .
-                    $template->getId() . "&module_code=" . $_REQUEST['module_code'] . "' ></a>
-                                </td>
-                                </tr> ";
+                array_push($dataSource, array(
+                    "id" => $template->getId(),
+                    "key" => $template->getKey(),
+                    "title" => $template->getTitle() ,
+                    "desc" => $template->getDesc(),
+                    "action" => ""
+                ));
             }
         }
-        $htmlTable = $htmlTable . "</table>";
-        return $htmlTable;
+        return $dataSource;
     }
 }
 ?>

@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <td width="150" align="right" style="vertical-align: top"><b>Content: </b></td>
-                <td><textarea name='template_content' id='template_content' rows="40"
+                <td><textarea name='template_content' id='template_content' rows="30"
                               cols="90"><?=$template->getContent()?></textarea>
                 </td>
             </tr>

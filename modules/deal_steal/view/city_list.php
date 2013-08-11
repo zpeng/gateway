@@ -5,7 +5,6 @@
     <a id="add_new_city" class="anchor_button" href="#">Add New City</a>
     <br/><br class="clear"/>
     <div id="city_grid" class="slickgrid_table" style="width:900px; height:600px"></div>
-
 </div>
 
 <div id="dialog" title="Create New City">
