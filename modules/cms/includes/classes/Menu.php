@@ -169,7 +169,7 @@ class Menu
     public function getSubMenuItemList()
     {
         $link = getConnection();
-        $query = "SELECT    menu_id,
+        $query = "SELECT  menu_id,
                           menu_parent_id,
                           menu_type_id,
                           menu_order,

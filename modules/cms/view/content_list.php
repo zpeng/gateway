@@ -1,68 +1,64 @@
 <h1 class="content_title">All Articles</h1>
-<? include_once('view/notification_bar.php') ?>
+<div id="notification"></div>
 <div id="content">
-    <!--  Number of rows per page and bars in chart -->
-    <div id="pagecontrol" class="EditableGrid">
-        <label for="pagecontrol">Rows per page: </label>
-        <select id="pagesize" name="pagesize">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
-        </select>
-    </div>
-
-    <!-- Grid filter -->
-    <label for="filter" class="EditableGrid">Filter :</label>
-    <input type="text" id="filter" class="EditableGrid"/>
-    <?
-    use modules\cms\includes\classes\ContentManager;
-    $contentManager = new ContentManager();
-    echo createGenericTable("ArticleListGrid", "EditableGrid", $contentManager->getContentTableDataSource());
-    ?>
-    <!-- Paginator control -->
-    <div id="paginator" class="EditableGrid"></div>
+    <div id="article_grid" class="slickgrid_table" style="width:900px; height:600px"></div>
 </div>
 <script>
     // load css
     head.js(<?=outputDependencies(
     array(
-    "editablegrid-css")
+    "slickgrid-css")
     , $CSS_DEPS)?>);
 
     // load js
     head.js(<?=outputDependencies(
     array(
-    "editablegrid")
+    "slickgrid")
     , $JS_DEPS)?>, function () {
-        window.onload = function () {
-            var ArticleListGrid = new EditableGrid("ArticleListGrid", {
-                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-                pageSize: 10
-            });
-            // we build and load the metadata in Javascript
-            ArticleListGrid.load({ metadata: [
-                { name: "ID", datatype: "integer", editable: false },
-                { name: "Article Title", datatype: "string", editable: false },
-                { name: "Author", datatype: "string", editable: false },
-                { name: "Created Date", datatype: "date", editable: false },
-                { name: "Last Modified By", datatype: "string", editable: false },
-                { name: "Last Modified Date", datatype: "date", editable: false },
-                { name: "Action", datatype: "html", editable: false }
-            ]});
-
-            // then we attach to the HTML table and render it
-            ArticleListGrid.attachToHTMLTable('ArticleListGrid');
-            ArticleListGrid.initializeGrid();
-
-            // Add Confirmation dialogs for all Deletes
-            jQuery("a.confirm_delete").click(function (event) {
-                return confirm('Are you sure you wish to delete this item?');
-            });
+        var article_grid;
+        var columns = [
+            {id: "id", name: "ID", field: "id", width: 50},
+            {id: "title", name: "Title", field: "title", width: 200},
+            {id: "author", name: "Author", field: "author", width: 200},
+            {id: "create_date", name: "Create Date", field: "create_date", width: 200},
+            {id: "modified_by", name: "Modified By", field: "modified_by", width: 200},
+            {id: "modified_by_date", name: "Modified By Date", field: "modified_by_date", width: 200},
+            {id: "action", name: "Action", field: "action", width: 100,
+                formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
+                    return "<a class='icon_delete confirm_delete' title='Delete this article' href='" + SERVER_URL + "modules/cms/control/content_delete.php?content_id="+
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>" +
+                        "<a class='icon_edit' title='Edit Content' href='" + SERVER_URL + "admin/main.php?view=content_update&content_id="+
+                    dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";
+                }
+            }
+        ];
+        var options = {
+            enableCellNavigation: true,
+            enableColumnReorder: false,
+            forceFitColumns: true
         };
+
+        //use ajax to load data source
+        function fetch_data(){
+            $.ajax({
+                url: SERVER_URL + "modules/cms/control/fetch_service.php",
+                type: "POST",
+                data: {
+                    operation_id: "fetch_article_list"
+                },
+                dataType: "json",
+                success: function (data) {
+                    article_grid = new Slick.Grid("#article_grid", data, columns, options);
+                },
+                error: function (msg) {
+                    ajaxFailMsg(msg);
+                }
+            });
+        }
+
+        //when page rendering is completed
+        $(document).ready(function () {
+            fetch_data();
+        });
     });
 </script>

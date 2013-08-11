@@ -60,26 +60,5 @@
         $(document).ready(function () {
             fetch_data();
         });
-
-        //data grid
-        window.onload = function () {
-            var TemplateListGrid = new EditableGrid("TemplateListGrid", {
-                enableSort: true, // true is the default, set it to false if you don't want sorting to be enabled
-                pageSize: 10
-            });
-
-            // we build and load the metadata in Javascript
-            TemplateListGrid.load({ metadata: [
-                { name: "ID", datatype: "string", editable: false },
-                { name: "Key", datatype: "string", editable: false },
-                { name: "Title", datatype: "string", editable: false },
-                { name: "Description", datatype: "string", editable: false },
-                { name: "Action", datatype: "html", editable: false }
-            ]});
-
-            // then we attach to the HTML table and render it
-            TemplateListGrid.attachToHTMLTable('TemplateListGrid');
-            TemplateListGrid.initializeGrid();
-        };
     });
 </script>
