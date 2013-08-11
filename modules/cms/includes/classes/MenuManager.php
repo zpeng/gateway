@@ -135,7 +135,7 @@ class MenuManager
 
         array_push($data_source, array(
             "id" => $menu->get_menu_id(),
-            'parent_id' => $menu->get_menu_parent_id(),
+            'parent_id' => $menu->get_menu_parent_id(),  // the parent's index of  in this json
             'level' => $level,
             "title" => $menu->get_menu_name_with_padding(),
             "link" => $menu->get_menu_link(),

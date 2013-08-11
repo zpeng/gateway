@@ -33,6 +33,36 @@
             var top_menu_data =[];
             var bottom_menu_data =[];
 
+            function top_menu_filter(item) {
+                if (item.parent != null) {
+                    var parent = top_menu_data[item.parent];
+
+                    while (parent) {
+                        if (parent._collapsed) {
+                            return false;
+                        }
+                        parent = top_menu_data[parent.parent];
+                    }
+                }
+
+                return true;
+            }
+
+            function bottom_menu_filter(item) {
+                if (item.parent != null) {
+                    var parent = top_menu_data[item.parent];
+
+                    while (parent) {
+                        if (parent._collapsed) {
+                            return false;
+                        }
+                        parent = top_menu_data[parent.parent];
+                    }
+                }
+
+                return true;
+            }
+
             var top_menu_indentFormatter = function (row, cell, value, columnDef, dataContext) {
                     var spacer = "<span style='display:inline-block;height:1px;width:" + (20 * dataContext["level"]) + "px'></span>";
                     var idx = top_menu_dataView.getIdxById(dataContext.id);
@@ -97,12 +127,10 @@
             var options = {
                 enableCellNavigation: true,
                 enableColumnReorder: false,
-                forceFitColumns: true,
-                asyncEditorLoading: false
+                forceFitColumns: true
             };
 
             var top_menu_dataView = new Slick.Data.DataView();
-
             var bottom_menu_dataView = new Slick.Data.DataView();
 
             top_menu_grid = new Slick.Grid("#top_menu_grid", top_menu_dataView, top_menu_columns, options);
@@ -172,9 +200,10 @@
                     },
                     dataType: "json",
                     success: function (data) {
-                        top_menu_data = data;
+                        top_menu_data = processData(data);
                         top_menu_dataView.beginUpdate();
                         top_menu_dataView.setItems(top_menu_data);
+                        top_menu_dataView.setFilter(top_menu_filter);
                         top_menu_dataView.endUpdate();
                     },
                     error: function (msg) {
@@ -194,6 +223,7 @@
                         bottom_menu_data = data;
                         bottom_menu_dataView.beginUpdate();
                         bottom_menu_dataView.setItems(bottom_menu_data);
+                        bottom_menu_dataView.setFilter(bottom_menu_filter);
                         bottom_menu_dataView.endUpdate();
                     },
                     error: function (msg) {
@@ -210,7 +240,22 @@
 
                 jQuery("#tabs").tabs();
             });
+
+            function processData(data){
+                var parent_index_lookup = {};
+                for(var i=0; i < data.length;i++){
+                    parent_index_lookup[data[i].id] = i;
+                }
+
+                for(var i=0; i < data.length;i++){
+                    if (data[i].parent_id == 0 ){
+                        data[i].parent = null;
+                    }else{
+                        data[i].parent =  parent_index_lookup[data[i].parent_id] ;
+                    }
+                }
+                return data;
+            }
         }
-    )
-    ;
+    );
 </script>

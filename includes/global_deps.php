@@ -72,6 +72,7 @@ $JS_DEPS = array(
         "external/js/SlickGrid/slick.grid.js",
         "external/js/SlickGrid/slick.dataview.js",
         "external/js/SlickGrid/slick.formatters.js",
+        "external/js/SlickGrid/slick.editors.js",
     )
 
 );
