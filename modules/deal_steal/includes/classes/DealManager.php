@@ -70,14 +70,16 @@ class DealManager
         $link = getConnection();
         $query = " SELECT     ds_deal_of_day.id,
                               ds_deal.deal_id,
-                              deal_title,
+                              CONCAT(ds_supplier.supplier_name, ' - ', ds_deal.deal_title) as deal_title,
                               ds_deal_of_day.date
                             FROM
                               ds_deal,
+                              ds_supplier,
                               ds_deal_of_day
                             WHERE deal_archived = 'N'
-                              AND ds_deal_of_day.deal_id = ds_deal.deal_id";
-        // AND ds_deal_of_day.date >= '" . $begin_of_month . "'";
+                              AND ds_supplier.supplier_id = ds_deal.supplier_id
+                              AND ds_deal_of_day.deal_id = ds_deal.deal_id
+                    AND ds_deal_of_day.date >= '" . $begin_of_month . "'";
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {
@@ -120,7 +122,7 @@ class DealManager
         $dataSource = array();
         if (sizeof($deal_list) > 0) {
             foreach ($deal_list as $deal) {
-                $dataSource[$deal->getId()] = $deal->getTitle() . ", " . $deal->getSupplierName();
+                $dataSource[$deal->getId()] = $deal->getSupplierName()." - ".$deal->getTitle();
             }
         }
         return $dataSource;
@@ -134,7 +136,7 @@ class DealManager
             foreach ($deal_list as $dod) {
                 array_push($dataSource, array(
                     'id' => $dod->getId(),
-                    'title' => $dod->getTitle() . ", " . $dod->getSupplierName(),
+                    'title' => $dod->getTitle() . ", " . $dod->getTitle(),
                     'start' => $dod->getDate(),
                     'url' => ""
                 ));

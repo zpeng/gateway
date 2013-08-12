@@ -118,9 +118,10 @@
                                 }
                                 $('#calendar').fullCalendar('rerenderEvents');
                             },
-                            error: function () {
-                                jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                            }}
+                            error: function (msg) {
+                                ajaxFailMsg(msg);
+                            }
+                        }
                     );
                 },
 
@@ -162,9 +163,10 @@
                                     jQuery("div#notification").html("<span class='error'>Unable to create. Try again please!</span>");
                                 }
                             },
-                            error: function () {
-                                jQuery("div#notification").html("<span class='warning'>There was a connection error. Try again please!</span>");
-                            }}
+                            error: function (msg) {
+                                ajaxFailMsg(msg);
+                            }
+                        }
                     );
 
                 },
