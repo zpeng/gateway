@@ -47,11 +47,11 @@
     <div id="left_holder">
         <div id="deals_list_div">
             <h4>Available Deals<h4>
-                    <?
-                    use modules\deal_steal\includes\classes\DealManager;
-                    $dealManager = new DealManager();
-                    echo createList("", "deals_list", "deal_item", $dealManager->getDealsListDataSource());
-                    ?>
+                <?
+                use modules\deal_steal\includes\classes\DealManager;
+                $dealManager = new DealManager();
+                echo createList("", "deals_list", "deal_item", $dealManager->getDealsListDataSource());
+                ?>
         </div>
         <div id="trash_div"></div>
     </div>
@@ -101,14 +101,14 @@
                     type: 'POST',
                     data: {
                         // The GET parameter names will be determined by the startParam and endParam options. ("start" and "end" by default).
-                        operation: "load"
+                        operation_id: "load"
                     },
                     error: function (msg) {
                         ajaxFailMsg(msg);
                     }
                 },
 
-                //update
+                //update a event to another day
                 eventDrop: function (event, delta) {
                     $.ajax({
                             url: SERVER_URL + "modules/deal_steal/control/deal_of_the_day.php",
@@ -116,7 +116,7 @@
                             data: {
                                 dod_id: event.id,
                                 dod_change_day: delta,
-                                operation: "update"
+                                operation_id: "update"
                             },
                             dataType: "json",
                             success: function (data) {
@@ -134,7 +134,7 @@
                     );
                 },
 
-                //create
+                //create a event
                 drop: function (date, allDay) { // this function is called when something is dropped
                     // retrieve the dropped element's stored Event Object
                     var originalEventObject = $(this).data('eventObject');
@@ -160,7 +160,7 @@
                             data: {
                                 deal_id: copiedEventObject.deal_id,
                                 dod_date: copiedEventObject.start.yyyymmdd(),
-                                operation: "create"
+                                operation_id: "create"
                             },
                             dataType: "json",
                             success: function (data) {
@@ -201,7 +201,7 @@
                                 dataType: 'json',
                                 data: {
                                     dod_id: ui.draggable.attr("id"),
-                                    operation: "delete"
+                                    operation_id: "delete"
                                 },
                                 dataType: "json",
                                 success: function (data) {
