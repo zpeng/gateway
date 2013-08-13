@@ -91,13 +91,22 @@
                     revert: true,      // will cause the event to go back to its
                     revertDuration: 0  //  original position after the drag,
                 });
-
             });
 
-            $('#calendar').fullCalendar({
+            var calendar = $('#calendar').fullCalendar({
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
-                events: SERVER_URL + "modules/deal_steal/control/deal_of_the_day.php?operation=load",
+                events: {
+                    url: SERVER_URL + 'modules/deal_steal/control/deal_of_the_day.php',
+                    type: 'POST',
+                    data: {
+                        // The GET parameter names will be determined by the startParam and endParam options. ("start" and "end" by default).
+                        operation: "load"
+                    },
+                    error: function (msg) {
+                        ajaxFailMsg(msg);
+                    }
+                },
 
                 //update
                 eventDrop: function (event, delta) {
@@ -172,8 +181,13 @@
                 },
 
                 loading: function (bool) {
-                    if (bool) $('#loading').show();
-                    else $('#loading').hide();
+                    if (bool) {
+                        $('#loading').show();
+                    }
+                    else {
+                        $('#loading').hide();
+
+                    }
                 }
             });
 

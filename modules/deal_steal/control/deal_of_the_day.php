@@ -6,8 +6,10 @@ use modules\deal_steal\includes\classes\DealOfDay;
 if (!empty($_REQUEST['operation'])) {
 
     if ($_REQUEST['operation'] == "load") {
+        $start = date("Y-m-d", $_REQUEST['start']);
+        $end = date("Y-m-d", $_REQUEST['end']);
         $dealManager = new DealManager();
-        echo json_encode($dealManager->getDealOfTheDayDataSource());
+        echo json_encode($dealManager->getDealOfTheDayDataSource($start, $end));
 
     }else if ($_REQUEST['operation'] == "create") {
         $deal_id = secureRequestParameter($_REQUEST['deal_id']);

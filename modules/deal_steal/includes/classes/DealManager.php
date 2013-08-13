@@ -63,9 +63,8 @@ class DealManager
         return $deal_list;
     }
 
-    public function loadDealsOfTheDays()
+    public function loadDealsOfTheDays($start, $end)
     {
-        $begin_of_month = date("Y-m-1", strtotime(date("Y-m-t")));
         $deal_list = array();
         $link = getConnection();
         $query = " SELECT     ds_deal_of_day.id,
@@ -79,7 +78,8 @@ class DealManager
                             WHERE deal_archived = 'N'
                               AND ds_supplier.supplier_id = ds_deal.supplier_id
                               AND ds_deal_of_day.deal_id = ds_deal.deal_id
-                    AND ds_deal_of_day.date >= '" . $begin_of_month . "'";
+                              AND ds_deal_of_day.date > '" . $start . "'
+                              AND ds_deal_of_day.date < '" . $end . "'";
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {
@@ -128,15 +128,15 @@ class DealManager
         return $dataSource;
     }
 
-    public function getDealOfTheDayDataSource()
+    public function getDealOfTheDayDataSource($start, $end)
     {
-        $deal_list = $this->loadDealsOfTheDays();
+        $deal_list = $this->loadDealsOfTheDays($start, $end);
         $dataSource = array();
         if (sizeof($deal_list) > 0) {
             foreach ($deal_list as $dod) {
                 array_push($dataSource, array(
                     'id' => $dod->getId(),
-                    'title' => $dod->getTitle() . ", " . $dod->getTitle(),
+                    'title' => $dod->getTitle(),
                     'start' => $dod->getDate(),
                     'url' => ""
                 ));
