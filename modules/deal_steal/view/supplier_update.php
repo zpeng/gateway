@@ -12,8 +12,9 @@
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">Basic Info</a></li>
-            <li><a href="#tabs-2">Deals Detail</a></li>
-            <li><a href="#tabs-3">Concierge Detail</a></li>
+            <li><a href="#tabs-2">Change Status</a></li>
+            <li><a href="#tabs-3">Deals</a></li>
+            <li><a href="#tabs-4">Concierge Detail</a></li>
         </ul>
 
         <div id="tabs-1">
@@ -86,10 +87,28 @@
         </div>
 
         <div id="tabs-2">
-
+            <table class="general_table">
+                <tr>
+                    <td width="150" align="right"><b>Change status to: </b></td>
+                    <td>
+                        <?
+                        $dropdown_dataSource = array(
+                            "data" => array(
+                                "Active Supplier" => "N",
+                                "Inactive Supplier" => "Y"
+                            ));
+                        $dropdown_dataSource["selected"] = array($supplier->getSupplierArchived() => $supplier->getSupplierArchived());
+                        echo createDropdownList("supplier_status_dropdown","supplier_status_dropdown", "", "", "", $dropdown_dataSource);
+                        ?>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <div id="tabs-3">
+        </div>
+
+        <div id="tabs-4">
         </div>
 
     </div>
@@ -162,6 +181,34 @@
                 jQuery("#file_size").html("");
                 jQuery("input#logo_image_uploaded").val("");
             }
+        });
+
+
+        $("#supplier_status_dropdown").change(function(e) {
+            var supplier_id = $("#supplier_id").val();
+            var is_archived = $("#supplier_status_dropdown option:selected").val();
+
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/control/supplier_status_update.php",
+                type: "POST",
+                data: {
+                    supplier_id: supplier_id,
+                    is_archived: is_archived
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == "success") {
+                        jQuery("div#notification").html("<span class='info'>Supplier status has been updated successfully!</span>");
+                    } else {
+                        jQuery("div#notification").html("<span class='error'>Unable to update this client status. Try again please!</span>");
+                    }
+                },
+                error: function (msg) {
+                    ajaxFailMsg(msg);
+                }
+            });
+            return false;
+
         });
 
 

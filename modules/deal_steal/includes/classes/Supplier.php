@@ -117,8 +117,7 @@ class Supplier{
                               supplier_desc,
                               supplier_archived
                               FROM ds_supplier
-                   WHERE    supplier_id =  ".$id."
-                   AND      supplier_archived = 'N'";
+                   WHERE    supplier_id =  ".$id;
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
@@ -178,10 +177,10 @@ class Supplier{
         closeConnection($link);
     }
 
-    public function delete(){
+    public function updateStatus(){
         $link = getConnection();
         $query = " UPDATE  ds_supplier
-                   SET     supplier_archived = 'Y'
+                   SET     supplier_archived = '".$this->getSupplierArchived()."'
                    WHERE   supplier_id = " . $this->getSupplierId();
 
         executeUpdateQuery($link, $query);

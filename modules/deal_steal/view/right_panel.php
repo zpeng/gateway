@@ -7,8 +7,8 @@
         case "city_list":
             include_once(BASE_PATH.'modules/deal_steal/view/city_list.php');
             break;
-        case "city_edit":
-            include_once(BASE_PATH.'modules/deal_steal/view/city_edit.php');
+        case "city_update":
+            include_once(BASE_PATH.'modules/deal_steal/view/city_update.php');
             break;
         case "tags":
             include_once(BASE_PATH.'modules/deal_steal/view/tags.php');

@@ -3,7 +3,14 @@
 <div id="content">
     <a id="add_new_supplier" class="anchor_button" href="#">Add New Supplier</a>
     <br class="clear"/>
-
+    <?
+    $dropdown_dataSource = array(
+        "data" => array(
+            "Active Supplier" => "N",
+            "Inactive Supplier" => "Y"
+        ));
+    echo createDropdownList("supplier_status_dropdown","supplier_status_dropdown", "", "", "", $dropdown_dataSource);
+    ?>
     <div id="supplier_grid" class="slickgrid_table" style="width:900px; height:600px"></div>
 </div>
 
@@ -67,11 +74,9 @@
         });
 
         //form validation
-        jQuery(function () {
-            jQuery("input#supplier_name").validate({
-                expression: "if (VAL) return true; else return false;",
-                message: "Please enter the supplier name"
-            });
+        jQuery("input#supplier_name").validate({
+            expression: "if (VAL) return true; else return false;",
+            message: "Please enter the supplier name"
         });
 
         //data grid
@@ -86,10 +91,8 @@
             {id: "name", name: "Name", field: "name", width: 400, sortable: true },
             {id: "action", name: "Action", field: "mobile", width: 150,
                 formatter: function (row, cell, value, columnDef, dataContext) {
-                    return "<a class='icon_delete confirm_delete' title='Delete this supplier' href='" + SERVER_URL + "modules/deal_steal/control/supplier_delete.php?supplier_id=" +
-                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' onclick='confirmDeletion();'></a>" +
-                        "<a class='icon_edit' title='Update supplier' href='" + SERVER_URL + "admin/main.php?view=supplier_update&supplier_id=" +
-                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "'></a>";
+                    return "<a class='icon_edit' title='Update supplier' href='" + SERVER_URL + "admin/main.php?view=supplier_update&supplier_id=" +
+                        dataContext['id'] + "&module_code=" + getParameterByName('module_code')+"'></a>";
                 }
             }
         ];
@@ -126,13 +129,15 @@
                 url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
                 type: "POST",
                 data: {
-                    operation_id: "fetch_supplier_list"
+                    operation_id: "fetch_supplier_list",
+                    is_archived: $("#supplier_status_dropdown option:selected").val()
                 },
                 dataType: "json",
                 success: function (data) {
                     dataView.beginUpdate();
                     dataView.setItems(data);
                     dataView.endUpdate();
+                    supplier_grid.render();
                 },
                 error: function (msg) {
                     ajaxFailMsg(msg);
@@ -142,6 +147,11 @@
 
         //when page rendering is completed
         $(document).ready(function () {
+            fetch_data();
+        });
+
+        //when the client status dropdown selection is changed
+        $("#supplier_status_dropdown").change(function(e) {
             fetch_data();
         });
 

@@ -4,7 +4,7 @@ namespace  modules\deal_steal\includes\classes;
 
 class SupplierManager
 {
-    public function loadAllSuppliers()
+    public function loadAllSuppliers($is_archived='N')
     {
         $supplier_list = [];
         $link = getConnection();
@@ -18,7 +18,7 @@ class SupplierManager
                               supplier_desc,
                               supplier_archived
                               FROM ds_supplier
-                   WHERE    supplier_archived = 'N' ";
+                   WHERE    supplier_archived = '".$is_archived."' ";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
@@ -38,9 +38,9 @@ class SupplierManager
         return $supplier_list;
     }
 
-    public function getSupplierTableDataSource()
+    public function getSupplierTableDataSource($is_archived = 'N')
     {
-        $supplier_list = $this->loadAllSuppliers();
+        $supplier_list = $this->loadAllSuppliers($is_archived);
         $dataSource = array();
         if (sizeof($supplier_list) > 0) {
             foreach ($supplier_list as $supplier) {

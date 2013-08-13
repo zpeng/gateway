@@ -26,8 +26,12 @@ if (!empty($_REQUEST['operation_id'])) {
             break;
 
         case "fetch_supplier_list":
+            $is_archived = "N";
+            if (isset($_REQUEST["is_archived"])) {
+                $is_archived = secureRequestParameter($_REQUEST["is_archived"]);
+            }
             $supplierManager = new SupplierManager();
-            $data = $supplierManager->getSupplierTableDataSource();
+            $data = $supplierManager->getSupplierTableDataSource($is_archived);
             break;
 
         case "fetch_deal_list":
