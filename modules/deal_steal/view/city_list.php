@@ -83,9 +83,7 @@
             {id: "name", name: "City Name", field: "name", width: 300, sortable: true },
             {id: "action", name: "Action", field: "mobile", width: 150,
                 formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
-                    return "<a class='icon_delete confirm_delete' title='Delete this city' href='" + SERVER_URL + "modules/deal_steal/control/city_delete.php?city_id=" +
-                        dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' onclick='confirmDeletion();'></a>" +
-                        "<a class='icon_edit' title='Update City' href='" + SERVER_URL + "admin/main.php?view=city_update&city_id=" +
+                    return "<a class='icon_edit' title='Update City' href='" + SERVER_URL + "admin/main.php?view=city_edit&city_id=" +
                         dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "'></a>";
                 }
             }
@@ -141,15 +139,5 @@
         $(document).ready(function () {
             fetch_data();
         });
-
-        // Add Confirmation dialogs for all Deletes
-        jQuery("a.confirm_delete").click(function (event) {
-
-        });
-
-
-
-
-
     });
 </script>
