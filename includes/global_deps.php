@@ -9,7 +9,7 @@ $CSS_DEPS = array(
     "jquery-tag-css" => array("external/js/jquery-tags/jquery.tagsinput.css"),
     "jquery-CircularContentCarousel-css" => array("external/js/CircularContentCarousel/css/jquery.jscrollpane.css"),
     "fullcalendar-css" => array("external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.css",
-                                "external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.print.css"),
+        "external/js/FullCalendar-1.6.1/fullcalendar/fullcalendar.print.css"),
     "slickgrid-css" => array("external/js/SlickGrid/slick.grid.css",
         //"external/js/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css",
         "external/js/jquery-ui-1.10.2.custom/css/custom-theme/jquery-ui-1.10.2.custom.css")
@@ -73,6 +73,10 @@ $JS_DEPS = array(
         "external/js/SlickGrid/slick.dataview.js",
         "external/js/SlickGrid/slick.formatters.js",
         "external/js/SlickGrid/slick.editors.js",
+    ),
+
+    "jquery-tmpl" => array(
+        "external/js/jquery-tmpl/jquery.tmpl.min.js"
     )
 
 );

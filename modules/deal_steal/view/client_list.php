@@ -1,17 +1,22 @@
+<script id="html_select_template" type="text/x-jquery-tmpl">
+    <select id="client_status_dropdown" name="client_status_dropdown">
+        {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
+    </select>
+</script>
+
+<script id="html_option_template" type="text/x-jquery-tmpl">
+    <option {{if value === $item.selectedId}} selected="selected"{{/if}} value="${value}">${label}</option>
+</script>
 <h1 class="content_title">All Clients</h1>
 <div id="notification"></div>
 <div id="content">
-    <?
-    $dropdown_dataSource = array(
-        "data" => array(
-            "Active User" => "N",
-            "Inactive User" => "Y"
-        ));
-    echo createDropdownList("client_status_dropdown","client_status_dropdown", "", "", "", $dropdown_dataSource);
-    ?>
-    <br/><br class="clear"/>
+    <div id="client_status_div"></div>
+    <br class="clear"/>
     <div id="client_grid" class="slickgrid_table" style="width: 900px; height:600px"></div>
 </div>
+
+
+
 
 <script>
     // load css
@@ -23,8 +28,18 @@
     // load js
     head.js(<?=outputDependencies(
     array(
-    "slickgrid")
+    "slickgrid",
+    "jquery-tmpl")
     , $JS_DEPS)?>, function () {
+
+        var model = {
+            data: [
+                { value: "N", label: "Active User" },
+                { value: "Y", label: "Inactive User" }
+            ],
+            selected_value: "N"
+        };
+        $("#html_select_template").tmpl(model).appendTo("#client_status_div" );
 
         var client_grid;
         var columns = [
@@ -35,7 +50,7 @@
             {id: "mobile", name: "Mobile", field: "mobile", width: 150},
             {id: "action", name: "Action", field: "action", width: 100,
                 formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
-                    return "<a class='icon_edit' title='View Detail' href='" + SERVER_URL + "admin/main.php?view=client_detail&client_id="+
+                    return "<a class='icon_edit' title='View Detail' href='" + SERVER_URL + "admin/main.php?view=client_detail&client_id=" +
                         dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";
                 }
             }
@@ -47,7 +62,7 @@
         };
 
         //use ajax to load data source
-        function fetch_data(){
+        function fetch_data() {
             $.ajax({
                 url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
                 type: "POST",
@@ -71,7 +86,7 @@
         });
 
         //when the client status dropdown selection is changed
-        $("#client_status_dropdown").change(function(e) {
+        $("#client_status_dropdown").change(function (e) {
             fetch_data();
         });
     });
