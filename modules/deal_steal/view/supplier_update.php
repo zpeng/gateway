@@ -1,3 +1,13 @@
+<script id="html_select_template" type="text/x-jquery-tmpl">
+    <select id="supplier_status_dropdown" name="supplier_status_dropdown">
+        {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
+    </select>
+</script>
+
+<script id="html_option_template" type="text/x-jquery-tmpl">
+    <option {{if value === $item.selectedId}} selected="selected"{{/if}} value="${value}">${label}</option>
+</script>
+
 <h1 class="content_title">Supplier Information</h1>
 <div id="notification"></div>
 <div id="content">
@@ -91,15 +101,7 @@
                 <tr>
                     <td width="150" align="right"><b>Change status to: </b></td>
                     <td>
-                        <?
-                        $dropdown_dataSource = array(
-                            "data" => array(
-                                "Active Supplier" => "N",
-                                "Inactive Supplier" => "Y"
-                            ));
-                        $dropdown_dataSource["selected"] = array($supplier->getSupplierArchived() => $supplier->getSupplierArchived());
-                        echo createDropdownList("supplier_status_dropdown","supplier_status_dropdown", "", "", "", $dropdown_dataSource);
-                        ?>
+                        <div id="supplier_status_div"></div>
                     </td>
                 </tr>
             </table>
@@ -127,6 +129,7 @@
     array(
     "jquery-ui",
     "jquery-form-validate",
+    "jquery-tmpl",
     "tiny_mce")
     , $JS_DEPS)?>, function () {
         $("#tabs").tabs();
@@ -182,6 +185,17 @@
                 jQuery("input#logo_image_uploaded").val("");
             }
         });
+
+
+        //supplier status dorpdowm
+        var model = {
+            data: [
+                { value: "N", label: "Active Supplier" },
+                { value: "Y", label: "Inactive Supplier" }
+            ],
+            selected_value: "<?=$supplier->getSupplierArchived()?>"
+        };
+        $("#html_select_template").tmpl(model).appendTo("#supplier_status_div" );
 
 
         $("#supplier_status_dropdown").change(function(e) {
