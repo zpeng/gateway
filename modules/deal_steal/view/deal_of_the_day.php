@@ -1,3 +1,21 @@
+<script id="html_deal_list_template" type="text/x-jquery-tmpl">
+    <ul class="deals_list">
+        {{each data}}
+        <li id="${id}" class="deal_item">${name}</li>
+        {{/each}}
+    </ul>
+</script>
+
+<script id="html_select_template" type="text/x-jquery-tmpl">
+    <select id="supplier_dropdown" name="supplier_dropdown">
+        {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
+    </select>
+</script>
+
+<script id="html_option_template" type="text/x-jquery-tmpl">
+    <option {{if id === $item.selectedId}} selected="selected"{{/if}} value="${id}">${name}</option>
+</script>
+
 <h1 class="content_title">Deal of the Day</h1>
 <div id="notification"></div>
 <style>
@@ -46,12 +64,9 @@
     <div id='loading' style='display:none'>loading...</div>
     <div id="left_holder">
         <div id="deals_list_div">
-            <h4>Available Deals<h4>
-                <?
-                use modules\deal_steal\includes\classes\DealManager;
-                $dealManager = new DealManager();
-                echo createList("", "deals_list", "deal_item", $dealManager->getDealsListDataSource());
-                ?>
+            <h4> Available Deals</h4>
+            <div id="supplier_dropdown_div"></div>
+            <div id="deal_list_div"></div>
         </div>
         <div id="trash_div"></div>
     </div>
@@ -71,27 +86,10 @@
     head.js(<?=outputDependencies(
     array(
     "jquery-ui",
+    "jquery-tmpl",
     "fullcalendar-js")
     , $JS_DEPS)?>, function () {
         $(document).ready(function () {
-
-            $('#deals_list_div li.deal_item').each(function () {
-                // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-                // it doesn't need to have a start or end
-                var eventObject = {
-                    title: $.trim($(this).text()), // use the element's text as the event title
-                    deal_id: $.trim($(this).attr("id")) //get the id from dom
-                };
-                // store the Event Object in the DOM element so we can get to it later
-                $(this).data('eventObject', eventObject);
-
-                // make the event draggable using jQuery UI
-                $(this).draggable({
-                    zIndex: 999,
-                    revert: true,      // will cause the event to go back to its
-                    revertDuration: 0  //  original position after the drag,
-                });
-            });
 
             var calendar = $('#calendar').fullCalendar({
                 editable: true,
@@ -221,6 +219,75 @@
                 }
             });
 
+
+
+            function fetch_supplier_dropdown_data() {
+                $.ajax({
+                    url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
+                    type: "POST",
+                    data: {
+                        operation_id: "fetch_supplier_dropdown_list",
+                        is_archived: "N"
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#html_select_template").tmpl(data).appendTo("#supplier_dropdown_div" );
+                        fetch_deal_list_data();
+
+                        //when the supplier  dropdown selection is changed
+                        $("#supplier_dropdown").change(function(e) {
+                            fetch_deal_list_data();
+                        });
+                    },
+                    error: function (msg) {
+                        ajaxFailMsg(msg);
+                    }
+                });
+            }
+
+            function fetch_deal_list_data() {
+                $.ajax({
+                    url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
+                    type: "POST",
+                    data: {
+                        operation_id: "fetch_deal_list",
+                        supplier_id: $("#supplier_dropdown option:selected").val()
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#deal_list_div").empty();
+                        $("#html_deal_list_template").tmpl(data).appendTo("#deal_list_div");
+
+                        $('#deals_list_div li.deal_item').each(function () {
+                            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                            // it doesn't need to have a start or end
+                            var eventObject = {
+                                title: $.trim($(this).text()), // use the element's text as the event title
+                                deal_id: $.trim($(this).attr("id")) //get the id from dom
+                            };
+                            // store the Event Object in the DOM element so we can get to it later
+                            $(this).data('eventObject', eventObject);
+
+                            // make the event draggable using jQuery UI
+                            $(this).draggable({
+                                zIndex: 999,
+                                revert: true,      // will cause the event to go back to its
+                                revertDuration: 0  //  original position after the drag,
+                            });
+                        });
+
+                    },
+                    error: function (msg) {
+                        ajaxFailMsg(msg);
+                    }
+                });
+            }
+
+
+            //when page rendering is completed
+            $(document).ready(function () {
+                fetch_supplier_dropdown_data();
+            });
         });
     });
 </script>

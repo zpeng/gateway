@@ -55,6 +55,26 @@ class SupplierManager
         return $dataSource;
     }
 
+    public function getSupplierDropdownDataSource($is_archived = 'N')
+    {
+        $supplier_list = $this->loadAllSuppliers($is_archived);
+        $dataSource = array();
+        $data = array();
+        if (sizeof($supplier_list) > 0) {
+            foreach ($supplier_list as $supplier) {
+                array_push($data, array(
+                    "id" => $supplier->getSupplierId(),
+                    "name" => $supplier->getSupplierName()
+                ));
+            }
+        }
+        $dataSource = array(
+            "data" => $data,
+            "selected_value" => ""
+        );
+        return $dataSource;
+    }
+
     public function getSupplierListDataSource()
     {
         $supplier_list = $this->loadAllSuppliers();

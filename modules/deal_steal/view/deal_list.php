@@ -193,7 +193,7 @@
                 url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
                 type: "POST",
                 data: {
-                    operation_id: "fetch_deal_list"
+                    operation_id: "fetch_deal_table"
                 },
                 dataType: "json",
                 success: function (data) {

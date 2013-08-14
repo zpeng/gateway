@@ -25,7 +25,7 @@ if (!empty($_REQUEST['operation_id'])) {
             $data = $cityManager->getCityTableDataSource();
             break;
 
-        case "fetch_supplier_list":
+        case "fetch_supplier_table":
             $is_archived = "N";
             if (isset($_REQUEST["is_archived"])) {
                 $is_archived = secureRequestParameter($_REQUEST["is_archived"]);
@@ -34,7 +34,22 @@ if (!empty($_REQUEST['operation_id'])) {
             $data = $supplierManager->getSupplierTableDataSource($is_archived);
             break;
 
+        case "fetch_supplier_dropdown_list":
+            $is_archived = "N";
+            if (isset($_REQUEST["is_archived"])) {
+                $is_archived = secureRequestParameter($_REQUEST["is_archived"]);
+            }
+            $supplierManager = new SupplierManager();
+            $data = $supplierManager->getSupplierDropdownDataSource($is_archived);
+            break;
+
         case "fetch_deal_list":
+            $supplier_id = $_REQUEST["supplier_id"];
+            $dealManager = new DealManager();
+            $data = $dealManager->getDealListDataSource($supplier_id);
+            break;
+
+        case "fetch_deal_table":
             $dealManager = new DealManager();
             $data = $dealManager->getDealsTableDataSource();
             break;

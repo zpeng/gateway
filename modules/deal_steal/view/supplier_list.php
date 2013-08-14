@@ -142,7 +142,7 @@
                 url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
                 type: "POST",
                 data: {
-                    operation_id: "fetch_supplier_list",
+                    operation_id: "fetch_supplier_table",
                     is_archived: $("#supplier_status_dropdown option:selected").val()
                 },
                 dataType: "json",
@@ -163,7 +163,7 @@
             fetch_data();
         });
 
-        //when the client status dropdown selection is changed
+        //when the supplier status dropdown selection is changed
         $("#supplier_status_dropdown").change(function(e) {
             fetch_data();
         });
