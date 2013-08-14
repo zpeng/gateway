@@ -11,7 +11,6 @@
 <div id="notification"></div>
 <div id="content">
     <div id="client_status_div"></div>
-    <br class="clear"/>
     <div id="client_grid" class="slickgrid_table" style="width: 900px; height:600px"></div>
 </div>
 

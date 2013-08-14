@@ -1,23 +1,17 @@
+<script id="html_select_template" type="text/x-jquery-tmpl">
+    <select id="concierge_status_dropdown" name="concierge_status_dropdown">
+        {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
+    </select>
+</script>
+
+<script id="html_option_template" type="text/x-jquery-tmpl">
+    <option {{if value === $item.selectedId}} selected="selected"{{/if}} value="${value}">${label}</option>
+</script>
+
 <h1 class="content_title">Concierge Service</h1>
 <div id="notification"></div>
 <div id="content">
-    <?
-    $dropdown_dataSource = array(
-        "data" => array(
-            "Pending" => "Pending",
-            "Negotiating" => "Negotiating",
-            "Closed" => "Closed"
-        ));
-    $status ="Pending";
-    if(isset($_REQUEST["status"])){
-        $status = secureRequestParameter($_REQUEST["status"]);
-        $dropdown_dataSource["selected"] = array($status => $status);
-    }
-
-    echo createDropdownList("status_dropdown","status_dropdown", "", "", "", $dropdown_dataSource);
-    ?>
-
-    <br/><br class="clear"/>
+    <div id="concierge_status_div"></div>
     <div id="concierge_grid" class="slickgrid_table" style="width: 900px; height:600px"></div>
 </div>
 
@@ -26,7 +20,6 @@
     head.js(<?=outputDependencies(
     array(
     "slickgrid-css",
-
     "jquery-ui-css",
     "jquery-form-validate-css")
     , $CSS_DEPS)?>);
@@ -35,8 +28,20 @@
     head.js(<?=outputDependencies(
     array(
     "slickgrid",
+    "jquery-tmpl",
     "jquery-ui")
     , $JS_DEPS)?>, function () {
+        //concierge status dropdown
+        var model = {
+            data: [
+                { value: "Pending", label: "Pending" },
+                { value: "Negotiating", label: "Negotiating" },
+                { value: "Closed", label: "Closed" }
+            ],
+            selected_value: "Pending"
+        };
+        $("#html_select_template").tmpl(model).appendTo("#concierge_status_div" );
+
         //data grid
         var concierge_grid;
         var columns = [
@@ -65,7 +70,7 @@
                 type: "POST",
                 data: {
                     operation_id: "fetch_concierge_list",
-                    status: $("#status_dropdown option:selected").val()
+                    status: $("#concierge_status_dropdown option:selected").val()
                 },
                 dataType: "json",
                 success: function (data) {
@@ -83,7 +88,7 @@
         });
 
         //when the client status dropdown selection is changed
-        $("#status_dropdown").change(function(e) {
+        $("#concierge_status_dropdown").change(function(e) {
             fetch_data();
         });
 

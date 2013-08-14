@@ -1,16 +1,18 @@
+<script id="html_select_template" type="text/x-jquery-tmpl">
+    <select id="supplier_status_dropdown" name="supplier_status_dropdown">
+        {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
+    </select>
+</script>
+
+<script id="html_option_template" type="text/x-jquery-tmpl">
+    <option {{if value === $item.selectedId}} selected="selected"{{/if}} value="${value}">${label}</option>
+</script>
 <h1 class="content_title">All Suppliers</h1>
 <div id="notification"></div>
 <div id="content">
     <a id="add_new_supplier" class="anchor_button" href="#">Add New Supplier</a>
     <br class="clear"/>
-    <?
-    $dropdown_dataSource = array(
-        "data" => array(
-            "Active Supplier" => "N",
-            "Inactive Supplier" => "Y"
-        ));
-    echo createDropdownList("supplier_status_dropdown","supplier_status_dropdown", "", "", "", $dropdown_dataSource);
-    ?>
+    <div id="supplier_status_div"></div>
     <div id="supplier_grid" class="slickgrid_table" style="width:900px; height:600px"></div>
 </div>
 
@@ -50,6 +52,7 @@
     array(
     "slickgrid",
     "jquery-ui",
+    "jquery-tmpl",
     "jquery-form-validate")
     , $JS_DEPS)?>, function () {
         $("a#add_new_supplier").button();
@@ -78,6 +81,16 @@
             expression: "if (VAL) return true; else return false;",
             message: "Please enter the supplier name"
         });
+
+        //supplier status dorpdowm
+        var model = {
+            data: [
+                { value: "N", label: "Active Supplier" },
+                { value: "Y", label: "Inactive Supplier" }
+            ],
+            selected_value: "N"
+        };
+        $("#html_select_template").tmpl(model).appendTo("#supplier_status_div" );
 
         //data grid
         var supplier_grid;
