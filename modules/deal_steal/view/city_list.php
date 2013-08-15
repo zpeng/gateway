@@ -121,7 +121,7 @@
                 url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
                 type: "POST",
                 data: {
-                    operation_id: "fetch_city_list"
+                    operation_id: "fetch_city_table"
                 },
                 dataType: "json",
                 success: function (data) {

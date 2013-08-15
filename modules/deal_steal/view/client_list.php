@@ -66,7 +66,7 @@
                 url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
                 type: "POST",
                 data: {
-                    operation_id: "fetch_client_list",
+                    operation_id: "fetch_client_table",
                     is_archived: $("#client_status_dropdown option:selected").val()
                 },
                 dataType: "json",

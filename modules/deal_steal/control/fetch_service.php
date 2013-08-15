@@ -11,7 +11,7 @@ use modules\deal_steal\includes\classes\TemplateManager;
 if (!empty($_REQUEST['operation_id'])) {
     switch ($_REQUEST['operation_id']) {
 
-        case "fetch_client_list":
+        case "fetch_client_table":
             $is_archived = "N";
             if (isset($_REQUEST["is_archived"])) {
                 $is_archived = secureRequestParameter($_REQUEST["is_archived"]);
@@ -20,7 +20,7 @@ if (!empty($_REQUEST['operation_id'])) {
             $data = $clientManager->getClientTableDataSource($is_archived);
             break;
 
-        case "fetch_city_list":
+        case "fetch_city_table":
             $cityManager = new CityManager();
             $data = $cityManager->getCityTableDataSource();
             break;
@@ -54,7 +54,7 @@ if (!empty($_REQUEST['operation_id'])) {
             $data = $dealManager->getDealsTableDataSource();
             break;
 
-        case "fetch_concierge_list":
+        case "fetch_concierge_table":
             $status = "Pending";
             if (isset($_REQUEST["status"])) {
                 $status = secureRequestParameter($_REQUEST["status"]);
@@ -63,7 +63,7 @@ if (!empty($_REQUEST['operation_id'])) {
             $data = $conciergeManager->getConciergeTableDataSource($status);
             break;
 
-        case "fetch_template_list":
+        case "fetch_template_table":
             $templateManager = new TemplateManager();
             $data = $templateManager->getTemplateTableDataSource();
             break;

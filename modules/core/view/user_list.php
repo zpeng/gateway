@@ -39,7 +39,7 @@
                 url: SERVER_URL + "modules/core/control/fetch_service.php",
                 type: "POST",
                 data: {
-                    operation_id: "fetch_user_list",
+                    operation_id: "fetch_user_table",
                     module_code: getParameterByName('module_code')
                 },
                 dataType: "json",

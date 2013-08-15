@@ -44,7 +44,7 @@
                 url: SERVER_URL + "modules/cms/control/fetch_service.php",
                 type: "POST",
                 data: {
-                    operation_id: "fetch_article_list"
+                    operation_id: "fetch_article_table"
                 },
                 dataType: "json",
                 success: function (data) {
