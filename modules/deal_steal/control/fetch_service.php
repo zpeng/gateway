@@ -25,6 +25,11 @@ if (!empty($_REQUEST['operation_id'])) {
             $data = $cityManager->getCityTableDataSource();
             break;
 
+        case "fetch_city_dropdown_list":
+            $cityManager = new CityManager();
+            $data = $cityManager->getCityListDataSource();
+            break;
+
         case "fetch_supplier_table":
             $active = "Y";
             if (isset($_REQUEST["active"])) {
@@ -52,6 +57,11 @@ if (!empty($_REQUEST['operation_id'])) {
         case "fetch_deal_table":
             $dealManager = new DealManager();
             $data = $dealManager->getDealsTableDataSource();
+            break;
+
+        case "fetch_deal_type_dropdown_list":
+            $dealManager = new DealManager();
+            $data = $dealManager->getDealTypeListDataSource();
             break;
 
         case "fetch_concierge_table":

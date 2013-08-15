@@ -1,3 +1,24 @@
+<script id="html_select_supplier_template" type="text/x-jquery-tmpl">
+    <select id="supplier_dropdown" name="supplier_dropdown">
+        {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
+    </select>
+</script>
+
+<script id="html_select_city_template" type="text/x-jquery-tmpl">
+    <select id="city_dropdown" name="city_dropdown">
+        {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
+    </select>
+</script>
+
+<script id="html_select_deal_type_template" type="text/x-jquery-tmpl">
+    <select id="deal_type_dropdown" name="deal_type_dropdown">
+        {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
+    </select>
+</script>
+
+<script id="html_option_template" type="text/x-jquery-tmpl">
+    <option {{if id === $item.selectedId}} selected="selected"{{/if}} value="${id}">${name}</option>
+</script>
 <h1 class="content_title">All Deals</h1>
 <div id="notification"></div>
 <div id="content">
@@ -20,35 +41,15 @@
             </tr>
             <tr>
                 <td width="150" align="right"><b>Supplier: </b></td>
-                <td><?php
-                    use modules\deal_steal\includes\classes\SupplierManager;
-                    $supplier_manager = new SupplierManager();
-                    echo createDropdownList("deal_supplier", "deal_supplier", "deal_supplier", "width: 150px;", "",
-                        $supplier_manager->getSupplierListDataSource());
-                    ?></td>
+                <td><div id="supplier_dropdown_div"></div></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>City: </b></td>
-                <td><?php
-                    use modules\deal_steal\includes\classes\CityManager;
-                    $city_manager = new CityManager();
-                    echo createDropdownList("deal_city", "deal_city", "deal_city", "width: 150px;", "",
-                        $city_manager->getCityListDataSource());
-                    ?>
-                </td>
+                <td><div id="city_dropdown_div"></div></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Deal Type: </b></td>
-                <td><?php
-                    $deal_type_ds = array(
-                        "data" => array(
-                            "Deal" => "D",
-                            "Voucher" => "V"
-                        ),
-                    );
-                    echo createDropdownList("deal_type", "deal_type", "deal_type", "width: 80px;", "", $deal_type_ds)
-                    ?>
-                </td>
+                <td><div id="deal_type_dropdown_div"></div></td>
             </tr>
             <tr>
                 <td width="150" align="right"><b>Available Quantity: </b></td>
@@ -96,6 +97,7 @@
     "slickgrid",
     "jquery-ui",
     "jquery-form-validate",
+    "jquery-tmpl",
     "jquery-ui-timepicker")
     , $JS_DEPS)?>, function () {
 
@@ -205,9 +207,68 @@
             });
         }
 
+        function fetch_supplier_dropdown_data() {
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
+                type: "POST",
+                data: {
+                    operation_id: "fetch_supplier_dropdown_list",
+                    active: "Y"
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#html_select_supplier_template").tmpl(data).appendTo("#supplier_dropdown_div" );
+                },
+                error: function (msg) {
+                    ajaxFailMsg(msg);
+                }
+            });
+        }
+
+        function fetch_city_dropdown_data() {
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
+                type: "POST",
+                data: {
+                    operation_id: "fetch_city_dropdown_list"
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#html_select_city_template").tmpl(data).appendTo("#city_dropdown_div" );
+                },
+                error: function (msg) {
+                    ajaxFailMsg(msg);
+                }
+            });
+        }
+
+        function fetch_deal_type_dropdown_data() {
+            $.ajax({
+                url: SERVER_URL + "modules/deal_steal/control/fetch_service.php",
+                type: "POST",
+                data: {
+                    operation_id: "fetch_deal_type_dropdown_list"
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#html_select_deal_type_template").tmpl(data).appendTo("#deal_type_dropdown_div" );
+                },
+                error: function (msg) {
+                    ajaxFailMsg(msg);
+                }
+            });
+        }
+
         //when page rendering is completed
         $(document).ready(function () {
             fetch_data();
+
+            fetch_supplier_dropdown_data();
+
+            fetch_city_dropdown_data();
+
+            fetch_deal_type_dropdown_data();
+
         });
     });
 </script>

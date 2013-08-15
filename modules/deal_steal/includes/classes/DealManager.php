@@ -166,15 +166,21 @@ class DealManager
         return $dataSource;
     }
 
-    public function getDealsListDataSource()
+    public function getDealTypeListDataSource()
     {
-        $deal_list = $this->loadAllDeals();
-        $dataSource = array();
-        if (sizeof($deal_list) > 0) {
-            foreach ($deal_list as $deal) {
-                $dataSource[$deal->getId()] = $deal->getSupplierName() . " - " . $deal->getTitle();
-            }
-        }
+        $data = array();
+        array_push($data, array(
+            "id" => "D",
+            "name" => "Deal"
+        ));
+        array_push($data, array(
+            "id" => "V",
+            "name" => "Voucher"
+        ));
+        $dataSource = array(
+            "data" => $data,
+            "selected_value" => ""
+        );
         return $dataSource;
     }
 }

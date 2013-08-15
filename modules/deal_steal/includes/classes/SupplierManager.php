@@ -58,7 +58,6 @@ class SupplierManager
     public function getSupplierDropdownDataSource($is_archived = 'N')
     {
         $supplier_list = $this->loadAllSuppliers($is_archived);
-        $dataSource = array();
         $data = array();
         if (sizeof($supplier_list) > 0) {
             foreach ($supplier_list as $supplier) {

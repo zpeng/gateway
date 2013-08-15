@@ -41,11 +41,15 @@ class CityManager
         $data = array();
         if (sizeof($city_map) > 0) {
             foreach ($city_map as $key => $value) {
-                $data[$value] = $key;
+                array_push($data, array(
+                    "id" => $key,
+                    "name" => $value
+                ));
             }
         }
         $dataSource = array(
-            "data" => $data
+            "data" => $data,
+            "selected_value" => ""
         );
         return $dataSource;
     }
