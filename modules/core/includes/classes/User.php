@@ -6,10 +6,19 @@ class User
     public $user_id;
     public $user_name;
     public $user_password;
-    public $user_archived;
+    public $active;
     public $user_subscribe_module_code_name_map = [];
     public $user_subscribe_module_code_list = [];
 
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->active;
+    }
 
     public function get_user_id()
     {
@@ -41,25 +50,15 @@ class User
         $this->user_password = $_user_password;
     }
 
-    public function get_user_archived()
-    {
-        return $this->user_archived;
-    }
-
-    public function set_user_archived($_user_archived)
-    {
-        $this->user_archived = $_user_archived;
-    }
-
     public function loadByEmail($email)
     {
         $link = getConnection();
 
         $query = " select 	user_id,
                         user_name,
-                        user_archived
+                        active
                 from    core_user
-                where   user_archived =   'N'
+                where   active =   'Y'
                 and     user_name =       '" . $email . "'";
 
         $result = executeNonUpdateQuery($link, $query);
@@ -68,7 +67,7 @@ class User
         while ($newArray = mysql_fetch_array($result)) {
             $this->set_user_id($newArray['user_id']);
             $this->set_user_name($newArray['user_name']);
-            $this->set_user_archived($newArray['user_archived']);
+            $this->setActive($newArray['active']);
         }
 
         $this->getUserSubscribeModules();
@@ -79,9 +78,9 @@ class User
         $link = getConnection();
         $query = " select user_id,
                         user_name,
-                        user_archived
+                        active
                 from    core_user
-                where   user_archived =   'N'
+                where   active =   'Y'
                 and     user_id =  " . $id;
 
         $result = executeNonUpdateQuery($link, $query);
@@ -90,7 +89,7 @@ class User
         while ($newArray = mysql_fetch_array($result)) {
             $this->set_user_id($newArray['user_id']);
             $this->set_user_name($newArray['user_name']);
-            $this->set_user_archived($newArray['user_archived']);
+            $this->setActive($newArray['active']);
         }
 
         $this->getUserSubscribeModules();
@@ -104,14 +103,12 @@ class User
                     INTO   core_user
                            (
                                   user_name           ,
-                                  user_password        ,
-                                  user_archived
+                                  user_password
                            )
                            VALUES
                            (
                                   '" . $this->get_user_name() . "'           ,
-                                  '" . $this->get_user_password() . "'        ,
-                                  'N'
+                                  '" . $this->get_user_password() . "'
                            )";
 
         executeUpdateQuery($link, $query);
@@ -140,7 +137,7 @@ class User
         //delete user account
         $link = getConnection();
         $query = " UPDATE core_user
-                   SET    user_archived = 'Y'
+                   SET    active = 'N'
                    WHERE  user_id = " . $this->get_user_id();
         executeUpdateQuery($link, $query);
 

@@ -1,6 +1,7 @@
 <?
 require_once('../../../includes/bootstrap.php');
 use modules\core\includes\classes\UserManager;
+use modules\core\includes\classes\User;
 
 $user_name = secureRequestParameter($_REQUEST["email"]);
 $user_password = secureRequestParameter($_REQUEST["password"]);

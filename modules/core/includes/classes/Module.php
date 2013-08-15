@@ -5,7 +5,17 @@ class Module {
     public $module_code;
     public $module_name;
     public $module_desc;
-    public $module_archived;
+    public $active;
+
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->active;
+    }
 
     public function get_module_name() {
         return $this->module_name;
@@ -31,22 +41,14 @@ class Module {
         $this->module_desc = $_module_desc;
     }
 
-    public function get_module_archived() {
-        return $this->module_archived;
-    }
-
-    public function set_module_archived($_module_archived) {
-        $this->module_archived = $_module_archived;
-    }
-
     public function loadByModuleCode($_module_code) {
         $link = getConnection();
         $query = " select  module_name,
                         module_code,
                         module_desc,
-                        module_archived
+                        active
                 from    core_module
-                where   module_archived =   'N'
+                where   active =   'Y'
                 and     module_code =  '".$_module_code."'";
 
         $result = executeNonUpdateQuery($link , $query);
@@ -56,7 +58,7 @@ class Module {
             $this->set_module_name($newArray['module_name']);
             $this->set_module_code($newArray['module_code']);
             $this->set_module_desc($newArray['module_desc']);
-            $this->set_module_archived($newArray['module_archived']);
+            $this->setActive($newArray['active']);
         }
     }
 
