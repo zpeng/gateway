@@ -156,6 +156,7 @@ class DealManager
                 array_push($data, array(
                     "id" => $deal->getId(),
                     "name" => $deal->getTitle(),
+                    "tooltip"=> $deal->getTooltipMsg()
                 ));
             }
         }

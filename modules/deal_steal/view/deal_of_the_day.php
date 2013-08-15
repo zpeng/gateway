@@ -1,7 +1,7 @@
 <script id="html_deal_list_template" type="text/x-jquery-tmpl">
     <ul class="deals_list">
         {{each data}}
-        <li id="${id}" class="deal_item">${name}</li>
+        <li id="${id}" class="deal_item" title="${tooltip}">${name}</li>
         {{/each}}
     </ul>
 </script>
@@ -90,6 +90,12 @@
     "fullcalendar-js")
     , $JS_DEPS)?>, function () {
         $(document).ready(function () {
+            // enable jquery tooltip
+            $(document).tooltip({
+                content: function() {
+                    return $( this ).attr( "title" );
+                }
+            });
 
             var calendar = $('#calendar').fullCalendar({
                 editable: true,

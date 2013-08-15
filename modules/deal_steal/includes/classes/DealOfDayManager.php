@@ -43,7 +43,7 @@ class DealOfDayManager
                     'id' => $dod->getId(),
                     'title' => $dod->getTitle(),
                     'start' => $dod->getDate(),
-                    'url' => ""
+                    'url' => "",
                 ));
             }
         }

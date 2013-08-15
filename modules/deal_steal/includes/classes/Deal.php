@@ -214,6 +214,14 @@ class Deal
         return $this->image;
     }
 
+    public function getTooltipMsg(){
+        $msg = "Supplier: " .$this->getSupplierName();
+        $msg = $msg."<br/>Online Date: ".$this->getOnlineDate();
+        $msg = $msg."<br/>Offline Date: ".$this->getOfflineDate();
+        $msg = $msg."<br/>Availability: ".$this->getOriginalQuantity() . "/" . $this->getQuantity();
+        return $msg;
+    }
+
 
     /********************** functions **********************/
     public function loadById($id)
