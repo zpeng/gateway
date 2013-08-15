@@ -233,7 +233,7 @@
                     type: "POST",
                     data: {
                         operation_id: "fetch_supplier_dropdown_list",
-                        is_archived: "N"
+                        active: "Y"
                     },
                     dataType: "json",
                     success: function (data) {

@@ -14,7 +14,18 @@ class Client
     public $client_tel;
     public $client_mobile;
     public $subscribed;
-    public $client_archived;
+    public $active;
+
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->active;
+    }
+
 
     public function setSubscribed($subscribed)
     {
@@ -116,16 +127,6 @@ class Client
         return $this->client_tel;
     }
 
-    public function setClientArchived($client_archived)
-    {
-        $this->client_archived = $client_archived;
-    }
-
-    public function getClientArchived()
-    {
-        return $this->client_archived;
-    }
-
     public function loadByID($id)
     {
         $link = getConnection();
@@ -139,7 +140,7 @@ class Client
                               client_tel,
                               client_mobile,
                               subscribed,
-                              client_archived
+                              active
                    FROM       ds_client
                    WHERE      client_id =  " . $id;
 
@@ -156,7 +157,7 @@ class Client
             $this->setClientTel($newArray['client_tel']);
             $this->setClientMobile($newArray['client_mobile']);
             $this->setSubscribed($newArray['subscribed']);
-            $this->setClientArchived($newArray['client_archived']);
+            $this->setActive($newArray['active']);
         }
     }
 
@@ -172,8 +173,8 @@ class Client
                       client_dob,
                       client_tel,
                       client_mobile,
-                      subscribed,
-                      client_archived)
+                      subscribed
+                      )
                    VALUES ('" . $this->getClientEmail() . "',
                    '" . $this->getClientPassword() . "',
                    '" . $this->getClientTitle() . "',
@@ -182,8 +183,7 @@ class Client
                    '" . $this->getClientDob() . "',
                    '" . $this->getClientTel() . "',
                    '" . $this->getClientMobile() . "',
-                   '" . $this->getSubscribed() . "',
-                   'N')";
+                   '" . $this->getSubscribed() . "')";
 
         executeUpdateQuery($link, $query);
         $last_insert_id = mysql_insert_id();
@@ -212,7 +212,7 @@ class Client
     {
         $link = getConnection();
         $query = " UPDATE  ds_client
-                   SET     client_archived = '" . $this->getClientArchived() . "'
+                   SET     active = '" . $this->getActive() . "'
                    WHERE   client_id = " . $this->getClientId();
 
         executeUpdateQuery($link, $query);

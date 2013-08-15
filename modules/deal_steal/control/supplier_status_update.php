@@ -3,11 +3,11 @@ require_once('../../../includes/bootstrap.php');
 use modules\deal_steal\includes\classes\Supplier;
 
 $supplier_id = secureRequestParameter($_REQUEST["supplier_id"]);
-$is_archived = secureRequestParameter($_REQUEST["is_archived"]);
+$active = secureRequestParameter($_REQUEST["active"]);
 
 $supplier = new Supplier();
 $supplier->loadByID($supplier_id);
-$supplier->setSupplierArchived($is_archived);
+$supplier->setActive($active);
 $supplier->updateStatus();
 
 $response_array['status'] = 'success';

@@ -3,7 +3,7 @@ namespace modules\deal_steal\includes\classes;
 
 class DealManager
 {
-    private function loadAllDeals($archived = "N")
+    private function loadAllDeals($active = "Y")
     {
         $deal_list = array();
         $link = getConnection();
@@ -25,13 +25,13 @@ class DealManager
                               fine_print,
                               deal_desc,
                               image,
-                              deal_archived
+                              ds_deal.active
                             FROM
                               ds_deal,
                               ds_category,
                               ds_supplier,
                               ds_city
-                            WHERE deal_archived = '" . $archived . "'
+                            WHERE ds_deal.active = '" . $active . "'
                               AND ds_category.category_id = ds_deal.category_id
                               AND ds_city.city_id = ds_deal.city_id
                               AND ds_supplier.supplier_id = ds_deal.supplier_id";
@@ -57,7 +57,7 @@ class DealManager
             $deal->setFinePrint($newArray['fine_print']);
             $deal->setDesc($newArray['deal_desc']);
             $deal->setImage($newArray['image']);
-            $deal->setArchived($newArray['deal_archived']);
+            $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
         return $deal_list;
@@ -85,13 +85,13 @@ class DealManager
                               fine_print,
                               deal_desc,
                               image,
-                              deal_archived
+                              ds_deal.active
                             FROM
                               ds_deal,
                               ds_category,
                               ds_supplier,
                               ds_city
-                            WHERE deal_archived = 'N'
+                            WHERE ds_deal.active = 'Y'
                               AND ds_category.category_id = ds_deal.category_id
                               AND ds_city.city_id = ds_deal.city_id
                               AND ds_supplier.supplier_id = ds_deal.supplier_id
@@ -118,7 +118,7 @@ class DealManager
             $deal->setFinePrint($newArray['fine_print']);
             $deal->setDesc($newArray['deal_desc']);
             $deal->setImage($newArray['image']);
-            $deal->setArchived($newArray['deal_archived']);
+            $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
         return $deal_list;

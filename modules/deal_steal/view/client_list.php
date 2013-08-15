@@ -33,10 +33,10 @@
 
         var model = {
             data: [
-                { value: "N", label: "Active User" },
-                { value: "Y", label: "Inactive User" }
+                { value: "Y", label: "Active User" },
+                { value: "N", label: "Inactive User" }
             ],
-            selected_value: "N"
+            selected_value: "Y"
         };
         $("#html_select_template").tmpl(model).appendTo("#client_status_div" );
 
@@ -67,7 +67,7 @@
                 type: "POST",
                 data: {
                     operation_id: "fetch_client_table",
-                    is_archived: $("#client_status_dropdown option:selected").val()
+                    active: $("#client_status_dropdown option:selected").val()
                 },
                 dataType: "json",
                 success: function (data) {

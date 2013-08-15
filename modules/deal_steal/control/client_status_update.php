@@ -3,11 +3,11 @@ require_once('../../../includes/bootstrap.php');
 use modules\deal_steal\includes\classes\Client;
 
 $client_id = secureRequestParameter($_REQUEST["client_id"]);
-$is_archived = secureRequestParameter($_REQUEST["is_archived"]);
+$active = secureRequestParameter($_REQUEST["active"]);
 
 $client = new Client();
 $client->setClientId($client_id);
-$client->setClientArchived($is_archived);
+$client->setActive($active);
 $client->updateStatus();
 
 $response_array['status'] = 'success';

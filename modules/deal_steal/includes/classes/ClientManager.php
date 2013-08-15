@@ -3,7 +3,7 @@ namespace  modules\deal_steal\includes\classes;
 
 class ClientManager
 {
-    public function loadAllClients($archived='N')
+    public function loadAllClients($active='Y')
     {
         $clientList = array();
         $link = getConnection();
@@ -17,9 +17,9 @@ class ClientManager
                               client_tel,
                               client_mobile,
                               subscribed,
-                              client_archived
+                              active
                    FROM       ds_client
-                   WHERE      client_archived = '".$archived."'";
+                   WHERE      active = '".$active."'";
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
 
@@ -34,7 +34,7 @@ class ClientManager
             $client->setClientDob($newArray['client_dob']);
             $client->setClientTel($newArray['client_tel']);
             $client->setClientMobile($newArray['client_mobile']);
-            $client->setClientArchived($newArray['client_archived']);
+            $client->setActive($newArray['active']);
             array_push($clientList, $client);
         }
         return $clientList;

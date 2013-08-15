@@ -4,7 +4,7 @@ namespace  modules\deal_steal\includes\classes;
 
 class SupplierManager
 {
-    public function loadAllSuppliers($is_archived='N')
+    public function loadAllSuppliers($active='Y')
     {
         $supplier_list = [];
         $link = getConnection();
@@ -16,9 +16,9 @@ class SupplierManager
                               supplier_address,
                               supplier_tel,
                               supplier_desc,
-                              supplier_archived
+                              active
                               FROM ds_supplier
-                   WHERE    supplier_archived = '".$is_archived."' ";
+                   WHERE    active = '".$active."' ";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
@@ -32,7 +32,7 @@ class SupplierManager
             $supplier->setSupplierAddress($newArray['supplier_address']);
             $supplier->setSupplierTel($newArray['supplier_tel']);
             $supplier->setSupplierDesc($newArray['supplier_desc']);
-            $supplier->setSupplierArchived($newArray['supplier_archived']);
+            $supplier->setActive($newArray['active']);
             array_push($supplier_list, $supplier);
         }
         return $supplier_list;

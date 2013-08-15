@@ -60,10 +60,10 @@
                             <?
                             $dropdown_dataSource = array(
                                 "data" => array(
-                                    "Active User" => "N",
-                                    "Inactive User" => "Y"
+                                    "Active User" => "Y",
+                                    "Inactive User" => "N"
                                 ));
-                            $dropdown_dataSource["selected"] = array($client->getClientArchived() => $client->getClientArchived());
+                            $dropdown_dataSource["selected"] = array($client->getActive() => $client->getActive());
                             echo createDropdownList("client_status_dropdown","client_status_dropdown", "", "", "", $dropdown_dataSource);
                             ?>
                         </td>
@@ -105,13 +105,13 @@
         // **** tab 1 logic ****
         $("#client_status_dropdown").change(function(e) {
             var client_id = $("#client_id").val();
-            var is_archived = $("#client_status_dropdown option:selected").val();
+            var active = $("#client_status_dropdown option:selected").val();
 
             $.ajax({
                 url: SERVER_URL + "modules/deal_steal/control/client_status_update.php",
                 type: "POST",
                 data: {client_id: client_id,
-                       is_archived: is_archived
+                    active: active
                 },
                 dataType: "json",
                 success: function (data) {

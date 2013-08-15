@@ -11,7 +11,17 @@ class Supplier{
     public $supplier_address;
     public $supplier_tel;
     public $supplier_desc;
-    public $supplier_archived;
+    public $active;
+
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->active;
+    }
 
     public function setSupplierAddress($supplier_address)
     {
@@ -21,16 +31,6 @@ class Supplier{
     public function getSupplierAddress()
     {
         return $this->supplier_address;
-    }
-
-    public function setSupplierArchived($supplier_archived)
-    {
-        $this->supplier_archived = $supplier_archived;
-    }
-
-    public function getSupplierArchived()
-    {
-        return $this->supplier_archived;
     }
 
     public function setSupplierDesc($supplier_desc)
@@ -115,7 +115,7 @@ class Supplier{
                               supplier_address,
                               supplier_tel,
                               supplier_desc,
-                              supplier_archived
+                              active
                               FROM ds_supplier
                    WHERE    supplier_id =  ".$id;
 
@@ -130,7 +130,7 @@ class Supplier{
             $this->setSupplierAddress($newArray['supplier_address']);
             $this->setSupplierTel($newArray['supplier_tel']);
             $this->setSupplierDesc($newArray['supplier_desc']);
-            $this->setSupplierArchived($newArray['supplier_archived']);
+            $this->setActive($newArray['active']);
         }
     }
 
@@ -144,16 +144,14 @@ class Supplier{
                      supplier_email,
                      supplier_address,
                      supplier_tel,
-                     supplier_desc,
-                     supplier_archived)
+                     supplier_desc)
                    VALUES ('".$this->getSupplierName()."',
                    '".$this->getSupplierUrl()."',
                    '".$this->getSupplierLogo()."',
                    '".$this->getSupplierEmail()."',
                    '".$this->getSupplierAddress()."',
                    '".$this->getSupplierTel()."',
-                   '".$this->getSupplierDesc()."',
-                   'N')";
+                   '".$this->getSupplierDesc()."')";
 
         executeUpdateQuery($link, $query);
         $last_insert_id = mysql_insert_id();
@@ -180,7 +178,7 @@ class Supplier{
     public function updateStatus(){
         $link = getConnection();
         $query = " UPDATE  ds_supplier
-                   SET     supplier_archived = '".$this->getSupplierArchived()."'
+                   SET     active = '".$this->getActive()."'
                    WHERE   supplier_id = " . $this->getSupplierId();
 
         executeUpdateQuery($link, $query);

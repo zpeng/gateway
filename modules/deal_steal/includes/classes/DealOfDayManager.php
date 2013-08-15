@@ -15,7 +15,7 @@ class DealOfDayManager
                               ds_deal,
                               ds_supplier,
                               ds_deal_of_day
-                            WHERE deal_archived = 'N'
+                            WHERE ds_deal.active = 'Y'
                               AND ds_supplier.supplier_id = ds_deal.supplier_id
                               AND ds_deal_of_day.deal_id = ds_deal.deal_id
                               AND ds_deal_of_day.date > '" . $start . "'

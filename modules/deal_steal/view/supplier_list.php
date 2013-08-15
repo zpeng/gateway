@@ -85,10 +85,10 @@
         //supplier status dorpdowm
         var model = {
             data: [
-                { value: "N", label: "Active Supplier" },
-                { value: "Y", label: "Inactive Supplier" }
+                { value: "Y", label: "Active Supplier" },
+                { value: "N", label: "Inactive Supplier" }
             ],
-            selected_value: "N"
+            selected_value: "Y"
         };
         $("#html_select_template").tmpl(model).appendTo("#supplier_status_div" );
 
@@ -143,7 +143,7 @@
                 type: "POST",
                 data: {
                     operation_id: "fetch_supplier_table",
-                    is_archived: $("#supplier_status_dropdown option:selected").val()
+                    active: $("#supplier_status_dropdown option:selected").val()
                 },
                 dataType: "json",
                 success: function (data) {

@@ -21,7 +21,19 @@ class Deal
     public $offline_date;
     public $fine_print;
     public $image;
-    public $archived;
+    public $active;
+
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+
 
     public function setCategoryName($category_name)
     {
@@ -51,17 +63,6 @@ class Deal
     public function getSupplierName()
     {
         return $this->supplier_name;
-    }
-
-
-    public function setArchived($archived)
-    {
-        $this->archived = $archived;
-    }
-
-    public function getArchived()
-    {
-        return $this->archived;
     }
 
     public function setCategoryId($category_id)
@@ -245,14 +246,14 @@ class Deal
                               fine_print,
                               deal_desc,
                               image,
-                              deal_archived
+                              ds_deal.active
                             FROM
                               ds_deal,
                               ds_category,
                               ds_supplier,
                               ds_city
                             WHERE ds_deal.deal_id = " . $id . "
-                              AND deal_archived = 'N'
+                              AND ds_deal.active = 'Y'
                               AND ds_category.category_id = ds_deal.category_id
                               AND ds_city.city_id = ds_deal.city_id
                               AND ds_supplier.supplier_id = ds_deal.supplier_id";
@@ -278,7 +279,7 @@ class Deal
             $this->setFinePrint($newArray['fine_print']);
             $this->setDesc($newArray['deal_desc']);
             $this->setImage($newArray['image']);
-            $this->setArchived($newArray['deal_archived']);
+            $this->setActive($newArray['active']);
         }
     }
 
@@ -298,8 +299,7 @@ class Deal
                                  online_date,
                                  offline_date,
                                  fine_print,
-                                 deal_desc,
-                                 deal_archived)
+                                 deal_desc)
                     VALUES (" . $this->getSupplierId() . ",
                             " . $this->getCategoryId() . ",
                             " . $this->getCityId() . ",
@@ -312,8 +312,7 @@ class Deal
                             '" . $this->getOnlineDate() . "',
                             '" . $this->getOfflineDate() . "',
                             '" . $this->getFinePrint() . "',
-                            '" . $this->getDesc() . "',
-                            'N');";
+                            '" . $this->getDesc() . "');";
 
         executeUpdateQuery($link, $query);
         $last_insert_id = mysql_insert_id();
@@ -392,7 +391,7 @@ class Deal
     {
         $link = getConnection();
         $query = " UPDATE ds_deal
-                   SET    deal_archived = 'Y'
+                   SET    active = 'N'
                    WHERE deal_id  = " . $this->getId();
 
         executeUpdateQuery($link, $query);

@@ -12,12 +12,12 @@ if (!empty($_REQUEST['operation_id'])) {
     switch ($_REQUEST['operation_id']) {
 
         case "fetch_client_table":
-            $is_archived = "N";
-            if (isset($_REQUEST["is_archived"])) {
-                $is_archived = secureRequestParameter($_REQUEST["is_archived"]);
+            $active = "Y";
+            if (isset($_REQUEST["active"])) {
+                $active = secureRequestParameter($_REQUEST["active"]);
             }
             $clientManager = new ClientManager();
-            $data = $clientManager->getClientTableDataSource($is_archived);
+            $data = $clientManager->getClientTableDataSource($active);
             break;
 
         case "fetch_city_table":
@@ -26,21 +26,21 @@ if (!empty($_REQUEST['operation_id'])) {
             break;
 
         case "fetch_supplier_table":
-            $is_archived = "N";
-            if (isset($_REQUEST["is_archived"])) {
-                $is_archived = secureRequestParameter($_REQUEST["is_archived"]);
+            $active = "Y";
+            if (isset($_REQUEST["active"])) {
+                $active = secureRequestParameter($_REQUEST["active"]);
             }
             $supplierManager = new SupplierManager();
-            $data = $supplierManager->getSupplierTableDataSource($is_archived);
+            $data = $supplierManager->getSupplierTableDataSource($active);
             break;
 
         case "fetch_supplier_dropdown_list":
-            $is_archived = "N";
-            if (isset($_REQUEST["is_archived"])) {
-                $is_archived = secureRequestParameter($_REQUEST["is_archived"]);
+            $active = "Y";
+            if (isset($_REQUEST["active"])) {
+                $active = secureRequestParameter($_REQUEST["active"]);
             }
             $supplierManager = new SupplierManager();
-            $data = $supplierManager->getSupplierDropdownDataSource($is_archived);
+            $data = $supplierManager->getSupplierDropdownDataSource($active);
             break;
 
         case "fetch_deal_list":
