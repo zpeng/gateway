@@ -196,7 +196,7 @@
                     type: "POST",
                     data: {
                         menu_type_id: 1,
-                        operation_id: "fetch_menu_list"
+                        operation_id: "fetch_menu_table"
                     },
                     dataType: "json",
                     success: function (data) {

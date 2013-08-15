@@ -15,9 +15,9 @@ class ContentManager
                       content_create_date,
                       content_last_modify_by,
                       content_last_modify_date,
-                      content_archived
+                      active
                     FROM cms_content
-                where   content_archived = 'N'";
+                where   active = 'Y'";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
@@ -30,7 +30,7 @@ class ContentManager
             $content->set_create_date($newArray['content_create_date']);
             $content->set_last_modify_date($newArray['content_last_modify_date']);
             $content->set_last_modify_by_user_id($newArray['content_last_modify_by']);
-            $content->set_archived($newArray['content_archived']);
+            $content->setActive($newArray['active']);
             array_push($contentList, $content);
         }
         return $contentList;

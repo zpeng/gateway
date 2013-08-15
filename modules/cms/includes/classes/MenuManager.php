@@ -12,9 +12,9 @@ class MenuManager
         $query = "SELECT menu_type_id         ,
                          menu_type_name       ,
                          menu_type_description,
-                         menu_type_archived
+                         active
                   FROM   cms_menu_type
-                  WHERE  menu_type_archived = 'N'";
+                  WHERE  active = 'Y'";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
@@ -24,7 +24,7 @@ class MenuManager
             $menuType->set_menu_type_id($newArray['menu_type_id']);
             $menuType->set_menu_type_name($newArray['menu_type_name']);
             $menuType->set_menu_type_description($newArray['menu_type_description']);
-            $menuType->set_menu_type_archived($newArray['menu_type_archived']);
+            $menuType->setActive($newArray['active']);
             array_push($menuTypelist, $menuType);
 
         }
@@ -43,9 +43,9 @@ class MenuManager
                               menu_link,
                               menu_name,
                               menu_desc,
-                              menu_archived
+                              active
                     FROM      cms_menu
-                    WHERE     menu_archived = 'N'
+                    WHERE     active = 'Y'
                     AND       menu_parent_id = 0
                     AND       menu_type_id = " . $menu_type_id . "
                     ORDER BY  menu_order";
@@ -61,7 +61,7 @@ class MenuManager
             $menu->set_menu_link($newArray['menu_link']);
             $menu->set_menu_name($newArray['menu_name']);
             $menu->set_menu_desc($newArray['menu_desc']);
-            $menu->set_menu_archived($newArray['menu_archived']);
+            $menu->setActive($newArray['active']);
 
             $menu->set_sub_menu_list($menu->getSubMenuItemList());
             array_push($menuItemlist, $menu);

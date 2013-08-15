@@ -14,8 +14,17 @@ class Menu
     public $_menu_name;
     public $_menu_desc;
     public $_sub_menu_list = [];
-    public $_menu_archived;
+    public $_active;
 
+    public function setActive($active)
+    {
+        $this->_active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->_active;
+    }
 
     public function get_menu_id()
     {
@@ -103,16 +112,6 @@ class Menu
         $this->_menu_link = $_menu_link;
     }
 
-    public function get_menu_archived()
-    {
-        return $this->_menu_archived;
-    }
-
-    public function set_menu_archived($_menu_archived)
-    {
-        $this->_menu_archived = $_menu_archived;
-    }
-
     public function get_sub_menu_list()
     {
         return $this->_sub_menu_list;
@@ -143,9 +142,9 @@ class Menu
                           menu_link,
                           menu_name,
                           menu_desc,
-                          menu_archived
+                          active
                   FROM cms_menu
-                WHERE  menu_archived = 'N'
+                WHERE  active = 'Y'
                 AND    menu_id = " . $menu_id;
 
         $result = executeNonUpdateQuery($link, $query);
@@ -159,7 +158,7 @@ class Menu
             $this->set_menu_link($newArray['menu_link']);
             $this->set_menu_name($newArray['menu_name']);
             $this->set_menu_desc($newArray['menu_desc']);
-            $this->set_menu_archived($newArray['menu_archived']);
+            $this->setActive($newArray['active']);
 
             $this->set_sub_menu_list($this->getSubMenuItemList());
 
@@ -176,9 +175,9 @@ class Menu
                           menu_link,
                           menu_name,
                           menu_desc,
-                          menu_archived
+                          active
                 FROM   cms_menu
-                WHERE  menu_archived = 'N'
+                WHERE  active = 'Y'
                 AND    menu_parent_id = " . $this->get_menu_id() . "
                 ORDER BY menu_order";
 
@@ -195,7 +194,7 @@ class Menu
             $menu->set_menu_link($newArray['menu_link']);
             $menu->set_menu_name($newArray['menu_name']);
             $menu->set_menu_desc($newArray['menu_desc']);
-            $menu->set_menu_archived($newArray['menu_archived']);
+            $menu->setActive($newArray['active']);
 
             $menu->set_sub_menu_list($menu->getSubMenuItemList());
             array_push($this->_sub_menu_list, $menu);
@@ -214,8 +213,7 @@ class Menu
                                       menu_order      ,
                                       menu_link       ,
                                       menu_name,
-                                      menu_desc,
-                                      menu_archived
+                                      menu_desc
                                )
                                VALUES
                                (
@@ -224,8 +222,7 @@ class Menu
                                       " . $this->get_menu_order() . ",
                                       '" . $this->get_menu_link() . "',
                                       '" . $this->get_menu_name() . "',
-                                      '" . $this->get_menu_desc() . "',
-                                      'N'
+                                      '" . $this->get_menu_desc() . "'
                                )";
 
         executeUpdateQuery($link, $query);
@@ -250,7 +247,7 @@ class Menu
     {
         $link = getConnection();
         $query = "  UPDATE cms_menu
-                    SET    menu_archived    = 'Y'
+                    SET    active    = 'N'
                     WHERE  menu_id          = " . $this->get_menu_id();
         executeUpdateQuery($link, $query);
         closeConnection($link);

@@ -17,8 +17,17 @@ class Content
     private $_last_modify_date;
     private $_last_modify_by;
     private $_last_modify_by_user_id;
-    private $_archived;
+    private $_active;
 
+    public function setActive($active)
+    {
+        $this->_active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->_active;
+    }
 
     public function get_content_id()
     {
@@ -120,16 +129,6 @@ class Content
         $this->_last_modify_by_user_id = $_last_modify_by_user_id;
     }
 
-    public function get_archived()
-    {
-        return $this->_archived;
-    }
-
-    public function set_archived($_archived)
-    {
-        $this->_archived = $_archived;
-    }
-
     public function loadByID($_content_id)
     {
         $link = getConnection();
@@ -142,7 +141,7 @@ class Content
                       content_create_date,
                       content_last_modify_by,
                       content_last_modify_date,
-                      content_archived
+                      active
                     FROM cms_content
                 where   content_id = " . $_content_id;
 
@@ -156,7 +155,7 @@ class Content
             $this->set_create_date($newArray['content_create_date']);
             $this->set_last_modify_date($newArray['content_last_modify_date']);
             $this->set_last_modify_by_user_id($newArray['content_last_modify_by']);
-            $this->set_archived($newArray['content_archived']);
+            $this->setActive($newArray['active']);
         }
     }
 
@@ -169,15 +168,13 @@ class Content
                                  content_article,
                                  content_create_date,
                                  content_last_modify_by,
-                                 content_last_modify_date,
-                                 content_archived)
+                                 content_last_modify_date)
                     VALUES (".$this->get_author_id().",
                             '".$this->get_title()."',
                             '".$this->get_article()."',
                             now(),
                             ".$this->get_author_id().",
-                            now(),
-                            'N')";
+                            now())";
 
         executeUpdateQuery($link, $query, "Content.insert()");
         closeConnection($link);
@@ -187,7 +184,7 @@ class Content
     {
         $link = getConnection();
         $query = "  update  cms_content
-                    set	    content_archived = 'Y'
+                    set	    active = 'N'
                     where   content_id = " . $this->get_content_id();
 
         executeUpdateQuery($link, $query);

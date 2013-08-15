@@ -6,7 +6,17 @@ class MenuType {
     private $_menu_type_id;
     private $_menu_type_name;
     private $_menu_type_description;
-    private $_menu_type_archived;
+    private $_active;
+
+    public function setActive($active)
+    {
+        $this->_active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->_active;
+    }
 
     public function get_menu_type_id() {
         return $this->_menu_type_id;
@@ -32,23 +42,15 @@ class MenuType {
         $this->_menu_type_description = $_menu_type_description;
     }
 
-    public function get_menu_type_archived() {
-        return $this->_menu_type_archived;
-    }
-
-    public function set_menu_type_archived($_menu_type_archived) {
-        $this->_menu_type_archived = $_menu_type_archived;
-    }
-
     public function load($menu_type_id) {
         $link = getConnection();
 
         $query="SELECT menu_type_id         ,
                        menu_type_name       ,
                        menu_type_description,
-                       menu_type_archived
+                       active
                 FROM   cms_menu_type
-                WHERE  menu_type_archived = 'N'
+                WHERE  active = 'Y'
                    AND menu_type_id       = ".$menu_type_id;
 
         $result = executeNonUpdateQuery($link , $query);
@@ -58,7 +60,7 @@ class MenuType {
             $this->set_menu_type_id($newArray['menu_type_id']);
             $this->set_menu_type_name($newArray['menu_type_name']);
             $this->set_menu_type_description($newArray['menu_type_description']);
-            $this->set_menu_type_archived($newArray['menu_type_archived']);
+            $this->setActive($newArray['active']);
         }
     }
 }
