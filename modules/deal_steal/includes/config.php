@@ -9,7 +9,9 @@ $module_config = array(
     "supplier_logo_folder" => SERVER_URL."images/suppliers/logo/",
     "deal_image_folder" => SERVER_URL."images/deals/",
 
-    "php" => array(),
+    "php" => array(
+        "external/php/MPDF57/mpdf.php"
+    ),
 
     "css" => array(
         "backend" => array(
