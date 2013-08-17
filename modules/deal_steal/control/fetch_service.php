@@ -7,6 +7,7 @@ use modules\deal_steal\includes\classes\SupplierManager;
 use modules\deal_steal\includes\classes\DealManager;
 use modules\deal_steal\includes\classes\ConciergeManager;
 use modules\deal_steal\includes\classes\TemplateManager;
+use modules\deal_steal\includes\classes\OrderManager;
 
 if (!empty($_REQUEST['operation_id'])) {
     switch ($_REQUEST['operation_id']) {
@@ -73,10 +74,22 @@ if (!empty($_REQUEST['operation_id'])) {
             $data = $conciergeManager->getConciergeTableDataSource($status);
             break;
 
+
+        case "fetch_order_table":
+            $status = "P";
+            if (isset($_REQUEST["status"])) {
+                $status = secureRequestParameter($_REQUEST["status"]);
+            }
+            $orderManage = new OrderManager();
+            $data = $orderManage->getOrderTableDataSource($status);
+            break;
+
+
         case "fetch_template_table":
             $templateManager = new TemplateManager();
             $data = $templateManager->getTemplateTableDataSource();
             break;
+
 
         default:
             $response_array['error_code'] = '1';

@@ -15,7 +15,7 @@
             <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=deal_list"?>">Deal Manager</a></li>
             <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=deal_of_the_day"?>">Deal Of The Day</a></li>
             <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=concierge_list"?>">Concierge Service</a></li>
-
+            <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=order_list"?>">Order Management</a></li>
             <li><a href="<?=SERVER_URL."admin/main.php?module_code=".$_REQUEST['module_code']."&view=template_list"?>">Template Manager</a></li>
         </ul>
     </div>
