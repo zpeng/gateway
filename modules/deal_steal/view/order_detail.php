@@ -17,7 +17,7 @@
     $order = new Order();
     $order->loadById($order_id);
     ?>
-    <br/>
+
     <form id="OrderStatusUpdateForm" method='post'>
         <input type="hidden" value="<? echo $order_id ?>" id="order_id" name="order_id"/>
         <table class="general_table">
