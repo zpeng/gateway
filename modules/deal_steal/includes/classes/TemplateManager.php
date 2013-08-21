@@ -59,21 +59,16 @@ class TemplateManager
         return $text;
     }
 
-    public function getProcessedContentFromTemplate($template_key, $data = array())
+    public function getProcessedContentFromTemplate($template_content, $data = array())
     {
-        $template = new Template();
-        if ($template->loadByKey($template_key)) {
-            try {
-                ob_start();
-                eval($this->template_parser($template->getContent()));
-                $content = ob_get_contents();
-                ob_end_clean();
-                return $content;
-            } catch (Exception $e) {
-                throw new Exception("Unable to process the template due to the following error \n\n\n" . $e->getMessage() . "\n");
-            }
-        } else {
-            throw new Exception("Template " . $template_key . " is not found!");
+        try {
+            ob_start();
+            eval($this->template_parser($template_content));
+            $content = ob_get_contents();
+            ob_end_clean();
+            return $content;
+        } catch (Exception $e) {
+            throw new Exception("Unable to process the template due to the following error \n\n\n" . $e->getMessage() . "\n");
         }
     }
 }
