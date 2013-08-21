@@ -94,6 +94,9 @@ class Template {
         $result = executeNonUpdateQuery($link , $query);
         closeConnection($link);
 
+        if (mysql_num_rows($result) != 1){
+            return false;
+        }
         while ($newArray = mysql_fetch_array($result)) {
             $this->setId($newArray['temp_id']);
             $this->setKey($newArray['temp_key']);
@@ -101,6 +104,7 @@ class Template {
             $this->setContent(stripslashes($newArray['temp_content']));
             $this->setDesc($newArray['temp_desc']);
         }
+        return true;
     }
 
     public function update() {

@@ -1,9 +1,11 @@
 <?php
 namespace  modules\deal_steal\includes\classes;
 
+use Exception;
+
 class TemplateManager
 {
-    public function loadAllTemplates()
+    private function loadAllTemplates()
     {
         $templates = array();
         $link = getConnection();
@@ -38,13 +40,41 @@ class TemplateManager
                 array_push($dataSource, array(
                     "id" => $template->getId(),
                     "key" => $template->getKey(),
-                    "title" => $template->getTitle() ,
+                    "title" => $template->getTitle(),
                     "desc" => $template->getDesc(),
                     "action" => ""
                 ));
             }
         }
         return $dataSource;
+    }
+
+    private function template_parser($text)
+    {
+        $text = str_replace("\"", "'", $text); // replace " with '
+        $text = str_replace("{{", "\".", $text);
+        $text = str_replace("}}", ".\"", $text);
+        $text = "print \"" . $text;
+        $text = $text . "\";";
+        return $text;
+    }
+
+    public function getProcessedContentFromTemplate($template_key, $data = array())
+    {
+        $template = new Template();
+        if ($template->loadByKey($template_key)) {
+            try {
+                ob_start();
+                eval($this->template_parser($template->getContent()));
+                $content = ob_get_contents();
+                ob_end_clean();
+                return $content;
+            } catch (Exception $e) {
+                throw new Exception("Unable to process the template due to the following error \n\n\n" . $e->getMessage() . "\n");
+            }
+        } else {
+            throw new Exception("Template " . $template_key . " is not found!");
+        }
     }
 }
 ?>
