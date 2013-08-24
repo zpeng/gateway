@@ -22,10 +22,10 @@
         var template_grid;
         var columns = [
             {id: "id", name: "ID", field: "id", width: 50},
-            {id: "key", name: "Key", field: "key", width: 150},
+            {id: "key", name: "Key", field: "key", width: 200},
             {id: "title", name: "Title", field: "title", width: 200},
             {id: "desc", name: "Description", field: "desc", width: 300},
-            {id: "action", name: "Action", field: "action", width: 100,
+            {id: "action", name: "Action", field: "action", width: 50,
                 formatter: linkFormatter = function (row, cell, value, columnDef, dataContext) {
                     return "<a class='icon_edit' title='Edit Template' href='" + SERVER_URL + "admin/main.php?view=template_update&template_id="+
                         dataContext['id'] + "&module_code=" + getParameterByName('module_code') + "' ></a>";

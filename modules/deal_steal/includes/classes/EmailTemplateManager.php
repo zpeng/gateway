@@ -1,9 +1,10 @@
 <?php
 namespace  modules\deal_steal\includes\classes;
 
+use modules\core\includes\classes\TemplateManager;
 use Exception;
 
-class TemplateManager
+class EmailTemplateManager extends  TemplateManager
 {
     private function loadAllTemplates()
     {
@@ -47,29 +48,6 @@ class TemplateManager
             }
         }
         return $dataSource;
-    }
-
-    private function template_parser($text)
-    {
-        $text = str_replace("\"", "'", $text); // replace " with '
-        $text = str_replace("{{", "\".", $text);
-        $text = str_replace("}}", ".\"", $text);
-        $text = "print \"" . $text;
-        $text = $text . "\";";
-        return $text;
-    }
-
-    public function getProcessedContentFromTemplate($template_content, $data = array())
-    {
-        try {
-            ob_start();
-            eval($this->template_parser($template_content));
-            $content = ob_get_contents();
-            ob_end_clean();
-            return $content;
-        } catch (Exception $e) {
-            throw new Exception("Unable to process the template due to the following error \n\n\n" . $e->getMessage() . "\n");
-        }
     }
 }
 ?>
