@@ -1,5 +1,5 @@
 <?
-require_once('../../../../includes/bootstrap.php');
+require_once('../../../includes/bootstrap.php');
 use modules\cms\includes\classes\MenuManager;
 ?>
 
