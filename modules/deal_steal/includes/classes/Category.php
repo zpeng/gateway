@@ -6,7 +6,7 @@ class Category
     public $id;
     public $parent_id;
     public $name;
-    public $sub_category_list = [];
+    public $sub_category_list = array();
 
     public function setId($category_id)
     {
@@ -66,7 +66,7 @@ class Category
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
-        $this->sub_category_list = [];
+        $this->sub_category_list = array();
         while ($newArray = mysql_fetch_array($result)) {
             $sub_category = new Category();
             $sub_category->setId($newArray['category_id']);

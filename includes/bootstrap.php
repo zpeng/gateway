@@ -18,7 +18,7 @@ if (!defined('BASE_PATH'))
 ini_set('display_errors', '1');
 
 
-$GLOBAL_DEPS = [];
+$GLOBAL_DEPS = array();
 
 // loading the core deps
 include_once(BASE_PATH . "includes/global_deps.php");

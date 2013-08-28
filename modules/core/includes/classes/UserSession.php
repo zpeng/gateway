@@ -7,7 +7,7 @@ class UserSession
 {
     public $userName;
     public $userID;
-    public $user_subscribe_module_code_name_map =[];
+    public $user_subscribe_module_code_name_map =array();
     public $configManager;
 
 

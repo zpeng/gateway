@@ -57,7 +57,7 @@ class UserManager
 
     public function getUserList()
     {
-        $userList = [];
+        $userList = array();
         $link = getConnection();
 
         $query = "select 	user_id

@@ -6,7 +6,7 @@ class OrderManager
 {
     private function loadOrdersByStatus($status = "P")
     {
-        $order_list = [];
+        $order_list = array();
         $link = getConnection();
         $query = " SELECT
                       order_id,

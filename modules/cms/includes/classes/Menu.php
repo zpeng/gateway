@@ -13,7 +13,7 @@ class Menu
     public $_menu_link;
     public $_menu_name;
     public $_menu_desc;
-    public $_sub_menu_list = [];
+    public $_sub_menu_list = array();
     public $_active;
 
     public function setActive($active)

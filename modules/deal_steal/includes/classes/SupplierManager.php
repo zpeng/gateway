@@ -6,7 +6,7 @@ class SupplierManager
 {
     public function loadAllSuppliers($active='Y')
     {
-        $supplier_list = [];
+        $supplier_list = array();
         $link = getConnection();
         $query = " SELECT     supplier_id,
                               supplier_name,

@@ -5,7 +5,7 @@ class ModuleManager
 {
     public function getModuleList()
     {
-        $moduleList = [];
+        $moduleList = array();
         $link = getConnection();
 
         $query = " select module_name,

@@ -6,7 +6,7 @@ class MenuManager
     //put your code here
     public function getMenuTypeList()
     {
-        $menuTypelist = [];
+        $menuTypelist = array();
         $link = getConnection();
 
         $query = "SELECT menu_type_id         ,
@@ -33,7 +33,7 @@ class MenuManager
 
     public function getMenuItemListByMenuTypeId($menu_type_id)
     {
-        $menuItemlist = [];
+        $menuItemlist = array();
         $link = getConnection();
 
         $query = " SELECT     menu_id,

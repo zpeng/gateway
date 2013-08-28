@@ -4,7 +4,7 @@ namespace  modules\core\includes\classes;
 class ConfigurationManager
 {
     //put your code here
-    public $configEntityList = [];
+    public $configEntityList = array();
 
     public function getValueByKey($key)
     {
@@ -23,7 +23,7 @@ class ConfigurationManager
 
     public function loadByUserID($user_id)
     {
-        $this->configEntityList = [];
+        $this->configEntityList = array();
         $link = getConnection();
         $query = "SELECT 	module_config_id,
                         core_module_configuration.module_code,
@@ -59,7 +59,7 @@ class ConfigurationManager
 
     public function loadByModuleCode($_module_code)
     {
-        $this->configEntityList = [];
+        $this->configEntityList = array();
         $link = getConnection();
         $query = "SELECT 	module_config_id,
                         core_module_configuration.module_code,
@@ -93,7 +93,7 @@ class ConfigurationManager
 
     public function loadAllConfig()
     {
-        $this->configEntityList = [];
+        $this->configEntityList = array();
         $link = getConnection();
         $query = "SELECT 	DISTINCT module_config_id,
                         core_module_configuration.module_code,

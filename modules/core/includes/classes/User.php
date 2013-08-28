@@ -7,8 +7,8 @@ class User
     public $user_name;
     public $user_password;
     public $active;
-    public $user_subscribe_module_code_name_map = [];
-    public $user_subscribe_module_code_list = [];
+    public $user_subscribe_module_code_name_map = array();
+    public $user_subscribe_module_code_list = array();
 
     public function setActive($active)
     {
@@ -175,8 +175,8 @@ class User
     private function getUserSubscribeModules()
     {
 
-        $this->user_subscribe_module_code_name_map = [];
-        $this->user_subscribe_module_code_list = [];
+        $this->user_subscribe_module_code_name_map = array();
+        $this->user_subscribe_module_code_list = array();
         $link = getConnection();
 
         $query = "  SELECT core_module.module_name,

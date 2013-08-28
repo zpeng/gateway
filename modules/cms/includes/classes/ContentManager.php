@@ -5,7 +5,7 @@ class ContentManager
 {
     public function getContentList()
     {
-        $contentList = [];
+        $contentList = array();
         $link = getConnection();
         $query = "SELECT
                       content_id,

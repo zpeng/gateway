@@ -8,7 +8,7 @@ class DealTagManager
     {
 
         $link = getConnection();
-        $dataMap = [];
+        $dataMap = array();
         $query = "  SELECT ds_tag.tag_id, tag_name
                     FROM ds_tag, ds_deal_tag
                     WHERE ds_tag.tag_id = ds_deal_tag.tag_id

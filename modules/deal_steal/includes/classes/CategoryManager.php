@@ -7,7 +7,7 @@ class CategoryManager
 
     public function loadTree($parent_id = 0)
     {
-        $this->data = [];
+        $this->data = array();
         $link = getConnection();
         $query = "select 	category_id, category_parent_id, category_name
                 from	ds_category
