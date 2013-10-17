@@ -3,7 +3,7 @@ namespace modules\deal_steal\includes\classes;
 
 class DealManager
 {
-    private function loadAllDeals($active = "Y")
+    public function loadAllDeals($active = "Y")
     {
         $deal_list = array();
         $link = getConnection();
@@ -63,7 +63,7 @@ class DealManager
         return $deal_list;
     }
 
-    private function loadDealBySupplier($supplier_id)
+    public function loadDealBySupplier($supplier_id)
     {
         $deal_list = array();
         $link = getConnection();

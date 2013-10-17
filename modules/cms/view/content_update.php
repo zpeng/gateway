@@ -3,7 +3,6 @@
 <div id="main_content">
     <?
     $content_id = $_REQUEST["content_id"];
-
     use modules\cms\includes\classes\Content;
     $content = new Content();
     $content->loadByID($content_id);
@@ -86,17 +85,14 @@
                 });
 
                 jQuery('form#ArticleCreationForm').validated(function () {
-                    var user_id = $("#user_id").val();
-                    var content_id = $("#content_id").val();
-                    var title = $("#title").val();
-                    var article_content = tinyMCE.get('article_content').getContent()
                     $.ajax({
                         url: SERVER_URL + "modules/cms/control/content_update.php",
                         type: "POST",
-                        data: {user_id: user_id,
-                            content_id: content_id,
-                            title: title,
-                            article_content: article_content
+                        data: {
+                            user_id: $("#user_id").val(),
+                            content_id: $("#content_id").val(),
+                            title: $("#title").val(),
+                            article_content: tinyMCE.get('article_content').getContent()
                         },
                         dataType: "json",
                         success: function (data) {
