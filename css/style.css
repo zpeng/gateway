@@ -1,0 +1,685 @@
+body {
+    background: url(../images/body-bg.gif) top repeat-x #be8f46;
+    font-size: 100%;
+    font-family: "Calibri", Arial, Helvetica, sans-serif;
+    color: #444444;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2em;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: #4a4a6a;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #be8f46;
+}
+
+h1 {
+    color: #1529bf;
+}
+
+h2 {
+    color: #444444;
+}
+
+.clear {
+    clear: both
+}
+
+#wrapper {
+    width: 100%;
+    background: #fff;
+    margin: 0;
+    min-height: 600px;
+    border-bottom: 1px solid #fff;
+    text-align: center;
+}
+
+#header {
+    width: 1000px;
+    margin: 0 Auto;
+    height: 110px;
+    text-align: left;
+}
+
+#main {
+    width: 1000px;
+    margin: 0 Auto;
+    margin-top: -14px;
+    text-align: left;
+}
+
+.content {
+    margin-left: 80px;
+    width: 700px;
+}
+
+.contentbottom {
+    clear: both;
+    margin-left: 70px;
+    width: 950px;
+    margin-top: 20px;
+}
+
+.twocolumns {
+    width: 920px;
+}
+
+#logo {
+    position: relative;
+    margin-top: 10px;
+    float: left;
+    background: url(../images/logo.png) no-repeat;
+    width: 324px;
+    height: 100px;
+    z-index: 10;
+}
+
+#search_region {
+    margin-top: 3px;
+    float: left;
+    width: 330px;
+    border-right: 1px solid #ccc;
+    padding-right: 0px;
+}
+
+#search_region .map {
+    float: left;
+    margin: 10px;
+}
+
+.welcome {
+    float: left;
+}
+
+.welcome .name {
+    color: #be8f46;
+}
+
+.login {
+    float: right;
+    margin-right: 10px;
+}
+
+#menu {
+    position: relative;
+    background: url(../images/bg_menu.png) repeat-x;
+    width: 100%;
+    height: 90px;
+    margin-top: -6px;
+    z-index: 5;
+    text-align: center;
+}
+
+.searchtext, .searchselect, .signuptext {
+    padding: 6px;
+    border: solid 1px #E5E5E5;
+    outline: 0;
+    font: normal 13px/100% Verdana, Tahoma, sans-serif;
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.searchselect {
+    width: 157px;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+    overflow: hidden;
+    float: left;
+    margin-top: 3px;
+    margin-right: 3px;
+    padding: 1px 2px;
+
+}
+
+.searchselectimg {
+    background: transparent url(../images/new_arrow.png) no-repeat right;
+}
+
+.searchselect select {
+    background: transparent;
+    width: 160px;
+    border: 0;
+    -webkit-appearance: none;
+    font-weight: bold;
+}
+
+.searchsubmit {
+    margin-top: 1px;
+    margin-left: 3px;
+}
+
+input:hover, input:focus {
+    border-color: #C9C9C9;
+}
+
+.searchtext {
+    width: 246px;
+    margin-top: 7px;
+    margin-bottom: 5px;
+}
+
+.signuptext {
+    width: 206px;
+    margin-top: 0px;
+    float: left;
+    margin-right: 3px;
+}
+
+#cart_region {
+    float: left;
+    padding: 0 10px;
+}
+
+#cart {
+    width: 200px;
+    padding-left: 40px;
+    padding-top: 8px;
+    background: #be8f46 url(../images/icon_cart.png) no-repeat left;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #fff;
+    height: 32px;
+}
+
+.signup {
+    width: 240px;
+    clear: both;
+    padding-top: 5px;
+}
+
+#concierge {
+    margin-top: 3px;
+    float: left;
+    width: 65px;
+    border-left: 1px solid #ccc;
+    padding-left: 10px;
+    text-align: center;
+}
+
+.nav {
+    width: 1000px;
+    margin: 0 Auto;
+    text-align: left;
+}
+
+.nav ul {
+    list-style-type: none;
+    position: absolute;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+.nav ul li {
+    float: left;
+    width: 165px;
+    height: 40px;
+    line-height: 90%;
+    vertical-align: middle;
+}
+
+.nav ul li img {
+    vertical-align: middle;
+    margin-right: 3px;
+}
+
+.nav ul li a {
+    font-size: 15px;
+    color: #333;
+}
+
+.nav ul.mainnav {
+    width: 900px;
+}
+
+.nav ul.rightnav {
+    position: absolute;
+    float: right;
+    margin-left: 900px;
+    width: 100px;
+}
+
+.subnav {
+    background: #1529bf;
+    height: 35px;
+    border: 1px solid #1529bf;
+    padding-left: 10px;
+    width: 690px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 5px 5px 5px #999;
+}
+
+.subnav ul {
+    position: relative;
+    z-index: 7;
+    list-style-type: none;
+    margin: 5px 0 0 0;
+    padding: 5px 0 0 0;
+}
+
+.subnav  ul li {
+    float: left;
+    margin-right: 15px;
+    padding-right: 15px;
+    height: 20px;
+    border-right: 1px solid #fff;
+}
+
+.subnav  ul li.last {
+    border: none;
+}
+
+.subnav ul li a {
+    font-size: 17px;
+    color: #fff;
+}
+
+.leftnav {
+    float: left;
+    width: 60px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: #f2f2f2 url(../images/bg_left.jpg) repeat-x;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 5px 5px 5px #999;
+}
+
+.leftnav ul {
+    list-style-type: none;
+    padding: 10px 12px 12px 15px;
+    margin: 0;
+}
+
+.leftnav ul li {
+    height: 40px;
+    padding: 0;
+    margin: 0;
+}
+
+#footer {
+    background: #be8f46 url(../images/bg_footer.jpg) repeat-x;
+    text-align: center;
+}
+
+.foot {
+    width: 1000px;
+    margin: 0 Auto;
+    color: #fff;
+    padding: 20px 0;
+    text-align: left;
+}
+
+.rightblock {
+    float: right;
+    width: 200px;
+}
+
+.dealdetails .rightblock {
+    background: #fff;
+}
+
+.rightblock p, .rightblock li {
+    font-size: 95%;
+    line-height: 120%;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.rightblock ul {
+    color: #1529bf;
+    list-style-image: url(../images/li.png);
+}
+
+.brand {
+    float: left;
+    padding: 0px;
+}
+
+.deals {
+    margin: 20px 0;
+    width: 712px;
+}
+
+.deal, .daydeal {
+    float: left;
+    width: 225px;
+    background: #f2f2f2;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-bottom-radius: 10px;
+    box-shadow: 3px 3px 3px #999;
+    margin: 0 12px 25px 0;
+}
+
+.daydeal {
+    width: 700px;
+}
+
+.deal h2, .daydeal h2 {
+    background: #1529bf;
+    color: #fff;
+    font-size: 17px;
+    padding: 0px;
+    margin: 0;
+    font-weight: normal;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.deal h2 {
+    padding: 10px;
+}
+
+.daydeal h2 {
+    float: left;
+    font-size: 24px;
+    padding: 10px;
+    width: 455px;
+    -webkit-border-top-left-radius: 0px;
+    -moz-border-radius-topleft: 0px;
+    border-top-left-radius: 0px;
+}
+
+.daydeal .caption {
+    color: #fff;
+    width: 205px;
+    float: left;
+    font-size: 17px;
+    background: #be8f46;
+    padding: 10px;
+    text-align: right;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+}
+
+.daydeal .dealimage {
+    float: left;
+}
+
+.daydeal .smallimages {
+    float: left;
+    width: 75px;
+}
+
+.daydeal .smallimages img {
+    width: 75px;
+}
+
+.deal h2 a, .daydeal h2 a {
+    color: #fff;
+}
+
+.deal .oldprice, .daydeal .oldprice {
+    font-size: 17px;
+    color: #444;
+}
+
+.deal .oldpriceholder, .daydeal .oldpriceholder {
+    margin-left: 30px;
+    margin-top: 8px;
+    text-decoration: line-through;
+    color: #999;
+    height: 32px;
+}
+
+.deal .price, .daydeal .price {
+    position: absolute;
+    float: right;
+    background: url(../images/bg_price.png) no-repeat;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px 0 0 0;
+    text-align: center;
+    width: 110px;
+    height: 66px;
+    margin-left: 130px;
+    margin-top: -14px;
+}
+
+.tab-container {
+    margin-left: 300px;
+    padding: 5px;
+    height: 137px;
+}
+
+.dealdetails .tab-container {
+    margin-left: 0px;
+    padding: 0px;
+    height: auto;
+    width: 700px;
+    margin-top: 20px;
+}
+
+.etabs {
+    margin: 0;
+    padding: 0;
+}
+
+.tab {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    background: #be8f46;
+    border: solid 1px #be8f46;
+    border-bottom: none;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+}
+
+.tab a {
+    font-size: 14px;
+    line-height: 2em;
+    display: block;
+    padding: 0 10px;
+    outline: none;
+    color: #fff;
+}
+
+.tab a:hover {
+    text-decoration: underline;
+}
+
+.tab.active {
+    background: #fff;
+    padding-top: 1px;
+    position: relative;
+    top: 1px;
+    border-color: #a0a0a0;
+}
+
+.tab a.active {
+    color: #444
+}
+
+.tab-container .panel-container {
+    background: #fff;
+    border: solid #a0a0a0 1px;
+    padding: 0 10px;
+    -moz-border-radius: 0 4px 4px 4px;
+    -webkit-border-radius: 0 4px 4px 4px;
+    overflow: hidden;
+}
+
+.panel-container {
+    margin-bottom: 10px;
+    height: 140px;
+}
+
+.dealdetails .panel-container {
+    height: auto;
+}
+
+.panel-container p {
+    font-size: 80%;
+    line-height: 100%;
+}
+
+.dealdetails .panel-container p {
+    font-size: 100%;
+    line-height: 120%;
+}
+
+.gotobutton {
+    position: absolute;
+    margin-left: 542px;
+    margin-top: 0px;
+    background: url(../images/button_red.png) no-repeat;
+    color: #fff;
+    font-size: 20px;
+    width: 156px;
+    height: 37px;
+    border: none;
+    text-align: center;
+}
+
+.stars {
+    position: absolute;
+    margin-left: 542px;
+    width: 200px;
+    text-align: right;
+    margin-left: 490px;
+    margin-top: -8px;
+}
+
+.footsection {
+    float: left;
+    border-right: 1px solid #fff;
+    min-height: 150px;
+    width: 300px;
+    margin-left: 30px;
+}
+
+.footsection h2, .footsection a {
+    color: #fff;
+}
+
+.footsection ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footsection.last {
+    border: none;
+}
+
+.mask {
+    position: absolute;
+    z-index: 2;
+    background: url(../images/mask.png) no-repeat;
+    width: 700px;
+    height: 322px;
+}
+
+.mainbought {
+    background: url(../images/bg_bought.png) no-repeat;
+    height: 40px;
+    width: 100px;
+    padding-top: 60px;
+    text-align: center;
+    font-size: 24px;
+    color: #0048c6;
+}
+
+.mainleft {
+    background: url(../images/bg_left.png) no-repeat;
+    height: 40px;
+    width: 100px;
+    padding-top: 65px;
+    text-align: center;
+    font-size: 22px;
+    color: #0048c6;
+}
+
+.maindiscount {
+    background: url(../images/bg_discount.png) no-repeat;
+    height: 45px;
+    width: 100px;
+    padding-top: 55px;
+    text-align: center;
+    font-size: 32px;
+    color: #0048c6;
+}
+
+.mainoldprice {
+    background: url(../images/bg_oldprice.png) no-repeat;
+    height: 40px;
+    width: 100px;
+    padding-top: 60px;
+    text-align: center;
+    font-size: 24px;
+    color: #0048c6;
+}
+
+.mainprice {
+    background: url(../images/bg_ourprice.png) no-repeat;
+    height: 45px;
+    width: 100px;
+    padding-top: 55px;
+    text-align: center;
+    font-size: 24px;
+    color: #FFF;
+}
+
+.leftcontainer {
+    position: absolute;
+    z-index: 3;
+    padding: 5px;
+}
+
+.rightcontainer {
+    position: absolute;
+    z-index: 3;
+    padding: 5px;
+    margin-left: 590px;
+}
+
+.share {
+    height: 90px;
+    margin: 20px 0;
+}
+
+.dealdetails .gotobutton {
+    margin-top: 30px;
+}

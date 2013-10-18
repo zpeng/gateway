@@ -26,7 +26,6 @@ function outputHTMLStartFrontend($js_deps, $css_deps, $configManager)
     output_js_tag($js_deps);
     output_css_tag($css_deps);
 
-    echo "</head><body>";
 }
 
 function outputHTMLEnd()

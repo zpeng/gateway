@@ -26,6 +26,15 @@ $JS_GLOBAL = array(
     //"backbone-1.0.0" => "external/js/backbone-1.0.0/backbone-min.js"
 );
 
+$JS_FRONTEND = array(
+    "global_constants" => "includes/global_constants.js",
+    "jquery-1.9.1" => "external/js/jquery-1.9.1/jquery-1.9.1.min.js",
+    "headJs" => "external/js/headJs/head.min.js",
+    "jquery-hashchange" => array("external/js/jquery-hashchange/jquery.hashchange.min.js"),
+    "jquery-easytabs" => array("external/js/jquery-easytabs/jquery.easytabs.min.js"),
+);
+
+
 /*
  * The following dependencies will be loaded on demand
  */
