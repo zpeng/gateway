@@ -24,6 +24,6 @@ if ($result) {
     header("Location: " . SERVER_URL . "index.php");
 
 } else {
-    header("Location: " . SERVER_URL . "login.php?error=Wrong username or password!");
+    header("Location: " . SERVER_URL . "index.php?view=login&error=Wrong username or password!");
 }
 ?>

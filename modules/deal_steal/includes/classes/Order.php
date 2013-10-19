@@ -23,6 +23,16 @@ class Order{
     private $order_timestamp;
     private $order_status;
 
+    static public function cast(Order $object) {
+        return $object;
+    }
+
+    function __construct() {
+        $this->setQuantity(0);
+        $this->setUnitPrice(0.0);
+        $this->setTotalPrice(0.0);
+    }
+
     public function setClientId($client_id)
     {
         $this->client_id = $client_id;

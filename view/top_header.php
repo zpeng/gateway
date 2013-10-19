@@ -1,5 +1,5 @@
 <div id="header">
-    <div id="logo"></div>
+    <a href="index.php"><div id="logo"></div></a>
     <div id="search_region">
         <div class="map"><img src="images/uk_map.png" width="53" height="67" border="0" alt=""></div>
         <?
@@ -7,7 +7,7 @@
             ?>
             <div class="welcome">Welcome <span class="name"><?=$_SESSION['client_name']?></span> | <a href="control/logout.php">Logout?</a></div>
         <? } else { ?>
-            <div class="login"><a href="login.php">Login</a> | <a href="register.php">Register</a></div>
+            <div class="login"><a href="index.php?view=login">Login</a> | <a href="index.php?view=register">Register</a></div>
         <? } ?>
         <div class="search">
             <form action="">
@@ -25,10 +25,13 @@
         </div>
     </div>
     <div id="cart_region">
+        <a href="index.php?view=shopping_cart">
         <div id="cart">
-            SHOPPING CART: 3 deals
+            SHOPPING CART: <?
+            echo $client_order->getQuantity();
+            ?> items
         </div>
-
+        </a>
         <div class="welcome clear">Sign up for deals in <span class="name">London</span></div>
         <div class="signup">
             <form action="">
