@@ -43,7 +43,7 @@ if (!isset($_SESSION['client_order']) || $_SESSION['client_order'] == null) {
 $page_view = secureRequestParameter($_REQUEST["view"]);
 switch ($page_view) {
     case "shopping_cart" :
-        if (!client_is_login) {
+        if (!$_SESSION['client_is_login']) {
             header("Location: index.php?view=login");
         }
         break;
