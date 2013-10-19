@@ -1,17 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
 <?php
 // this is always required
-require_once('includes/bootstrap.php');
-use modules\core\includes\classes\ConfigurationManager;
-$configManager = new ConfigurationManager();
-$configManager->loadAllConfig();
+require_once('control/session.php');
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-
-<? echo  outputHTMLStartFrontend($JS_FRONTEND, array("css/style.css"), $configManager) ?>
-
+<? echo  outputHTMLStartFrontend($JS_FRONTEND, array("css/style.css"), $s_configManager) ?>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">var switchTo5x = true;</script>
 <script type="text/javascript">

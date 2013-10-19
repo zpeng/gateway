@@ -3,6 +3,14 @@ namespace  modules\core\includes\classes;
 
 class ConfigurationManager
 {
+    static public function cast(ConfigurationManager $object) {
+        return $object;
+    }
+
+    function __construct() {
+        $this->loadAllConfig();
+    }
+
     //put your code here
     public $configEntityList = array();
 

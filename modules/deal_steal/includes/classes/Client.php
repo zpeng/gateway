@@ -127,6 +127,10 @@ class Client
         return $this->client_tel;
     }
 
+    public function getFullName(){
+        return $this->getClientFirstname() . " " . $this->getClientSurname();
+    }
+
     public function loadByID($id)
     {
         $link = getConnection();
@@ -143,6 +147,40 @@ class Client
                               active
                    FROM       ds_client
                    WHERE      client_id =  " . $id;
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $this->setClientId($newArray['client_id']);
+            $this->setClientEmail($newArray['client_email']);
+            $this->setClientPassword($newArray['client_password']);
+            $this->setClientTitle($newArray['client_title']);
+            $this->setClientFirstname($newArray['client_firstname']);
+            $this->setClientSurname($newArray['client_surname']);
+            $this->setClientDob($newArray['client_dob']);
+            $this->setClientTel($newArray['client_tel']);
+            $this->setClientMobile($newArray['client_mobile']);
+            $this->setSubscribed($newArray['subscribed']);
+            $this->setActive($newArray['active']);
+        }
+    }
+
+    public function loadByEmail($email)
+    {
+        $link = getConnection();
+        $query = " SELECT     client_id,
+                              client_email,
+                              client_password,
+                              client_title,
+                              client_firstname,
+                              client_surname,
+                              client_dob,
+                              client_tel,
+                              client_mobile,
+                              subscribed,
+                              active
+                   FROM       ds_client
+                   WHERE      client_email =  '" . $email."'";
 
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);

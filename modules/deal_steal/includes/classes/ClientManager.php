@@ -3,6 +3,58 @@ namespace  modules\deal_steal\includes\classes;
 
 class ClientManager
 {
+    //put your code here
+    public function login($email, $password)
+    {
+        $link = getConnection();
+        $loginResult = false;
+        $password = md5($password);
+
+        $query = " select client_id,
+                        client_email,
+                        client_password,
+                        active
+                from    ds_client
+                where   active =   'Y'
+                and     client_email =       '" . $email . "'
+                and     client_password =   '" . $password . "'";
+
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+
+        $num_rows = mysql_num_rows($result); // Find no. of rows retrieved from DB
+
+        if ($num_rows == 1) {
+            $loginResult = true; // login successful
+        } else {
+            $loginResult = false; // login failure
+        }
+        return $loginResult;
+    }
+
+    public function checkClientExistsByEmail($email)
+    {
+        $link = getConnection();
+        $check_result = false;
+        $query = " select client_id
+                from    ds_client
+                where   active =   'Y'
+                and     client_email =  '" . $email . "'";
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+
+        $num_rows = mysql_num_rows($result); // Find no. of rows retrieved from DB
+
+        if ($num_rows == 1) {
+            $check_result = true; // login successful
+        } else {
+            $check_result = false; // login failure
+        }
+        return $check_result;
+    }
+
     public function loadAllClients($active='Y')
     {
         $clientList = array();

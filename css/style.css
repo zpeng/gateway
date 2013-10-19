@@ -303,6 +303,16 @@ input:hover, input:focus {
     color: #fff;
 }
 
+.page_title{
+    font-size: 17px;
+    color: #fff;
+    float: left;
+    margin-top: 9px;
+    margin-right: 15px;
+    padding-right: 15px;
+    height: 20px;
+}
+
 .leftnav {
     float: left;
     width: 60px;

@@ -2,8 +2,13 @@
     <div id="logo"></div>
     <div id="search_region">
         <div class="map"><img src="images/uk_map.png" width="53" height="67" border="0" alt=""></div>
-        <div class="welcome">Welcome <span class="name">Adil</span></div>
-        <div class="login"><a href="#">Login</a> | <a href="#">Register</a></div>
+        <?
+        if (isset($_SESSION['client_is_login']) && $_SESSION['client_is_login'] == true) {
+            ?>
+            <div class="welcome">Welcome <span class="name"><?=$_SESSION['client_name']?></span> | <a href="control/logout.php">Logout?</a></div>
+        <? } else { ?>
+            <div class="login"><a href="login.php">Login</a> | <a href="register.php">Register</a></div>
+        <? } ?>
         <div class="search">
             <form action="">
                 <input type="text" name="searchtext" class="searchtext" value="I am looking for">
