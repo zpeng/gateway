@@ -16,7 +16,7 @@
         <? } ?>
         <div class="search">
             <form action="">
-                <input type="text" name="searchtext" class="searchtext" value="I am looking for">
+                <input type="text" name="searchtext" class="searchtext" value="I am looking for" onfocus="if(this.value=='I am looking for') this.value='';">
 
                 <div class="searchselect">
                     <div class="searchselectimg">
@@ -51,7 +51,7 @@
         <div class="welcome clear">Sign up for deals in <span class="name">London</span></div>
         <div class="signup">
             <form action="">
-                <input type="text" name="signuptext" class="signuptext" value="Your email address">
+                <input type="text" name="signuptext" class="signuptext" value="Your email address" onfocus="if(this.value=='Your email address') this.value='';">
                 <input type="image" name="signupsubmit" class="signupsubmit" src="images/button_go.png">
             </form>
         </div>

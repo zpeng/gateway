@@ -3,9 +3,9 @@
         <h2>The fine print:</h2>
         <ul>
             <li>Ticket valid until Nov 30, 2013.</li>
-            <li>Ticket collection period: Oct 17, 2013 � Nov 29, 2013.</li>
+            <li>Ticket collection period: Oct 17, 2013 &pound; Nov 29, 2013.</li>
             <li>No bookings required. First-come, first-served basis.</li>
-            <li>Valid for collection from Mon � Sat: 10am � 7pm (not including Sundays, eve of public holidays, and
+            <li>Valid for collection from Mon &pound; Sat: 10am &pound; 7pm (not including Sundays, eve of public holidays, and
                 public holidays).
             </li>
 
@@ -55,8 +55,8 @@
 
                 <div class="rightcontainer">
                     <div class="maindiscount">66%</div>
-                    <div class="mainoldprice">�300</div>
-                    <div class="mainprice">�99</div>
+                    <div class="mainoldprice">&pound;300</div>
+                    <div class="mainprice">&pound;99</div>
                 </div>
 
                 <img src="images/deals/main1.jpg" width="700" height="322" border="0" alt="">
@@ -138,9 +138,9 @@
 
         <div class="dealimage"><a href="#"><img src="images/deals/deal2.jpg" width="225" height="147" border="0"
                                                 alt=""></a></div>
-        <div class="price">�99</div>
+        <div class="price">&pound;99</div>
         <div class="oldpriceholder">
-            <div class="oldprice">�300</div>
+            <div class="oldprice">&pound;300</div>
         </div>
     </div>
 
@@ -149,9 +149,9 @@
 
         <div class="dealimage"><a href="#"><img src="images/deals/deal3.jpg" width="225" height="147" border="0"
                                                 alt=""></a></div>
-        <div class="price">�99</div>
+        <div class="price">&pound;99</div>
         <div class="oldpriceholder">
-            <div class="oldprice">�300</div>
+            <div class="oldprice">&pound;300</div>
         </div>
     </div>
 
@@ -160,9 +160,9 @@
 
         <div class="dealimage"><a href="#"><img src="images/deals/deal4.jpg" width="225" height="147" border="0"
                                                 alt=""></a></div>
-        <div class="price">�99</div>
+        <div class="price">&pound;99</div>
         <div class="oldpriceholder">
-            <div class="oldprice">�300</div>
+            <div class="oldprice">&pound;300</div>
         </div>
     </div>
 
@@ -171,9 +171,9 @@
 
         <div class="dealimage"><a href="#"><img src="images/deals/deal1.jpg" width="225" height="147" border="0"
                                                 alt=""></a></div>
-        <div class="price">�99</div>
+        <div class="price">&pound;99</div>
         <div class="oldpriceholder">
-            <div class="oldprice">�300</div>
+            <div class="oldprice">&pound;300</div>
         </div>
     </div>
 
