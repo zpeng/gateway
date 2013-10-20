@@ -18,6 +18,22 @@ class CityManager
         return $city_map;
     }
 
+    public function loadCityList()
+    {
+        $city_list = array();
+        $link = getConnection();
+        $query = "select city_id,  city_name
+                  from	 ds_city ";
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $city = new City();
+            $city->setCityId($newArray['city_id']);
+            $city->setCityName($newArray['city_name']);
+            array_push($city_list, $city);
+        }
+        return $city_list;
+    }
 
     public function getCityTableDataSource()
     {

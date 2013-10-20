@@ -44,6 +44,9 @@ require_once('control/session.php');
         case "login" :
             include_once 'view/login.php';
             break;
+        case "register" :
+            include_once 'view/register.php';
+            break;
         case "shopping_cart" :
             include_once 'view/shopping_cart.php';
             break;

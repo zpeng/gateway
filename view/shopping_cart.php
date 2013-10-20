@@ -1,8 +1,18 @@
-<?php
-/**
- * Created by JetBrains PhpStorm.
- * User: zpeng
- * Date: 10/19/13
- * Time: 2:47 PM
- * To change this template use File | Settings | File Templates.
- */
+<!-- the main content -->
+<div id="main">
+
+    <!-- Left Menu -->
+    <? include_once("view/left_menu.php"); ?>
+
+
+    <div class="content">
+        <div class="subnav">
+            <span class="page_title">Shopping Cart</span>
+        </div>
+
+
+
+    </div>
+
+    <div class="clear"></div>
+</div>
