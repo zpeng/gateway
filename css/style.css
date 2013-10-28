@@ -123,7 +123,7 @@ h2 {
     text-align: center;
 }
 
-.searchtext, .searchselect, .signuptext {
+.searchtext, .searchselect, .signuptext, .inputtext {
     padding: 6px;
     border: solid 1px #E5E5E5;
     outline: 0;
@@ -184,6 +184,11 @@ input:hover, input:focus {
     margin-top: 0px;
     float: left;
     margin-right: 3px;
+}
+
+.inputtext {
+    margin-top: 7px;
+    margin-bottom: 5px;
 }
 
 #cart_region {
@@ -286,7 +291,7 @@ input:hover, input:focus {
     padding: 5px 0 0 0;
 }
 
-.subnav  ul li {
+.subnav ul li {
     float: left;
     margin-right: 15px;
     padding-right: 15px;
@@ -294,7 +299,7 @@ input:hover, input:focus {
     border-right: 1px solid #fff;
 }
 
-.subnav  ul li.last {
+.subnav ul li.last {
     border: none;
 }
 
@@ -303,7 +308,7 @@ input:hover, input:focus {
     color: #fff;
 }
 
-.page_title{
+.page_title {
     font-size: 17px;
     color: #fff;
     float: left;
@@ -692,4 +697,38 @@ input:hover, input:focus {
 
 .dealdetails .gotobutton {
     margin-top: 30px;
+}
+
+/* notification */
+span.info{
+    width: 680px;
+    margin-top:10px;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #0066cc;
+    border: 2px solid #152F7C;
+    border-radius:10px;
+    float: left;
+}
+
+span.error {
+    width: 680px;
+    margin-top:10px;
+    padding: 10px;
+    color: #ff0000;
+    background-color: #fee0e0;
+    border: 2px solid #ff0000;;
+    border-radius:10px;
+    float: left;
+}
+
+span.warning {
+    width: 680px;
+    margin-top:10px;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #ffcc00;
+    border: 2px solid #996600;
+    border-radius:10px;
+    float: left;
 }

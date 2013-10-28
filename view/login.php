@@ -10,6 +10,9 @@
             <span class="page_title">Customer Login</span>
         </div>
 
+        <? include_once("view/notification_bar.php"); ?>
+
+
         <form action="control/login.php">
             <table style="margin-left: 200px; margin-top: 60px;" width="300">
                 <tr>

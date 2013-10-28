@@ -48,9 +48,9 @@ class ClientManager
         $num_rows = mysql_num_rows($result); // Find no. of rows retrieved from DB
 
         if ($num_rows == 1) {
-            $check_result = true; // login successful
+            $check_result = true; // exits
         } else {
-            $check_result = false; // login failure
+            $check_result = false; // not exits
         }
         return $check_result;
     }
