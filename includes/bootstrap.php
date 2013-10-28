@@ -5,6 +5,13 @@ define('DB_NAME', "olly");
 define('DB_USER', "root");
 define('DB_PASSWORD', "");
 
+
+/** define SMTP related */
+define('SMTP_SERVER', "auth.smtp.1and1.co.uk");
+define('SMTP_USER', "admin@dealsteal.co");
+define('SMTP_PASSWORD', "19840617");
+define('SMTP_PORT', "25");
+
 /** define server and project location - used to load css and js files **/
 define('SERVER_URL', "http://localhost/gateway/");
 define('PROJECT_FOLDER', "/gateway"); // in case the project folder is sub-folder of the root folder

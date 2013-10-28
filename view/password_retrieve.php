@@ -7,13 +7,12 @@
 
     <div class="content">
         <div class="subnav">
-            <span class="page_title">Customer Login</span>
+            <span class="page_title">Send me my password</span>
         </div>
 
         <? include_once("view/notification_bar.php"); ?>
 
-
-        <form action="control/login.php">
+        <form action="control/password_retrieve.php">
             <table style="margin-left: 200px; margin-top: 60px;" width="300">
                 <tr>
                     <td width="100" align="right">Email:</td>
@@ -22,19 +21,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">Password:</td>
-                    <td align="right">
-                        <input id="password" name="password" type="password" class="searchtext">
-                    </td>
-                </tr>
-                <tr>
                     <td></td>
-                    <td align="right"><input type="image" name="login" class="searchsubmit"
+                    <td align="right"><input type="image" name="submit" class="searchsubmit"
                                              src="images/button_search.png"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td align="right"><a href="index.php?view=password_retrieve">Forgot your password?</a></td>
                 </tr>
             </table>
         </form>
@@ -61,10 +50,6 @@
             jQuery("#email").validate({
                 expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
                 message: "Please enter a valid Email"
-            });
-            jQuery("#password").validate({
-                expression: "if (VAL.length >= 8 && VAL) return true; else return false;",
-                message: "Please enter a valid Password (the length of password must exceed 8 characters)"
             });
         });
 

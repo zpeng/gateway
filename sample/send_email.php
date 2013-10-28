@@ -25,14 +25,12 @@ if ($template->loadByKey("customer_password_reset")) {
 }
 
 eden()->setLoader(true);
-
-$smtp = eden('mail')->smtp('auth.smtp.1and1.co.uk', 'admin@dealsteal.co', '19840617', 25);
+$smtp = eden('mail')->smtp(SMTP_SERVER, SMTP_USER, SMTP_PASSWORD, SMTP_PORT);
 
 $smtp->setSubject('Welcome!')
     ->setBody($content , true)
     ->addTo('aawan311@gmail.com')
     ->send();
-
 $smtp->disconnect();
 
 ?>

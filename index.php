@@ -44,6 +44,9 @@ require_once('control/session.php');
         case "login" :
             include_once 'view/login.php';
             break;
+        case "password_retrieve" :
+            include_once 'view/password_retrieve.php';
+            break;
         case "register" :
             include_once 'view/register.php';
             break;
