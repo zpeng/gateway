@@ -20,6 +20,9 @@ if (!empty($_REQUEST['operation'])) {
         $deal->setOfferPrice($_REQUEST["offer_price"]);
         $deal->setOnlineDate($_REQUEST["online_date"]);
         $deal->setOfflineDate($_REQUEST["offline_date"]);
+        $deal->setHasGeoData($_REQUEST["has_geo_data"]);
+        $deal->setLatitude($_REQUEST["latitude"]);
+        $deal->setLongitude($_REQUEST["longitude"]);
         $deal->update();
 
         $response_array['status'] = 'success';
@@ -56,6 +59,14 @@ if (!empty($_REQUEST['operation'])) {
         $deal->setId($_REQUEST["deal_id"]);
         $deal->setFinePrint($_REQUEST["fine_print"]);
         $deal->updateFinePrint();
+
+        $response_array['status'] = 'success';
+        header('Content-type: application/json');
+        echo json_encode($response_array);
+    }else if ($_REQUEST['operation'] == "voucher_template_update") {
+        $deal->setId($_REQUEST["deal_id"]);
+        $deal->setVoucher($_REQUEST["voucher_template"]);
+        $deal->updateVoucherTemplate();
 
         $response_array['status'] = 'success';
         header('Content-type: application/json');

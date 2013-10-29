@@ -21,7 +21,75 @@ class Deal
     public $offline_date;
     public $fine_print;
     public $image;
+    public $voucher;
+    public $has_geo_data;
+    public $longitude;
+    public $latitude;
     public $active;
+
+    /**
+     * @param mixed $has_geo_data
+     */
+    public function setHasGeoData($has_geo_data)
+    {
+        $this->has_geo_data = $has_geo_data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHasGeoData()
+    {
+        return $this->has_geo_data;
+    }
+
+    /**
+     * @param mixed $latitude
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param mixed $longitude
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param mixed $voucher
+     */
+    public function setVoucher($voucher)
+    {
+        $this->voucher = $voucher;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVoucher()
+    {
+        return $this->voucher;
+    }
 
     public function setActive($active)
     {
@@ -246,6 +314,10 @@ class Deal
                               fine_print,
                               deal_desc,
                               image,
+                              voucher_template,
+                              has_geo_data,
+                              latitude,
+                              longitude,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -279,6 +351,10 @@ class Deal
             $this->setFinePrint($newArray['fine_print']);
             $this->setDesc($newArray['deal_desc']);
             $this->setImage($newArray['image']);
+            $this->setVoucher($newArray['voucher_template']);
+            $this->setHasGeoData($newArray['has_geo_data']);
+            $this->setLatitude($newArray['latitude']);
+            $this->setLongitude($newArray['longitude']);
             $this->setActive($newArray['active']);
         }
 
@@ -308,6 +384,10 @@ class Deal
                                  online_date,
                                  offline_date,
                                  fine_print,
+                                 voucher_template,
+                                 has_geo_data,
+                                 latitude,
+                                 longitude,
                                  deal_desc)
                     VALUES (" . $this->getSupplierId() . ",
                             " . $this->getCategoryId() . ",
@@ -321,6 +401,10 @@ class Deal
                             '" . $this->getOnlineDate() . "',
                             '" . $this->getOfflineDate() . "',
                             '" . $this->getFinePrint() . "',
+                            '" . $this->getVoucher() . "',
+                            '" . $this->getHasGeoData() . "',
+                            " . $this->getLatitude() . ",
+                            " . $this->getLongitude() . ",
                             '" . $this->getDesc() . "');";
 
         executeUpdateQuery($link, $query);
@@ -343,7 +427,10 @@ class Deal
                       original_price = " . $this->getOriginalPrice() . ",
                       offer_price = " . $this->getOfferPrice() . ",
                       online_date = '" . $this->getOnlineDate() . "',
-                      offline_date = '" . $this->getOfflineDate() . "'
+                      offline_date = '" . $this->getOfflineDate() . "',
+                      has_geo_data = '" . $this->getHasGeoData() . "',
+                      latitude = " . $this->getLatitude() . ",
+                      longitude = " . $this->getLongitude() . "
                     WHERE deal_id  = " . $this->getId();
 
         executeUpdateQuery($link, $query);
@@ -379,6 +466,17 @@ class Deal
         $link = getConnection();
         $query = "  UPDATE ds_deal
                     SET fine_print = '" . $this->getFinePrint() . "'
+                    WHERE deal_id  = " . $this->getId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function updateVoucherTemplate()
+    {
+        $link = getConnection();
+        $query = "  UPDATE ds_deal
+                    SET voucher_template = '" . $this->getVoucher() . "'
                     WHERE deal_id  = " . $this->getId();
 
         executeUpdateQuery($link, $query);

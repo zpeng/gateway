@@ -25,6 +25,10 @@ class DealManager
                               fine_print,
                               deal_desc,
                               image,
+                              voucher_template,
+                              has_geo_data,
+                              latitude,
+                              longitude,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -57,6 +61,10 @@ class DealManager
             $deal->setFinePrint($newArray['fine_print']);
             $deal->setDesc($newArray['deal_desc']);
             $deal->setImage($newArray['image']);
+            $deal->setVoucher($newArray['voucher_template']);
+            $deal->setHasGeoData($newArray['has_geo_data']);
+            $deal->setLatitude($newArray['latitude']);
+            $deal->setLongitude($newArray['longitude']);
             $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
@@ -85,6 +93,10 @@ class DealManager
                               fine_print,
                               deal_desc,
                               image,
+                              voucher_template,
+                              has_geo_data,
+                              latitude,
+                              longitude,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -118,6 +130,10 @@ class DealManager
             $deal->setFinePrint($newArray['fine_print']);
             $deal->setDesc($newArray['deal_desc']);
             $deal->setImage($newArray['image']);
+            $deal->setVoucher($newArray['voucher_template']);
+            $deal->setHasGeoData($newArray['has_geo_data']);
+            $deal->setLatitude($newArray['latitude']);
+            $deal->setLongitude($newArray['longitude']);
             $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
