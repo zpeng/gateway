@@ -53,6 +53,14 @@ require_once('control/session.php');
         case "shopping_cart" :
             include_once 'view/shopping_cart.php';
             break;
+        case "deal_single" :
+            include_once 'view/deal_single.php';
+            break;
+
+
+        case "404" :
+            include_once 'view/404.php';
+            break;
         default :
             include_once 'view/main.php';
     }

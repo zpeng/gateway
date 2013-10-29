@@ -103,5 +103,10 @@ function secureRequestParameter($value)
     return $value;
 }
 
+function redirect_to_404($page_url="view/404.php"){
+    header("This is not the page you are looking for", true, 404);
+    include($page_url);
+    exit();
+}
 
 ?>
