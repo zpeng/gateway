@@ -2,38 +2,22 @@
     <select id="deal_city" name="deal_city">
         {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
     </select>
-
-
-
-
 </script>
 
 <script id="html_select_supplier_template" type="text/x-jquery-tmpl">
     <select id="deal_supplier" name="deal_supplier">
         {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
     </select>
-
-
-
-
 </script>
 
 <script id="html_select_deal_type_template" type="text/x-jquery-tmpl">
-    <select id="deal_type_dropdown" name="deal_type_dropdown">
+    <select id="deal_type" name="deal_type">
         {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
     </select>
-
-
-
-
 </script>
 
 <script id="html_option_template" type="text/x-jquery-tmpl">
     <option {{if id == $item.selectedId}} selected="selected"{{/if}} value="${id}">${name}</option>
-
-
-
-
 </script>
 <h1 class="content_title">Update Deal</h1>
 <div id="notification"></div>

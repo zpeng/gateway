@@ -5,9 +5,9 @@ use modules\deal_steal\includes\classes\Deal;
 $module_code = secureRequestParameter($_REQUEST["module_code"]);
 
 $deal_title = secureRequestParameter($_REQUEST["deal_title"]);
-$deal_city = secureRequestParameter($_REQUEST["deal_city"]);
-$deal_supplier = secureRequestParameter($_REQUEST["deal_supplier"]);
-$deal_type = secureRequestParameter($_REQUEST["deal_type"]);
+$deal_city = secureRequestParameter($_REQUEST["city_dropdown"]);
+$deal_supplier = secureRequestParameter($_REQUEST["supplier_dropdown"]);
+$deal_type = secureRequestParameter($_REQUEST["deal_type_dropdown"]);
 $available_quantity = secureRequestParameter($_REQUEST["available_quantity"]);
 $original_price = secureRequestParameter($_REQUEST["original_price"]);
 $offer_price = secureRequestParameter($_REQUEST["offer_price"]);
@@ -29,7 +29,7 @@ $deal->setOfflineDate($offline_date);
 $id = $deal->insert();
 
 $url = SERVER_URL . "admin/main.php?module_code=" . $module_code . "&view=deal_update&deal_id=".$id; // target of the redirect
-$msg = "New Deal [" . $deal_title . "] has been created";
+$msg = "New Deal " . $deal_title . " has been created";
 $url = $url . "&info=" . $msg;
 
 header("Location: " . $url);

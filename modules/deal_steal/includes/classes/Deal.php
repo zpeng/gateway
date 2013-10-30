@@ -429,9 +429,9 @@ class Deal
                             '" . $this->getOfflineDate() . "',
                             '" . $this->getFinePrint() . "',
                             '" . $this->getVoucher() . "',
-                            '" . $this->getHasGeoData() . "',
-                            " . $this->getLatitude() . ",
-                            " . $this->getLongitude() . ",
+                            'N',
+                            0,
+                            0,
                             '" . $this->getDesc() . "');";
 
         executeUpdateQuery($link, $query);
