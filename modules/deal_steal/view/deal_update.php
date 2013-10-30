@@ -5,12 +5,14 @@
 
 
 
+
 </script>
 
 <script id="html_select_supplier_template" type="text/x-jquery-tmpl">
     <select id="deal_supplier" name="deal_supplier">
         {{tmpl(data, {selectedId:selected_value }) "#html_option_template"}}
     </select>
+
 
 
 
@@ -23,10 +25,12 @@
 
 
 
+
 </script>
 
 <script id="html_option_template" type="text/x-jquery-tmpl">
     <option {{if id == $item.selectedId}} selected="selected"{{/if}} value="${id}">${name}</option>
+
 
 
 
@@ -213,7 +217,8 @@ $deal->loadById($deal_id);
                         <input name="deal_image_uploaded" id="deal_image_uploaded" type="file"/>
                         <span id="file_size"></span>
                         <br/>
-                        <span>(Support Type:jpg, jpeg, png, gif.  Maximum file size: 2Mb)</span>
+                        <span>(Support Type:jpg, jpeg, png, gif.  Maximum file size: 2Mb)</span> <br>
+                        <span>Recommended resolution: 700 X 322</span>
                     </td>
                 </tr>
                 <tr>

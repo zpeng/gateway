@@ -283,6 +283,14 @@ class Deal
         return $this->image;
     }
 
+    public function getDiscountRate(){
+        return round (($this->getOriginalPrice() - $this->getOfferPrice())/$this->getOriginalPrice(), 2) * 100;
+    }
+
+    public function getNumBought(){
+        return $this->original_quantity - $this->quantity;
+    }
+
     public function getTooltipMsg(){
         $msg = "Supplier: " .$this->getSupplierName();
         $msg = $msg."<br/>Online Date: ".$this->getOnlineDate();
