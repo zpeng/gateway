@@ -203,16 +203,16 @@ $deal->loadById($deal_id);
     </div>
 
     <div id="tabs-6">
-        <form id="DealImagaeUpdateForm" action="<?= SERVER_URL ?>modules/deal_steal/control/deal_update.php"
-              method="post"
-              enctype='multipart/form-data'>
-            <input type="hidden" value="<? echo $deal_id ?>" id="deal_id" name="deal_id"/>
-            <input type="hidden" value="update_deal_image" id="operation" name="operation"/>
-            <input type="hidden" value="<? echo $module_code ?>" name="module_code" id="module_code"/>
             <table class="general_table">
                 <tr>
-                    <td width="150" align="right"></td>
-                    <td>
+                    <form id="DealImageUpdateForm" action="<?= SERVER_URL ?>modules/deal_steal/control/deal_update.php"
+                          method="post"
+                          enctype='multipart/form-data'>
+                        <input type="hidden" value="<? echo $deal_id ?>" id="deal_id" name="deal_id"/>
+                        <input type="hidden" value="update_deal_image" id="operation" name="operation"/>
+                        <input type="hidden" value="<? echo $module_code ?>" name="module_code" id="module_code"/>
+                    <td width="50" align="right">Primary Image</td>
+                    <td width="350">
                         <?= createImage($GLOBAL_DEPS[$_REQUEST['module_code']]["deal_image_folder"] . $deal->getImage(), "deal_image", 300, "", 0) ?>
                         <input name="deal_image_uploaded" id="deal_image_uploaded" type="file"/>
                         <span id="file_size"></span>
@@ -220,15 +220,45 @@ $deal->loadById($deal_id);
                         <span>(Support Type:jpg, jpeg, png, gif.  Maximum file size: 2Mb)</span> <br>
                         <span>Recommended resolution: 700 X 322</span>
                     </td>
+                        <td>
+                            <input name='update_deal_image_button' id="update_deal_image_button" type='submit'
+                                   value='update'
+                                   title="update"/>
+                        </td>
+                    </form>
+                </tr>
+                <tr height="50">
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><input name='update_deal_image_button' id="update_deal_image_button" type='submit'
+                    <form id="DealThumbnailUpdateForm" action="<?= SERVER_URL ?>modules/deal_steal/control/deal_update.php"
+                          method="post"
+                          enctype='multipart/form-data'>
+                        <input type="hidden" value="<? echo $deal_id ?>" id="deal_id" name="deal_id"/>
+                        <input type="hidden" value="update_deal_thumbnail" id="operation" name="operation"/>
+                        <input type="hidden" value="<? echo $module_code ?>" name="module_code" id="module_code"/>
+                    <td align="right">Thumbnail</td>
+                    <td>
+                        <?= createImage($GLOBAL_DEPS[$_REQUEST['module_code']]["deal_image_folder"] . $deal->getThumbnail(), "deal_image", 300, "", 0) ?>
+                        <input name="deal_thumbnail_uploaded" id="deal_thumbnail_uploaded" type="file"/>
+                        <span id="file_size"></span>
+                        <br/>
+                        <span>(Support Type:jpg, jpeg, png, gif.  Maximum file size: 2Mb)</span> <br>
+                        <span>Recommended resolution: 225 X 147</span>
+                    </td>
+                    <td>
+                        <input name='update_deal_thumbnail_button' id="update_deal_thumbnail_button" type='submit'
                                value='update'
-                               title="update"/></td>
+                               title="update"/>
+                    </td>
+                    </form>
                 </tr>
+
+
             </table>
-        </form>
+
     </div>
 
     <div id="tabs-7">
@@ -625,6 +655,8 @@ head.js(<?=outputDependencies(
 
 // **** tab 6 logic ****
     $("#update_deal_image_button").button();
+    $("#update_deal_thumbnail_button").button();
+
     var max_size = 2097152;
     var support_type = ["jpg", "png", "jpeg", "gif"];
     $('#deal_image_uploaded').bind('change', function () {
@@ -644,6 +676,26 @@ head.js(<?=outputDependencies(
             this.files = [];
             jQuery("#file_size").html("");
             jQuery("input#deal_image_uploaded").val("");
+        }
+    });
+
+    $('#deal_thumbnail_uploaded').bind('change', function () {
+        var iSize = (Math.round((this.files[0].size / 1024 / 1024) * 100) / 100)
+        jQuery("#file_size").html(iSize + "Mb");
+        var ext = $('#deal_thumbnail_uploaded').val().split('.').pop().toLowerCase();
+
+        if (this.files[0].size > max_size) {
+            alert("File size should not exceed 2mb!");
+            this.files = [];
+            jQuery("#file_size").html("");
+            jQuery("input#deal_thumbnail_uploaded").val("");
+        }
+
+        if ($.inArray(ext, support_type) == -1) {
+            alert("Un-supported file type!");
+            this.files = [];
+            jQuery("#file_size").html("");
+            jQuery("input#deal_thumbnail_uploaded").val("");
         }
     });
 

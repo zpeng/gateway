@@ -21,6 +21,7 @@ class Deal
     public $offline_date;
     public $fine_print;
     public $image;
+    public $thumbnail;
     public $voucher;
     public $has_geo_data;
     public $longitude;
@@ -283,6 +284,22 @@ class Deal
         return $this->image;
     }
 
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
     public function getDiscountRate(){
         return round (($this->getOriginalPrice() - $this->getOfferPrice())/$this->getOriginalPrice(), 2) * 100;
     }
@@ -322,6 +339,7 @@ class Deal
                               fine_print,
                               deal_desc,
                               image,
+                              thumbnail,
                               voucher_template,
                               has_geo_data,
                               latitude,
@@ -358,6 +376,7 @@ class Deal
             $this->setOfflineDate($newArray['offline_date']);
             $this->setFinePrint($newArray['fine_print']);
             $this->setDesc($newArray['deal_desc']);
+            $this->setThumbnail($newArray['thumbnail']);
             $this->setImage($newArray['image']);
             $this->setVoucher($newArray['voucher_template']);
             $this->setHasGeoData($newArray['has_geo_data']);
@@ -496,6 +515,17 @@ class Deal
         $link = getConnection();
         $query = "  UPDATE ds_deal
                     SET image = '" . $this->getImage() . "'
+                    WHERE deal_id  = " . $this->getId();
+
+        executeUpdateQuery($link, $query);
+        closeConnection($link);
+    }
+
+    public function updateThumbnail()
+    {
+        $link = getConnection();
+        $query = "  UPDATE ds_deal
+                    SET thumbnail = '" . $this->getThumbnail() . "'
                     WHERE deal_id  = " . $this->getId();
 
         executeUpdateQuery($link, $query);
