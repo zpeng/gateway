@@ -1,9 +1,13 @@
 <?php
 use modules\deal_steal\includes\classes\Deal;
+use modules\deal_steal\includes\classes\DealManager;
+
 
 if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
     $deal_id = secureRequestParameter($_REQUEST["deal_id"]);
     $deal = new Deal();
+    $dealManager = new DealManager();
+
     if (!$deal->loadById($deal_id)) {
         redirect_to_404();
     }
@@ -40,18 +44,19 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                 <div class="mask"></div>
 
                 <div class="leftcontainer">
-                    <div class="mainlogo"><img src="images/brands/logo.png" width="100" height="100" border="0" alt=""></div>
-                    <div class="mainbought"><?=$deal->getNumBought()?></div>
+                    <div class="mainlogo"><img src="images/brands/logo.png" width="100" height="100" border="0" alt="">
+                    </div>
+                    <div class="mainbought"><?= $deal->getNumBought() ?></div>
                     <div class="mainleft">30 days</div>
                 </div>
 
                 <div class="rightcontainer">
-                    <div class="maindiscount"><?=$deal->getDiscountRate()?>%</div>
-                    <div class="mainoldprice">&pound;<?=$deal->getOriginalPrice()?></div>
-                    <div class="mainprice">&pound;<?=$deal->getOfferPrice()?></div>
+                    <div class="maindiscount"><?= $deal->getDiscountRate() ?>%</div>
+                    <div class="mainoldprice">&pound;<?= $deal->getOriginalPrice() ?></div>
+                    <div class="mainprice">&pound;<?= $deal->getOfferPrice() ?></div>
                 </div>
 
-                <img src="images/deals/<?=$deal->getImage()?>" width="700" height="322" border="0" alt="">
+                <img src="images/deals/<?= $deal->getImage() ?>" width="700" height="322" border="0" alt="">
             </div>
 
             <div class="goto"><input class="gotobutton" type="button" name="goto" value="BUY NOW!"></div>
@@ -63,9 +68,10 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                 <span class='st_googleplus_vcount' displayText='Google +'></span>
                 <span class='st_twitter_vcount' displayText='Tweet'></span>
                 <span class='st_email_vcount' displayText='Email'></span>
-                <script type="text/javascript">var switchTo5x=true;</script>
+                <script type="text/javascript">var switchTo5x = true;</script>
                 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-                <script type="text/javascript">stLight.options({publisher: "c5859c6b-c438-4b38-9e2d-9d7e9774c3a3", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+                <script
+                    type="text/javascript">stLight.options({publisher: "c5859c6b-c438-4b38-9e2d-9d7e9774c3a3", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
             </div>
 
 
@@ -77,9 +83,9 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                 <li class='tab'><a href="#tabs1">About This Deal</a></li>
                 <li class='tab'><a href="#tabs2">Terms And Conditions</a></li>
 
-                <?  if ($deal->getHasGeoData() == "Y") {?>
+                <? if ($deal->getHasGeoData() == "Y") { ?>
                     <li class='tab'><a href="#tabs3">Location</a></li>
-                <?}?>
+                <? } ?>
 
             </ul>
             <div class='panel-container'>
@@ -91,13 +97,13 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                     <?= $deal->getFinePrint() ?>
                 </div>
 
-                <?  if ($deal->getHasGeoData() == "Y") {?>
-                <div id="tabs3"><br>
-                    <iframe width="680" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://maps.google.co.uk/maps?q=google+map&amp;ie=UTF8&amp;gl=uk&amp;t=m&amp;ll=<?= $deal->getLongitude()?>,<?=$deal->getLatitude()?>&amp;spn=0.180164,0.151062&amp;z=11&amp;iwloc=A&amp;output=embed"></iframe>
-                    <br/>
-                </div>
-                <?}?>
+                <? if ($deal->getHasGeoData() == "Y") { ?>
+                    <div id="tabs3"><br>
+                        <iframe width="680" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                src="https://maps.google.co.uk/maps?q=google+map&amp;ie=UTF8&amp;gl=uk&amp;t=m&amp;ll=<?= $deal->getLongitude() ?>,<?= $deal->getLatitude() ?>&amp;spn=0.180164,0.151062&amp;z=11&amp;iwloc=A&amp;output=embed"></iframe>
+                        <br/>
+                    </div>
+                <? } ?>
 
             </div>
         </div>
@@ -114,51 +120,28 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
     <!-- Other deals -->
 
     <h2>Other Deals:</h2>
+    <?
+    $latest_deals = $dealManager->loadLatestDeals(4);
 
-    <div class="deal">
-        <h2><a href="#">Deal 1</a></h2>
+    if (sizeof($latest_deals) > 0) {
+        foreach ($latest_deals as $deal) {
 
-        <div class="dealimage"><a href="#"><img src="images/deals/deal2.jpg" width="225" height="147" border="0"
-                                                alt=""></a></div>
-        <div class="price">&pound;99</div>
-        <div class="oldpriceholder">
-            <div class="oldprice">&pound;300</div>
-        </div>
-    </div>
+            ?>
+            <div class="deal">
+                <h2><a href="index.php?view=deal_single&deal_id=<?= $deal->getId() ?>"><?= $deal->getTitle() ?></a></h2>
 
-    <div class="deal">
-        <h2><a href="#">Deal 2</a></h2>
-
-        <div class="dealimage"><a href="#"><img src="images/deals/deal3.jpg" width="225" height="147" border="0"
-                                                alt=""></a></div>
-        <div class="price">&pound;99</div>
-        <div class="oldpriceholder">
-            <div class="oldprice">&pound;300</div>
-        </div>
-    </div>
-
-    <div class="deal">
-        <h2><a href="#">Deal 3</a></h2>
-
-        <div class="dealimage"><a href="#"><img src="images/deals/deal4.jpg" width="225" height="147" border="0"
-                                                alt=""></a></div>
-        <div class="price">&pound;99</div>
-        <div class="oldpriceholder">
-            <div class="oldprice">&pound;300</div>
-        </div>
-    </div>
-
-    <div class="deal">
-        <h2><a href="#">Deal 4</a></h2>
-
-        <div class="dealimage"><a href="#"><img src="images/deals/deal1.jpg" width="225" height="147" border="0"
-                                                alt=""></a></div>
-        <div class="price">&pound;99</div>
-        <div class="oldpriceholder">
-            <div class="oldprice">&pound;300</div>
-        </div>
-    </div>
-
+                <div class="dealimage"><a href="index.php?view=deal_single&deal_id=<?= $deal->getId() ?>">
+                        <img src="images/deals/<?= $deal->getThumbnail() ?>" width="225" height="147" border="0" alt="">
+                    </a></div>
+                <div class="price">&pound;<?= $deal->getOfferPrice() ?></div>
+                <div class="oldpriceholder">
+                    <div class="oldprice">&pound;<?= $deal->getOriginalPrice() ?></div>
+                </div>
+            </div>
+        <?
+        }
+    }
+    ?>
 
 </div>
 <div class="clear"></div>

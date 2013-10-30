@@ -144,6 +144,78 @@ class DealManager
         return $deal_list;
     }
 
+    public function loadLatestDeals($size = 4)
+    {
+        $deal_list = array();
+        $link = getConnection();
+        $query = " SELECT     ds_deal.deal_id,
+                              ds_deal.supplier_id,
+                              ds_supplier.supplier_name,
+                              ds_deal.category_id,
+                              ds_category.category_name,
+                              ds_deal.city_id,
+                              ds_city.city_name,
+                              deal_title,
+                              deal_type,
+                              original_quantity,
+                              quantity,
+                              original_price,
+                              offer_price,
+                              online_date,
+                              offline_date,
+                              fine_print,
+                              deal_desc,
+                              image,
+                              thumbnail,
+                              voucher_template,
+                              has_geo_data,
+                              latitude,
+                              longitude,
+                              ds_deal.active
+                            FROM
+                              ds_deal,
+                              ds_category,
+                              ds_supplier,
+                              ds_city
+                            WHERE ds_deal.active = 'Y'
+                              AND ds_category.category_id = ds_deal.category_id
+                              AND ds_city.city_id = ds_deal.city_id
+                              AND ds_supplier.supplier_id = ds_deal.supplier_id
+                            ORDER BY online_date DESC
+                            LIMIT 0, ".$size;
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        while ($newArray = mysql_fetch_array($result)) {
+            $deal = new Deal();
+            $deal->setId($newArray['deal_id']);
+            $deal->setSupplierId($newArray['supplier_id']);
+            $deal->setSupplierName($newArray['supplier_name']);
+            $deal->setSupplierId($newArray['category_id']);
+            $deal->setCategoryName($newArray['category_name']);
+            $deal->setCityId($newArray['city_id']);
+            $deal->setCityName($newArray['city_name']);
+            $deal->setTitle($newArray['deal_title']);
+            $deal->setType($newArray['deal_type']);
+            $deal->setOriginalQuantity($newArray['original_quantity']);
+            $deal->setQuantity($newArray['quantity']);
+            $deal->setOriginalPrice($newArray['original_price']);
+            $deal->setOfferPrice($newArray['offer_price']);
+            $deal->setOnlineDate($newArray['online_date']);
+            $deal->setOfflineDate($newArray['offline_date']);
+            $deal->setFinePrint($newArray['fine_print']);
+            $deal->setDesc($newArray['deal_desc']);
+            $deal->setImage($newArray['image']);
+            $deal->setThumbnail($newArray['thumbnail']);
+            $deal->setVoucher($newArray['voucher_template']);
+            $deal->setHasGeoData($newArray['has_geo_data']);
+            $deal->setLatitude($newArray['latitude']);
+            $deal->setLongitude($newArray['longitude']);
+            $deal->setActive($newArray['active']);
+            array_push($deal_list, $deal);
+        }
+        return $deal_list;
+    }
+
     public function getDealsTableDataSource()
     {
         $deal_list = $this->loadAllDeals();
