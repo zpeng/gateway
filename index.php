@@ -57,6 +57,10 @@ require_once('session.php');
             include_once 'view/deal.php';
             break;
 
+        case "article" :
+            include_once 'view/article.php';
+            break;
+
         case "404" :
             include_once 'view/404.php';
             break;

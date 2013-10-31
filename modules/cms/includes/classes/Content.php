@@ -157,6 +157,15 @@ class Content
             $this->set_last_modify_by_user_id($newArray['content_last_modify_by']);
             $this->setActive($newArray['active']);
         }
+
+        $num_rows = mysql_num_rows($result); // Find no. of rows retrieved from DB
+
+        if ($num_rows == 1) {
+            $fetch_success = true; // login successful
+        } else {
+            $fetch_success = false; // login failure
+        }
+        return $fetch_success;
     }
 
     public function insert()

@@ -4,20 +4,16 @@
         <div class="footsection first">
             <h2>Find Out More:</h2>
             <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">FAQs</a></li>
-                <li><a href="#">.....</a></li>
-                <li><a href="#">.....</a></li>
+                <li><a href="index.php?view=article&content_id=1">About Us</a></li>
+                <li><a href="index.php?view=article&content_id=2">FAQs</a></li>
             </ul>
         </div>
 
         <div class="footsection">
             <h2>Legal:</h2>
             <ul>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">.....</a></li>
-                <li><a href="#">.....</a></li>
+                <li><a href="index.php?view=article&content_id=3">Terms & Conditions</a></li>
+                <li><a href="index.php?view=article&content_id=4">Privacy Policy</a></li>
             </ul>
         </div>
 

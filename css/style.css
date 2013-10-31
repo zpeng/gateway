@@ -700,35 +700,39 @@ input:hover, input:focus {
 }
 
 /* notification */
-span.info{
+span.info {
     width: 680px;
-    margin-top:10px;
+    margin-top: 10px;
     padding: 10px;
     color: #ffffff;
     background-color: #0066cc;
     border: 2px solid #152F7C;
-    border-radius:10px;
+    border-radius: 10px;
     float: left;
 }
 
 span.error {
     width: 680px;
-    margin-top:10px;
+    margin-top: 10px;
     padding: 10px;
     color: #ff0000;
     background-color: #fee0e0;
     border: 2px solid #ff0000;;
-    border-radius:10px;
+    border-radius: 10px;
     float: left;
 }
 
 span.warning {
     width: 680px;
-    margin-top:10px;
+    margin-top: 10px;
     padding: 10px;
     color: #ffffff;
     background-color: #ffcc00;
     border: 2px solid #996600;
-    border-radius:10px;
+    border-radius: 10px;
     float: left;
+}
+
+.article {
+    padding: 20px;
 }
