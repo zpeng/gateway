@@ -1,6 +1,6 @@
 <?php
 // this is always required
-require_once('control/session.php');
+require_once('session.php');
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>

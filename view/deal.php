@@ -7,7 +7,7 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
     $deal_id = secureRequestParameter($_REQUEST["deal_id"]);
     $deal = new Deal();
     $dealManager = new DealManager();
-    $deal= $dealManager->clientFetchSingleDeal($deal_id);
+    $deal = $dealManager->clientFetchSingleDeal($deal_id);
     if ($deal == null) {
         redirect_to_404();
     }
@@ -59,7 +59,12 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                 <img src="images/deals/<?= $deal->getImage() ?>" width="700" height="322" border="0" alt="">
             </div>
 
-            <div class="goto"><input class="gotobutton" type="button" name="goto" value="BUY NOW!"></div>
+            <div class="goto">
+                <form action="control/shopping_cart_add.php">
+                    <input type="hidden" name="deal_id" value="<?= $deal->getId() ?>">
+                    <input class="gotobutton" type="submit" name="goto" value="BUY NOW!">
+                </form>
+            </div>
 
             <div class="share">
                 <span class='st_facebook_vcount' displayText='Facebook'></span>

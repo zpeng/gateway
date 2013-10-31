@@ -191,7 +191,7 @@ class Deal
 
     public function getOfferPrice()
     {
-        return $this->offer_price;
+        return  number_format($this->offer_price, 2, '.', '');
     }
 
     public function setOfflineDate($offline_date)
@@ -221,7 +221,7 @@ class Deal
 
     public function getOriginalPrice()
     {
-        return $this->original_price;
+        return  number_format($this->original_price, 2, '.', '');
     }
 
     public function setOriginalQuantity($original_quantity)

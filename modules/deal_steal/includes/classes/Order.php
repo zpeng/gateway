@@ -5,14 +5,18 @@ class Order{
 
     private $order_id;
     private $order_code;
+
     private $client_id;
     private $client_name;
+
     private $deal_id;
     private $deal_name;
+    private $deal_thumbnail;
 
     private $quantity;
     private $unit_price;
     private $total_price;
+
     private $payment_method;
 
     private $delivery_postcode;
@@ -30,7 +34,6 @@ class Order{
     function __construct() {
         $this->setQuantity(0);
         $this->setUnitPrice(0.0);
-        $this->setTotalPrice(0.0);
     }
 
     public function setClientId($client_id)
@@ -71,6 +74,22 @@ class Order{
     public function getDealName()
     {
         return $this->deal_name;
+    }
+
+    /**
+     * @param mixed $deal_thumbnail
+     */
+    public function setDealThumbnail($deal_thumbnail)
+    {
+        $this->deal_thumbnail = $deal_thumbnail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDealThumbnail()
+    {
+        return $this->deal_thumbnail;
     }
 
     public function setDeliveryAdd1($delivery_add_1)
@@ -173,14 +192,9 @@ class Order{
         return $this->quantity;
     }
 
-    public function setTotalPrice($total_price)
-    {
-        $this->total_price = $total_price;
-    }
-
     public function getTotalPrice()
     {
-        return $this->total_price;
+        return number_format($this->unit_price * $this->quantity, 2, '.', '');
     }
 
     public function setUnitPrice($unit_price)
@@ -190,8 +204,10 @@ class Order{
 
     public function getUnitPrice()
     {
-        return $this->unit_price;
+        return number_format($this->unit_price, 2, '.', '');
     }
+
+
 
     public function loadByID($id)
     {
