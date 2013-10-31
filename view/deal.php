@@ -7,8 +7,8 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
     $deal_id = secureRequestParameter($_REQUEST["deal_id"]);
     $deal = new Deal();
     $dealManager = new DealManager();
-
-    if (!$deal->loadById($deal_id)) {
+    $deal= $dealManager->clientFetchSingleDeal($deal_id);
+    if ($deal == null) {
         redirect_to_404();
     }
 } else {
@@ -121,7 +121,7 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
 
     <h2>Other Deals:</h2>
     <?
-    $latest_deals = $dealManager->loadLatestDeals(4);
+    $latest_deals = $dealManager->clientFetchLatestDealList(4);
 
     if (sizeof($latest_deals) > 0) {
         foreach ($latest_deals as $deal) {
