@@ -342,8 +342,8 @@ head.js(<?=outputDependencies(
             var online_date = $("#online_date").val();
             var offline_date = $("#offline_date").val();
             var has_geo_data = $("#has_geo_data").prop('checked') ? "Y" : "N";
-            var latitude = $("#latitude").val() ? 0 : $("#latitude").val();
-            var longitude = $("#longitude").val() ? 0 : $("#longitude").val();
+            var latitude = $("#latitude").val() ;
+            var longitude = $("#longitude").val();
             $.ajax({
                 url: SERVER_URL + "modules/deal_steal/control/deal_update.php",
                 type: "POST",

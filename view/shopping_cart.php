@@ -22,13 +22,13 @@ if (!isset($client_order) && is_null($client_order)) {
         <table>
             <tr>
                 <td>
-                    <a href="index.php?view=deal_single&deal_id=<?= $client_order->getDealId() ?>">
+                    <a href="index.php?view=deal&deal_id=<?= $client_order->getDealId() ?>">
                         <img src="images/deals/<?= $client_order->getDealThumbnail() ?>" width="225" height="147"
                              border="0" alt="">
                     </a>
                 </td>
                 <td>
-                    <a href="index.php?view=deal_single&deal_id=<?= $client_order->getDealId() ?>">
+                    <a href="index.php?view=deals&deal_id=<?= $client_order->getDealId() ?>">
                         <?= $client_order->getDealName() ?>
                     </a>
                 </td>

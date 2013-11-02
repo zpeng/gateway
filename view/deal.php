@@ -105,7 +105,7 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                 <? if ($deal->getHasGeoData() == "Y") { ?>
                     <div id="tabs3"><br>
                         <iframe width="680" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                                src="https://maps.google.co.uk/maps?q=google+map&amp;ie=UTF8&amp;gl=uk&amp;t=m&amp;ll=<?= $deal->getLongitude() ?>,<?= $deal->getLatitude() ?>&amp;spn=0.180164,0.151062&amp;z=11&amp;iwloc=A&amp;output=embed"></iframe>
+                                src="https://maps.google.co.uk/maps?q=google+map&amp;ie=UTF8&amp;gl=uk&amp;t=m&amp;ll=<?= $deal->getLatitude() ?>,<?= $deal->getLongitude() ?>&amp;spn=0.180164,0.151062&amp;z=11&amp;iwloc=A&amp;output=embed"></iframe>
                         <br/>
                     </div>
                 <? } ?>
@@ -133,9 +133,9 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
 
             ?>
             <div class="deal">
-                <h2><a href="index.php?view=deal_single&deal_id=<?= $deal->getId() ?>"><?= $deal->getTitle() ?></a></h2>
+                <h2><a href="index.php?view=deal&deal_id=<?= $deal->getId() ?>"><?= $deal->getTitle() ?></a></h2>
 
-                <div class="dealimage"><a href="index.php?view=deal_single&deal_id=<?= $deal->getId() ?>">
+                <div class="dealimage"><a href="index.php?view=deal&deal_id=<?= $deal->getId() ?>">
                         <img src="images/deals/<?= $deal->getThumbnail() ?>" width="225" height="147" border="0" alt="">
                     </a></div>
                 <div class="price">&pound;<?= $deal->getOfferPrice() ?></div>
