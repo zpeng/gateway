@@ -5,10 +5,10 @@ use modules\deal_steal\includes\classes\DealManager;
 
 if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
     $deal_id = secureRequestParameter($_REQUEST["deal_id"]);
-    $curr_deal= new Deal();
+    $curr_deal = new Deal();
     $dealManager = new DealManager();
-    $curr_deal= $dealManager->clientFetchSingleDealFullDetail($deal_id);
-    if ($curr_deal== null) {
+    $curr_deal = $dealManager->clientFetchSingleDealFullDetail($deal_id);
+    if ($curr_deal == null) {
         redirect_to_404();
     }
 } else {
@@ -32,7 +32,8 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
     <!-- Deals -->
     <div class="deals">
         <div id="deal_rating" class="stars">
-            <div class="rateit bigstars" data-rateit-starwidth="32" data-rateit-starheight="32" data-dealid="<?=$deal_id?>">
+            <div class="rateit bigstars" data-rateit-starwidth="32" data-rateit-starheight="32"
+                 data-dealid="<?= $deal_id ?>">
             </div>
         </div>
 
@@ -43,7 +44,9 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                 <div class="mask"></div>
 
                 <div class="leftcontainer">
-                    <div class="mainlogo"><img src="images/suppliers/logo/<?= $curr_deal->getSupplierLogo() ?>" width="86" height="86" border="0" style="margin-left: 5px;">
+                    <div class="mainlogo"><img src="images/suppliers/logo/<?= $curr_deal->getSupplierLogo() ?>"
+                                               width="86" height="86" border="0"
+                                               style="margin-left: 7px;margin-top:7px;margin-bottom: 7px">
                     </div>
                     <div class="mainbought"><?= $curr_deal->getNumBought() ?></div>
                     <div class="mainleft">30 days</div>
@@ -101,9 +104,9 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                     <?= $curr_deal->getFinePrint() ?>
                 </div>
 
-                <? if ($curr_deal->getHasGeoData() == "Y") {        ?>
+                <? if ($curr_deal->getHasGeoData() == "Y") { ?>
                     <div id="tabs3"><br>
-                        <?=$curr_deal->getGoogleMap() ?>
+                        <?= $curr_deal->getGoogleMap() ?>
                     </div>
                 <? } ?>
 
@@ -130,10 +133,13 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
 
             ?>
             <div class="deal">
-                <h2><a href="index.php?view=deal&deal_id=<?= $latest_deal->getId() ?>"><?= $latest_deal->getTitle() ?></a></h2>
+                <h2>
+                    <a href="index.php?view=deal&deal_id=<?= $latest_deal->getId() ?>"><?= $latest_deal->getTitle() ?></a>
+                </h2>
 
                 <div class="dealimage"><a href="index.php?view=deal&deal_id=<?= $latest_deal->getId() ?>">
-                        <img src="images/deals/<?= $latest_deal->getThumbnail() ?>" width="225" height="147" border="0" alt="">
+                        <img src="images/deals/<?= $latest_deal->getThumbnail() ?>" width="225" height="147" border="0"
+                             alt="">
                     </a></div>
                 <div class="price">&pound;<?= $latest_deal->getOfferPrice() ?></div>
                 <div class="oldpriceholder">
@@ -189,9 +195,9 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                 }
             });
         });
-    <? } else { ?>
-              $('#deal_rating .rateit').rateit('value', <?=$curr_deal->getRateAverage()?>);
-              $('#deal_rating .rateit').rateit('readonly', true);
-    <? }?>
+        <? } else { ?>
+        $('#deal_rating .rateit').rateit('value', <?=$curr_deal->getRateAverage()?>);
+        $('#deal_rating .rateit').rateit('readonly', true);
+        <? }?>
     });
 </script>
