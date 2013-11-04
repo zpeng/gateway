@@ -7,7 +7,7 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
     $deal_id = secureRequestParameter($_REQUEST["deal_id"]);
     $deal = new Deal();
     $dealManager = new DealManager();
-    $deal = $dealManager->clientFetchSingleDeal($deal_id);
+    $deal = $dealManager->clientFetchSingleDealFullDetail($deal_id);
     if ($deal == null) {
         redirect_to_404();
     }
@@ -44,7 +44,7 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                 <div class="mask"></div>
 
                 <div class="leftcontainer">
-                    <div class="mainlogo"><img src="images/brands/logo.png" width="100" height="100" border="0" alt="">
+                    <div class="mainlogo"><img src="images/suppliers/logo/<?= $deal->getSupplierLogo() ?>" width="86" height="86" border="0" style="margin-left: 5px;">
                     </div>
                     <div class="mainbought"><?= $deal->getNumBought() ?></div>
                     <div class="mainleft">30 days</div>
@@ -102,11 +102,9 @@ if (isset($_REQUEST["deal_id"]) && !is_null($_REQUEST["deal_id"])) {
                     <?= $deal->getFinePrint() ?>
                 </div>
 
-                <? if ($deal->getHasGeoData() == "Y") { ?>
+                <? if ($deal->getHasGeoData() == "Y") {        ?>
                     <div id="tabs3"><br>
-                        <iframe width="680" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                                src="https://maps.google.co.uk/maps?q=google+map&amp;ie=UTF8&amp;gl=uk&amp;t=m&amp;ll=<?= $deal->getLatitude() ?>,<?= $deal->getLongitude() ?>&amp;spn=0.180164,0.151062&amp;z=11&amp;iwloc=A&amp;output=embed"></iframe>
-                        <br/>
+                        <?=$deal->getGoogleMap() ?>
                     </div>
                 <? } ?>
 

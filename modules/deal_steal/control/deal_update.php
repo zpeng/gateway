@@ -21,8 +21,7 @@ if (!empty($_REQUEST['operation'])) {
         $deal->setOnlineDate($_REQUEST["online_date"]);
         $deal->setOfflineDate($_REQUEST["offline_date"]);
         $deal->setHasGeoData($_REQUEST["has_geo_data"]);
-        $deal->setLatitude($_REQUEST["latitude"]);
-        $deal->setLongitude($_REQUEST["longitude"]);
+        $deal->setGoogleMap($_REQUEST["google_map"]);
         $deal->update();
 
         $response_array['status'] = 'success';
@@ -81,7 +80,7 @@ if (!empty($_REQUEST['operation'])) {
             $destination_path = BASE_PATH . "images/deals/";
 
             $imgUploader = new FileUploader($_FILES['deal_image_uploaded'], $destination_path, $new_name, array("jpg", "png", "jpeg", "gif"), "2097152");
-            if ($deal->getImage() != "default.jpg") {
+            if ($deal->getImage() != "default.png") {
                 $imgUploader->deleteFileFromServer($destination_path . $deal->getImage()); // remove original image if necessary
             }
 

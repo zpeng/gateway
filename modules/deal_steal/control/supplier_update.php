@@ -28,7 +28,7 @@ if (!empty($_FILES['logo_image_uploaded']) && $_FILES['logo_image_uploaded']['si
 
     $imgUploader = new FileUploader($_FILES['logo_image_uploaded'], $destination_path, $new_name, array("jpg", "png", "jpeg", "gif"), "2097152");
 
-    if ($supplier->getSupplierLogo() != "default.jpg") {
+    if ($supplier->getSupplierLogo() != "default.png") {
         $imgUploader->deleteFileFromServer($destination_path . $supplier->getSupplierLogo());// remove original image if necessary
     }
 

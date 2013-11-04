@@ -3,11 +3,12 @@ namespace modules\deal_steal\includes\classes;
 
 class DealManager
 {
-    public function clientFetchSingleDeal($deal_id){
+    public function clientFetchSingleDealFullDetail($deal_id){
         $link = getConnection();
         $query = " SELECT     ds_deal.deal_id,
                               ds_deal.supplier_id,
                               ds_supplier.supplier_name,
+                              supplier_logo,
                               ds_deal.category_id,
                               ds_category.category_name,
                               ds_deal.city_id,
@@ -26,8 +27,7 @@ class DealManager
                               thumbnail,
                               voucher_template,
                               has_geo_data,
-                              latitude,
-                              longitude,
+                              google_map,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -50,6 +50,7 @@ class DealManager
             $deal->setId($newArray['deal_id']);
             $deal->setSupplierId($newArray['supplier_id']);
             $deal->setSupplierName($newArray['supplier_name']);
+            $deal->setSupplierLogo($newArray['supplier_logo']);
             $deal->setCategoryId($newArray['category_id']);
             $deal->setCategoryName($newArray['category_name']);
             $deal->setCityId($newArray['city_id']);
@@ -68,8 +69,7 @@ class DealManager
             $deal->setImage($newArray['image']);
             $deal->setVoucher($newArray['voucher_template']);
             $deal->setHasGeoData($newArray['has_geo_data']);
-            $deal->setLatitude($newArray['latitude']);
-            $deal->setLongitude($newArray['longitude']);
+            $deal->setGoogleMap($newArray['google_map']);
             $deal->setActive($newArray['active']);
             return $deal;
         }
@@ -101,8 +101,7 @@ class DealManager
                               thumbnail,
                               voucher_template,
                               has_geo_data,
-                              latitude,
-                              longitude,
+                              google_map,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -143,8 +142,7 @@ class DealManager
             $deal->setThumbnail($newArray['thumbnail']);
             $deal->setVoucher($newArray['voucher_template']);
             $deal->setHasGeoData($newArray['has_geo_data']);
-            $deal->setLatitude($newArray['latitude']);
-            $deal->setLongitude($newArray['longitude']);
+            $deal->setGoogleMap($newArray['google_map']);
             $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
@@ -176,8 +174,7 @@ class DealManager
                               thumbnail,
                               voucher_template,
                               has_geo_data,
-                              latitude,
-                              longitude,
+                              google_map,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -213,8 +210,7 @@ class DealManager
             $deal->setThumbnail($newArray['thumbnail']);
             $deal->setVoucher($newArray['voucher_template']);
             $deal->setHasGeoData($newArray['has_geo_data']);
-            $deal->setLatitude($newArray['latitude']);
-            $deal->setLongitude($newArray['longitude']);
+            $deal->setGoogleMap($newArray['google_map']);
             $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
@@ -246,8 +242,7 @@ class DealManager
                               thumbnail,
                               voucher_template,
                               has_geo_data,
-                              latitude,
-                              longitude,
+                              google_map,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -284,8 +279,7 @@ class DealManager
             $deal->setThumbnail($newArray['thumbnail']);
             $deal->setVoucher($newArray['voucher_template']);
             $deal->setHasGeoData($newArray['has_geo_data']);
-            $deal->setLatitude($newArray['latitude']);
-            $deal->setLongitude($newArray['longitude']);
+            $deal->setGoogleMap($newArray['google_map']);
             $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }

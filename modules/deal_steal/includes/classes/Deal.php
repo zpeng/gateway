@@ -6,6 +6,7 @@ class Deal
     public $id;
     public $supplier_id;
     public $supplier_name;
+    public $supplier_logo;
     public $category_id;
     public $category_name;
     public $city_id;
@@ -24,8 +25,7 @@ class Deal
     public $thumbnail;
     public $voucher;
     public $has_geo_data;
-    public $longitude;
-    public $latitude;
+    public $google_map;
     public $active;
 
     /**
@@ -45,36 +45,21 @@ class Deal
     }
 
     /**
-     * @param mixed $latitude
+     * @param mixed $google_map
      */
-    public function setLatitude($latitude)
+    public function setGoogleMap($google_map)
     {
-        $this->latitude = $latitude;
+        $this->google_map = $google_map;
     }
 
     /**
      * @return mixed
      */
-    public function getLatitude()
+    public function getGoogleMap()
     {
-        return $this->latitude;
+        return $this->google_map;
     }
 
-    /**
-     * @param mixed $longitude
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
 
     /**
      * @param mixed $voucher
@@ -132,6 +117,22 @@ class Deal
     public function getSupplierName()
     {
         return $this->supplier_name;
+    }
+
+    /**
+     * @param mixed $supplier_logo
+     */
+    public function setSupplierLogo($supplier_logo)
+    {
+        $this->supplier_logo = $supplier_logo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSupplierLogo()
+    {
+        return $this->supplier_logo;
     }
 
     public function setCategoryId($category_id)
@@ -342,8 +343,7 @@ class Deal
                               thumbnail,
                               voucher_template,
                               has_geo_data,
-                              latitude,
-                              longitude,
+                              google_map,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -380,8 +380,7 @@ class Deal
             $this->setImage($newArray['image']);
             $this->setVoucher($newArray['voucher_template']);
             $this->setHasGeoData($newArray['has_geo_data']);
-            $this->setLatitude($newArray['latitude']);
-            $this->setLongitude($newArray['longitude']);
+            $this->setGoogleMap($newArray['google_map']);
             $this->setActive($newArray['active']);
         }
 
@@ -413,8 +412,7 @@ class Deal
                                  fine_print,
                                  voucher_template,
                                  has_geo_data,
-                                 latitude,
-                                 longitude,
+                                 google_map,
                                  deal_desc)
                     VALUES (" . $this->getSupplierId() . ",
                             " . $this->getCategoryId() . ",
@@ -430,8 +428,7 @@ class Deal
                             '" . $this->getFinePrint() . "',
                             '" . $this->getVoucher() . "',
                             'N',
-                            0,
-                            0,
+                            '" . $this->getGoogleMap() . "',
                             '" . $this->getDesc() . "');";
 
         executeUpdateQuery($link, $query);
@@ -456,8 +453,7 @@ class Deal
                       online_date = '" . $this->getOnlineDate() . "',
                       offline_date = '" . $this->getOfflineDate() . "',
                       has_geo_data = '" . $this->getHasGeoData() . "',
-                      latitude = " . $this->getLatitude() . ",
-                      longitude = " . $this->getLongitude() . "
+                      google_map = '" . $this->getGoogleMap() . "'
                     WHERE deal_id  = " . $this->getId();
 
         executeUpdateQuery($link, $query);

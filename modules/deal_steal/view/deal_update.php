@@ -109,15 +109,14 @@ $deal->loadById($deal_id);
                     </td>
                 </tr>
                 <tr>
-                    <td width="150" align="right"><b>Latitude: </b></td>
-                    <td><input name="latitude" id="latitude" style="width: 120px;"
-                               value="<?= $deal->getLatitude() ?>"/></td>
+                    <td width="150" align="right"><b>Google Map Code: </b></td>
+                    <td>Google Map code can be generated from http://www.embedgooglemap.com/
+                        <br> Make sure width = 680px and height = 350px
+                        <br>
+                        <textarea name='google_map' id='google_map' rows="4"
+                                              cols="60"><?= $deal->getGoogleMap() ?></textarea>
                 </tr>
-                <tr>
-                    <td width="150" align="right"><b>Longitude: </b></td>
-                    <td><input name="longitude" id="longitude" style="width: 120px;"
-                               value="<?= $deal->getLongitude() ?>"/></td>
-                </tr>
+
                 <tr>
                     <td></td>
                     <td>
@@ -342,8 +341,7 @@ head.js(<?=outputDependencies(
             var online_date = $("#online_date").val();
             var offline_date = $("#offline_date").val();
             var has_geo_data = $("#has_geo_data").prop('checked') ? "Y" : "N";
-            var latitude = $("#latitude").val() ;
-            var longitude = $("#longitude").val();
+            var google_map= $("#google_map").val() ;
             $.ajax({
                 url: SERVER_URL + "modules/deal_steal/control/deal_update.php",
                 type: "POST",
@@ -361,8 +359,7 @@ head.js(<?=outputDependencies(
                     online_date: online_date,
                     offline_date: offline_date,
                     has_geo_data: has_geo_data,
-                    latitude: latitude,
-                    longitude: longitude
+                    google_map: google_map
 
                 },
                 dataType: "json",

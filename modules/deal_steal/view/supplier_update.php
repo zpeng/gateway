@@ -53,9 +53,11 @@
                             <input name="logo_image_uploaded" id="logo_image_uploaded" type="file"/>
                             <span id="file_size"></span>
                             <br/>
-                            <span>(Support Type:jpg, jpeg, png, gif.  Maximum file size: 2Mb)</span>
+                            <span>(Support Type: png only (for the purpose of transparent).  Maximum file size: 2Mb)</span>
                             <br/>
-                            <span>(It is better to keep image width/height ratio at 1 : 0.64)</span>
+                            <span>(Keep the resolution as 94 X 94)</span>
+                            <br/>
+                            <span>(You can use the following url to process the image http://www.roundpic.com/index.php)</span>
                         </td>
                     </tr>
                     <tr>
