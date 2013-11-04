@@ -26,6 +26,8 @@ class Deal
     public $voucher;
     public $has_geo_data;
     public $google_map;
+    public $rate_average;
+    public $rate_total;
     public $active;
 
     /**
@@ -309,6 +311,40 @@ class Deal
         return $this->original_quantity - $this->quantity;
     }
 
+    /**
+     * @param mixed $rate_average
+     */
+    public function setRateAverage($rate_average)
+    {
+        $this->rate_average = $rate_average;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRateAverage()
+    {
+        return $this->rate_average;
+    }
+
+    /**
+     * @param mixed $rate_total
+     */
+    public function setRateTotal($rate_total)
+    {
+        $this->rate_total = $rate_total;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRateTotal()
+    {
+        return $this->rate_total;
+    }
+
+
+
     public function getTooltipMsg(){
         $msg = "Supplier: " .$this->getSupplierName();
         $msg = $msg."<br/>Online Date: ".$this->getOnlineDate();
@@ -344,6 +380,8 @@ class Deal
                               voucher_template,
                               has_geo_data,
                               google_map,
+                              rate_total,
+                              rate_average,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -381,6 +419,8 @@ class Deal
             $this->setVoucher($newArray['voucher_template']);
             $this->setHasGeoData($newArray['has_geo_data']);
             $this->setGoogleMap($newArray['google_map']);
+            $this->setRateAverage($newArray['rate_average']);
+            $this->setRateTotal($newArray['rate_total']);
             $this->setActive($newArray['active']);
         }
 

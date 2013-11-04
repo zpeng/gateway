@@ -3,7 +3,8 @@ namespace modules\deal_steal\includes\classes;
 
 class DealManager
 {
-    public function clientFetchSingleDealFullDetail($deal_id){
+    public function clientFetchSingleDealFullDetail($deal_id)
+    {
         $link = getConnection();
         $query = " SELECT     ds_deal.deal_id,
                               ds_deal.supplier_id,
@@ -28,6 +29,8 @@ class DealManager
                               voucher_template,
                               has_geo_data,
                               google_map,
+                              rate_total,
+                              rate_average,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -70,6 +73,8 @@ class DealManager
             $deal->setVoucher($newArray['voucher_template']);
             $deal->setHasGeoData($newArray['has_geo_data']);
             $deal->setGoogleMap($newArray['google_map']);
+            $deal->setRateAverage($newArray['rate_average']);
+            $deal->setRateTotal($newArray['rate_total']);
             $deal->setActive($newArray['active']);
             return $deal;
         }
@@ -102,6 +107,8 @@ class DealManager
                               voucher_template,
                               has_geo_data,
                               google_map,
+                              rate_total,
+                              rate_average,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -116,7 +123,7 @@ class DealManager
                               AND now() <=  offline_date
                               AND quantity > 0
                             ORDER BY online_date DESC
-                            LIMIT 0, ".$size;
+                            LIMIT 0, " . $size;
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {
@@ -143,10 +150,53 @@ class DealManager
             $deal->setVoucher($newArray['voucher_template']);
             $deal->setHasGeoData($newArray['has_geo_data']);
             $deal->setGoogleMap($newArray['google_map']);
+            $deal->setRateAverage($newArray['rate_average']);
+            $deal->setRateTotal($newArray['rate_total']);
             $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
         return $deal_list;
+    }
+
+    public function clientUpdateDealRating($client_id, $deal_id, $rate_value)
+    {
+        if (!$this->checkClientHasVoteDealBefore($client_id, $deal_id)) {
+            $link = getConnection();
+            $query = "  UPDATE ds_deal
+                        SET rate_average = ((rate_average*rate_total)+ " . $rate_value . " )/(rate_total+1),
+                        rate_total = rate_total + 1
+                        WHERE deal_id  = " . $deal_id;
+            executeUpdateQuery($link, $query);
+
+            $query1 = "INSERT INTO ds_rate_it
+                        (deal_id,
+                        client_id)
+                        VALUES (" . $deal_id . ",
+                        " . $client_id . ")";
+            executeUpdateQuery($link, $query1);
+        }
+    }
+
+    public function checkClientHasVoteDealBefore($client_id, $deal_id)
+    {
+        $link = getConnection();
+        $query = " SELECT     ds_rate_it.deal_id,
+                              ds_rate_it.client_id
+                            FROM
+                              ds_rate_it
+                            WHERE ds_rate_it.deal_id = " . $deal_id . "
+                              AND ds_rate_it.client_id = " . $client_id;
+
+        $result = executeNonUpdateQuery($link, $query);
+        closeConnection($link);
+        $num_rows = mysql_num_rows($result); // Find no. of rows retrieved from DB
+
+        if ($num_rows > 0) {
+            $has_voted = true; // client has voted before for this deal
+        } else {
+            $has_voted = false; //client has not yet voted before for this deal
+        }
+        return $has_voted;
     }
 
     public function loadAllDeals($active = "Y")
@@ -175,6 +225,8 @@ class DealManager
                               voucher_template,
                               has_geo_data,
                               google_map,
+                              rate_total,
+                              rate_average,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -211,6 +263,8 @@ class DealManager
             $deal->setVoucher($newArray['voucher_template']);
             $deal->setHasGeoData($newArray['has_geo_data']);
             $deal->setGoogleMap($newArray['google_map']);
+            $deal->setRateAverage($newArray['rate_average']);
+            $deal->setRateTotal($newArray['rate_total']);
             $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
@@ -243,6 +297,8 @@ class DealManager
                               voucher_template,
                               has_geo_data,
                               google_map,
+                              rate_total,
+                              rate_average,
                               ds_deal.active
                             FROM
                               ds_deal,
@@ -253,7 +309,7 @@ class DealManager
                               AND ds_category.category_id = ds_deal.category_id
                               AND ds_city.city_id = ds_deal.city_id
                               AND ds_supplier.supplier_id = ds_deal.supplier_id
-                              AND ds_deal.supplier_id = ".$supplier_id;
+                              AND ds_deal.supplier_id = " . $supplier_id;
         $result = executeNonUpdateQuery($link, $query);
         closeConnection($link);
         while ($newArray = mysql_fetch_array($result)) {
@@ -280,6 +336,8 @@ class DealManager
             $deal->setVoucher($newArray['voucher_template']);
             $deal->setHasGeoData($newArray['has_geo_data']);
             $deal->setGoogleMap($newArray['google_map']);
+            $deal->setRateAverage($newArray['rate_average']);
+            $deal->setRateTotal($newArray['rate_total']);
             $deal->setActive($newArray['active']);
             array_push($deal_list, $deal);
         }
@@ -309,7 +367,8 @@ class DealManager
         return $dataSource;
     }
 
-    public function getDealListDataSource($supplier_id){
+    public function getDealListDataSource($supplier_id)
+    {
         $deal_list = $this->loadDealBySupplier($supplier_id);
         $dataSource = array();
         $data = array();
@@ -318,7 +377,7 @@ class DealManager
                 array_push($data, array(
                     "id" => $deal->getId(),
                     "name" => $deal->getTitle(),
-                    "tooltip"=> $deal->getTooltipMsg()
+                    "tooltip" => $deal->getTooltipMsg()
                 ));
             }
         }
