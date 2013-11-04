@@ -15,7 +15,7 @@ $result = $userManager->checkUserExistsByEmail($user_name);
 if (!$result) {
     $user = new User();
     $user->set_user_name($user_name);
-    $user->set_user_password(md5($_REQUEST["password"]));
+    $user->set_user_password(sha1($_REQUEST["password"]));
     $user->user_subscribe_module_code_list = $subscribe_module_code_list;
     $user->insert();
     $user->updateUserSubscribeModuleList();

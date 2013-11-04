@@ -22,7 +22,7 @@ if (!$clientManager->checkClientExistsByEmail($email)) {
 
     $client = new Client();
     $client->loadByEmail($email);
-    $new_password = substr(md5("DEALSTEAL".time()), 0, 8);
+    $new_password = substr(sha1("DEALSTEAL".time()), 0, 8);
     $client->updatePassword($new_password);
 
     // now to notify user by email

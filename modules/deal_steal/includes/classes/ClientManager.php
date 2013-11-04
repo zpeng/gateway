@@ -8,7 +8,7 @@ class ClientManager
     {
         $link = getConnection();
         $loginResult = false;
-        $password = md5($password);
+        $password = sha1($password);
 
         $query = " select client_id,
                         client_email,

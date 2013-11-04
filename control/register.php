@@ -29,7 +29,7 @@ if ($clientManager->checkClientExistsByEmail($email)) {
 
     $client = new Client();
     $client->setClientEmail($email);
-    $client->setClientPassword(md5($password));
+    $client->setClientPassword(sha1($password));
     $client->setClientTitle($title);
     $client->setClientSurname($surname);
     $client->setClientFirstname($firstname);

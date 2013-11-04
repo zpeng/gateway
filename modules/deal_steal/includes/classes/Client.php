@@ -260,7 +260,7 @@ class Client
     public function updatePassword($new_password)
     {
         $link = getConnection();
-        $newPassword = md5($new_password);
+        $newPassword = sha1($new_password);
         $query = " UPDATE ds_client
                    SET    client_password = '" . $newPassword . "'
                    WHERE  client_id = " . $this->getClientId();

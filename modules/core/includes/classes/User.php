@@ -122,7 +122,7 @@ class User
     public function updatePassword($new_password)
     {
         $link = getConnection();
-        $newPassword = md5($new_password);
+        $newPassword = sha1($new_password);
         $query = " UPDATE core_user
                SET    user_password = '" . $newPassword . "'
                WHERE  user_id = " . $this->get_user_id();

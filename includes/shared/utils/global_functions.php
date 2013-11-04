@@ -70,7 +70,7 @@ function deleteImageFromServer($targetFile)
 
 function generateCustomerPassword()
 {
-    $str = md5(time());
+    $str = sha1(time());
     $new_password = substr($str, 0, 8);
     return $new_password;
 }
