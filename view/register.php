@@ -9,8 +9,8 @@
         <div class="subnav">
             <span class="page_title">Registration</span>
         </div>
-
-        <form action="control/register.php">
+        <? include_once("view/notification_bar.php"); ?>
+        <form action="control/register.php" method="post">
             <table style="margin-left: 100px; margin-top: 30px;" width="500">
                 <tr>
                     <td width="180" align="right">Email:</td>
@@ -65,6 +65,13 @@
                 <tr>
                     <td height="10"></td>
                     <td></td>
+                </tr>
+                <tr>
+                    <td height="50"></td>
+                    <td><img id="captcha" src="external/php/securimage/securimage_show.php" alt="CAPTCHA Image" />
+                        <input type="text" name="captcha_code" size="10" maxlength="6" />
+                        <a href="#" onclick="document.getElementById('captcha').src = 'external/php/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
