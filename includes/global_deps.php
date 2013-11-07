@@ -30,6 +30,7 @@ $JS_GLOBAL = array(
 $JS_FRONTEND = array(
     "global_constants" => "includes/global_constants.js",
     "jquery-1.9.1" => "external/js/jquery-1.9.1/jquery-1.9.1.min.js",
+    "jquery-ui" => "external/js/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js",
     "headJs" => "external/js/headJs/head.min.js",
     "jquery-hashchange" => array("external/js/jquery-hashchange/jquery.hashchange.min.js"),
     "jquery-easytabs" => array("external/js/jquery-easytabs/jquery.easytabs.min.js"),

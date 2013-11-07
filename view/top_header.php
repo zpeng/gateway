@@ -8,7 +8,7 @@
         <?
         if (isset($_SESSION['client_is_login']) && $_SESSION['client_is_login'] == true) {
             ?>
-            <div class="welcome">Welcome <span class="name"><?=$_SESSION['client_name']?></span> | <a
+            <div class="welcome">Welcome <span class="name"><?= $_SESSION['client_name'] ?></span> | <a
                     href="control/logout.php">Logout?</a></div>
         <? } else { ?>
             <div class="login"><a href="index.php?view=login">Login</a> | <a href="index.php?view=register">Register</a>
@@ -16,7 +16,8 @@
         <? } ?>
         <div class="search">
             <form action="">
-                <input type="text" name="searchtext" class="searchtext" value="I am looking for" onfocus="if(this.value=='I am looking for') this.value='';">
+                <input type="text" name="searchtext" class="searchtext" value="I am looking for"
+                       onfocus="if(this.value=='I am looking for') this.value='';">
 
                 <div class="searchselect">
                     <div class="searchselectimg">
@@ -24,6 +25,7 @@
                             <?
                             use modules\deal_steal\includes\classes\City;
                             use modules\deal_steal\includes\classes\CityManager;
+
                             $cityManager = new CityManager();
                             $city_list = $cityManager->loadCityList();
                             if (sizeof($city_list) > 0) {
@@ -50,11 +52,42 @@
 
         <div class="welcome clear">Sign up for deals in <span class="name">London</span></div>
         <div class="signup">
-            <form action="">
-                <input type="text" name="signuptext" class="signuptext" value="Your email address" onfocus="if(this.value=='Your email address') this.value='';">
+            <form id="clientNewsletterSubscribeForm" method='post'>
+                <input type="text" name="sub_email" id="sub_email" class="signuptext" value="Your email address"
+                       onfocus="if(this.value=='Your email address') this.value='';">
                 <input type="image" name="signupsubmit" class="signupsubmit" src="images/button_go.png">
             </form>
+            <div id="client_subscribe_dialog" class="ui-widget-shadow ui-corner-all">
+                Thank you for subscribing with us!
+            </div>
         </div>
+        <script>
+            $("#client_subscribe_dialog").dialog({
+                autoOpen: false,
+                resizable: false,
+                position: "center top",
+                height: 300,
+                width: 350,
+                modal: false
+            });
+
+            $('form#clientNewsletterSubscribeForm').submit(function () {
+                $.ajax({
+                    url: 'control/ajax_service.php', //your server side script
+                    data: {
+                        email: $('#sub_email').val(),
+                        operation_id: "client_subscribe" }, //our data
+                    type: 'POST',
+                    success: function (data) {
+                        $("#client_subscribe_dialog").dialog("open");
+                    },
+                    error: function (jxhr, msg, err) {
+                        console.log(msg);
+                    }
+                });
+                return false;
+            });
+        </script>
 
     </div>
     <div id="concierge">

@@ -5,7 +5,7 @@ require_once('session.php');
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-<? echo  outputHTMLStartFrontend($JS_FRONTEND, array("css/style.css"), $s_configManager) ?>
+<? echo  outputHTMLStartFrontend($JS_FRONTEND, array("css/style.css", "external/js/jquery-ui-1.10.2.custom/css/custom-theme/jquery-ui-1.10.2.custom.css"), $s_configManager) ?>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">var switchTo5x = true;</script>
 <script type="text/javascript">
@@ -59,6 +59,10 @@ require_once('session.php');
 
         case "article" :
             include_once 'view/article.php';
+            break;
+
+        case "unsubscribe":
+            include_once 'view/unsubscribe.php';
             break;
 
         case "404" :
