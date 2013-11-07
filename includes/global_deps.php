@@ -13,7 +13,8 @@ $CSS_DEPS = array(
     "slickgrid-css" => array("external/js/SlickGrid/slick.grid.css",
         //"external/js/SlickGrid/css/smoothness/jquery-ui-1.8.16.custom.css",
         "external/js/jquery-ui-1.10.2.custom/css/custom-theme/jquery-ui-1.10.2.custom.css"),
-    "rateit-css" => array("external/js/rateit/src/rateit.css","external/js/rateit/src/bigstars.css"),
+    "rateit-css" => array("external/js/rateit/src/rateit.css", "external/js/rateit/src/bigstars.css"),
+    "simplemodal-css" => array("external/js/simplemodal/css/basic.css")
 );
 
 /*
@@ -92,6 +93,10 @@ $JS_DEPS = array(
 
     "rateit" => array(
         "external/js/rateit/src/jquery.rateit.min.js"
+    ),
+
+    "simplemodal" => array(
+        "external/js/simplemodal/js/jquery.simplemodal.js"
     )
 
 );

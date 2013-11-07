@@ -55,37 +55,43 @@
             <form id="clientNewsletterSubscribeForm" method='post'>
                 <input type="text" name="sub_email" id="sub_email" class="signuptext" value="Your email address"
                        onfocus="if(this.value=='Your email address') this.value='';">
-                <input type="image" name="signupsubmit" class="signupsubmit" src="images/button_go.png">
+                <input type="image" src="images/button_go.png">
             </form>
-            <div id="client_subscribe_dialog" class="ui-widget-shadow ui-corner-all">
+            <div id="client_subscribe_dialog" style="">
                 Thank you for subscribing with us!
             </div>
         </div>
         <script>
-            $("#client_subscribe_dialog").dialog({
-                autoOpen: false,
-                resizable: false,
-                position: "center top",
-                height: 300,
-                width: 350,
-                modal: false
-            });
+            // load css
+            head.js(<?=outputDependencies(
+    array("simplemodal-css")
+    , $CSS_DEPS)?>);
 
-            $('form#clientNewsletterSubscribeForm').submit(function () {
-                $.ajax({
-                    url: 'control/ajax_service.php', //your server side script
-                    data: {
-                        email: $('#sub_email').val(),
-                        operation_id: "client_subscribe" }, //our data
-                    type: 'POST',
-                    success: function (data) {
-                        $("#client_subscribe_dialog").dialog("open");
-                    },
-                    error: function (jxhr, msg, err) {
-                        console.log(msg);
-                    }
+            // load js
+            head.js(<?=outputDependencies(
+    array("simplemodal")
+    , $JS_DEPS)?>, function () {
+                $('form#clientNewsletterSubscribeForm').submit(function () {
+                    $.ajax({
+                        url: 'control/ajax_service.php', //your server side script
+                        data: {
+                            email: $('#sub_email').val(),
+                            operation_id: "client_subscribe" }, //our data
+                        type: 'POST',
+                        success: function (data) {
+                            $("#client_subscribe_dialog").modal({
+                                overlayClose: false,
+                                maxHeight : 60,
+                                autoResize: true,
+                                autoPosition: true
+                            });
+                        },
+                        error: function (jxhr, msg, err) {
+                            console.log(msg);
+                        }
+                    });
+                    return false;
                 });
-                return false;
             });
         </script>
 
